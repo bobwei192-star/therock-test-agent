@@ -7,3 +7,8 @@ python-dotenv>=1.0.0
 langfuse
 openai
 deepagents
+pytest
+pytest-asyncio
+mcp
+langchain-mcp-adapters
+huggingface_hub[mcp]>=0.32.0

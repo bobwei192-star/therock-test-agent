@@ -73,7 +73,9 @@ def build_model_config(provider: str | None = None) -> ModelConfig:
             raise RuntimeError("Missing AMD_LLM_SUBSCRIPTION_KEY.")
         return ModelConfig(
             model=os.environ.get("AMD_LLM_MODEL", "GPT55"),
-            base_url=os.environ.get("AMD_LLM_BASE_URL", "https://llm-api.amd.com/OnPrem"),
+            base_url=os.environ.get(
+                "AMD_LLM_BASE_URL", "https://llm-api.amd.com/OnPrem"
+            ),
             api_key=os.environ.get("AMD_LLM_API_KEY", "dummy"),
             temperature=float(os.environ.get("LLM_TEMPERATURE", "0.2")),
             subscription_key=subscription_key,
@@ -95,7 +97,9 @@ def build_model_config(provider: str | None = None) -> ModelConfig:
     base_url = os.environ.get("LLM_BASE_URL")
     model = os.environ.get("LLM_MODEL")
     if not api_key or not base_url or not model:
-        raise RuntimeError("Generic provider requires LLM_API_KEY, LLM_BASE_URL and LLM_MODEL.")
+        raise RuntimeError(
+            "Generic provider requires LLM_API_KEY, LLM_BASE_URL and LLM_MODEL."
+        )
     return ModelConfig(
         model=model,
         base_url=base_url,

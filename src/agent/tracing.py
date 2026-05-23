@@ -40,12 +40,19 @@ def _build_langfuse_handler() -> Any | None:
         return None
 
     load_dotenv(dotenv_path=DOTENV_PATH)
-    required_env = (
-        "LANGFUSE_HOST",
-        "LANGFUSE_PUBLIC_KEY",
-        "LANGFUSE_SECRET_KEY",
+    langfuse_host = os.environ.get("LANGFUSE_HOST") or os.environ.get(
+        "LANGFUSE_BASE_URL"
     )
-    if any(not os.environ.get(name) for name in required_env):
+    if langfuse_host:
+        os.environ["LANGFUSE_HOST"] = langfuse_host
+
+    if not all(
+        (
+            langfuse_host,
+            os.environ.get("LANGFUSE_PUBLIC_KEY"),
+            os.environ.get("LANGFUSE_SECRET_KEY"),
+        )
+    ):
         return None
 
     return CallbackHandler()
@@ -105,7 +112,9 @@ def _safe_json_value(value: Any, max_length: int = 2000) -> Any:
     return text
 
 
-def dump_execution_trace(graph: Any, config: dict[str, Any], output_dir: str = "./traces") -> None:
+def dump_execution_trace(
+    graph: Any, config: dict[str, Any], output_dir: str = "./traces"
+) -> None:
     """只保留本地文件落盘，Langfuse 云端上报完全交给 CallbackHandler。"""
     trace_dir = Path(output_dir)
     trace_dir.mkdir(parents=True, exist_ok=True)
@@ -123,8 +132,7 @@ def dump_execution_trace(graph: Any, config: dict[str, Any], output_dir: str = "
             "step": index,
             "next_node": state.next,
             "values": {
-                key: _safe_json_value(value)
-                for key, value in state.values.items()
+                key: _safe_json_value(value) for key, value in state.values.items()
             },
             "metadata": state.metadata,
         }

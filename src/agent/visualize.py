@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import Any
 from .graph import build_graph
 
+
 def export_agent_graph(
     output_prefix: str = "agent_architecture",
     graph: Any | None = None,

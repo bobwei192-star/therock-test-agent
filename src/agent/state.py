@@ -12,6 +12,7 @@ class AgentState(TypedDict, total=False):
     case_plan: str
     code: str
     generated_code: str
+    explanation: str  # ← 新增：LLM 回复中的非代码文字说明（如有）
     validation_result: dict[str, Any]
     execution_plan: dict[str, Any]
     execution_result: dict[str, Any]
@@ -35,5 +36,6 @@ class AgentContext:
         user_id: 用户唯一标识，用于隔离不同用户的记忆。
         project_id: 可选的项目/仓库标识，用于在同一个用户下区分不同项目记忆。
     """
-    user_id: str
+
+    user_id: str = "anonymous"  # ← 加默认值，兼容 Chat UI 无 user_id 的场景
     project_id: str | None = None

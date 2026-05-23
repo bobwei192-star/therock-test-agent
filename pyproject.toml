@@ -17,8 +17,17 @@ dependencies = [
     "langfuse",
     "openai",
     "deepagents",
+    "pytest",
+    "pytest-asyncio",
+    "mcp",
+    "langchain-mcp-adapters",
+    "huggingface_hub[mcp]>=0.32.0",
 ]
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
