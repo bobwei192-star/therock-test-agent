@@ -23,3 +23,32 @@ Fixture 内自动执行 pytest.skip() 处理命令缺失/无 GPU 场景。
 - 代码用 ```python ... ``` 包裹，除代码块外不输出任何文字、diff、文件路径或总结。
 - 修改/追加模式下必须输出完整文件，禁止只返回修改部分或新增部分。
 - 代码中禁止使用绝对路径（/home/、/tmp/），不使用 save_to_file 调用。
+采用“文件级测试用例”模式：
+1. 一个 Python 文件只代表一个测试用例，写到test_case/suites下对应的套件里。
+2. 每个文件内只能有一个 pytest 收集项：一个顶层 def test_<case_name>()。
+3. 禁止生成 class TestXxx。
+4. 禁止生成多个 def test_*。
+5. 辅助函数必须以下划线开头，例如 _run_command、_find_rocm_smi。
+6. fixture 名称不能以 test_ 开头。
+7. 如果计划里有多个测试点，必须拆成多个文件，不能合并到一个文件。
+8. 用例代码保存到TestCaseAgent/test_case/suites/suites名称
+9. 每个测试用例文件名必须是 test_<case_name>.py，case_name 是测试用例的唯一标识。
+10. 每个测试用例文件内只能有一个 pytest 收集项：一个顶层 def test_<case_name>()
+11.env 环境构建类 - Dockerfile 或脚本保存到TestCaseAgent/test_case/env_build
+
+这些内容写到test_case lib下
+（基础工具函数  
+系统与发行版检测   
+GPU/硬件检测  
+显示管理器与 X Server  
+电源管理 
+AMDGPU 驱动管理 
+测试与基准工具   
+软件包安装 
+网络与构建查询  
+判断运行环境是主机还是容器  
+获取系统内存大小 备份系统配置文件）
+
+
+
+

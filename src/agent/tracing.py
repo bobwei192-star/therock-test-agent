@@ -99,6 +99,12 @@ def flush_langfuse() -> None:
     flush = getattr(langfuse_handler, "flush", None)
     if callable(flush):
         flush()
+        return
+
+    client = getattr(langfuse_handler, "_langfuse_client", None)
+    client_flush = getattr(client, "flush", None)
+    if callable(client_flush):
+        client_flush()
 
 
 def _safe_json_value(value: Any, max_length: int = 2000) -> Any:

@@ -1,23 +1,27 @@
-import uuid
-from typing import Any
+from typing import Any, Optional
 from langgraph.runtime import Runtime
 from ..state import AgentState, AgentContext
 from ..prompts import get_planner_prompt
-from .utils import _invoke_llm, _memory_namespace, _format_memories
+from ..memory_manager import MemoryManager
+from .utils import _invoke_llm
 
 
-def planner(state: AgentState, runtime: Runtime[AgentContext], agent: Any) -> dict:
-    ns = _memory_namespace(runtime, "plans")
+def planner(state: AgentState, runtime: Runtime[AgentContext], agent: Any, interrupt_enabled: bool = True) -> dict:
+    memory = MemoryManager(runtime)
 
     print(f"\n{'=' * 60}")
     print(
         f"[DEBUG planner] Runtime context: user_id={runtime.context.user_id}, project_id={runtime.context.project_id}"
     )
-    print(f"[DEBUG planner] Memory namespace: {ns}")
     print(f"[DEBUG planner] Query: {state.get('requirement', '')[:80]}...")
+    if state.get("feedback"):
+        print(
+            "[DEBUG planner] Re-plan mode from sandbox feedback: "
+            f"{state.get('feedback', '')[:160]}..."
+        )
 
-    memories = runtime.store.search(ns, query=state.get("requirement", ""), limit=3)
-    memory_hints = _format_memories(memories)
+    memories = memory.search("plans", query=state.get("requirement", ""), limit=3)
+    memory_hints = memory.format_hints(memories)
 
     print(f"[DEBUG planner] Retrieved {len(memories)} memories:")
     for i, m in enumerate(memories):
@@ -30,19 +34,20 @@ def planner(state: AgentState, runtime: Runtime[AgentContext], agent: Any) -> di
         requirement=state.get("requirement", ""),
         context=state.get("context", {}),
         memory_hints=memory_hints,
+        feedback=state.get("feedback", ""),
+        execution_result=state.get("execution_result", {}),
     )
     case_plan = _invoke_llm(agent, prompt, node_name="planner")
 
-    memory_key = f"plan_{uuid.uuid4().hex[:8]}"
-    memory_value = {
-        "data": f"需求: {state.get('requirement', '')[:120]}... | 计划摘要: {case_plan[:200]}...",
-        "requirement": state.get("requirement", ""),
-        "full_plan": case_plan,
-    }
-    runtime.store.put(ns, memory_key, memory_value)
+    memory_key = memory.save_plan(
+        requirement=state.get("requirement", ""),
+        case_plan=case_plan,
+    )
 
-    print(f"\n[DEBUG planner] ✅ Wrote memory: key={memory_key}, namespace={ns}")
-    print(f"[DEBUG planner] Memory value preview: {memory_value['data'][:100]}...")
+    print(f"\n[DEBUG planner] ✅ Wrote memory: key={memory_key}")
+
+    # CLI 模式下不使用 interrupt，直接继续执行
+    # 人机交互确认将在 CLI 层单独处理
 
     return {
         "case_plan": case_plan,

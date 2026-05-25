@@ -3,6 +3,7 @@
 
 from pathlib import Path
 from uuid import uuid4
+import os
 
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -10,7 +11,12 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 DOCS_DIR = Path("./docs")
-CHROMA_DIR = Path("./chroma_langchain_db")  # 换个新目录，彻底避开旧索引
+CHROMA_DIR = Path(
+    os.environ.get("TEST_CASE_AGENT_CHROMA_DIR", "./chroma_langchain_db")
+)
+
+# 本地模型缓存目录
+_LOCAL_MODEL_DIR = Path("/home/zx/TestCaseAgent/llm_model")
 
 
 def main():
@@ -49,8 +55,27 @@ def main():
 
     # 3. 嵌入模型
     print("🔮 加载 Embedding 模型...")
+    
+    # 定义模型名称和本地路径
+    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    local_model_path = _LOCAL_MODEL_DIR / "all-MiniLM-L6-v2"
+    
+    # 检查本地是否已存在模型
+    if local_model_path.exists() and local_model_path.is_dir():
+        # 检查是否有必要的模型文件
+        required_files = ["config.json", "pytorch_model.bin", "tokenizer.json"]
+        if all((local_model_path / f).exists() for f in required_files):
+            print(f"[INFO] 使用本地模型: {local_model_path}")
+            model_to_use = str(local_model_path)
+        else:
+            print(f"[INFO] 本地模型目录不完整，将从 HuggingFace 下载")
+            model_to_use = model_name
+    else:
+        print(f"[INFO] 本地模型目录不存在，将从 HuggingFace 下载")
+        model_to_use = model_name
+    
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_name=model_to_use,
         model_kwargs={"device": "cpu"},
         encode_kwargs={"normalize_embeddings": True},
     )

@@ -93,6 +93,17 @@ def build_model_config(provider: str | None = None) -> ModelConfig:
             temperature=float(os.environ.get("LLM_TEMPERATURE", "0.2")),
         )
 
+    if selected_provider == "ark":
+        api_key = os.environ.get("ARK_API_KEY")
+        if not api_key:
+            raise RuntimeError("Missing ARK_API_KEY.")
+        return ModelConfig(
+            model=os.environ.get("ARK_MODEL", "deepseek-v3-2-251201"),
+            base_url=os.environ.get("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3"),
+            api_key=api_key,
+            temperature=float(os.environ.get("LLM_TEMPERATURE", "0.2")),
+        )
+
     api_key = os.environ.get("LLM_API_KEY")
     base_url = os.environ.get("LLM_BASE_URL")
     model = os.environ.get("LLM_MODEL")

@@ -7,6 +7,19 @@
 上下文:
 {context}
 {memory_hints}
+
+上一轮沙盒执行反馈:
+{feedback}
+
+上一轮执行结果:
+{execution_result}
+
+如果“上一轮沙盒执行反馈”不是“无”，必须进入重规划模式：
+- 先分析失败阶段和根因，但最终仍按下方结构输出完整新计划。
+- 不要只输出 diff、补丁或局部修改说明。
+- 明确是否需要依赖安装，若沙盒断网则避免网络下载和远程脚本。
+- 列出测试中会使用的 Shell 命令，并保证后续生成代码与命令清单一致。
+
 按以下格式输出执行计划（不要解释，只输出结构）:
 1. 测试目标: <一句话，引用或确认规格中的目标>
 2. Suite 划分与类名映射:
@@ -30,3 +43,10 @@
    - 共享Fixture: <命令执行器(scope=module)/GPU计数(scope=module)>
    - 独占Fixture: <临时文件(scope=function)/环境隔离(scope=class)>
    - Skip逻辑集中点: <在共享Fixture内统一处理命令缺失/无GPU，避免每个测试重复检查>
+   每个测试用例必须对应一个独立文件，不能把多个测试点合并到同一个 pytest 文件。
+Suite/Case 映射格式必须输出：
+- suite: <suite_name>
+- case_name: test_<case_name>
+- file_name: test_<case_name>.py
+- test_goal: <该文件唯一测试目标>
+- steps: <Arrange/Act/Assert/Cleanup>

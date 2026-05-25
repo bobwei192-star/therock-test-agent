@@ -46,3 +46,7 @@ format:
 clean:
 	rm -rf output/ .pytest_cache/ */**/__pycache__
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+
+
+gen:
+	$(PYTHON) -m src.agent.cli run "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性"

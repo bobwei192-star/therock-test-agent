@@ -60,6 +60,7 @@ python --version
 
 log_step 2 "Upgrade pip & install project"
 python -m pip install --upgrade pip -q
+pip install graphrag
 
 log_step 3 "Install project requirements (including RAG + CLI deps)"
 python -m pip install -r requirements.txt
@@ -146,15 +147,17 @@ DOTENV
 fi
 
 # ─────────────────────────────────────────────────────
-# Step 7: Chat UI (local pnpm)
+# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui)
 # ─────────────────────────────────────────────────────
 
-log_step 7 "Setup LangGraph Chat UI (local pnpm)"
-UI_REPO="https://github.com/braincrew-lab/langgraph-chat-ui.git"
-UI_DIR="$SCRIPT_DIR/etc/langgraph-chat-ui"
+pip install langgraph paramiko
+
+log_step 7 "Setup Agent Chat UI (langchain-ai/agent-chat-ui)"
+UI_REPO="https://github.com/langchain-ai/agent-chat-ui.git"
+UI_DIR="$SCRIPT_DIR/etc/agent-chat-ui"
 
 if ! command -v node >/dev/null 2>&1; then
-    log_error "Node.js 未安装，Chat UI 需要 Node.js 22+。跳过。"
+    log_error "Node.js 未安装，Agent Chat UI 需要 Node.js 22+。跳过。"
     log_info "安装: curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs"
 else
     log_info "Node.js: $(node -v)"
@@ -165,28 +168,37 @@ else
 
     if [ ! -d "$UI_DIR" ]; then
         git clone "$UI_REPO" "$UI_DIR"
-        log_info "Cloned langgraph-chat-ui -> $UI_DIR"
+        log_info "Cloned agent-chat-ui -> $UI_DIR"
     else
-        log_warn "chat-ui 源码已存在，跳过克隆"
+        log_warn "agent-chat-ui 源码已存在，跳过克隆"
     fi
 
-    if [ ! -f "$UI_DIR/frontend/.env" ]; then
-        cat > "$UI_DIR/frontend/.env" <<'DOTENV'
-NEXT_PUBLIC_LANGGRAPH_API_URL=http://127.0.0.1:2024
-NEXT_PUBLIC_ASSISTANT_ID=test_case_agent
-NEXT_PUBLIC_AUTH_MODE=standalone
+    # 创建 .env 文件，配置连接到本地 LangGraph server
+    if [ ! -f "$UI_DIR/.env" ]; then
+        cat > "$UI_DIR/.env" <<'DOTENV'
+NEXT_PUBLIC_API_URL=http://localhost:2024
+NEXT_PUBLIC_ASSISTANT_ID=agent
+NEXT_PUBLIC_AUTH_SCHEME=
 DOTENV
-        log_info "Created frontend/.env (standalone mode)"
+        log_info "Created .env (连接本地 LangGraph server)"
     fi
 
-    cd "$UI_DIR/frontend"
+    # 创建 .env.local 文件，设置 UI 服务端口
+    if [ ! -f "$UI_DIR/.env.local" ]; then
+        cat > "$UI_DIR/.env.local" <<'DOTENV'
+PORT=8080
+DOTENV
+        log_info "Created .env.local (设置 UI 端口为 8080)"
+    fi
+
+    cd "$UI_DIR"
     if [ -f "node_modules/.bin/next" ]; then
-        log_warn "frontend dependencies 已存在，跳过安装"
+        log_warn "dependencies 已存在，跳过安装"
     else
         rm -rf node_modules
         echo "onlyBuiltDependencies=esbuild" >> .npmrc
-        pnpm install --ignore-workspace
-        log_info "Frontend dependencies installed"
+        pnpm install
+        log_info "Dependencies installed"
     fi
     cd "$SCRIPT_DIR"
 fi
@@ -194,6 +206,9 @@ fi
 # ─────────────────────────────────────────────────────
 # 完成提示
 # ─────────────────────────────────────────────────────
+pip install docker
+
+
 
 echo ""
 echo -e "${BLUE}================================================================================${NC}"
@@ -202,14 +217,14 @@ echo ""
 echo -e "${BLUE}┌─ 服务概览 ──────────────────────────────────────────────────────────────────┐${NC}"
 printf "  %-28s %s\n" "LangGraph API"    "http://127.0.0.1:2024   (launch: langgraph dev)"
 printf "  %-28s %s\n" "Langfuse"         "http://localhost:3000     (Docker)"
-printf "  %-28s %s\n" "Chat UI"          "http://localhost:3001     (pnpm dev --port 3001)"
+printf "  %-28s %s\n" "Agent Chat UI"    "http://localhost:8080     (pnpm dev)"
 printf "  %-28s %s\n" "CLI"              "python -m src.agent.cli run/chat/status"
 echo -e "${BLUE}└──────────────────────────────────────────────────────────────────────────────┘${NC}"
 echo ""
 echo -e "${YELLOW}┌─ 启动步骤 ──────────────────────────────────────────────────────────────────┐${NC}"
 echo -e "  ${GREEN}1.${NC} Langfuse: ${GREEN}http://localhost:3000${NC} → 注册 → Settings → API Keys → 填入 .env"
 echo -e "  ${GREEN}2.${NC} langgraph dev        ${BLUE}(终端1)${NC}"
-echo -e "  ${GREEN}3.${NC} pnpm dev --port 3001   ${BLUE}(终端2, cd etc/langgraph-chat-ui/frontend)${NC}"
-echo -e "  ${GREEN}4.${NC} Chat UI: ${GREEN}http://localhost:3001${NC}"
+echo -e "  ${GREEN}3.${NC} pnpm dev             ${BLUE}(终端2, cd etc/agent-chat-ui)${NC}"
+echo -e "  ${GREEN}4.${NC} Agent Chat UI: ${GREEN}http://localhost:8080${NC}"
 echo -e "  ${GREEN}5.${NC} CLI:     python -m src.agent.cli run \"提示词\""
 echo -e "${YELLOW}└──────────────────────────────────────────────────────────────────────────────┘${NC}"

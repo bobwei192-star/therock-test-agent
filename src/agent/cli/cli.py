@@ -10,7 +10,12 @@ console = Console()
 @app.command()
 def run(
     prompt: str = typer.Argument(..., help="测试需求，自然语言"),
-    provider: str = typer.Option("deepseek", help="模型提供商"),
+    provider: str | None = typer.Option(
+        None,
+        "--provider",
+        "-p",
+        help="模型提供商；不传则读取 TEST_CASE_AGENT_MODEL_PROVIDER",
+    ),
     thread_id: str = typer.Option("cli-default", help="对话线程 ID (多轮用)"),
     hitl: bool = typer.Option(True, help="启用人工确认 (HITL)"),
 ):
@@ -22,7 +27,12 @@ def run(
 
 @app.command()
 def chat(
-    provider: str = typer.Option("deepseek"),
+    provider: str | None = typer.Option(
+        None,
+        "--provider",
+        "-p",
+        help="模型提供商；不传则读取 TEST_CASE_AGENT_MODEL_PROVIDER",
+    ),
     thread_id: str = typer.Option("cli-default"),
     hitl: bool = typer.Option(True, help="启用 HITL"),
 ):

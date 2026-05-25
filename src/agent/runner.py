@@ -1,4 +1,5 @@
 import copy
+import os
 from collections.abc import Iterable
 from typing import Any
 
@@ -9,6 +10,7 @@ from .graph import build_graph
 from .model import build_model
 from .state import AgentState, AgentContext
 from .tools import TOOLS
+from .tracing import build_langfuse_config, flush_langfuse
 
 
 def create_initial_state(user_prompt: str) -> AgentState:
@@ -28,6 +30,33 @@ def create_initial_state(user_prompt: str) -> AgentState:
         "final_report": {},
         "retry": 0,
         "repair_count": 0,
+        "saved_filepath": "",
+        "sandbox_config": {
+            "provider": os.environ.get(
+                "TEST_CASE_AGENT_SANDBOX_PROVIDER", "remote_ssh_docker"
+            ),
+            "image": os.environ.get(
+                "TEST_CASE_AGENT_SANDBOX_IMAGE",
+                "rocm/dev-ubuntu-22.04:6.0",
+            ),
+            "block_network": False,
+            "timeout": 120,
+            "remote_host": os.environ.get(
+                "TEST_CASE_AGENT_REMOTE_HOST", "10.67.69.34"
+            ),
+            "remote_user": os.environ.get("TEST_CASE_AGENT_REMOTE_USER", "jenkins"),
+            "remote_work_dir": os.environ.get(
+                "TEST_CASE_AGENT_REMOTE_WORK_DIR", "/tmp/testcase_agent"
+            ),
+            "device_name": os.environ.get(
+                "TEST_CASE_AGENT_DEVICE_NAME", "/dev/kfd,/dev/dri"
+            ),
+        },
+        "sandbox_id": "",
+        "sandbox_retry_count": 0,
+        "max_sandbox_retries": 3,
+        "feedback": "",
+        "error_log": [],
         "session_id": "",
     }
 
@@ -51,6 +80,13 @@ def build_runnable_graph(
     )
 
 
+def build_runtime_config(thread_id: str) -> dict[str, Any]:
+    """Build LangGraph invoke config with checkpoint and tracing metadata."""
+    config: dict[str, Any] = {"configurable": {"thread_id": thread_id}}
+    config.update(build_langfuse_config(thread_id=thread_id))
+    return config
+
+
 def run_once(
     user_prompt: str,
     provider: str | None = None,
@@ -65,11 +101,14 @@ def run_once(
         enable_checkpoint=enable_checkpoint,
         enable_store=enable_store,
     )
-    config = {"configurable": {"thread_id": thread_id}}
+    config = build_runtime_config(thread_id=thread_id)
     context = AgentContext(user_id=user_id, project_id=project_id)
-    return graph.invoke(
-        create_initial_state(user_prompt), config=config, context=context
-    )
+    try:
+        return graph.invoke(
+            create_initial_state(user_prompt), config=config, context=context
+        )
+    finally:
+        flush_langfuse()
 
 
 def run_multi_turn(
@@ -92,36 +131,41 @@ def run_multi_turn(
         enable_checkpoint=True,  # ✅ 启用短期记忆
         enable_store=True,  # ✅ 启用长期记忆
     )
-    config = {"configurable": {"thread_id": thread_id}}
+    config = build_runtime_config(thread_id=thread_id)
     context = AgentContext(user_id=user_id, project_id=project_id)
 
     results = []
-    for i, prompt in enumerate(turns):
-        print(f"\n{'=' * 60}")
-        print(f"TURN {i + 1}: {prompt[:50]}...")
-        print(f"{'=' * 60}")
+    try:
+        for i, prompt in enumerate(turns):
+            print(f"\n{'=' * 60}")
+            print(f"TURN {i + 1}: {prompt[:50]}...")
+            print(f"{'=' * 60}")
 
-        if i == 0:
-            # 第一轮：传入完整初始状态
-            state = create_initial_state(prompt)
-        else:
-            # 后续轮次：只传增量更新。
-            # Checkpointer 会自动恢复该 thread_id 的历史状态，
-            # messages 通过 operator.add 追加，requirement 直接覆盖。
-            state = {
-                "messages": [{"role": "user", "content": prompt}],
-                "requirement": prompt,
-            }
+            if i == 0:
+                # 第一轮：传入完整初始状态
+                state = create_initial_state(prompt)
+            else:
+                # 后续轮次：只传增量更新。
+                # Checkpointer 会自动恢复该 thread_id 的历史状态，
+                # messages 通过 operator.add 追加，requirement 直接覆盖。
+                state = {
+                    "messages": [{"role": "user", "content": prompt}],
+                    "requirement": prompt,
+                }
 
-        # 调用图
-        final_state = graph.invoke(state, config=config, context=context)
-        # ✅ 深拷贝后再追加，避免 results 里全是同一对象引用
-        results.append(copy.deepcopy(final_state))
+            # 调用图
+            final_state = graph.invoke(state, config=config, context=context)
+            # ✅ 深拷贝后再追加，避免 results 里全是同一对象引用
+            results.append(copy.deepcopy(final_state))
 
-        last_msg = final_state["messages"][-1]
-        content = (
-            last_msg.get("content", "") if isinstance(last_msg, dict) else str(last_msg)
-        )
-        print(f"Assistant: {content[:300]}...")
+            last_msg = final_state["messages"][-1]
+            content = (
+                last_msg.get("content", "")
+                if isinstance(last_msg, dict)
+                else str(last_msg)
+            )
+            print(f"Assistant: {content[:300]}...")
 
-    return results
+        return results
+    finally:
+        flush_langfuse()

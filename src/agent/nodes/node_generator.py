@@ -1,23 +1,32 @@
-"""测试代码生成节点 —— 使用底层 model 避免 HITL"""
+"""测试代码生成节点 —— 使用底层 model 避免 HITL
 
-import uuid
+根据 guide/09_promot优化.md 设计：
+- 支持多种意图：GENERATE/APPEND/UPDATE/REFACTOR/EXECUTE_EXTERNAL/DIAGNOSE/COVERAGE/PROBE/ENV_BUILD
+- 根据意图选择不同的提示词模板
+- ENV_BUILD 意图生成 Dockerfile，其他意图生成测试代码
+"""
+
 import os
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 from langgraph.runtime import Runtime
 
+from ..prompts import get_generator_prompt, get_prompt_by_template
 from ..state import AgentState, AgentContext
+from ..memory_manager import MemoryManager
+from ..code_output import parse_llm_response
+from ..intent_router import IntentType
 from .utils import (
-    _invoke_llm,
-    _extract_code,
     _validate_real_test_code,
-    _memory_namespace,
-    _format_memories,
     _looks_like_python_code,
 )
 
-OUTPUT_DIR = "/home/zx/TestCaseAgent/output"
+OUTPUT_DIR = os.environ.get(
+    "TEST_CASE_OUTPUT_DIR",
+    str(Path(__file__).resolve().parents[3] / "test_case"),
+)
 
 
 def _save_test_file(code: str) -> str:
@@ -38,17 +47,39 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     """
     使用底层 ChatOpenAI model 直接调用，避免 Agent 的 HITL 拦截。
     
+    根据意图选择不同的生成策略：
+    - GENERATE/APPEND/UPDATE/REFACTOR: 生成测试代码
+    - ENV_BUILD: 生成 Dockerfile
+    - EXECUTE_EXTERNAL: 生成外部执行脚本
+    - DIAGNOSE/COVERAGE/PROBE: 查询类，不生成代码
+    
     Args:
         model: 底层 ChatOpenAI 实例（从 graph.py 传入）
     """
-    ns = _memory_namespace(runtime, "generations")
+    memory = MemoryManager(runtime)
+
+    # 获取意图信息
+    parsed_intent: IntentType = state.get("parsed_intent", "GENERATE")
+    template_name = state.get("template_name", "template_a")
 
     print(f"\n{'=' * 60}")
-    print(f"[DEBUG generator] Memory namespace: {ns}")
-    print(f"[DEBUG generator] Query (case_plan): {state.get('case_plan', '')[:80]}...")
+    print(f"[DEBUG generator] Intent: {parsed_intent}, Template: {template_name}")
+    print(f"[DEBUG generator] case_plan length: {len(state.get('case_plan', ''))} chars")
+    print(f"[DEBUG generator] case_plan preview: {state.get('case_plan', '')[:100]}...")
+    
+    # 检查状态完整性
+    if not state.get("case_plan"):
+        print(f"[DEBUG generator] ⚠️ WARNING: case_plan is empty or None!")
+        print(f"[DEBUG generator] Available state keys: {list(state.keys())}")
 
-    memories = runtime.store.search(ns, query=state.get("case_plan", ""), limit=2)
-    memory_hints = _format_memories(memories)
+    # 意图特定的记忆搜索
+    memories = []
+    memory_hints = ""
+    if parsed_intent == "ENV_BUILD":
+        memories = memory.search("env_builds", query=state.get("case_plan", ""), limit=2)
+    else:
+        memories = memory.search("generations", query=state.get("case_plan", ""), limit=2)
+    memory_hints = memory.format_hints(memories)
 
     print(f"[DEBUG generator] Retrieved {len(memories)} memories:")
     for i, m in enumerate(memories):
@@ -61,6 +92,16 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     _MAX_PREVIOUS_CODE_CHARS = 5000
     previous_code = state.get("generated_code") or state.get("code", "")
     previous_code_hint = ""
+    
+    # 根据意图确定操作模式
+    intent_to_action = {
+        "APPEND": ("补充/追加", "保留所有历史测试函数，在其下方追加新函数"),
+        "UPDATE": ("修改", "保留所有未修改的测试函数，只修改指定的部分"),
+        "REFACTOR": ("重构", "保留测试逻辑，优化代码结构"),
+    }
+    
+    action_desc, keep_desc = intent_to_action.get(parsed_intent, ("修改或补充", "保留所有历史测试函数，根据需求修改或追加"))
+
     if previous_code:
         truncated = previous_code
         if len(previous_code) > _MAX_PREVIOUS_CODE_CHARS:
@@ -68,24 +109,6 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
                 previous_code[:_MAX_PREVIOUS_CODE_CHARS]
                 + "\n# ... (已截断，上述代码太长)"
             )
-
-        requirement = state.get("requirement", "").lower()
-        is_append_mode = any(
-            kw in requirement for kw in ("补充", "追加", "添加", "增加", "新增")
-        )
-        is_modify_mode = any(
-            kw in requirement for kw in ("修改", "改成", "改为", "调整", "修复")
-        )
-
-        if is_append_mode:
-            action_desc = "补充/追加"
-            keep_desc = "保留所有历史测试函数，在其下方追加新函数"
-        elif is_modify_mode:
-            action_desc = "修改"
-            keep_desc = "保留所有未修改的测试函数，只修改指定的部分"
-        else:
-            action_desc = "修改或补充"
-            keep_desc = "保留所有历史测试函数，根据需求修改或追加"
 
         previous_code_hint = (
             f"\n\n【历史代码 - 必须在此基础上{action_desc}】\n"
@@ -96,30 +119,29 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
             f"禁止把测试目标改成测试 helper 函数或内部封装。\n"
         )
 
-    # ========== 核心 Prompt（建设性原则 + 紧凑防御约束） ==========
-    prompt = (
-        "你是 ROCm 测试代码生成器。将测试计划转化为完整、可执行的 pytest 代码。\n\n"
-        f"测试计划:\n{state.get('case_plan', '')}\n"
-        f"{memory_hints}\n"
-        f"{previous_code_hint}\n\n"
-        "## 代码生成原则（必须遵循）\n"
-        "1. AAAC 四阶段：每个测试函数用注释标记 # Arrange / # Act / # Assert / # Cleanup，"
-        "Cleanup 只在有副作用（写文件、改配置）时需要，只读测试写 '# Cleanup: 无'。\n"
-        "2. Fixture 复用：命令探测、GPU 计数等重复 Arrange 逻辑必须抽成 @pytest.fixture(scope='module')，"
-        "Fixture 内自动执行 pytest.skip() 处理命令缺失/无 GPU 场景。\n"
-        "3. 等价类覆盖：按测试计划中的有效/无效/边界等价类分别生成独立测试函数，"
-        "无效等价类使用 pytest.skip() 优雅降级，不抛异常。\n"
-        "4. 边界值断言：数值类测试使用范围断言（如 0 <= temp <= 120），禁止断言精确等于具体数值。"
-        "禁止断言精确字符串匹配（输出格式可能随 ROCm 版本变化）。\n"
-        "5. 错误诊断：每个 assert 必须带诊断消息，包含 returncode、stderr[:500]、stdout[:500]。\n"
-        "6. 真实执行：所有测试必须通过 subprocess.run 或等价方式执行真实命令，timeout=30，"
-        "禁止 mock、patch、fake output、硬编码输出、注释掉真实执行代码。\n\n"
-        "## 强制约束（不可违反）\n"
-        "- 输出必须是完整可执行的 Python 文件，包含所有 import 和全部测试函数。\n"
-        "- 代码用 ```python ... ``` 包裹，除代码块外不输出任何文字、diff、文件路径或总结。\n"
-        "- 修改/追加模式下必须输出完整文件，禁止只返回修改部分或新增部分。\n"
-        "- 代码中禁止使用绝对路径（/home/、/tmp/），不使用 save_to_file 调用。\n"
-    )
+    # 根据意图选择提示词模板
+    if parsed_intent == "ENV_BUILD":
+        # 使用 ENV_BUILD 专用模板
+        prompt = get_prompt_by_template(
+            template_name,
+            intent=parsed_intent,
+            case_plan=state.get("case_plan", ""),
+            memory_hints=memory_hints,
+        )
+    elif parsed_intent in ["DIAGNOSE", "COVERAGE", "PROBE"]:
+        # 查询类意图，使用简化模板
+        prompt = get_prompt_by_template(
+            template_name,
+            intent=parsed_intent,
+            case_plan=state.get("case_plan", ""),
+        )
+    else:
+        # 测试代码生成意图
+        prompt = get_generator_prompt(
+            case_plan=state.get("case_plan", ""),
+            memory_hints=memory_hints,
+            previous_code_hint=previous_code_hint,
+        )
 
     # ========== 直接调用底层 model ==========
     print(f"\n[generator] 直接调用底层 ChatOpenAI model...")
@@ -151,7 +173,8 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     print(f"\n[DEBUG generator] Raw reply length: {len(reply)} chars")
     print(f"[DEBUG generator] Raw reply preview: {reply[:200]}...")
 
-    generated_code, explanation, extraction_status = _extract_code(reply)
+    # 使用 Pydantic 友好的解析器（优先 JSON，失败回退正则）
+    generated_code, explanation, extraction_status = parse_llm_response(reply)
     print(f"[DEBUG generator] Extracted code length: {len(generated_code)} chars")
     print(f"[DEBUG generator] Extraction status: {extraction_status}")
     if explanation:
@@ -198,15 +221,13 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
         print(f"\n[DEBUG generator] ⚠️ 没有有效代码可保存")
 
     # 写入记忆
-    memory_key = f"gen_{uuid.uuid4().hex[:8]}"
-    memory_value = {
-        "data": f"为需求 [{state.get('requirement', '')[:80]}...] 最终保留 {len(final_code)} 字符代码",
-        "code_preview": final_code[:500] if final_code else "EXTRACTION_FAILED",
-        "saved_filepath": saved_filepath,
-    }
-    runtime.store.put(ns, memory_key, memory_value)
+    memory_key = memory.save_generation(
+        requirement=state.get("requirement", ""),
+        code=final_code,
+        saved_filepath=saved_filepath,
+    )
 
-    print(f"\n[DEBUG generator] ✅ Wrote memory: key={memory_key}, namespace={ns}")
+    print(f"\n[DEBUG generator] ✅ Wrote memory: key={memory_key}")
 
     return {
         "code": final_code,

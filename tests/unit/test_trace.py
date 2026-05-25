@@ -154,6 +154,22 @@ class TestFlushLangfuse:
         finally:
             monkeypatch.undo()
 
+    def test_flush_calls_sdk_v4_client_flush(self):
+        """SDK v4 的 flush 挂在 handler 内部 Langfuse client 上。"""
+        mock_client = MagicMock()
+        mock_client.flush = MagicMock()
+        mock_handler = MagicMock(spec=[])
+        mock_handler._langfuse_client = mock_client
+        import src.agent.tracing as tracing_mod
+
+        monkeypatch = pytest.MonkeyPatch()
+        monkeypatch.setattr(tracing_mod, "langfuse_handler", mock_handler)
+        try:
+            flush_langfuse()
+            mock_client.flush.assert_called_once()
+        finally:
+            monkeypatch.undo()
+
 
 class TestDumpExecutionTrace:
     def _make_fake_graph_history(self):
