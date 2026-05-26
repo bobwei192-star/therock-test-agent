@@ -2,8 +2,8 @@ import ast
 import re
 from typing import Any
 
-from ..state import AgentState, AgentContext
-from ..message_utils import get_message_content, get_last_user_message
+from .state import AgentState, AgentContext
+from .message_utils import get_message_content, get_last_user_message
 
 
 def _message_content(message: Any) -> str:
