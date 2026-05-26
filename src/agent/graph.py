@@ -21,6 +21,7 @@ from .nodes import (
     planner,
     requirement_parser,
     sandbox_executor,
+    execution_planner,
 )
 
 
@@ -43,17 +44,47 @@ SANDBOX_RETRY_POLICY = RetryPolicy(
 def route_after_sandbox(state: AgentState) -> str:
     """沙盒执行后的条件路由函数。
 
-    根据执行结果决定下一步走向：
+    结果驱动修复策略（最多 3 轮重试）：
     - 成功 → 结束图（END）
     - 失败且未超过最大重试次数 → 回到 planner 重新规划
     - 失败且已耗尽重试 → 终止（END，表示终端失败）
+    
+    每轮重试会：
+    1. 记录失败原因和修复尝试
+    2. 将 feedback 传递给 planner
+    3. planner 根据反馈重新规划
+    4. generator 生成修复后的代码
+    5. sandbox_executor 重新执行
     """
     result = state.get("execution_result", {})
+    
+    # 成功 → 结束
     if result.get("status") == "success":
+        print(f"\n[route_after_sandbox] ✅ 执行成功，结束流程")
         return END
-    # RetryPolicy 会自动处理重试，这里只需决定是否进入修复流程
-    if state.get("sandbox_retry_count", 0) < state.get("max_sandbox_retries", 3):
+    
+    # 检查重试次数
+    retry_count = state.get("sandbox_retry_count", 0)
+    max_retries = state.get("max_sandbox_retries", 3)
+    
+    # 失败分类
+    stage = result.get("stage", "unknown")
+    error = result.get("error", "未知错误")
+    exit_code = result.get("exit_code", "unknown")
+    
+    print(f"\n[route_after_sandbox] ❌ 执行失败")
+    print(f"  - 失败阶段: {stage}")
+    print(f"  - 错误信息: {error}")
+    print(f"  - 退出码: {exit_code}")
+    print(f"  - 重试次数: {retry_count}/{max_retries}")
+    
+    # 判断是否可以重试
+    if retry_count < max_retries:
+        print(f"[route_after_sandbox] 🔄 进入第 {retry_count + 1} 轮修复...")
         return "planner"
+    
+    # 已耗尽重试
+    print(f"[route_after_sandbox] ⚠️ 已达到最大重试次数 ({max_retries})，终止流程")
     return END
 
 
@@ -92,6 +123,7 @@ def build_graph(
     requirement_parser_with_agent = partial(requirement_parser, agent=agent)
     planner_with_agent = partial(planner, agent=agent)
     generator_with_model = partial(generator, model=model)
+    execution_planner_with_agent = partial(execution_planner, agent=agent)
 
     # 构建状态图，指定状态类型和上下文 schema
     builder = StateGraph(AgentState, context_schema=AgentContext)
@@ -100,6 +132,7 @@ def build_graph(
     builder.add_node("requirement_parser", requirement_parser_with_agent)
     builder.add_node("context_retriever", context_retriever)
     builder.add_node("planner", planner_with_agent)
+    builder.add_node("execution_planner", execution_planner_with_agent)
     builder.add_node("generator", generator_with_model)
     builder.add_node("sandbox_executor", sandbox_executor, retry_policy=SANDBOX_RETRY_POLICY)
 
@@ -107,7 +140,8 @@ def build_graph(
     builder.add_edge(START, "requirement_parser")
     builder.add_edge("requirement_parser", "context_retriever")
     builder.add_edge("context_retriever", "planner")
-    builder.add_edge("planner", "generator")
+    builder.add_edge("planner", "execution_planner")
+    builder.add_edge("execution_planner", "generator")
     builder.add_edge("generator", "sandbox_executor")
 
     # 沙盒执行后的条件路由：成功则结束，失败则回到 planner 重新规划

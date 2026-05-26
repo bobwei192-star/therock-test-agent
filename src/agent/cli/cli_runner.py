@@ -22,6 +22,7 @@ NODE_NAMES = [
     "requirement_parser",
     "context_retriever",
     "planner",
+    "execution_planner",
     "generator",
     "sandbox_executor",
 ]
@@ -30,6 +31,7 @@ NODE_OUTPUT_KEYS = {
     "requirement_parser": "parsed_requirement",
     "context_retriever": "context",
     "planner": "case_plan",
+    "execution_planner": "execution_plan",
     "generator": "generated_code",
     "sandbox_executor": "execution_result",
 }
@@ -264,11 +266,19 @@ class CLIRunner:
         )
         self.config = build_runtime_config(thread_id=thread_id)
         self.outputs: Dict[str, str] = {}
-        self._hitl_enabled = hitl          # ✅ 修复 2：保存 hitl 到实例
+        self._hitl_enabled = hitl
         self._thread_id = thread_id
+        self._conversation_state: Dict[str, Any] = {}
+        self._is_first_turn = True
 
-    # ✅ 使用 LangGraph interrupt 机制替代手动 HITL
     def run(self, prompt: str) -> Dict[str, Any]:
+        """运行 Agent，支持多轮对话追问。
+        
+        多轮对话策略：
+        1. 第一轮：创建新状态，执行完整流程
+        2. 后续轮：从 checkpoint 恢复状态，追加消息，继续执行
+        3. 支持用户追问、反馈、修复请求
+        """
         import time
 
         cleaned = clean_input(prompt)
@@ -276,7 +286,32 @@ class CLIRunner:
             console.print("\n[bold red]❌ 输入无效或为空，请重新输入。[/bold red]")
             return {}
 
-        state = create_initial_state(cleaned)
+        is_follow_up = not self._is_first_turn and self._conversation_state
+        
+        if is_follow_up:
+            console.print("\n[bold cyan]🔄 检测到追问/反馈，从上一轮状态继续...[/bold cyan]")
+            try:
+                saved_state = self.graph.get_state(self.config)
+                if saved_state and saved_state.values:
+                    state = dict(saved_state.values)
+                    state["messages"] = state.get("messages", []) + [
+                        {"role": "user", "content": cleaned}
+                    ]
+                    state["requirement"] = cleaned
+                    if "execution_result" in state:
+                        del state["execution_result"]
+                    console.print(f"[dim]已恢复状态，消息数: {len(state.get('messages', []))}[/dim]")
+                else:
+                    state = create_initial_state(cleaned)
+                    self._is_first_turn = True
+            except Exception as e:
+                console.print(f"[yellow]⚠️ 恢复状态失败，创建新状态: {e}[/yellow]")
+                state = create_initial_state(cleaned)
+                self._is_first_turn = True
+        else:
+            state = create_initial_state(cleaned)
+            self._is_first_turn = False
+
         context = AgentContext(user_id="cli_user")
 
         tree = Tree("🧪 TestCaseAgent", guide_style="bold cyan")
@@ -372,7 +407,9 @@ class CLIRunner:
 
         try:
             full_state = self.graph.get_state(self.config)
-            return full_state.values if full_state else (final_output or {})
+            result = full_state.values if full_state else (final_output or {})
+            self._conversation_state = dict(result)
+            return result
         except Exception:
             return final_output or {}
 

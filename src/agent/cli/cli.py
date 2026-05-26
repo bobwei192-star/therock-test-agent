@@ -36,23 +36,59 @@ def chat(
     thread_id: str = typer.Option("cli-default"),
     hitl: bool = typer.Option(True, help="启用 HITL"),
 ):
-    console.print("\n🧪 TestCaseAgent CLI — 输入 'exit' 退出\n", style="bold cyan")
+    console.print("\n🧪 TestCaseAgent CLI — 多轮对话模式", style="bold cyan")
+    console.print("━" * 50, style="dim")
+    console.print("  输入 'exit' 或 'quit' 退出", style="dim")
+    console.print("  输入 'new' 开始新对话", style="dim")
+    console.print("  输入 'fix <描述>' 请求修复", style="dim")
+    console.print("  输入 'feedback <反馈>' 提供反馈", style="dim")
+    console.print("━" * 50 + "\n", style="dim")
+    
     runner = CLIRunner(provider=provider, thread_id=thread_id, hitl=hitl)
+    turn_count = 0
 
     while True:
         try:
-            prompt = input("\n🧪 > ").strip()
+            prompt = input(f"\n🧪 [轮次 {turn_count + 1}] > ").strip()
         except (EOFError, KeyboardInterrupt):
             console.print("\n👋 再见", style="dim")
             break
+            
         if prompt.lower() in ("exit", "quit", "q"):
             break
+            
+        if prompt.lower() == "new":
+            runner._is_first_turn = True
+            runner._conversation_state = {}
+            turn_count = 0
+            console.print("\n[bold green]✅ 已开始新对话[/bold green]")
+            continue
+            
         if not prompt:
             continue
+            
+        # 处理修复请求
+        if prompt.lower().startswith("fix "):
+            fix_desc = prompt[4:].strip()
+            if not fix_desc:
+                console.print("[yellow]请提供修复描述，例如: fix 添加超时处理[/yellow]")
+                continue
+            prompt = f"请修复测试用例：{fix_desc}"
+            console.print(f"[cyan]🔧 修复请求: {fix_desc}[/cyan]")
+            
+        # 处理反馈
+        elif prompt.lower().startswith("feedback "):
+            feedback = prompt[9:].strip()
+            if not feedback:
+                console.print("[yellow]请提供反馈内容，例如: feedback 测试应该检查返回值[/yellow]")
+                continue
+            prompt = f"用户反馈：{feedback}。请根据反馈调整测试用例。"
+            console.print(f"[cyan]📝 用户反馈: {feedback}[/cyan]")
+            
         try:
-            # ✅ 修复：同上
             result = runner.run(prompt)
             print_final_result(result)
+            turn_count += 1
         except Exception as exc:
             console.print(f"\n[bold red]❌ 执行失败: {exc}[/bold red]")
 

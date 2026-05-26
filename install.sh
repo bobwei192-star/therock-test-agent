@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 TOTAL_STEPS=8
 log_info "Project root: $SCRIPT_DIR"
-
+pip install pytest-html
 # ─────────────────────────────────────────────────────
 # 辅助函数
 # ─────────────────────────────────────────────────────
