@@ -1,0 +1,62 @@
+# amdgpu fails to load on ppc64 systems
+
+> **Issue #599**
+> **状态**: closed
+> **创建时间**: 2018-11-02T21:24:11Z
+> **更新时间**: 2020-11-09T08:55:48Z
+> **关闭时间**: 2018-11-04T21:52:56Z
+> **作者**: madscientist159
+> **标签**: 
+> **URL**: https://github.com/ROCm/ROCm/issues/599
+
+## 描述
+
+On POWER9 systems with Vega installed, amdgpu from the ROCm kernel fails to load:
+
+```
+[  924.138049] [drm] amdgpu kernel modesetting enabled.
+[  924.138882] [drm] amdgpu version: 18.30.2.15
+[  924.139639] checking generic (600c280010000 300000) vs hw (6000000000000 10000000)
+[  924.139911] [drm] initializing kernel modesetting (VEGA10 0x1002:0x6860 0x1002:0x6860 0x00).
+[  924.141367] [drm] register mmio base: 0x00000000
+[  924.142128] [drm] register mmio size: 524288
+[  924.142828] [drm] PCI I/O BAR is not found.
+[  924.143502] [drm] probing gen 2 caps for device 1022:1471 = 700d03/e
+[  924.144529] [drm] probing mlw for device 1022:1471 = 700d03
+[  924.145432] [drm] add ip block number 0 <soc15_common>
+[  924.146273] [drm] add ip block number 1 <gmc_v9_0>
+[  924.147053] [drm] add ip block number 2 <vega10_ih>
+[  924.147847] [drm] add ip block number 3 <psp>
+[  924.148547] [drm] add ip block number 4 <powerplay>
+[  924.149335] [drm] add ip block number 5 <dm>
+[  924.150040] [drm] add ip block number 6 <gfx_v9_0>
+[  924.150811] [drm] add ip block number 7 <sdma_v4_0>
+[  924.151599] [drm] add ip block number 8 <uvd_v7_0>
+[  924.152378] [drm] add ip block number 9 <vce_v4_0>
+[  924.155432] [drm] UVD(0) is enabled in VM mode
+[  924.156161] [drm] UVD(0) ENC is enabled in VM mode
+[  924.156940] [drm] VCE enabled in VM mode
+[  924.157631] amdgpu 0000:03:00.0: Invalid PCI ROM header signature: expecting 0xaa55, got 0x0000
+[  924.159270] [drm:amdgpu_get_bios [amdgpu]] *ERROR* Unable to locate a BIOS ROM
+[  924.160423] amdgpu 0000:03:00.0: Fatal error during GPU init
+[  924.161357] [drm] amdgpu: finishing device.
+[  924.162297] amdgpu: probe of 0000:03:00.0 failed with error -22
+```
+
+---
+
+## 评论 (2 条)
+
+### 评论 #1 — madscientist159 (2018-11-04T21:52:56Z)
+
+Moved card to x86 machine, same error.  Suspecting defective card at this point.
+
+---
+
+### 评论 #2 — rubin55 (2020-11-09T08:55:48Z)
+
+@madscientist159 Did you ever have more insights on this? Just now, 10 minutes ago I have a Radeon VEGA Frontier Edition (VEGA10) that worked fine up to now, and was recently (2 months ago) installed in a Talos Blackbird system. Just did a clean shutdown, reboot the system and am confronted with exactly your `dmesg` output. Of note, the SATA controller in the Blackbird is also misbehaving to such an extend that I can't use SATA disks in this system (hard disks connected keep disconnecting).
+
+This makes me suspect the Blackbird board is maybe not 100% ok and fried my Radeon..
+
+---

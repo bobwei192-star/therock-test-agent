@@ -1,5 +1,6 @@
 import copy
 import os
+import time
 from collections.abc import Iterable
 from typing import Any
 
@@ -11,6 +12,10 @@ from .model import build_model
 from .state import AgentState, AgentContext
 from .tools import TOOLS
 from .tracing import build_langfuse_config, flush_langfuse
+from .logging_config import get_logger
+
+# Initialize logger
+logger = get_logger("runner")
 
 
 def create_initial_state(user_prompt: str) -> AgentState:
@@ -96,17 +101,53 @@ def run_once(
     user_id: str = "default_user",
     project_id: str | None = None,
 ) -> AgentState:
-    graph = build_runnable_graph(
+    start_time = time.time()
+    logger.info(
+        "run_once_start",
+        user_prompt=user_prompt[:100] + "..." if len(user_prompt) > 100 else user_prompt,
         provider=provider,
-        enable_checkpoint=enable_checkpoint,
-        enable_store=enable_store,
+        thread_id=thread_id,
+        user_id=user_id,
+        project_id=project_id,
     )
-    config = build_runtime_config(thread_id=thread_id)
-    context = AgentContext(user_id=user_id, project_id=project_id)
+    
     try:
-        return graph.invoke(
+        graph = build_runnable_graph(
+            provider=provider,
+            enable_checkpoint=enable_checkpoint,
+            enable_store=enable_store,
+        )
+        logger.debug("graph_built", provider=provider)
+        
+        config = build_runtime_config(thread_id=thread_id)
+        context = AgentContext(user_id=user_id, project_id=project_id)
+        
+        logger.debug("invoking_graph", thread_id=thread_id)
+        result = graph.invoke(
             create_initial_state(user_prompt), config=config, context=context
         )
+        
+        elapsed = time.time() - start_time
+        generated_code = result.get("generated_code", "") or result.get("code", "")
+        logger.info(
+            "run_once_complete",
+            elapsed=round(elapsed, 2),
+            code_length=len(generated_code),
+            has_code=bool(generated_code),
+            validation_status=result.get("validation_result", {}).get("status"),
+            errors=result.get("error_log", []),
+        )
+        
+        return result
+    except Exception as e:
+        elapsed = time.time() - start_time
+        logger.exception(
+            "run_once_failed",
+            elapsed=round(elapsed, 2),
+            error=str(e),
+            user_prompt=user_prompt[:100] if user_prompt else "",
+        )
+        raise
     finally:
         flush_langfuse()
 

@@ -117,25 +117,16 @@ class TestEmbeddingRetryMechanism:
                 raise ConnectionError("模拟网络超时")
             return mock_embeddings
 
-        with patch(
-            "src.agent.nodes.node_context_retriever.HuggingFaceEmbeddings",
-            side_effect=mock_hf_embeddings,
-        ) as mock_cls:
-            # 需要先 patch import
-            import src.agent.nodes.node_context_retriever as module
-            # 手动注入 HuggingFaceEmbeddings 到模块
-            with patch.dict("sys.modules", {"langchain_huggingface": MagicMock(HuggingFaceEmbeddings=mock_hf_embeddings)}):
-                with patch("src.agent.nodes.node_context_retriever.HuggingFaceEmbeddings", side_effect=mock_hf_embeddings, create=True):
-                    # 直接测试重试逻辑
+        try:
+            import langchain_huggingface  # noqa: F401
+            with patch("langchain_huggingface.HuggingFaceEmbeddings", side_effect=mock_hf_embeddings):
+                with patch.object(rag, "_download_model_with_fallback", return_value="mock-model"):
                     rag._embeddings = None
-                    try:
-                        from langchain_huggingface import HuggingFaceEmbeddings as RealHF
-                        with patch("langchain_huggingface.HuggingFaceEmbeddings", side_effect=mock_hf_embeddings):
-                            result = rag._get_embeddings()
-                            assert result is mock_embeddings
-                            assert call_count["n"] == 2
-                    except ImportError:
-                        pytest.skip("langchain_huggingface 未安装")
+                    result = rag._get_embeddings()
+                    assert result is mock_embeddings
+                    assert call_count["n"] == 2
+        except ImportError:
+            pytest.skip("langchain_huggingface 未安装")
 
     def test_raises_after_max_retries_exhausted(self):
         """验证达到最大重试次数后抛出 RuntimeError。"""

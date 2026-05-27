@@ -155,10 +155,10 @@ def execution_planner(state: AgentState, runtime: Runtime[AgentContext], agent: 
         execution_plan["parse_error"] = str(e)
     
     # 保存记忆
-    memory_key = memory.save(
+    memory_key = memory.put(
         namespace="execution_plans",
         key=f"plan_{hash(case_plan) % 10000}",
-        value={
+        data={
             "data": execution_plan_yaml,
             "case_plan_summary": case_plan[:200],
         },

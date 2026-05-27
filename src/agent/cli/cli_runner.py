@@ -5,10 +5,8 @@ from pathlib import Path
 from typing import Any, Dict
 
 from rich.console import Console
-from rich.live import Live
 from rich.panel import Panel
 from rich.text import Text
-from rich.tree import Tree
 
 from ..runner import build_runnable_graph, build_runtime_config, create_initial_state
 from ..state import AgentContext
@@ -22,7 +20,6 @@ NODE_NAMES = [
     "requirement_parser",
     "context_retriever",
     "planner",
-    "execution_planner",
     "generator",
     "sandbox_executor",
 ]
@@ -31,7 +28,6 @@ NODE_OUTPUT_KEYS = {
     "requirement_parser": "parsed_requirement",
     "context_retriever": "context",
     "planner": "case_plan",
-    "execution_planner": "execution_plan",
     "generator": "generated_code",
     "sandbox_executor": "execution_result",
 }
@@ -273,7 +269,7 @@ class CLIRunner:
 
     def run(self, prompt: str) -> Dict[str, Any]:
         """运行 Agent，支持多轮对话追问。
-        
+
         多轮对话策略：
         1. 第一轮：创建新状态，执行完整流程
         2. 后续轮：从 checkpoint 恢复状态，追加消息，继续执行
@@ -287,7 +283,7 @@ class CLIRunner:
             return {}
 
         is_follow_up = not self._is_first_turn and self._conversation_state
-        
+
         if is_follow_up:
             console.print("\n[bold cyan]🔄 检测到追问/反馈，从上一轮状态继续...[/bold cyan]")
             try:
@@ -314,95 +310,87 @@ class CLIRunner:
 
         context = AgentContext(user_id="cli_user")
 
-        tree = Tree("🧪 TestCaseAgent", guide_style="bold cyan")
-        node_branches = {}
-        for name in NODE_NAMES:
-            branch = tree.add(f"[dim]○ {name}[/dim]")
-            node_branches[name] = branch
+        # ─── 极简模式：不用 Tree / Live，只打印当前节点 ────────────────────────────
+        node_results: Dict[str, Dict[str, Any]] = {}
+        node_timings: Dict[str, float] = {}
+        node_start_time: Dict[str, float] = {}
+        total_start_time = time.time()
+        last_printed_node: str | None = None
 
         final_output: Dict[str, Any] = {}
-        node_timings: Dict[str, float] = {}  # 记录每个节点的耗时
-        node_start_time: Dict[str, float] = {}  # 记录每个节点的开始时间
-        total_start_time = time.time()
 
         try:
-            with Live(tree, console=console, refresh_per_second=4) as live:
-                try:
-                    for chunk in self.graph.stream(
-                        state,
-                        config=self.config,
-                        context=context,
-                        stream_mode="updates",
-                    ):
-                        # 检查 interrupt
-                        if "__interrupt__" in chunk:
-                            interrupt_data = chunk["__interrupt__"]
-                            self._handle_interrupt(interrupt_data)
-                            continue
+            for chunk in self.graph.stream(
+                state,
+                config=self.config,
+                context=context,
+                stream_mode="updates",
+            ):
+                # 检查 interrupt
+                if "__interrupt__" in chunk:
+                    interrupt_data = chunk["__interrupt__"]
+                    self._handle_interrupt(interrupt_data)
+                    continue
 
-                        for node_name, node_output in chunk.items():
-                            if node_name not in node_branches:
-                                continue
+                for node_name, node_output in chunk.items():
+                    if node_name not in NODE_NAMES:
+                        continue
 
-                            # 记录节点开始时间（只在第一次看到节点时记录）
-                            if node_name not in node_start_time:
-                                node_start_time[node_name] = time.time()
+                    # 记录节点开始时间
+                    if node_name not in node_start_time:
+                        node_start_time[node_name] = time.time()
 
-                            # 始终更新耗时（确保每个节点都有耗时记录）
-                            elapsed = time.time() - node_start_time[node_name]
-                            node_timings[node_name] = elapsed
+                    elapsed = time.time() - node_start_time[node_name]
+                    node_timings[node_name] = elapsed
 
-                            # 检查节点是否完成（通过检查是否有最终输出）
-                            is_complete = _is_node_complete(node_name, node_output)
-                            
-                            if not is_complete:
-                                # 节点正在执行中
-                                label = Text()
-                                label.append(f"⚡ {node_name}", style="bold yellow")
-                                label.append(" 执行中...", style="dim")
-                                label.append(f" [{elapsed:.2f}s]", style="bold blue")
-                                node_branches[node_name].label = label
-                                live.update(tree)
-                            else:
-                                # 节点完成，显示最终状态
-                                summary = _extract_summary(node_name, node_output)
-                                self.outputs[node_name] = summary
-                                if summary:
-                                    node_branches[node_name].add(Text(summary, style="dim"))
+                    # 检查节点是否完成
+                    is_complete = _is_node_complete(node_name, node_output)
 
-                                failed = _node_failed(node_name, node_output)
-                                label = Text()
-                                if failed:
-                                    label.append(f"❌ {node_name}", style="bold red")
-                                else:
-                                    label.append(f"✅ {node_name}", style="bold green")
-                                label.append(f" ({len(summary)} chars)", style="dim")
-                                label.append(f" [{elapsed:.2f}s]", style="bold blue")
-                                node_branches[node_name].label = label
-                                live.update(tree)
+                    # 只在节点切换时打印（避免同一节点多次刷屏）
+                    if node_name != last_printed_node:
+                        console.print(f"[bold cyan]▶ {node_name}[/bold cyan]", end="")
+                        last_printed_node = node_name
 
-                            final_output = node_output
+                    if is_complete:
+                        # 节点完成，打印结果
+                        summary = _extract_summary(node_name, node_output)
+                        self.outputs[node_name] = summary
+                        failed = _node_failed(node_name, node_output)
+                        node_results[node_name] = {
+                            "summary": summary,
+                            "failed": failed,
+                            "elapsed": elapsed,
+                        }
+                        status_icon = "❌" if failed else "✅"
+                        console.print(f"  {status_icon} [{elapsed:.2f}s] {summary[:80]}")
+                        last_printed_node = None  # 重置，下一个节点会重新打印
 
-                except Exception as e:
-                    console.print(f"\n[bold red]❌ Graph 执行出错: {e}[/bold red]")
-                    raise
+                    final_output = node_output
+
+        except Exception as e:
+            console.print(f"\n[bold red]❌ Graph 执行出错: {e}[/bold red]")
+            raise
         finally:
             flush_langfuse()
 
-        # 打印耗时统计
+        # 打印最终节点结果汇总
         total_time = time.time() - total_start_time
         console.print("\n")
-        console.print("[bold blue]⏱️ 执行耗时统计[/bold blue]")
-        console.print("-" * 50)
+        console.print("[bold blue]⏱️ 执行节点汇总[/bold blue]")
+        console.print("-" * 60)
         for node_name in NODE_NAMES:
-            if node_name in node_timings:
-                elapsed = node_timings[node_name]
-                percentage = (elapsed / total_time) * 100 if total_time > 0 else 0
-                console.print(f"  {node_name:<20} {elapsed:>6.2f}s  ({percentage:>5.1f}%)")
+            if node_name in node_results:
+                result = node_results[node_name]
+                status_icon = "❌" if result["failed"] else "✅"
+                elapsed = result["elapsed"]
+                summary = result["summary"]
+                console.print(f"  {status_icon} {node_name:<22} {elapsed:>6.2f}s  {summary[:50]}")
+            elif node_name in node_timings:
+                console.print(f"  ⏳ {node_name:<22} {node_timings[node_name]:>6.2f}s  (未完成)")
             else:
-                console.print(f"  {node_name:<20} {'N/A':>6}")
-        console.print("-" * 50)
-        console.print(f"  {'总耗时':<20} {total_time:>6.2f}s")
+                console.print(f"  ○ {node_name:<22} {'N/A':>6}  (未执行)")
+        console.print("-" * 60)
+        console.print(f"  {'总耗时':<22} {total_time:>6.2f}s")
         console.print()
 
         try:
@@ -412,7 +400,6 @@ class CLIRunner:
             return result
         except Exception:
             return final_output or {}
-
     def _handle_interrupt(self, interrupt_data: Any) -> None:
         """处理 LangGraph interrupt 中断请求。
         

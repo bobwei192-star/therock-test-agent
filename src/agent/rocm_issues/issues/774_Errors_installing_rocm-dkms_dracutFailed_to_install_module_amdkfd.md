@@ -1,0 +1,1220 @@
+# Errors installing rocm-dkms:  dracut:Failed to install module amdkfd
+
+> **Issue #774**
+> **状态**: closed
+> **创建时间**: 2019-04-18T15:52:43Z
+> **更新时间**: 2019-04-18T16:30:53Z
+> **关闭时间**: 2019-04-18T16:30:53Z
+> **作者**: sadsfae
+> **标签**: 
+> **URL**: https://github.com/ROCm/ROCm/issues/774
+
+## 描述
+
+Hello,
+
+I'm running CentOS7.6 with the `5.0.8` mainline kernel from ELrepo to include a lot of the fixes for known issues like `amdgpu: [powerplay] failed to send message 261
+ret is 0` that's addressed [in this patch here.](https://patchwork.freedesktop.org/patch/259364/)
+
+I've not had much luck trying to setup the proprietary amdgpu drivers with the newer kernel so thought I'd try ROCm.
+
+When installing via RPM / repo I get the following error for the dkms part:
+
+```Message from syslogd@tomatan at Apr 18 11:10:12 ...
+ dracut:Failed to install module amdkfd
+Loading new amdgpu-2.3-14.el7 DKMS files...
+Building for 5.0.8-1.el7.elrepo.x86_64
+Building initial module for 5.0.8-1.el7.elrepo.x86_64
+Done.
+Forcing installation of amdgpu
+
+amdgpu.ko:
+Running module version sanity check.
+ - Original module
+   - Found /lib/modules/5.0.8-1.el7.elrepo.x86_64/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko
+   - Storing in /var/lib/dkms/amdgpu/original_module/5.0.8-1.el7.elrepo.x86_64/x86_64/
+   - Archiving for uninstallation purposes
+ - Installation
+   - Installing to /lib/modules/5.0.8-1.el7.elrepo.x86_64/extra/
+
+amdttm.ko:
+Running module version sanity check.
+ - Original module
+ - Installation
+   - Installing to /lib/modules/5.0.8-1.el7.elrepo.x86_64/extra/
+
+amdkcl.ko:
+Running module version sanity check.
+ - Original module
+ - Installation
+   - Installing to /lib/modules/5.0.8-1.el7.elrepo.x86_64/extra/
+
+amd-sched.ko:
+Running module version sanity check.
+ - Original module
+ - Installation
+   - Installing to /lib/modules/5.0.8-1.el7.elrepo.x86_64/extra/
+Adding any weak-modules
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_raw_output_prep
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol bpf_trace_run2
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol prepare_to_wait_event
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol event_triggers_call
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_event_buffer_commit
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_event_ignore_this_pid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol init_wait_entry
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol __list_add_valid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol perf_trace_buf_alloc
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_event_reg
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol __cpu_online_mask
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol __list_del_entry_valid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol bpf_trace_run1
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol pv_ops
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol ex_handler_refcount
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol call_rcu
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_event_buffer_reserve
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amd-sched.ko needs unknown symbol trace_handle_return
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_raw_output_prep
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol event_triggers_call
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_event_buffer_commit
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_event_ignore_this_pid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol perf_trace_buf_alloc
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_event_reg
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol __cpu_online_mask
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol bpf_trace_run1
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol ex_handler_refcount
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_event_buffer_reserve
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdkcl.ko needs unknown symbol trace_handle_return
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol devmap_managed_key
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol __put_page
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol ww_mutex_lock_interruptible
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol vmf_insert_pfn
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol memcpy_fromio
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol prepare_to_wait_event
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol memcpy_toio
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol clear_page_rep
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol dma_direct_unmap_page
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol init_wait_entry
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol __list_add_valid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol dma_alloc_attrs
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol dma_direct_map_page
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol clear_page_orig
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol ww_mutex_lock
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol clear_page_erms
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol __list_del_entry_valid
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol __default_kernel_pte_mask
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol pv_ops
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol ex_handler_refcount
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol dma_free_attrs
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol vmf_insert_mixed
+depmod: WARNING: /lib/modules/3.10.0-957.10.1.el7.x86_64/weak-updates/amdttm.ko needs unknown symbol memset_io
+Possible missing firmware "amdgpu/raven_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "radeon/hawaii_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "radeon/bonaire_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sos.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sos.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_vcn.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_acg_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_smc_sk.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_smc_sk.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_gpu_info.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/si58_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/banks_k_2_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hainan_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/oland_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/verde_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/pitcairn_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tahiti_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_k_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_k_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_k_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sos.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sos.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_ta.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_asd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_sos.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec2_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_me_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_pfp_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_ce_2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_rlc_am4.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_rlc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_mec2.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_mec.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_me.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_pfp.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_ce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sdma1.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_sdma.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_uvd.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/stoney_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/carrizo_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/mullins_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kaveri_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/kabini_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_vce.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven2_vcn.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/picasso_vcn.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_vcn.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega12_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_acg_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega10_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vegam_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris12_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_k2_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_smc_sk.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris11_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_k2_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_smc_sk.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/polaris10_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/fiji_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/tonga_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/topaz_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/hawaii_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_k_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/bonaire_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/vega20_smc.bin" for kernel module "amdgpu.ko"
+Possible missing firmware "amdgpu/raven_dmcu.bin" for kernel module "amdgpu.ko"
+Failed to install module amdkfd
+
+depmod...
+
+Backing up initramfs-5.0.8-1.el7.elrepo.x86_64.img to /boot/initramfs-5.0.8-1.el7.elrepo.x86_64.img.old-dkms
+Making new initramfs-5.0.8-1.el7.elrepo.x86_64.img
+(If next boot fails, revert to initramfs-5.0.8-1.el7.elrepo.x86_64.img.old-dkms image)
+dracut............
+
+DKMS: install completed.
+```
+
+Just trying the opencl installation I get the following:
+
+```
+Running transaction
+  Installing : hsakmt-roct-1.0.9_135_g34da614-1.x86_64                                                                     1/5 
+  Installing : hsa-rocr-dev-1.1.9_64_g619177ee-1.x86_64                                                                    2/5 
+  Installing : rocm-opencl-1.2.0-2019040803.x86_64                                                                         3/5 
+  Installing : rocm-opencl-devel-1.2.0-2019040803.x86_64                                                                   4/5 
+  Installing : rock-dkms-2.3-14.el7.noarch                                                                                 5/5 
+
+Broadcast message from systemd-journald@tomatan.firi.dev (Thu 2019-04-18 11:28:53 EDT):
+
+dracut[32077]: Failed to install module amdkfd
+
+
+Message from syslogd@tomatan at Apr 18 11:28:53 ...
+ dracut:Failed to install module amdkfd
+```
+
+Any idea what I might be missing?
+
+---
+
+## 评论 (2 条)
+
+### 评论 #1 — sadsfae (2019-04-18T15:56:03Z)
+
+Some more info:
+
+```
+# dmesg | grep amd
+```
+```
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-5.0.8-1.el7.elrepo.x86_64 root=/dev/mapper/centos-root ro rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet amdgpu.vm_fragment_size=9 LANG=en_US.UTF-8
+[    0.106204] Kernel command line: BOOT_IMAGE=/vmlinuz-5.0.8-1.el7.elrepo.x86_64 root=/dev/mapper/centos-root ro rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet amdgpu.vm_fragment_size=9 LANG=en_US.UTF-8
+```
+```
+# dkms status
+```
+```
+amdgpu, 18.50-756341.el7: added
+amdgpu, 2.3-14.el7, 5.0.8-1.el7.elrepo.x86_64, x86_64: installed (original_module exists)
+```
+```
+# modinfo amdgpu
+```
+```
+filename:       /lib/modules/5.0.8-1.el7.elrepo.x86_64/extra/amdgpu.ko
+version:        5.0.19.20.6
+license:        GPL and additional rights
+description:    AMD GPU
+author:         AMD linux driver team
+firmware:       amdgpu/raven2_gpu_info.bin
+firmware:       amdgpu/picasso_gpu_info.bin
+firmware:       amdgpu/raven_gpu_info.bin
+firmware:       amdgpu/vega12_gpu_info.bin
+firmware:       amdgpu/vega10_gpu_info.bin
+firmware:       amdgpu/mullins_mec.bin
+firmware:       amdgpu/mullins_rlc.bin
+firmware:       amdgpu/mullins_ce.bin
+firmware:       amdgpu/mullins_me.bin
+firmware:       amdgpu/mullins_pfp.bin
+firmware:       amdgpu/kabini_mec.bin
+firmware:       amdgpu/kabini_rlc.bin
+firmware:       amdgpu/kabini_ce.bin
+firmware:       amdgpu/kabini_me.bin
+firmware:       amdgpu/kabini_pfp.bin
+firmware:       amdgpu/kaveri_mec2.bin
+firmware:       amdgpu/kaveri_mec.bin
+firmware:       amdgpu/kaveri_rlc.bin
+firmware:       amdgpu/kaveri_ce.bin
+firmware:       amdgpu/kaveri_me.bin
+firmware:       amdgpu/kaveri_pfp.bin
+firmware:       amdgpu/hawaii_mec.bin
+firmware:       amdgpu/hawaii_rlc.bin
+firmware:       amdgpu/hawaii_ce.bin
+firmware:       amdgpu/hawaii_me.bin
+firmware:       amdgpu/hawaii_pfp.bin
+firmware:       amdgpu/bonaire_mec.bin
+firmware:       amdgpu/bonaire_rlc.bin
+firmware:       amdgpu/bonaire_ce.bin
+firmware:       amdgpu/bonaire_me.bin
+firmware:       amdgpu/bonaire_pfp.bin
+firmware:       amdgpu/mullins_sdma1.bin
+firmware:       amdgpu/mullins_sdma.bin
+firmware:       amdgpu/kabini_sdma1.bin
+firmware:       amdgpu/kabini_sdma.bin
+firmware:       amdgpu/kaveri_sdma1.bin
+firmware:       amdgpu/kaveri_sdma.bin
+firmware:       amdgpu/hawaii_sdma1.bin
+firmware:       amdgpu/hawaii_sdma.bin
+firmware:       amdgpu/bonaire_sdma1.bin
+firmware:       amdgpu/bonaire_sdma.bin
+firmware:       amdgpu/si58_mc.bin
+firmware:       amdgpu/hainan_mc.bin
+firmware:       amdgpu/oland_mc.bin
+firmware:       amdgpu/verde_mc.bin
+firmware:       amdgpu/pitcairn_mc.bin
+firmware:       amdgpu/tahiti_mc.bin
+firmware:       amdgpu/hainan_rlc.bin
+firmware:       amdgpu/hainan_ce.bin
+firmware:       amdgpu/hainan_me.bin
+firmware:       amdgpu/hainan_pfp.bin
+firmware:       amdgpu/oland_rlc.bin
+firmware:       amdgpu/oland_ce.bin
+firmware:       amdgpu/oland_me.bin
+firmware:       amdgpu/oland_pfp.bin
+firmware:       amdgpu/verde_rlc.bin
+firmware:       amdgpu/verde_ce.bin
+firmware:       amdgpu/verde_me.bin
+firmware:       amdgpu/verde_pfp.bin
+firmware:       amdgpu/pitcairn_rlc.bin
+firmware:       amdgpu/pitcairn_ce.bin
+firmware:       amdgpu/pitcairn_me.bin
+firmware:       amdgpu/pitcairn_pfp.bin
+firmware:       amdgpu/tahiti_rlc.bin
+firmware:       amdgpu/tahiti_ce.bin
+firmware:       amdgpu/tahiti_me.bin
+firmware:       amdgpu/tahiti_pfp.bin
+firmware:       amdgpu/banks_k_2_smc.bin
+firmware:       amdgpu/hainan_k_smc.bin
+firmware:       amdgpu/hainan_smc.bin
+firmware:       amdgpu/oland_k_smc.bin
+firmware:       amdgpu/oland_smc.bin
+firmware:       amdgpu/verde_k_smc.bin
+firmware:       amdgpu/verde_smc.bin
+firmware:       amdgpu/pitcairn_k_smc.bin
+firmware:       amdgpu/pitcairn_smc.bin
+firmware:       amdgpu/tahiti_smc.bin
+firmware:       amdgpu/topaz_mc.bin
+firmware:       amdgpu/hawaii_mc.bin
+firmware:       amdgpu/bonaire_mc.bin
+firmware:       amdgpu/polaris12_k_mc.bin
+firmware:       amdgpu/polaris10_k_mc.bin
+firmware:       amdgpu/polaris11_k_mc.bin
+firmware:       amdgpu/polaris12_mc.bin
+firmware:       amdgpu/polaris10_mc.bin
+firmware:       amdgpu/polaris11_mc.bin
+firmware:       amdgpu/tonga_mc.bin
+firmware:       amdgpu/vega12_asd.bin
+firmware:       amdgpu/vega12_sos.bin
+firmware:       amdgpu/vega10_asd.bin
+firmware:       amdgpu/vega10_sos.bin
+firmware:       amdgpu/raven2_asd.bin
+firmware:       amdgpu/picasso_asd.bin
+firmware:       amdgpu/raven_asd.bin
+firmware:       amdgpu/vega20_ta.bin
+firmware:       amdgpu/vega20_asd.bin
+firmware:       amdgpu/vega20_sos.bin
+firmware:       amdgpu/vegam_rlc.bin
+firmware:       amdgpu/vegam_mec2.bin
+firmware:       amdgpu/vegam_mec.bin
+firmware:       amdgpu/vegam_me.bin
+firmware:       amdgpu/vegam_pfp.bin
+firmware:       amdgpu/vegam_ce.bin
+firmware:       amdgpu/polaris12_rlc.bin
+firmware:       amdgpu/polaris12_mec2_2.bin
+firmware:       amdgpu/polaris12_mec2.bin
+firmware:       amdgpu/polaris12_mec_2.bin
+firmware:       amdgpu/polaris12_mec.bin
+firmware:       amdgpu/polaris12_me_2.bin
+firmware:       amdgpu/polaris12_me.bin
+firmware:       amdgpu/polaris12_pfp_2.bin
+firmware:       amdgpu/polaris12_pfp.bin
+firmware:       amdgpu/polaris12_ce_2.bin
+firmware:       amdgpu/polaris12_ce.bin
+firmware:       amdgpu/polaris11_rlc.bin
+firmware:       amdgpu/polaris11_mec2_2.bin
+firmware:       amdgpu/polaris11_mec2.bin
+firmware:       amdgpu/polaris11_mec_2.bin
+firmware:       amdgpu/polaris11_mec.bin
+firmware:       amdgpu/polaris11_me_2.bin
+firmware:       amdgpu/polaris11_me.bin
+firmware:       amdgpu/polaris11_pfp_2.bin
+firmware:       amdgpu/polaris11_pfp.bin
+firmware:       amdgpu/polaris11_ce_2.bin
+firmware:       amdgpu/polaris11_ce.bin
+firmware:       amdgpu/polaris10_rlc.bin
+firmware:       amdgpu/polaris10_mec2_2.bin
+firmware:       amdgpu/polaris10_mec2.bin
+firmware:       amdgpu/polaris10_mec_2.bin
+firmware:       amdgpu/polaris10_mec.bin
+firmware:       amdgpu/polaris10_me_2.bin
+firmware:       amdgpu/polaris10_me.bin
+firmware:       amdgpu/polaris10_pfp_2.bin
+firmware:       amdgpu/polaris10_pfp.bin
+firmware:       amdgpu/polaris10_ce_2.bin
+firmware:       amdgpu/polaris10_ce.bin
+firmware:       amdgpu/fiji_rlc.bin
+firmware:       amdgpu/fiji_mec2.bin
+firmware:       amdgpu/fiji_mec.bin
+firmware:       amdgpu/fiji_me.bin
+firmware:       amdgpu/fiji_pfp.bin
+firmware:       amdgpu/fiji_ce.bin
+firmware:       amdgpu/topaz_rlc.bin
+firmware:       amdgpu/topaz_mec.bin
+firmware:       amdgpu/topaz_me.bin
+firmware:       amdgpu/topaz_pfp.bin
+firmware:       amdgpu/topaz_ce.bin
+firmware:       amdgpu/tonga_rlc.bin
+firmware:       amdgpu/tonga_mec2.bin
+firmware:       amdgpu/tonga_mec.bin
+firmware:       amdgpu/tonga_me.bin
+firmware:       amdgpu/tonga_pfp.bin
+firmware:       amdgpu/tonga_ce.bin
+firmware:       amdgpu/stoney_rlc.bin
+firmware:       amdgpu/stoney_mec.bin
+firmware:       amdgpu/stoney_me.bin
+firmware:       amdgpu/stoney_pfp.bin
+firmware:       amdgpu/stoney_ce.bin
+firmware:       amdgpu/carrizo_rlc.bin
+firmware:       amdgpu/carrizo_mec2.bin
+firmware:       amdgpu/carrizo_mec.bin
+firmware:       amdgpu/carrizo_me.bin
+firmware:       amdgpu/carrizo_pfp.bin
+firmware:       amdgpu/carrizo_ce.bin
+firmware:       amdgpu/raven2_rlc.bin
+firmware:       amdgpu/raven2_mec2.bin
+firmware:       amdgpu/raven2_mec.bin
+firmware:       amdgpu/raven2_me.bin
+firmware:       amdgpu/raven2_pfp.bin
+firmware:       amdgpu/raven2_ce.bin
+firmware:       amdgpu/picasso_rlc_am4.bin
+firmware:       amdgpu/picasso_rlc.bin
+firmware:       amdgpu/picasso_mec2.bin
+firmware:       amdgpu/picasso_mec.bin
+firmware:       amdgpu/picasso_me.bin
+firmware:       amdgpu/picasso_pfp.bin
+firmware:       amdgpu/picasso_ce.bin
+firmware:       amdgpu/raven_rlc.bin
+firmware:       amdgpu/raven_mec2.bin
+firmware:       amdgpu/raven_mec.bin
+firmware:       amdgpu/raven_me.bin
+firmware:       amdgpu/raven_pfp.bin
+firmware:       amdgpu/raven_ce.bin
+firmware:       amdgpu/vega20_rlc.bin
+firmware:       amdgpu/vega20_mec2.bin
+firmware:       amdgpu/vega20_mec.bin
+firmware:       amdgpu/vega20_me.bin
+firmware:       amdgpu/vega20_pfp.bin
+firmware:       amdgpu/vega20_ce.bin
+firmware:       amdgpu/vega12_rlc.bin
+firmware:       amdgpu/vega12_mec2.bin
+firmware:       amdgpu/vega12_mec.bin
+firmware:       amdgpu/vega12_me.bin
+firmware:       amdgpu/vega12_pfp.bin
+firmware:       amdgpu/vega12_ce.bin
+firmware:       amdgpu/vega10_rlc.bin
+firmware:       amdgpu/vega10_mec2.bin
+firmware:       amdgpu/vega10_mec.bin
+firmware:       amdgpu/vega10_me.bin
+firmware:       amdgpu/vega10_pfp.bin
+firmware:       amdgpu/vega10_ce.bin
+firmware:       amdgpu/topaz_sdma1.bin
+firmware:       amdgpu/topaz_sdma.bin
+firmware:       amdgpu/vegam_sdma1.bin
+firmware:       amdgpu/vegam_sdma.bin
+firmware:       amdgpu/polaris12_sdma1.bin
+firmware:       amdgpu/polaris12_sdma.bin
+firmware:       amdgpu/polaris11_sdma1.bin
+firmware:       amdgpu/polaris11_sdma.bin
+firmware:       amdgpu/polaris10_sdma1.bin
+firmware:       amdgpu/polaris10_sdma.bin
+firmware:       amdgpu/stoney_sdma.bin
+firmware:       amdgpu/fiji_sdma1.bin
+firmware:       amdgpu/fiji_sdma.bin
+firmware:       amdgpu/carrizo_sdma1.bin
+firmware:       amdgpu/carrizo_sdma.bin
+firmware:       amdgpu/tonga_sdma1.bin
+firmware:       amdgpu/tonga_sdma.bin
+firmware:       amdgpu/raven2_sdma.bin
+firmware:       amdgpu/picasso_sdma.bin
+firmware:       amdgpu/raven_sdma.bin
+firmware:       amdgpu/vega20_sdma1.bin
+firmware:       amdgpu/vega20_sdma.bin
+firmware:       amdgpu/vega12_sdma1.bin
+firmware:       amdgpu/vega12_sdma.bin
+firmware:       amdgpu/vega10_sdma1.bin
+firmware:       amdgpu/vega10_sdma.bin
+firmware:       amdgpu/vega20_uvd.bin
+firmware:       amdgpu/vega12_uvd.bin
+firmware:       amdgpu/vega10_uvd.bin
+firmware:       amdgpu/vegam_uvd.bin
+firmware:       amdgpu/polaris12_uvd.bin
+firmware:       amdgpu/polaris11_uvd.bin
+firmware:       amdgpu/polaris10_uvd.bin
+firmware:       amdgpu/stoney_uvd.bin
+firmware:       amdgpu/fiji_uvd.bin
+firmware:       amdgpu/carrizo_uvd.bin
+firmware:       amdgpu/tonga_uvd.bin
+firmware:       amdgpu/mullins_uvd.bin
+firmware:       amdgpu/hawaii_uvd.bin
+firmware:       amdgpu/kaveri_uvd.bin
+firmware:       amdgpu/kabini_uvd.bin
+firmware:       amdgpu/bonaire_uvd.bin
+firmware:       amdgpu/vega20_vce.bin
+firmware:       amdgpu/vega12_vce.bin
+firmware:       amdgpu/vega10_vce.bin
+firmware:       amdgpu/vegam_vce.bin
+firmware:       amdgpu/polaris12_vce.bin
+firmware:       amdgpu/polaris11_vce.bin
+firmware:       amdgpu/polaris10_vce.bin
+firmware:       amdgpu/stoney_vce.bin
+firmware:       amdgpu/fiji_vce.bin
+firmware:       amdgpu/carrizo_vce.bin
+firmware:       amdgpu/tonga_vce.bin
+firmware:       amdgpu/mullins_vce.bin
+firmware:       amdgpu/hawaii_vce.bin
+firmware:       amdgpu/kaveri_vce.bin
+firmware:       amdgpu/kabini_vce.bin
+firmware:       amdgpu/bonaire_vce.bin
+firmware:       amdgpu/raven2_vcn.bin
+firmware:       amdgpu/picasso_vcn.bin
+firmware:       amdgpu/raven_vcn.bin
+firmware:       amdgpu/vega20_smc.bin
+firmware:       amdgpu/vega12_smc.bin
+firmware:       amdgpu/vega10_acg_smc.bin
+firmware:       amdgpu/vega10_smc.bin
+firmware:       amdgpu/vegam_smc.bin
+firmware:       amdgpu/polaris12_k_smc.bin
+firmware:       amdgpu/polaris12_smc.bin
+firmware:       amdgpu/polaris11_k2_smc.bin
+firmware:       amdgpu/polaris11_k_smc.bin
+firmware:       amdgpu/polaris11_smc_sk.bin
+firmware:       amdgpu/polaris11_smc.bin
+firmware:       amdgpu/polaris10_k2_smc.bin
+firmware:       amdgpu/polaris10_k_smc.bin
+firmware:       amdgpu/polaris10_smc_sk.bin
+firmware:       amdgpu/polaris10_smc.bin
+firmware:       amdgpu/fiji_smc.bin
+firmware:       amdgpu/tonga_k_smc.bin
+firmware:       amdgpu/tonga_smc.bin
+firmware:       amdgpu/topaz_k_smc.bin
+firmware:       amdgpu/topaz_smc.bin
+firmware:       amdgpu/hawaii_k_smc.bin
+firmware:       amdgpu/hawaii_smc.bin
+firmware:       amdgpu/bonaire_k_smc.bin
+firmware:       amdgpu/bonaire_smc.bin
+firmware:       amdgpu/vega20_smc.bin
+firmware:       amdgpu/raven_dmcu.bin
+srcversion:     533BB7E5866E52F63B9ACCB
+alias:          pci:v00001002d000015D8sv*sd*bc*sc*i*
+alias:          pci:v00001002d000015DDsv*sd*bc*sc*i*
+alias:          pci:v00001002d000066AFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A7sv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A4sv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A3sv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A2sv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000066A0sv*sd*bc*sc*i*
+alias:          pci:v00001002d000069AFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000069A3sv*sd*bc*sc*i*
+alias:          pci:v00001002d000069A2sv*sd*bc*sc*i*
+alias:          pci:v00001002d000069A1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000069A0sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000687Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000686Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00006869sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006868sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006867sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006864sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006863sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006862sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006861sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006860sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000694Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000694Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000694Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000699Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d00006997sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006995sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006987sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006986sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006985sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006981sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006980sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006FDFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067CFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067CCsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067CAsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C9sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C8sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067DFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067D0sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C7sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C4sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C2sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067C0sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E9sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E7sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067FFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067EFsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067EBsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E8sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E3sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067E0sv*sd*bc*sc*i*
+alias:          pci:v00001002d000098E4sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009877sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009876sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009875sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009874sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009870sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000730Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d00007300sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006939sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006938sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006930sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000692Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000692Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d00006929sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006928sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006921sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006920sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006907sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006903sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006902sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006901sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006900sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000985Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00009859sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009858sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009857sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009856sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009855sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009854sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009853sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009852sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009851sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009850sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000983Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00009839sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009838sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009837sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009836sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009835sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009834sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009833sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009832sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009831sv*sd*bc*sc*i*
+alias:          pci:v00001002d00009830sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067BEsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067BAsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067B9sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067B8sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067B1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067B0sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067AAsv*sd*bc*sc*i*
+alias:          pci:v00001002d000067A9sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067A8sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067A2sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067A1sv*sd*bc*sc*i*
+alias:          pci:v00001002d000067A0sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000665Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000665Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000665Csv*sd*bc*sc*i*
+alias:          pci:v00001002d00006658sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006651sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006650sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006649sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006647sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006646sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006641sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006640sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000131Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000131Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000131Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d00001318sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001317sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001316sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001315sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001313sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001312sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001311sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001310sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000130Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00001309sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001307sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001306sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001305sv*sd*bc*sc*i*
+alias:          pci:v00001002d00001304sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000666Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d00006667sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006665sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006664sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006663sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006660sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000683Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000683Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000683Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d00006839sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006838sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006837sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006835sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006831sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006830sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000682Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000682Dsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000682Csv*sd*bc*sc*i*
+alias:          pci:v00001002d0000682Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000682Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00006829sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006828sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006827sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006826sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006825sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006824sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006823sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006822sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006821sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006820sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006631sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006623sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006621sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006620sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006617sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006613sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006611sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006610sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006608sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006607sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006606sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006605sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006604sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006603sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006602sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006601sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006600sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006819sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006818sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006817sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006816sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006811sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006810sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006809sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006808sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006806sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006802sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006801sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006800sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000679Fsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000679Esv*sd*bc*sc*i*
+alias:          pci:v00001002d0000679Bsv*sd*bc*sc*i*
+alias:          pci:v00001002d0000679Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00006799sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006798sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006792sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006791sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006790sv*sd*bc*sc*i*
+alias:          pci:v00001002d0000678Asv*sd*bc*sc*i*
+alias:          pci:v00001002d00006788sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006784sv*sd*bc*sc*i*
+alias:          pci:v00001002d00006780sv*sd*bc*sc*i*
+depends:        amdttm,amdkcl,drm_kms_helper,drm,amd_iommu_v2,amd-sched,i2c-algo-bit
+retpoline:      Y
+name:           amdgpu
+vermagic:       5.0.8-1.el7.elrepo.x86_64 SMP mod_unload modversions 
+parm:           vramlimit:Restrict VRAM for testing, in megabytes (int)
+parm:           vis_vramlimit:Restrict visible VRAM for testing, in megabytes (int)
+parm:           gartsize:Size of GART to setup in megabytes (32, 64, etc., -1=auto) (uint)
+parm:           gttsize:Size of the GTT domain in megabytes (-1 = auto) (int)
+parm:           moverate:Maximum buffer migration rate in MB/s. (32, 64, etc., -1=auto, 0=1=disabled) (int)
+parm:           benchmark:Run benchmark (int)
+parm:           test:Run tests (int)
+parm:           audio:Audio enable (-1 = auto, 0 = disable, 1 = enable) (int)
+parm:           disp_priority:Display Priority (0 = auto, 1 = normal, 2 = high) (int)
+parm:           hw_i2c:hw i2c engine enable (0 = disable) (int)
+parm:           pcie_gen2:PCIE Gen2 mode (-1 = auto, 0 = disable, 1 = enable) (int)
+parm:           msi:MSI support (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           lockup_timeout:GPU lockup timeout in ms > 0 (default 10000) (int)
+parm:           dpm:DPM support (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           fw_load_type:firmware loading type (0 = direct, 1 = SMU, 2 = PSP, -1 = auto) (int)
+parm:           aspm:ASPM support (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           runpm:PX runtime pm (1 = force enable, 0 = disable, -1 = PX only default) (int)
+parm:           ip_block_mask:IP Block Mask (all blocks enabled (default)) (uint)
+parm:           bapm:BAPM support (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           deep_color:Deep Color support (1 = enable, 0 = disable (default)) (int)
+parm:           vm_size:VM address space size in gigabytes (default 64GB) (int)
+parm:           vm_fragment_size:VM fragment size in bits (4, 5, etc. 4 = 64K (default), Max 9 = 2M) (int)
+parm:           vm_block_size:VM page table size in bits (default depending on vm_size) (int)
+parm:           vm_fault_stop:Stop on VM fault (0 = never (default), 1 = print first, 2 = always) (int)
+parm:           vm_debug:Debug VM handling (0 = disabled (default), 1 = enabled) (int)
+parm:           vm_update_mode:VM update using CPU (0 = never (default except for large BAR(LB)), 1 = Graphics only, 2 = Compute only (default for LB), 3 = Both (int)
+parm:           vram_page_split:Number of pages after we split VRAM allocations (default 512, -1 = disable) (int)
+parm:           exp_hw_support:experimental hw support (1 = enable, 0 = disable (default)) (int)
+parm:           dc:Display Core driver (1 = enable, 0 = disable, -1 = auto (default)) (int)
+parm:           sched_jobs:the max number of jobs supported in the sw queue (default 32) (int)
+parm:           sched_hw_submission:the max number of HW submissions (default 2) (int)
+parm:           ppfeaturemask:all power features enabled (default)) (uint)
+parm:           no_evict:Support pinning request from user space (1 = enable, 0 = disable (default)) (int)
+parm:           direct_gma_size:Direct GMA size in megabytes (max 96MB) (int)
+parm:           ssg:SSG support (1 = enable, 0 = disable (default)) (int)
+parm:           pcie_gen_cap:PCIE Gen Caps (0: autodetect (default)) (uint)
+parm:           pcie_lane_cap:PCIE Lane Caps (0: autodetect (default)) (uint)
+parm:           cg_mask:Clockgating flags mask (0 = disable clock gating) (uint)
+parm:           pg_mask:Powergating flags mask (0 = disable power gating) (uint)
+parm:           sdma_phase_quantum:SDMA context switch phase quantum (x 1K GPU clock cycles, 0 = no change (default 32)) (uint)
+parm:           disable_cu:Disable CUs (se.sh.cu,...) (charp)
+parm:           virtual_display:Enable virtual display feature (the virtual_display will be set like xxxx:xx:xx.x,x;xxxx:xx:xx.x,x) (charp)
+parm:           ngg:Next Generation Graphics (1 = enable, 0 = disable(default depending on gfx)) (int)
+parm:           prim_buf_per_se:the size of Primitive Buffer per Shader Engine (default depending on gfx) (int)
+parm:           pos_buf_per_se:the size of Position Buffer per Shader Engine (default depending on gfx) (int)
+parm:           cntl_sb_buf_per_se:the size of Control Sideband per Shader Engine (default depending on gfx) (int)
+parm:           param_buf_per_se:the size of Off-Chip Parameter Cache per Shader Engine (default depending on gfx) (int)
+parm:           job_hang_limit:how much time allow a job hang and not drop it (default 0) (int)
+parm:           lbpw:Load Balancing Per Watt (LBPW) support (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           compute_multipipe:Force compute queues to be spread across pipes (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           gpu_recovery:Enable GPU recovery mechanism, (1 = enable, 0 = disable, -1 = auto) (int)
+parm:           emu_mode:Emulation mode, (1 = enable, 0 = disable) (int)
+parm:           amdgpu_ras_enable:Enable RAS features on the GPU (0 = disable, 1 = enable, -1 = auto (default))
+parm:           ras_enable:int
+parm:           amdgpu_ras_mask:Mask of RAS features to enable (default 0xffffffff), only valid when ras_enable == 1
+parm:           ras_mask:uint
+parm:           si_support:SI support (1 = enabled (default), 0 = disabled) (int)
+parm:           cik_support:CIK support (1 = enabled (default), 0 = disabled) (int)
+parm:           smu_memory_pool_size:reserve gtt for smu debug usage, 0 = disable,0x1 = 256Mbyte, 0x2 = 512Mbyte, 0x4 = 1 Gbyte, 0x8 = 2GByte (uint)
+parm:           sched_policy:Scheduling policy (0 = HWS (Default), 1 = HWS without over-subscription, 2 = Non-HWS (Used for debugging only) (int)
+parm:           hws_max_conc_proc:Max # processes HWS can execute concurrently when sched_policy=0 (0 = no concurrency, #VMIDs for KFD = Maximum(default)) (int)
+parm:           cwsr_enable:CWSR enable (0 = Off, 1 = On (Default)) (int)
+parm:           max_num_of_queues_per_device:Maximum number of supported queues per device (1 = Minimum, 4096 = default) (int)
+parm:           send_sigterm:Send sigterm to HSA process on unhandled exception (0 = disable, 1 = enable) (int)
+parm:           debug_largebar:Debug large-bar flag used to simulate large-bar capability on non-large bar machine (0 = disable, 1 = enable) (int)
+parm:           ignore_crat:Ignore CRAT table during KFD initialization (0 = use CRAT (default), 1 = ignore CRAT) (int)
+parm:           noretry:Set sh_mem_config.retry_disable on Vega10 (1 = retry disabled (default), 0 = retry enabled) (int)
+parm:           halt_if_hws_hang:Halt if HWS hang is detected (0 = off (default), 1 = on) (int)
+parm:           priv_cp_queues:Enable privileged mode for CP queues (0 = off (default), 1 = on) (int)
+parm:           keep_idle_process_evicted:Restore evicted process only if queues are active (N = off(default), Y = on) (bool)
+parm:           pcie_p2p:Enable PCIe P2P (requires large-BAR). (N = off, Y = on(default)) (bool)
+parm:           dcfeaturemask:all stable DC features enabled (default)) (uint)
+```
+
+---
+
+### 评论 #2 — sadsfae (2019-04-18T16:28:12Z)
+
+Update here, it seems that follwing this is working for me with the latest `5.0.8` elrepo kernel:
+
+https://github.com/RadeonOpenCompute/ROCm#using-rocm-with-upstream-kernel-drivers
+
+
+
+---

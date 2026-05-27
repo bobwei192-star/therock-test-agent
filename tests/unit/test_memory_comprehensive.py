@@ -183,7 +183,7 @@ class TestMemoryManager:
         )
         
         args, kwargs = mock_instance.upsert.call_args
-        docs = kwargs["documents"]
+        docs = args[0]  # upsert 接收位置参数 list[Document]
         assert len(docs) == 1
         assert isinstance(docs[0], Document)
     

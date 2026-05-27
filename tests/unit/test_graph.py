@@ -11,7 +11,7 @@ class TestGraphStructure:
 
         assert isinstance(g, Pregel)
 
-    def test_graph_has_four_nodes(self):
+    def test_graph_has_five_nodes(self):
         g = build_graph()
         nodes = [n for n in g.get_graph().nodes.keys() if not n.startswith("__")]
         assert nodes == [
@@ -19,6 +19,7 @@ class TestGraphStructure:
             "context_retriever",
             "planner",
             "generator",
+            "sandbox_executor",
         ]
 
     def test_system_prompt_is_nonempty(self):

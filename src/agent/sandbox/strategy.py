@@ -116,11 +116,15 @@ class LocalDockerPytestStrategy(ExecutionStrategy):
     def _run_docker_command(self, command):
         """执行 Docker 命令"""
         import subprocess
-        
+        import shlex
+
         if self._docker_prefix:
-            full_command = f"{self._docker_prefix} '{command}'"
+            # sg 内部用 /bin/sh (dash) 执行命令，嵌套引号极易出错
+            # 使用 shlex.quote() 安全转义整个命令字符串
+            full_command = f"{self._docker_prefix} {shlex.quote(command)}"
             result = subprocess.run(
-                ["sh", "-c", full_command],
+                full_command,
+                shell=True,
                 capture_output=True,
                 text=True
             )
@@ -130,7 +134,7 @@ class LocalDockerPytestStrategy(ExecutionStrategy):
                 capture_output=True,
                 text=True
             )
-        
+
         return result
 
     def _upload_file_to_container(self, container_id, content, remote_path):

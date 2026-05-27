@@ -69,7 +69,7 @@ class TestDotenvRequiredKeys:
 
     def test_provider_is_valid(self, env):
         provider = env["TEST_CASE_AGENT_MODEL_PROVIDER"].lower()
-        valid = {"deepseek", "amd", "openai", "generic"}
+        valid = {"deepseek", "amd", "openai", "generic", "ark"}
         assert provider in valid, f"未知 provider: {provider}，应为 {valid}"
 
     def test_deepseek_keys_when_provider_selected(self, env):
@@ -230,7 +230,7 @@ class TestDependenciesImportable:
 
         g = build_graph()
         nodes = [n for n in g.get_graph().nodes.keys() if not n.startswith("__")]
-        assert len(nodes) == 4, f"调试阶段预期 4 个节点，实际: {len(nodes)}: {nodes}"
+        assert len(nodes) == 5, f"预期 5 个节点，实际: {len(nodes)}: {nodes}"
 
 
 if __name__ == "__main__":

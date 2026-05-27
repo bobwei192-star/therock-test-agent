@@ -20,7 +20,8 @@ from typing import Any
 
 from ..sandbox import CommandResult, SandboxConfig, build_sandbox_client
 from ..sandbox.feedback import build_feedback
-from ..sandbox.strategy import StrategyFactory, execute_with_strategy
+from ..sandbox import strategy as sandbox_strategy
+from ..sandbox.strategy import StrategyFactory
 from ..state import AgentState
 from ..intent_router import IntentType
 
@@ -170,7 +171,7 @@ def sandbox_executor(state: AgentState) -> dict:
     saved_filepath = state.get("saved_filepath")
 
     # 使用策略模式执行
-    strategy_result = execute_with_strategy(
+    strategy_result = sandbox_strategy.execute_with_strategy(
         intent=parsed_intent,
         artifact_path=saved_filepath,
         state=dict(state),

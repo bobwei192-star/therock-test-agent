@@ -21,7 +21,6 @@ from .nodes import (
     planner,
     requirement_parser,
     sandbox_executor,
-    execution_planner,
 )
 
 
@@ -123,7 +122,6 @@ def build_graph(
     requirement_parser_with_agent = partial(requirement_parser, agent=agent)
     planner_with_agent = partial(planner, agent=agent)
     generator_with_model = partial(generator, model=model)
-    execution_planner_with_agent = partial(execution_planner, agent=agent)
 
     # 构建状态图，指定状态类型和上下文 schema
     builder = StateGraph(AgentState, context_schema=AgentContext)
@@ -132,7 +130,6 @@ def build_graph(
     builder.add_node("requirement_parser", requirement_parser_with_agent)
     builder.add_node("context_retriever", context_retriever)
     builder.add_node("planner", planner_with_agent)
-    builder.add_node("execution_planner", execution_planner_with_agent)
     builder.add_node("generator", generator_with_model)
     builder.add_node("sandbox_executor", sandbox_executor, retry_policy=SANDBOX_RETRY_POLICY)
 
@@ -140,8 +137,7 @@ def build_graph(
     builder.add_edge(START, "requirement_parser")
     builder.add_edge("requirement_parser", "context_retriever")
     builder.add_edge("context_retriever", "planner")
-    builder.add_edge("planner", "execution_planner")
-    builder.add_edge("execution_planner", "generator")
+    builder.add_edge("planner", "generator")
     builder.add_edge("generator", "sandbox_executor")
 
     # 沙盒执行后的条件路由：成功则结束，失败则回到 planner 重新规划

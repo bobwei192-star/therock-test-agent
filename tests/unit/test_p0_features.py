@@ -172,37 +172,6 @@ class TestUserDrivenRepair:
         assert runner._conversation_state == {}
 
 
-class TestExecutionPlannerNode:
-    """测试执行计划节点"""
-
-    def test_execution_planner_import(self):
-        """测试执行计划节点导入"""
-        from src.agent.nodes import execution_planner
-        
-        assert callable(execution_planner)
-
-    def test_graph_includes_execution_planner(self):
-        """测试图包含执行计划节点"""
-        graph = build_graph()
-        
-        assert "execution_planner" in graph.nodes
-        assert len(graph.nodes) == 7  # __start__ + 6 个节点
-
-    def test_graph_execution_order(self):
-        """测试图执行顺序"""
-        graph = build_graph()
-        
-        nodes = list(graph.nodes.keys())
-        
-        # 验证顺序
-        assert nodes[0] == "__start__"
-        assert nodes[1] == "requirement_parser"
-        assert nodes[2] == "context_retriever"
-        assert nodes[3] == "planner"
-        assert nodes[4] == "execution_planner"
-        assert nodes[5] == "generator"
-        assert nodes[6] == "sandbox_executor"
-
 
 class TestCLICommands:
     """测试 CLI 命令"""
@@ -211,17 +180,17 @@ class TestCLICommands:
         """测试 CLI Runner 节点名称列表"""
         from src.agent.cli.cli_runner import NODE_NAMES
         
-        assert "execution_planner" in NODE_NAMES
-        assert NODE_NAMES.index("planner") < NODE_NAMES.index("execution_planner")
-        assert NODE_NAMES.index("execution_planner") < NODE_NAMES.index("generator")
+        assert "execution_planner" not in NODE_NAMES
+        assert "planner" in NODE_NAMES
+        assert NODE_NAMES.index("planner") < NODE_NAMES.index("generator")
 
     def test_cli_runner_output_keys(self):
         """测试 CLI Runner 输出键映射"""
         from src.agent.cli.cli_runner import NODE_OUTPUT_KEYS
         
-        assert NODE_OUTPUT_KEYS["execution_planner"] == "execution_plan"
         assert NODE_OUTPUT_KEYS["planner"] == "case_plan"
         assert NODE_OUTPUT_KEYS["generator"] == "generated_code"
+
 
 
 if __name__ == "__main__":

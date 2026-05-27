@@ -1,0 +1,1856 @@
+{
+  "task": "test",
+  "status": "running",
+  "event": "info_test",
+  "level": "INFO",
+  "timestamp": "2026-05-27T02:14:51.288228Z"
+}
+{
+  "warning": "something",
+  "event": "warning_test",
+  "level": "WARNING",
+  "timestamp": "2026-05-27T02:14:51.288584Z"
+}
+{
+  "code": 500,
+  "event": "error_test",
+  "level": "ERROR",
+  "timestamp": "2026-05-27T02:14:51.288773Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.399984 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:34:14.006249Z"
+}
+{
+  "elapsed": 1.7,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779860053072660859622656fea2a03bf0be4d40d08098af9d', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:34:15.708638Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:34:21.900582Z"
+}
+{
+  "elapsed": 0.41,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 0217798600614862748f57c5f4210b3bc611acce6828c7a417056', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:34:22.309819Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:34:29.077436Z"
+}
+{
+  "elapsed": 0.27,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779860067982a1b170fc911988aa69fdfa08a353ab271c255d', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:34:29.346885Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:41:27.735935Z"
+}
+{
+  "elapsed": 1.47,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779860487852660859622656fea2a03bf0be4d40d080f6f35f', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:41:29.204822Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:41:34.447224Z"
+}
+{
+  "elapsed": 0.28,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986049293085c9a7acb047d6dabbfa02bbf3a2b67bb0f5b1', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:41:34.730575Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:41:40.336589Z"
+}
+{
+  "elapsed": 0.26,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986049837200bcc3116dfc56b9203b01425516f61b9343db', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:41:40.595044Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:45:09.096874Z"
+}
+{
+  "elapsed": 1.53,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779860708403a1b170fc911988aa69fdfa08a353ab271a9918', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:45:10.629755Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:45:13.972435Z"
+}
+{
+  "elapsed": 0.27,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779860714055ffa368fe9ac51d90198cd5026e9cf3e3b12dd0', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:45:14.245784Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:45:20.145463Z"
+}
+{
+  "elapsed": 0.25,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986071972842e276d595e9cfc376ad966d4ec21246c5da76', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:45:20.397904Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:59:34.378575Z"
+}
+{
+  "elapsed": 1.47,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779861573978660859622656fea2a03bf0be4d40d080e58ba6', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:59:35.849249Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:59:41.582710Z"
+}
+{
+  "elapsed": 0.27,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779861579514d05e5c3b12045884e5304df23f9a3a83f65278', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:59:41.852871Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T05:59:45.476393Z"
+}
+{
+  "elapsed": 0.26,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779861585422d72149264581351fe280677b9f79ce08ce7fa1', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T05:59:45.734475Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:01:09.530929Z"
+}
+{
+  "elapsed": 1.45,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986166870085c9a7acb047d6dabbfa02bbf3a2b67b580f2b', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:01:10.983995Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:01:14.304716Z"
+}
+{
+  "elapsed": 0.26,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986167450979be1521b480472bd1aa7097703cfa206fa528', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:01:14.569603Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:01:20.530252Z"
+}
+{
+  "elapsed": 0.27,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779861680258f742ef2c206840dc107957f7b221b0ff4396d2', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:01:20.799690Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:04:27.143584Z"
+}
+{
+  "elapsed": 1.5,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986186734364d8a6219dbbdb6281842e0590025e923814a8', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:04:28.641307Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:04:33.504784Z"
+}
+{
+  "elapsed": 0.17,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986187200164d8a6219dbbdb6281842e0590025e92bc2d62', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:04:33.679407Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T06:04:38.155274Z"
+}
+{
+  "elapsed": 0.18,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 02177986187629364d8a6219dbbdb6281842e0590025e924744a3', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T06:04:38.333863Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T07:18:26.642410Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.450567 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.816731 seconds",
+  "level": "INFO"
+}
+{
+  "elapsed": 237.84,
+  "error": "Connection error.",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T07:22:24.479676Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T07:22:30.381866Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.435889 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.811718 seconds",
+  "level": "INFO"
+}
+{
+  "elapsed": 338.46,
+  "error": "Request timed out.",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T07:28:08.845224Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T07:28:14.467330Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.416612 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.881578 seconds",
+  "level": "INFO"
+}
+{
+  "elapsed": 331.91,
+  "error": "Request timed out.",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T07:33:46.379198Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.490259 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.990020 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.428075 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.797156 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.429042 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.869286 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.479558 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.872475 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:11:15.618083Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.417023 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.782700 seconds",
+  "level": "INFO"
+}
+{
+  "elapsed": 310.68,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779869786008f4c5a59833d258d1c9606e23e7c1f1a53996bd', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:16:26.298895Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:16:30.922038Z"
+}
+{
+  "elapsed": 0.14,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779869790829f4c5a59833d258d1c9606e23e7c1f1a5f6a12f', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:16:31.065124Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:16:35.804993Z"
+}
+{
+  "elapsed": 1.3,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 021779869796837bec3f42aa889c5b9258a8a5e9d4b8dea6c1efe', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:16:37.102306Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "user_prompt": "say hello in one sentence",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:20:14.044484Z"
+}
+{
+  "elapsed": 1.28,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 0217798700150346c6143abc371ddf801f23c2797c48bf48d4814', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "say hello in one sentence",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:20:15.319524Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:20:20.148312Z"
+}
+{
+  "elapsed": 0.16,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 0217798700200276c6143abc371ddf801f23c2797c48bf4f861ed', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "写一个 pytest 测试函数 test_one，断言 1+1==2",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:20:20.311271Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "user_prompt": "测试 rocminfo 是否存在",
+  "provider": null,
+  "thread_id": "test-case-agent-debug",
+  "user_id": "default_user",
+  "project_id": null,
+  "event": "run_once_start",
+  "level": "INFO",
+  "timestamp": "2026-05-27T08:20:25.041319Z"
+}
+{
+  "elapsed": 0.18,
+  "error": "Error code: 403 - {'error': {'code': 'AccountOverdueError', 'message': 'The request failed because your account has an overdue balance. Request id: 0217798700249216c6143abc371ddf801f23c2797c48bf4ab459c', 'param': '', 'type': 'Forbidden'}}",
+  "user_prompt": "测试 rocminfo 是否存在",
+  "exc_info": true,
+  "event": "run_once_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-27T08:20:25.220803Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}

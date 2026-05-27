@@ -37,7 +37,7 @@ class TestDownloadOptimizer:
 
     def test_download_timeout_config(self):
         """测试超时配置"""
-        assert DOWNLOAD_TIMEOUT == 10  # 10秒超时
+        assert DOWNLOAD_TIMEOUT == 30  # 30秒超时
 
     @patch("src.agent.tools.download_embedding_model.HfApi")
     @patch("src.agent.tools.download_embedding_model.download_file_with_requests")

@@ -15,8 +15,11 @@ CHROMA_DIR = Path(
     os.environ.get("TEST_CASE_AGENT_CHROMA_DIR", "./chroma_langchain_db")
 )
 
-# 本地模型缓存目录
-_LOCAL_MODEL_DIR = Path("/home/zx/TestCaseAgent/llm_model")
+# 本地模型缓存目录（优先使用 HOME 目录下的项目路径）
+_LOCAL_MODEL_DIR = Path(os.environ.get(
+    "TEST_CASE_AGENT_MODEL_DIR",
+    str(Path.home() / "TestCaseAgent" / "llm_model")
+))
 
 
 def main():

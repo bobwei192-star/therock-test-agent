@@ -230,7 +230,7 @@ langgraph --version
 # ─────────────────────────────────────────────────────
 # Step 6: Langfuse (Docker)
 # ─────────────────────────────────────────────────────
-
+sudo  snap install aria2c
 log_step 7 "Deploy Langfuse (Docker Compose, http://localhost:3000)"
 LF_REPO="https://github.com/langfuse/langfuse.git"
 LF_DIR="$SCRIPT_DIR/etc/langfuse"

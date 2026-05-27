@@ -21,8 +21,11 @@ _CHROMA_DIR = Path(
     os.environ.get("TEST_CASE_AGENT_CHROMA_DIR", "./chroma_langchain_db")
 )
 
-# 本地模型缓存目录
-_LOCAL_MODEL_DIR = Path("/home/zx/TestCaseAgent/llm_model")
+# 本地模型缓存目录（优先使用 HOME 目录下的项目路径）
+_LOCAL_MODEL_DIR = Path(os.environ.get(
+    "TEST_CASE_AGENT_MODEL_DIR",
+    str(Path.home() / "TestCaseAgent" / "llm_model")
+))
 
 # 模型名称
 _EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -117,6 +120,23 @@ def _get_embeddings() -> Any:
         _load_error = "无法获取 embedding 模型"
         raise RuntimeError(_load_error)
     
+    # 先检查 HuggingFace 缓存
+    _hf_cache_dir = Path(os.environ.get("HF_HUB_CACHE", os.path.expanduser("~/.cache/huggingface/hub")))
+    _hf_model_dir = _hf_cache_dir / "models--sentence-transformers--all-MiniLM-L6-v2" / "snapshots"
+    _hf_cached = False
+    if _hf_model_dir.exists() and any(_hf_model_dir.iterdir()):
+        # 检查 snapshot 目录下是否有完整模型文件
+        for snap_dir in _hf_model_dir.iterdir():
+            if snap_dir.is_dir() and (snap_dir / "pytorch_model.bin").exists():
+                _hf_cached = True
+                print(f"[RAG] 💾 HuggingFace 缓存已命中: {snap_dir}")
+                break
+    
+    if _hf_cached:
+        print(f"[RAG] ℹ️  将从 HuggingFace 缓存直接加载，无需下载")
+    else:
+        print(f"[RAG] 🌐 HuggingFace 缓存未命中，将自动从网络下载模型...")
+    
     # 尝试加载模型（最多重试 3 次）
     max_retries = 3
     last_exception = None
@@ -129,7 +149,7 @@ def _get_embeddings() -> Any:
                 encode_kwargs={"normalize_embeddings": True},
             )
             _load_error = None  # 成功加载，清除之前的错误
-            print(f"[RAG] ✅ embedding 模型加载成功")
+            print(f"[RAG] ✅ embedding 模型加载成功 (来源: {'HF缓存' if _hf_cached else '网络下载'})")
             return _embeddings
             
         except Exception as exc:

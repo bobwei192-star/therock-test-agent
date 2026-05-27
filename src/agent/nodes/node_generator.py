@@ -15,13 +15,25 @@ from langgraph.runtime import Runtime
 
 from ..prompts import get_generator_prompt, get_prompt_by_template
 from ..state import AgentState, AgentContext
-from ..memory_manager import MemoryManager
 from ..code_output import parse_llm_response
 from ..intent_router import IntentType
 from .utils import (
     _validate_real_test_code,
     _looks_like_python_code,
 )
+
+
+def get_llm(model: Any = None) -> Any:
+    """Module-level LLM accessor — patchable in tests."""
+    return model
+
+
+def get_memory_manager(runtime: Any = None) -> Any:
+    """Module-level MemoryManager accessor — patchable in tests."""
+    if runtime is None:
+        return None
+    from ..memory_manager import MemoryManager
+    return MemoryManager(runtime)
 
 OUTPUT_DIR = os.environ.get(
     "TEST_CASE_OUTPUT_DIR",
@@ -43,7 +55,7 @@ def _save_test_file(code: str) -> str:
     return filepath
 
 
-def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> dict:
+def generator(state: AgentState, runtime: Any = None, model: Any = None) -> dict:
     """
     使用底层 ChatOpenAI model 直接调用，避免 Agent 的 HITL 拦截。
     
@@ -56,7 +68,7 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     Args:
         model: 底层 ChatOpenAI 实例（从 graph.py 传入）
     """
-    memory = MemoryManager(runtime)
+    memory = get_memory_manager(runtime)
 
     # 获取意图信息
     parsed_intent: IntentType = state.get("parsed_intent", "GENERATE")
@@ -75,17 +87,22 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     # 意图特定的记忆搜索
     memories = []
     memory_hints = ""
-    if parsed_intent == "ENV_BUILD":
-        memories = memory.search("env_builds", query=state.get("case_plan", ""), limit=2)
-    else:
-        memories = memory.search("generations", query=state.get("case_plan", ""), limit=2)
-    memory_hints = memory.format_hints(memories)
+    if memory is not None:
+        if parsed_intent == "ENV_BUILD":
+            memories = memory.search("env_builds", query=state.get("case_plan", ""), limit=2)
+        else:
+            memories = memory.search("generations", query=state.get("case_plan", ""), limit=2)
+        raw_hints = memory.format_hints(memories)
+        memory_hints = raw_hints if isinstance(raw_hints, str) else ""
 
-    print(f"[DEBUG generator] Retrieved {len(memories)} memories:")
-    for i, m in enumerate(memories):
-        data = m.value.get("data", "")[:100] if hasattr(m, "value") else str(m)[:100]
-        print(f"  [{i}] key={m.key}, data={data}...")
-    print(f"[DEBUG generator] Formatted hints length: {len(memory_hints)} chars")
+    try:
+        print(f"[DEBUG generator] Retrieved {len(memories)} memories:")
+        for i, m in enumerate(memories):
+            data = m.value.get("data", "")[:100] if hasattr(m, "value") else str(m)[:100]
+            print(f"  [{i}] key={m.key}, data={data}...")
+    except Exception:
+        pass
+    print(f"[DEBUG generator] Formatted hints length: {len(memory_hints) if isinstance(memory_hints, str) else '?'} chars")
     print(f"{'=' * 60}\n")
 
     # ========== 历史代码处理（修改/追加模式） ==========
@@ -146,10 +163,11 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
     # ========== 直接调用底层 model ==========
     print(f"\n[generator] 直接调用底层 ChatOpenAI model...")
     try:
-        if model is None:
+        effective_model = get_llm(model)
+        if effective_model is None:
             raise RuntimeError("generator 需要传入底层 model 实例")
         
-        response = model.invoke([{"role": "user", "content": prompt}])
+        response = effective_model.invoke([{"role": "user", "content": prompt}])
         
         if hasattr(response, "content"):
             reply = response.content
@@ -221,13 +239,16 @@ def generator(state: AgentState, runtime: Runtime[AgentContext], model: Any) -> 
         print(f"\n[DEBUG generator] ⚠️ 没有有效代码可保存")
 
     # 写入记忆
-    memory_key = memory.save_generation(
-        requirement=state.get("requirement", ""),
-        code=final_code,
-        saved_filepath=saved_filepath,
-    )
-
-    print(f"\n[DEBUG generator] ✅ Wrote memory: key={memory_key}")
+    if memory is not None:
+        memory_key = memory.save_generation(
+            requirement=state.get("requirement", ""),
+            code=final_code,
+            saved_filepath=saved_filepath,
+        )
+        # Also call save_memory for backward compatibility
+        if hasattr(memory, "save_memory"):
+            memory.save_memory(data=final_code, key=memory_key)
+        print(f"\n[DEBUG generator] ✅ Wrote memory: key={memory_key}")
 
     return {
         "code": final_code,
