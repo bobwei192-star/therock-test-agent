@@ -35,3 +35,14 @@ llm_model/
 
 # Debug / temp files
 a.py
+# === 修正补充 ===
+.git.bak/
+models/
+llm_model/
+.langgraph_api/
+chroma_db/
+chroma_langchain_db/
+output/
+test_case/
+.node/
+.npm-cache/
