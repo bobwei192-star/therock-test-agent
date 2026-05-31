@@ -59,8 +59,9 @@ include = ["src*"]
 testpaths = ["tests"]
 pythonpath = ["."]
 norecursedirs = ["tests/output"]
+addopts = "-p no:launch_testing_ros -p no:launch_testing"
 markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "slow: marks tests as slow (deselect with '-m 'not slow'')",
     "integration: marks tests as integration tests",
     "llm: marks tests that require LLM API access",
 ]

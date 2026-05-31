@@ -104,6 +104,17 @@ def build_model_config(provider: str | None = None) -> ModelConfig:
             temperature=float(os.environ.get("LLM_TEMPERATURE", "0.2")),
         )
 
+    if selected_provider == "yuanyuai":
+        api_key = os.environ.get("YUNYUAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("Missing YUNYUAI_API_KEY.")
+        return ModelConfig(
+            model=os.environ.get("YUNYUAI_MODEL", "kimi-k2.6"),
+            base_url=os.environ.get("YUNYUAI_BASE_URL", "https://yuanyuaicloud.cn/v1"),
+            api_key=api_key,
+            temperature=float(os.environ.get("LLM_TEMPERATURE", "0.2")),
+        )
+
     api_key = os.environ.get("LLM_API_KEY")
     base_url = os.environ.get("LLM_BASE_URL")
     model = os.environ.get("LLM_MODEL")

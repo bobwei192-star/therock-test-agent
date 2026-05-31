@@ -16,7 +16,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 TOTAL_STEPS=8
 log_info "Project root: $SCRIPT_DIR"
-pip install pytest-html
 # ─────────────────────────────────────────────────────
 # 辅助函数
 # ─────────────────────────────────────────────────────
@@ -140,6 +139,111 @@ _container_running() {
     docker ps --format '{{.Names}}' 2>/dev/null | grep -q "$1"
 }
 
+_setup_docker_mirrors() {
+    local daemon_cfg="/etc/docker/daemon.json"
+    local mirror_url="https://docker.m.daocloud.io"
+
+    if [ ! -w "$(dirname "$daemon_cfg")" ] && ! command -v sudo >/dev/null 2>&1; then
+        log_warn "无权限配置 Docker 镜像加速，镜像拉取可能失败"
+        return 1
+    fi
+
+    local cmd_prefix=""
+    if [ ! -w "$(dirname "$daemon_cfg")" ]; then
+        cmd_prefix="sudo"
+    fi
+
+    local need_update=1
+    if [ -f "$daemon_cfg" ]; then
+        local current_mirrors=$($cmd_prefix python3 -c "
+import json
+with open('$daemon_cfg') as f:
+    cfg = json.load(f)
+mirrors = cfg.get('registry-mirrors', [])
+print(' '.join(mirrors))
+" 2>/dev/null)
+        if [ -n "$current_mirrors" ]; then
+            for m in $current_mirrors; do
+                local code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 2 --max-time 3 "$m/v2/" 2>/dev/null || echo "000")
+                if [ "$code" = "401" ] || [ "$code" = "200" ]; then
+                    log_info "Docker 镜像 $m 可达，沿用现有配置"
+                    need_update=0
+                    break
+                fi
+            done
+        fi
+    fi
+
+    if [ "$need_update" -eq 0 ]; then
+        return 0
+    fi
+
+    log_info "现有镜像不可达，切换为 $mirror_url ..."
+
+    local tmpfile=$(mktemp)
+    cat > "$tmpfile" <<EOF
+{
+    "registry-mirrors": ["$mirror_url"]
+}
+EOF
+
+    if [ -f "$daemon_cfg" ]; then
+        $cmd_prefix python3 -c "
+import json
+with open('$daemon_cfg') as f:
+    cfg = json.load(f)
+cfg['registry-mirrors'] = ['$mirror_url']
+with open('$tmpfile', 'w') as f:
+    json.dump(cfg, f, indent=2)
+" 2>/dev/null
+    fi
+
+    if $cmd_prefix cp "$tmpfile" "$daemon_cfg" 2>/dev/null; then
+        $cmd_prefix systemctl restart docker 2>/dev/null || $cmd_prefix systemctl reload docker 2>/dev/null || true
+        sleep 2
+        log_info "Docker 镜像加速已配置: $mirror_url"
+        rm -f "$tmpfile"
+        return 0
+    fi
+
+    rm -f "$tmpfile"
+    log_warn "Docker 镜像加速配置失败（可能需要 sudo 或文件系统只读）"
+    log_info "手动配置: sudo tee /etc/docker/daemon.json <<<'{\"registry-mirrors\":[\"https://docker.m.daocloud.io\"]}' && sudo systemctl restart docker"
+    return 1
+}
+
+_docker_compose_up() {
+    local dir="$1"
+    local name="${2:-service}"
+
+    _setup_docker_mirrors
+
+    cd "$dir"
+
+    if [ -n "$DOCKER_PREFIX" ]; then
+        if $DOCKER_PREFIX "$DOCKER_COMPOSE up -d" 2>&1; then
+            log_info "$name started. Access: http://localhost:3000"
+            cd "$SCRIPT_DIR"
+            return 0
+        fi
+    else
+        if $DOCKER_COMPOSE up -d 2>&1; then
+            log_info "$name started. Access: http://localhost:3000"
+            cd "$SCRIPT_DIR"
+            return 0
+        fi
+    fi
+
+    log_error "$name 启动失败 — Docker Hub 可能不可达，跳过。"
+    log_info "若需启用，先确保 Docker 能拉取镜像后手动执行:"
+    log_info "  cd $dir && docker compose up -d"
+    log_info "镜像加速参考:"
+    log_info "  sudo tee /etc/docker/daemon.json <<<'{\"registry-mirrors\":[\"https://docker.m.daocloud.io\"]}'"
+    log_info "  sudo systemctl reload docker"
+    cd "$SCRIPT_DIR"
+    return 1
+}
+
 # ─────────────────────────────────────────────────────
 # Step 1-5: Python 环境
 # ─────────────────────────────────────────────────────
@@ -183,6 +287,7 @@ pip install graphrag -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 log_step 4 "Install project requirements (including RAG + CLI deps)"
 python -m pip install -r requirements.txt -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 python -m pip install -e . -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
+python -m pip install pytest-html -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 python -m pip install \
     typer rich \
     langchain-community langchain-text-splitters \
@@ -219,8 +324,6 @@ for label, name in modules.items():
 if missing:
     sys.exit(f"Missing: {', '.join(missing)}")
 PY
-pip install langchain-cli -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
-
 if ! command -v langgraph >/dev/null 2>&1; then
     log_error "langgraph CLI is not available in .venv"
     exit 1
@@ -228,57 +331,10 @@ fi
 langgraph --version
 
 # ─────────────────────────────────────────────────────
-# Step 6: Langfuse (Docker)
-# ─────────────────────────────────────────────────────
-sudo  snap install aria2c
-log_step 7 "Deploy Langfuse (Docker Compose, http://localhost:3000)"
-LF_REPO="https://github.com/langfuse/langfuse.git"
-LF_DIR="$SCRIPT_DIR/etc/langfuse"
-
-if _docker_ok; then
-    if _container_running "langfuse"; then
-        log_warn "Langfuse 容器已在运行，跳过部署。"
-    else
-        # 检查目录是否存在且不为空（包含必要文件）
-        if [ ! -d "$LF_DIR" ] || [ ! -f "$LF_DIR/docker-compose.yml" ]; then
-            if [ -d "$LF_DIR" ]; then
-                log_warn "langfuse 目录存在但不完整，重新克隆..."
-                rm -rf "$LF_DIR"
-            fi
-            git clone --depth 1 "$LF_REPO" "$LF_DIR"
-            log_info "Cloned langfuse -> $LF_DIR"
-            cat > "$LF_DIR/.env" <<DOTENV
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=$(openssl rand -hex 32 2>/dev/null || echo "mysecret-changeme")
-SALT=$(openssl rand -hex 16 2>/dev/null || echo "mysalt-changeme")
-ENCRYPTION_KEY=$(openssl rand -hex 32 2>/dev/null || echo "0000000000000000000000000000000000000000000000000000000000000000")
-TELEMETRY_ENABLED=true
-LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=true
-DOTENV
-            log_info "Created .env (auto-generated secrets)"
-        else
-            log_warn "langfuse 源码已存在，重新启动..."
-        fi
-        cd "$LF_DIR"
-        if [ -f "docker-compose.yml" ]; then
-            if [ -n "$DOCKER_PREFIX" ]; then
-                $DOCKER_PREFIX "$DOCKER_COMPOSE up -d"
-            else
-                $DOCKER_COMPOSE up -d
-            fi
-            log_info "Langfuse started. Access: http://localhost:3000"
-        else
-            log_error "docker-compose.yml not found in $LF_DIR"
-        fi
-        cd "$SCRIPT_DIR"
-    fi
-fi
-
-# ─────────────────────────────────────────────────────
-# Step 8: Agent Chat UI (langchain-ai/agent-chat-ui)
+# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui)
 # ─────────────────────────────────────────────────────
 
-pip install langgraph paramiko -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
+pip install paramiko -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 
 _install_nodejs() {
     log_info "正在安装 Node.js 22..."
@@ -338,7 +394,7 @@ _install_nodejs() {
     return 1
 }
 
-log_step 8 "Setup Agent Chat UI (langchain-ai/agent-chat-ui)"
+log_step 7 "Setup Agent Chat UI (langchain-ai/agent-chat-ui)"
 UI_REPO="https://github.com/langchain-ai/agent-chat-ui.git"
 UI_DIR="$SCRIPT_DIR/etc/agent-chat-ui"
 
@@ -396,7 +452,7 @@ if [ -z "${SKIP_UI:-}" ]; then
     if [ ! -f "$UI_DIR/.env" ]; then
         cat > "$UI_DIR/.env" <<'DOTENV'
 NEXT_PUBLIC_API_URL=http://localhost:2024
-NEXT_PUBLIC_ASSISTANT_ID=test_case_agent
+NEXT_PUBLIC_ASSISTANT_ID=agent
 NEXT_PUBLIC_AUTH_SCHEME=
 DOTENV
         log_info "Created .env (连接本地 LangGraph server)"
@@ -423,15 +479,61 @@ DOTENV
 fi
 
 # ─────────────────────────────────────────────────────
+# Step 8: Langfuse (Docker)
+# ─────────────────────────────────────────────────────
+log_step 8 "Deploy Langfuse (Docker Compose, http://localhost:3000)"
+LF_REPO="https://github.com/langfuse/langfuse.git"
+LF_DIR="$SCRIPT_DIR/etc/langfuse"
+
+if _docker_ok; then
+    if _container_running "langfuse"; then
+        log_warn "Langfuse 容器已在运行，跳过部署。"
+    else
+        # 检查目录是否存在且不为空（包含必要文件）
+        if [ ! -d "$LF_DIR" ] || [ ! -f "$LF_DIR/docker-compose.yml" ]; then
+            if [ -d "$LF_DIR" ]; then
+                log_warn "langfuse 目录存在但不完整，重新克隆..."
+                rm -rf "$LF_DIR"
+            fi
+            git clone --depth 1 "$LF_REPO" "$LF_DIR"
+            log_info "Cloned langfuse -> $LF_DIR"
+            cat > "$LF_DIR/.env" <<DOTENV
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=$(openssl rand -hex 32 2>/dev/null || echo "mysecret-changeme")
+SALT=$(openssl rand -hex 16 2>/dev/null || echo "mysalt-changeme")
+ENCRYPTION_KEY=$(openssl rand -hex 32 2>/dev/null || echo "0000000000000000000000000000000000000000000000000000000000000000")
+TELEMETRY_ENABLED=true
+LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=true
+DOTENV
+            log_info "Created .env (auto-generated secrets)"
+        else
+            log_warn "langfuse 源码已存在，重新启动..."
+        fi
+        cd "$LF_DIR"
+        if [ -f "docker-compose.yml" ]; then
+            _docker_compose_up "$LF_DIR" "Langfuse"
+        else
+            log_error "docker-compose.yml not found in $LF_DIR"
+            cd "$SCRIPT_DIR"
+        fi
+    fi
+fi
+
+# ─────────────────────────────────────────────────────
 # 等待 Langfuse 服务启动
 # ─────────────────────────────────────────────────────
 _wait_for_langfuse() {
+    if ! _container_running "langfuse" 2>/dev/null && ! docker ps 2>/dev/null | grep -q ""; then
+        log_warn "无运行中的容器，跳过等待 Langfuse"
+        return 1
+    fi
+
     local max_wait=60
     local wait_interval=5
     local elapsed=0
-    
+
     log_info "等待 Langfuse 服务启动..."
-    
+
     while [ $elapsed -lt $max_wait ]; do
         if curl -s -f http://localhost:3000/api/public/health >/dev/null 2>&1; then
             log_info "Langfuse 服务已启动"
@@ -441,17 +543,14 @@ _wait_for_langfuse() {
         elapsed=$((elapsed + wait_interval))
         log_info "等待中... ($elapsed/$max_wait 秒)"
     done
-    
+
     log_warn "Langfuse 服务启动超时，可能需要更多时间"
     return 1
 }
 
-# 只有在 Docker 可用且 Langfuse 部署了的情况下才等待
-if _docker_ok && [ -d "$LF_DIR" ]; then
+if _container_running "langfuse" 2>/dev/null || _container_running "langfuse-langfuse" 2>/dev/null; then
     _wait_for_langfuse
 fi
-
-pip install docker
 
 # ─────────────────────────────────────────────────────
 # 更新 .env 文件配置（添加 Langfuse 连接信息）
@@ -508,13 +607,14 @@ echo -e "  ${GREEN}2.${NC} 将 API Keys 填入 ${GREEN}.env${NC} 文件中的 LA
 echo -e "  ${GREEN}3.${NC} 设置 LLM API Key: 修改 ${GREEN}.env${NC} 中的 OPENAI_API_KEY"
 echo ""
 echo -e "  ${BLUE}【终端1】启动 LangGraph Server:${NC}"
-echo -e "    cd /home/zx/TestCaseAgent"
+echo -e "    cd $SCRIPT_DIR"
 echo -e "    source .venv/bin/activate"
 echo -e "    langgraph dev"
 echo -e "    -> 访问: http://127.0.0.1:2024"
 echo ""
 echo -e "  ${BLUE}【终端2】启动 Agent Chat UI:${NC}"
-echo -e "    cd /home/zx/TestCaseAgent/etc/agent-chat-ui"
+echo -e "    cd $SCRIPT_DIR/etc/agent-chat-ui"
+echo -e "    export PATH=\"$SCRIPT_DIR/.node/bin:\$PATH\""
 echo -e "    pnpm dev"
 echo -e "    -> 访问: http://localhost:3001 (端口可能变化，查看启动日志)"
 echo ""

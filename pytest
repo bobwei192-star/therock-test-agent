@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# pytest wrapper - 禁用 ROS 插件自动加载
+export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+exec /home/worker/software/AI/TestCaseAgent/.venv/bin/python -m pytest "$@"

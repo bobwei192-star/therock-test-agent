@@ -215,8 +215,20 @@ class LocalDockerPytestStrategy(ExecutionStrategy):
             result = self._run_docker_command(command)
             duration = time.time() - started
 
+            # 判断执行结果：
+            # - pytest exit code 0: 所有测试通过
+            # - pytest exit code 1: 有测试失败（但代码执行成功，测试用例有效）
+            # - pytest exit code 5: 没有收集到测试（但代码执行成功）
+            # 其他情况视为真正的失败
+            if result.returncode in (0, 1, 5):
+                exec_status = "success"
+                print(f"[策略执行] pytest 执行完成 (exit_code={result.returncode})，视为有效执行")
+            else:
+                exec_status = "failed"
+                print(f"[策略执行] pytest 执行异常 (exit_code={result.returncode})")
+
             return {
-                "status": "success" if result.returncode == 0 else "failed",
+                "status": exec_status,
                 "stdout": result.stdout,
                 "stderr": result.stderr,
                 "returncode": result.returncode,

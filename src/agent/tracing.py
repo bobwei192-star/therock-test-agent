@@ -55,6 +55,11 @@ def _build_langfuse_handler() -> Any | None:
     ):
         return None
 
+    # 清除代理环境变量，避免 httpx 使用不支持的 socks:// 协议
+    for proxy_var in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY",
+                      "http_proxy", "https_proxy", "all_proxy"):
+        os.environ.pop(proxy_var, None)
+
     return CallbackHandler()
 
 

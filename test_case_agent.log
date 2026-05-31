@@ -17403,3 +17403,4217 @@
   "event": "Failed to export span batch code: 401, reason: Unauthorized",
   "level": "ERROR"
 }
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 5.8007834029999685,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T03:57:40.815502Z"
+}
+{
+  "elapsed": 6.1564798399999745,
+  "event": "Application started up in 6.156s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T03:57:40.824275Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:57:40.829680Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:57:40.829978Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:57:40.830932Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:57:40.831359Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:57:41.333546Z"
+}
+{
+  "langgraph_auth": "{'path': './src/agent/auth.py:auth'}",
+  "event": "Getting auth instance: {'path': './src/agent/auth.py:auth'}",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.auth.custom",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T03:57:47.053564Z",
+  "path": "/assistants/search",
+  "method": "POST"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:58:40.872615Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:58:41.373238Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:59:40.918886Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T03:59:41.420248Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:00:40.969015Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:00:41.469705Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:01:41.013320Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:01:41.514820Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:02:41.057052Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:02:41.558264Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:03:41.113638Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:03:41.614450Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:04:41.163910Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:04:41.665447Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:05:41.216600Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:05:41.718132Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:06:41.273146Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:06:41.774041Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:07:41.320179Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:07:41.821246Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:08:41.371827Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:08:41.874175Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:09:41.429151Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:09:41.930678Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:10:41.483291Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:10:41.985777Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:11:41.520899Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:11:42.031453Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:12:41.582075Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:12:42.084137Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:13:41.628082Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:13:42.129821Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:14:41.678125Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:14:42.179644Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:15:41.733077Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:15:42.234251Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:16:41.782321Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:16:42.284312Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:17:41.832573Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:17:42.334936Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:18:41.876369Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:18:42.378954Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:19:41.934503Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:19:42.436643Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:20:41.988786Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:20:42.490059Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:21:42.032895Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:21:42.534196Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:22:42.085501Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:22:42.586016Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:23:42.146120Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:23:42.647785Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:24:42.202913Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:24:42.705009Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:25:42.257022Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:25:42.758367Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:26:42.315896Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:26:42.817300Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:27:42.370492Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:27:42.872099Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:28:42.416939Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:28:42.918347Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:29:42.466040Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:29:42.967251Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:30:42.510290Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:30:43.012878Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:31:42.563082Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:31:43.064879Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:32:42.619474Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:32:43.121328Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:33:42.669022Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:33:43.172332Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:34:42.721650Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:34:43.223937Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:35:42.768823Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:35:43.269639Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:36:42.821068Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:36:43.323114Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:37:42.875103Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:37:43.376826Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:38:42.929418Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:38:43.431265Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:39:42.987777Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:39:43.488369Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:40:43.028671Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T04:40:43.530282Z"
+}
+{
+  "event": "/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/structlog/stdlib.py:1166: UserWarning: Remove `format_exc_info` from your processor chain if you want pretty exceptions.\n  ed = p(logger, meth_name, ed)  # type: ignore[arg-type]\n",
+  "level": "WARNING"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 7.525871865999989,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "exception": "ValueError(\"Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')\")",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:30:29.731912Z"
+}
+{
+  "graph_id": "agent",
+  "location": "./src/agent/app.py",
+  "error_type": "ValueError",
+  "error_message": "ValueError: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')",
+  "error_boundary": "user_graph",
+  "summary": "ValueError: ValueError: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')",
+  "user_traceback": "Traceback (most recent call last):\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/graph.py\", line 641, in collect_graphs_from_env\n    graph = await run_in_executor(None, _graph_from_spec, spec)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/utils/config.py\", line 145, in run_in_executor\n    return await asyncio.get_running_loop().run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n    )\n    ^\n  File \"/home/worker/miniconda3/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/utils/config.py\", line 136, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/timing/timer.py\", line 101, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/graph.py\", line 744, in _graph_from_spec\n    modspec.loader.exec_module(module)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/app.py\", line 7, in <module>\n    from src.agent.tracing import build_langfuse_config\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/tracing.py\", line 63, in <module>\n    langfuse_handler = _build_langfuse_handler()\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/tracing.py\", line 58, in _build_langfuse_handler\n    return CallbackHandler()\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/langchain/CallbackHandler.py\", line 170, in __init__\n    self._langfuse_client = get_client(public_key=public_key)\n                            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/get_client.py\", line 113, in get_client\n    return Langfuse()\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/client.py\", line 335, in __init__\n    self._resources = LangfuseResourceManager(\n                      ~~~~~~~~~~~~~~~~~~~~~~~^\n        public_key=public_key,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    ...<16 lines>...\n        span_exporter=span_exporter,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/resource_manager.py\", line 118, in __new__\n    instance._initialize_instance(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        public_key=public_key,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    ...<18 lines>...\n        span_exporter=span_exporter,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/resource_manager.py\", line 225, in _initialize_instance\n    self.httpx_client = httpx.Client(timeout=timeout, headers=client_headers)\n                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_client.py\", line 686, in __init__\n    proxy_map = self._get_proxy_map(proxy, allow_env_proxies)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_client.py\", line 245, in _get_proxy_map\n    key: None if url is None else Proxy(url=url)\n                                  ~~~~~^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_config.py\", line 214, in __init__\n    raise ValueError(f\"Unknown scheme for proxy URL {url!r}\")\nValueError: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')\n",
+  "action": "fix_user_graph",
+  "event": "Graph 'agent' failed to load: ValueError: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_runtime_inmem.lifespan",
+  "level": "ERROR",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:30:29.743321Z"
+}
+{
+  "event": "Shutting down remote graphs",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:30:29.744199Z"
+}
+{
+  "event": "Stopping dev persistence flush loop",
+  "level": "INFO"
+}
+{
+  "event": "dev persistence flush loop exiting",
+  "level": "INFO"
+}
+{
+  "event": "Traceback (most recent call last):\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/graph.py\", line 641, in collect_graphs_from_env\n    graph = await run_in_executor(None, _graph_from_spec, spec)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/utils/config.py\", line 145, in run_in_executor\n    return await asyncio.get_running_loop().run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n    )\n    ^\n  File \"/home/worker/miniconda3/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/utils/config.py\", line 136, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/timing/timer.py\", line 101, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/graph.py\", line 744, in _graph_from_spec\n    modspec.loader.exec_module(module)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/app.py\", line 7, in <module>\n    from src.agent.tracing import build_langfuse_config\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/tracing.py\", line 63, in <module>\n    langfuse_handler = _build_langfuse_handler()\n  File \"/home/worker/software/AI/TestCaseAgent/src/agent/tracing.py\", line 58, in _build_langfuse_handler\n    return CallbackHandler()\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/langchain/CallbackHandler.py\", line 170, in __init__\n    self._langfuse_client = get_client(public_key=public_key)\n                            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/get_client.py\", line 113, in get_client\n    return Langfuse()\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/client.py\", line 335, in __init__\n    self._resources = LangfuseResourceManager(\n                      ~~~~~~~~~~~~~~~~~~~~~~~^\n        public_key=public_key,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    ...<16 lines>...\n        span_exporter=span_exporter,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/resource_manager.py\", line 118, in __new__\n    instance._initialize_instance(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        public_key=public_key,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    ...<18 lines>...\n        span_exporter=span_exporter,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langfuse/_client/resource_manager.py\", line 225, in _initialize_instance\n    self.httpx_client = httpx.Client(timeout=timeout, headers=client_headers)\n                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_client.py\", line 686, in __init__\n    proxy_map = self._get_proxy_map(proxy, allow_env_proxies)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_client.py\", line 245, in _get_proxy_map\n    key: None if url is None else Proxy(url=url)\n                                  ~~~~~^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/httpx/_config.py\", line 214, in __init__\n    raise ValueError(f\"Unknown scheme for proxy URL {url!r}\")\nValueError: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/starlette/routing.py\", line 638, in lifespan\n    async with self.lifespan_context(app) as maybe_state:\n               ~~~~~~~~~~~~~~~~~~~~~^^^^^\n  File \"/home/worker/miniconda3/lib/python3.13/contextlib.py\", line 214, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/timing/timer.py\", line 227, in combined_lifespan\n    await stack.enter_async_context(ls(app))\n  File \"/home/worker/miniconda3/lib/python3.13/contextlib.py\", line 668, in enter_async_context\n    result = await _enter(cm)\n             ^^^^^^^^^^^^^^^^\n  File \"/home/worker/miniconda3/lib/python3.13/contextlib.py\", line 214, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_runtime_inmem/lifespan.py\", line 118, in lifespan\n    await graph.collect_graphs_from_env(True)\n  File \"/home/worker/software/AI/TestCaseAgent/.venv/lib/python3.13/site-packages/langgraph_api/graph.py\", line 643, in collect_graphs_from_env\n    raise GraphLoadError(spec, exc) from exc\nlanggraph_api.utils.errors.GraphLoadError: Failed to load graph 'agent' from ./src/agent/app.py: Unknown scheme for proxy URL URL('socks://127.0.0.1:7897/')\n",
+  "level": "ERROR"
+}
+{
+  "event": "Application startup failed. Exiting.",
+  "level": "ERROR"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 23.04962046100013,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:36:39.069018Z"
+}
+{
+  "elapsed": 24.01860285099997,
+  "event": "Application started up in 24.019s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:36:39.093339Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.113411Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.116085Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.117592Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.118739Z"
+}
+{
+  "event": "Shutting down background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.235253Z"
+}
+{
+  "event": "Shutting down remote graphs",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:39.237791Z"
+}
+{
+  "event": "Stopping dev persistence flush loop",
+  "level": "INFO"
+}
+{
+  "event": "dev persistence flush loop exiting",
+  "level": "INFO"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 16.85956464700007,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:36:54.007209Z"
+}
+{
+  "elapsed": 18.46333493200018,
+  "event": "Application started up in 18.463s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:36:54.043921Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:54.062834Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:54.065332Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:54.069396Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:54.073778Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:36:54.582280Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:37:54.161130Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:37:54.667199Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:38:54.259142Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:38:54.773406Z"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 19.608685340000193,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:00.633468Z"
+}
+{
+  "elapsed": 20.81211165800005,
+  "event": "Application started up in 20.812s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:00.652921Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:00.678251Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:00.686455Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:00.690030Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:00.691169Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:01.195865Z"
+}
+{
+  "langgraph_auth": "{'path': './src/agent/auth.py:auth'}",
+  "event": "Getting auth instance: {'path': './src/agent/auth.py:auth'}",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.auth.custom",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:29.238073Z",
+  "request_id": "63090421-6987-4884-96d5-a18c03bff66c",
+  "path": "/threads",
+  "method": "POST"
+}
+{
+  "method": "POST",
+  "path": "/threads/{thread_id}/runs/stream",
+  "status": 422,
+  "latency_ms": 5,
+  "ttfb_ms": 4.0,
+  "run_id": null,
+  "response_size_bytes": 135,
+  "route": "/threads/{thread_id}/runs/stream",
+  "path_params": {
+    "thread_id": "019e7cc2-4dd5-74f0-8524-dd21c6767341"
+  },
+  "query_string": "",
+  "error_detail": null,
+  "proto": "1.1",
+  "req_header": {},
+  "res_header": {},
+  "event": "POST /threads/019e7cc2-4dd5-74f0-8524-dd21c6767341/runs/stream 422 5ms",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.server",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:29.533820Z",
+  "request_id": "ada8c6ee-85ce-48f6-b5a3-bd75c401e135"
+}
+{
+  "method": "POST",
+  "path": "/threads/{thread_id}/runs/stream",
+  "status": 422,
+  "latency_ms": 6,
+  "ttfb_ms": 2.0,
+  "run_id": null,
+  "response_size_bytes": 135,
+  "route": "/threads/{thread_id}/runs/stream",
+  "path_params": {
+    "thread_id": "019e7cc2-9403-7c23-99de-139be1bd9cbe"
+  },
+  "query_string": "",
+  "error_detail": null,
+  "proto": "1.1",
+  "req_header": {},
+  "res_header": {},
+  "event": "POST /threads/019e7cc2-9403-7c23-99de-139be1bd9cbe/runs/stream 422 6ms",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.server",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:47.545672Z",
+  "request_id": "878f4782-b3f4-4318-a3ba-e2ae29653078"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:54.442140Z"
+}
+{
+  "method": "POST",
+  "path": "/threads/{thread_id}/runs/stream",
+  "status": 422,
+  "latency_ms": 5,
+  "ttfb_ms": 2.0,
+  "run_id": null,
+  "response_size_bytes": 135,
+  "route": "/threads/{thread_id}/runs/stream",
+  "path_params": {
+    "thread_id": "019e7cc2-9403-7c23-99de-139be1bd9cbe"
+  },
+  "query_string": "",
+  "error_detail": null,
+  "proto": "1.1",
+  "req_header": {},
+  "res_header": {},
+  "event": "POST /threads/019e7cc2-9403-7c23-99de-139be1bd9cbe/runs/stream 422 5ms",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.server",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:39:54.758511Z",
+  "request_id": "795ba678-d776-4278-81b1-cdede94b08d7"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:39:54.949322Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:40:00.828139Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:40:01.337664Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:40:54.573133Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:40:55.077184Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:41:00.946124Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:41:01.450813Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:42:01.077159Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:42:01.578620Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:43:01.196139Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:43:01.701175Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:44:01.343442Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:44:01.846443Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:45:01.459587Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:45:01.964198Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:46:01.559578Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:46:02.062534Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:47:01.677152Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:47:02.178844Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:01.774963Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:02.280573Z"
+}
+{
+  "event": "Shutting down background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:30.712777Z"
+}
+{
+  "event": "Shutting down remote graphs",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:30.723378Z"
+}
+{
+  "event": "Stopping dev persistence flush loop",
+  "level": "INFO"
+}
+{
+  "event": "dev persistence flush loop exiting",
+  "level": "INFO"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 18.855505183999867,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:48:54.204916Z"
+}
+{
+  "elapsed": 20.169300252999847,
+  "event": "Application started up in 20.169s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:48:54.255445Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:54.267486Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:54.268089Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:54.270777Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:54.272038Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:48:54.774596Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:49:54.409164Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:49:54.917543Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:50:54.526881Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:50:55.030616Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:51:54.613849Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:51:55.115232Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:52:54.661547Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:52:55.162496Z"
+}
+{
+  "event": "Shutting down background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:16.590469Z"
+}
+{
+  "event": "Shutting down remote graphs",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:16.592388Z"
+}
+{
+  "event": "Stopping dev persistence flush loop",
+  "level": "INFO"
+}
+{
+  "event": "dev persistence flush loop exiting",
+  "level": "INFO"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 6.1717741260004,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:53:24.719249Z"
+}
+{
+  "elapsed": 6.701156697999977,
+  "event": "Application started up in 6.701s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:53:24.726175Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:24.730800Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:24.730971Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:24.731844Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:24.732196Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:53:25.232963Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:54:24.772696Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:54:25.274068Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:55:24.811300Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:55:25.311923Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:24.863632Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:25.365379Z"
+}
+{
+  "event": "Shutting down background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:27.053816Z"
+}
+{
+  "event": "Shutting down remote graphs",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:27.055465Z"
+}
+{
+  "event": "Stopping dev persistence flush loop",
+  "level": "INFO"
+}
+{
+  "event": "dev persistence flush loop exiting",
+  "level": "INFO"
+}
+{
+  "event": "langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.",
+  "level": "INFO"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 13.077163269000266,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:56:42.876751Z"
+}
+{
+  "elapsed": 13.95327175600005,
+  "event": "Application started up in 13.953s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.9.0",
+  "timestamp": "2026-05-31T06:56:42.890399Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:42.899777Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:42.901921Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:42.903968Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:42.905392Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:56:43.408067Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:57:43.003516Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:57:43.507311Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:58:43.127539Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:58:43.629369Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:59:43.219569Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T06:59:43.726963Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:00:43.312345Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:00:43.815514Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:01:43.418469Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:01:43.920455Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:02:43.518368Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:02:44.020851Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:03:43.597068Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:03:44.099341Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:04:43.690140Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:04:44.194154Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:05:50.380703Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:06:01.881789Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:06:52.095598Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:08:28.232502Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:09:08.199270Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:09:08.950652Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:11:31.732778Z"
+}
+{
+  "n_pending": 0,
+  "pending_runs_wait_time_max_secs": null,
+  "pending_runs_wait_time_med_secs": null,
+  "pending_unblocked_runs_wait_time_max_secs": null,
+  "n_running": 0,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:14:25.011830Z"
+}
+{
+  "raw": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "intent": "GENERATE",
+  "cluster": "create",
+  "template": "create_intent",
+  "event": "intent_detected",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:29:23.977818Z"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.478686 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.984858 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "HTTP Request: POST https://yuanyuaicloud.cn/v1/chat/completions \"HTTP/1.1 200 OK\"",
+  "level": "INFO"
+}
+{
+  "raw": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "intent": "GENERATE",
+  "cluster": "create",
+  "template": "create_intent",
+  "event": "intent_detected",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:35:37.896333Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:36:17.001736Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_9b1e60e5",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:37:13.476041Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:37:13.477789Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 11287,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:37:13.505750Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:37:13.509066Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "passed": true,
+  "severity": "safe",
+  "issue_count": 0,
+  "event": "code_security_review",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:38:02.122384Z"
+}
+{
+  "event": "generator_validation_failed_no_old",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:38:02.162189Z"
+}
+{
+  "filepath": "/home/worker/software/AI/TestCaseAgent/test_case/test_generated_20260531_153802.py",
+  "event": "test_file_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:38:02.166561Z"
+}
+{
+  "key": "gen_7baad6d4",
+  "event": "generator_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:38:02.168678Z"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_executor_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:38:02.197169Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "stage": "generate_execution",
+  "error": "执行失败",
+  "retry": 0,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:39:24.055595Z"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "[generate_execution] 沙盒验证失败。\n错误类型: sandbox failure\n退出码: 5\n错误摘要: 执行失败\n关键日志:\n============================= test session starts ==============================\nplat",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:39:24.061145Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_7128be11",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:40:06.651054Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:40:06.652647Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 6445,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:40:06.683248Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:40:06.686636Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.482318 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.915315 seconds",
+  "level": "INFO"
+}
+{
+  "error": "Request timed out.",
+  "exc_info": true,
+  "event": "generator_model_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-31T07:43:30.329656Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "stage": "missing_code",
+  "error": "generated_code is empty; sandbox execution cannot start.",
+  "retry": 1,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:43:31.526352Z"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "[missing_code] 沙盒验证失败。\n错误类型: sandbox failure\n错误摘要: generated_code is empty; sandbox execution cannot start.\n这是第 2 次重试，请重新评估测试计划并输出完整新计划。\n不要只输出 diff；需要重新给出完整测试策略",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:43:31.535903Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_90ccc1e9",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:43:47.568975Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:43:47.569301Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 6943,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:43:47.582618Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:43:47.583519Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "passed": true,
+  "severity": "safe",
+  "issue_count": 0,
+  "event": "code_security_review",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:44:03.799160Z"
+}
+{
+  "filepath": "/home/worker/software/AI/TestCaseAgent/test_case/test_generated_20260531_154403.py",
+  "event": "test_file_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:44:03.813027Z"
+}
+{
+  "key": "gen_ac23e680",
+  "event": "generator_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:44:03.813642Z"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_executor_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:44:03.818550Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "stage": "generate_execution",
+  "error": "执行失败",
+  "retry": 2,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:44:55.074315Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "total_elapsed": 557.52,
+  "node_timings": [
+    {
+      "node": "requirement_parser",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content=\"你是 ROCm 测试需求解析"
+    },
+    {
+      "node": "planner",
+      "elapsed": 394.09,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content='你是 Test Case A"
+    },
+    {
+      "node": "generator",
+      "elapsed": 361.63,
+      "status": "success",
+      "summary": "生成代码 1375 chars, 1 个测试函数"
+    },
+    {
+      "node": "sandbox_executor",
+      "elapsed": 331.14,
+      "status": "failed",
+      "summary": "沙盒执行 failed, stage=generate_execution, exit_code=1"
+    }
+  ],
+  "prompt": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "event": "cli_run_complete",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:44:55.446894Z"
+}
+{
+  "raw": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "intent": "GENERATE",
+  "cluster": "create",
+  "template": "create_intent",
+  "event": "intent_detected",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:46:40.337092Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:47:32.792660Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_28c364ff",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:48:03.189611Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:48:03.191069Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 4928,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:48:03.214758Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:48:03.217349Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.397049 seconds",
+  "level": "INFO"
+}
+{
+  "event": "Retrying request to /chat/completions in 0.758003 seconds",
+  "level": "INFO"
+}
+{
+  "error": "<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.24.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+  "exc_info": true,
+  "event": "generator_model_failed",
+  "level": "EXCEPTION",
+  "timestamp": "2026-05-31T07:51:45.345230Z"
+}
+{
+  "stage": "missing_code",
+  "error": "generated_code is empty; sandbox execution cannot start.",
+  "retry": 0,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:51:46.308789Z"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "[missing_code] 沙盒验证失败。\n错误类型: sandbox failure\n错误摘要: generated_code is empty; sandbox execution cannot start.\n这是第 1 次重试，请重新评估测试计划并输出完整新计划。\n不要只输出 diff；需要重新给出完整测试策略",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:51:46.314091Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_139bca85",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:52:33.344040Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:52:33.365058Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 6346,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:52:33.456399Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:52:33.464419Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "passed": true,
+  "severity": "safe",
+  "issue_count": 0,
+  "event": "code_security_review",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:54:12.890288Z"
+}
+{
+  "filepath": "/home/worker/software/AI/TestCaseAgent/test_case/test_generated_20260531_155412.py",
+  "event": "test_file_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:54:12.904935Z"
+}
+{
+  "key": "gen_41b77f32",
+  "event": "generator_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:54:12.905648Z"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_executor_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:54:12.925005Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "stage": "generate_execution",
+  "error": "执行失败",
+  "retry": 1,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:55:14.026027Z"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "[generate_execution] 沙盒验证失败。\n错误类型: sandbox failure\n退出码: 1\n错误摘要: 执行失败\n关键日志:\n============================= test session starts ==============================\nplat",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:14.162360Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_4f8daa1d",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:39.214453Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:39.221127Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 7276,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:39.292237Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:39.302313Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "passed": true,
+  "severity": "safe",
+  "issue_count": 0,
+  "event": "code_security_review",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:55.140146Z"
+}
+{
+  "filepath": "/home/worker/software/AI/TestCaseAgent/test_case/test_generated_20260531_155555.py",
+  "event": "test_file_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:55.158527Z"
+}
+{
+  "key": "gen_d05c8d6d",
+  "event": "generator_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:55.164314Z"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_executor_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:55:55.234167Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "stage": "generate_execution",
+  "error": "执行失败",
+  "retry": 2,
+  "max_retries": 3,
+  "event": "sandbox_failure",
+  "level": "WARNING",
+  "timestamp": "2026-05-31T07:56:53.784771Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "total_elapsed": 613.47,
+  "node_timings": [
+    {
+      "node": "requirement_parser",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content=\"你是 ROCm 测试需求解析"
+    },
+    {
+      "node": "planner",
+      "elapsed": 456.05,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content='你是 Test Case A"
+    },
+    {
+      "node": "generator",
+      "elapsed": 248.89,
+      "status": "success",
+      "summary": "生成代码 1734 chars, 1 个测试函数"
+    },
+    {
+      "node": "sandbox_executor",
+      "elapsed": 307.48,
+      "status": "failed",
+      "summary": "沙盒执行 failed, stage=generate_execution, exit_code=1"
+    }
+  ],
+  "prompt": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "event": "cli_run_complete",
+  "level": "INFO",
+  "timestamp": "2026-05-31T07:56:53.800542Z"
+}
+{
+  "raw": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "intent": "GENERATE",
+  "cluster": "create",
+  "template": "create_intent",
+  "event": "intent_detected",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:12:13.721996Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "query": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "feedback": "",
+  "user_id": "cli_user",
+  "event": "planner_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:13:07.877589Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "key": "pla_622dea96",
+  "event": "planner_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:04.280239Z"
+}
+{
+  "execution_plan_status": "raw",
+  "event": "planner_done",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:04.285243Z"
+}
+{
+  "intent": "GENERATE",
+  "template": "create_intent",
+  "plan_len": 6495,
+  "event": "generator_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:04.378808Z"
+}
+{
+  "event": "generator_invoke_model",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:04.386998Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "passed": true,
+  "severity": "safe",
+  "issue_count": 0,
+  "event": "code_security_review",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:27.037638Z"
+}
+{
+  "filepath": "/home/worker/software/AI/TestCaseAgent/test_case/test_generated_20260531_161427.py",
+  "event": "test_file_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:27.060189Z"
+}
+{
+  "key": "gen_ab876fa2",
+  "event": "generator_memory_saved",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:27.068966Z"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_executor_start",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:14:27.130733Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "intent": "GENERATE",
+  "event": "sandbox_success",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:15:38.959473Z"
+}
+{
+  "event": "Failed to export span batch code: 401, reason: Unauthorized",
+  "level": "ERROR"
+}
+{
+  "total_elapsed": 205.27,
+  "node_timings": [
+    {
+      "node": "requirement_parser",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content=\"你是 ROCm 测试需求解析"
+    },
+    {
+      "node": "planner",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "{'messages': [HumanMessage(content='你是 Test Case A"
+    },
+    {
+      "node": "generator",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "生成代码 1209 chars, 1 个测试函数"
+    },
+    {
+      "node": "sandbox_executor",
+      "elapsed": 0.0,
+      "status": "success",
+      "summary": "沙盒执行 success, stage=generate_execution, exit_code="
+    }
+  ],
+  "prompt": "写一个pytest测试用例，测试rocm-smi指令的存在性和正确性",
+  "event": "cli_run_complete",
+  "level": "INFO",
+  "timestamp": "2026-05-31T08:15:38.997906Z"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno -3] Temporary failure in name resolution' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "No device provided, using cpu",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "Returning existing local_dir `/home/worker/TestCaseAgent/llm_model/all-MiniLM-L6-v2` as remote repo cannot be accessed in `snapshot_download` ([Errno 110] Connection timed out).",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "The Transformer `cache_dir` argument is deprecated. Please pass `cache_dir` via `model_kwargs`, `processor_kwargs`, and/or `config_kwargs` instead.",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 4s [Retry 3/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 4/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 8s [Retry 5/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
+  "level": "WARNING"
+}

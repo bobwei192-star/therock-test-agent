@@ -3,7 +3,7 @@
 VENV := .venv/bin
 PYTHON := $(VENV)/python
 PIP := $(VENV)/pip
-PYTEST := $(VENV)/python -m pytest
+PYTEST := PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 $(VENV)/python -m pytest
 
 help:
 	@echo 'TestCaseAgent Makefile'
@@ -58,5 +58,5 @@ mock-gen:
 	$(PYTHON) -m src.agent.mock_gen
 
 chat:
-	. .venv/bin/activate && cd etc/agent-chat-ui && pnpm dev
+	. .venv/bin/activate && export PATH="$(PWD)/.node/bin:$${PATH}" && cd etc/agent-chat-ui && pnpm dev
 
