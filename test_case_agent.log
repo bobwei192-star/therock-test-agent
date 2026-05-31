@@ -21617,3 +21617,27 @@
   "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json",
   "level": "WARNING"
 }
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json",
+  "level": "WARNING"
+}
+{
+  "event": "No modules.json found for sentence-transformers/all-MiniLM-L6-v2, initializing a new SentenceTransformer model.",
+  "level": "INFO"
+}
+{
+  "event": "'timed out' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 1s [Retry 1/5].",
+  "level": "WARNING"
+}
+{
+  "event": "'[Errno 111] Connection refused' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json",
+  "level": "WARNING"
+}
+{
+  "event": "Retrying in 2s [Retry 2/5].",
+  "level": "WARNING"
+}
