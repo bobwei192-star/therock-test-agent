@@ -167,3 +167,10 @@ etc/assistant-ui-chat/.env.production
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+# agent-chat-ui (另一个前端项目)
+etc/agent-chat-ui/node_modules/
+etc/agent-chat-ui/.next/
+etc/agent-chat-ui/out/
+etc/agent-chat-ui/dist/
+etc/agent-chat-ui/.turbo/
+etc/agent-chat-ui/.cache/
