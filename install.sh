@@ -394,16 +394,15 @@ _install_nodejs() {
     return 1
 }
 
-log_step 7 "Setup Agent Chat UI (langchain-ai/agent-chat-ui)"
-UI_REPO="https://github.com/langchain-ai/agent-chat-ui.git"
-UI_DIR="$SCRIPT_DIR/etc/agent-chat-ui"
+log_step 7 "Setup Assistant UI (assistant-ui for LangGraph)"
+UI_DIR="$SCRIPT_DIR/etc/assistant-ui-chat"
 
 if ! command -v node >/dev/null 2>&1; then
     log_warn "Node.js 未安装，尝试自动安装..."
     if _install_nodejs; then
         log_info "Node.js 安装成功"
     else
-        log_error "Node.js 安装失败，Agent Chat UI 需要 Node.js 22+。跳过。"
+        log_error "Node.js 安装失败，Assistant UI 需要 Node.js 22+。跳过。"
         log_info "手动安装: curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs"
         SKIP_UI=true
     fi
@@ -411,55 +410,50 @@ fi
 
 if [ -z "${SKIP_UI:-}" ]; then
     log_info "Node.js: $(node -v)"
-    
+
     # 设置 npm 使用项目目录作为缓存
     export NPM_CONFIG_CACHE="$SCRIPT_DIR/.npm-cache"
     mkdir -p "$NPM_CONFIG_CACHE"
-    
-    if ! command -v pnpm >/dev/null 2>&1; then
-        log_info "安装 pnpm..."
-        if npm install -g pnpm; then
-            log_info "pnpm 安装成功"
-        else
-            log_warn "npm 安装 pnpm 失败，尝试直接下载..."
-            # 尝试直接下载 pnpm
-            local pnpm_dir="$SCRIPT_DIR/.pnpm"
-            mkdir -p "$pnpm_dir"
-            if curl -sSL https://github.com/pnpm/pnpm/releases/download/v9.14.0/pnpm-linux-x64 > "$pnpm_dir/pnpm" && chmod +x "$pnpm_dir/pnpm"; then
-                export PATH="$pnpm_dir:$PATH"
-                log_info "pnpm 直接下载成功"
-            else
-                log_error "无法安装 pnpm，跳过 Agent Chat UI"
-                SKIP_UI=true
-            fi
-        fi
-    fi
-    log_info "pnpm: $(pnpm -v)"
 
-    # 检查目录是否存在且包含 package.json
+    # 使用 npx assistant-ui@latest create 创建 LangGraph 模板项目
     if [ ! -d "$UI_DIR" ] || [ ! -f "$UI_DIR/package.json" ]; then
         if [ -d "$UI_DIR" ]; then
-            log_warn "agent-chat-ui 目录存在但不完整，重新克隆..."
+            log_warn "assistant-ui-chat 目录存在但不完整，重新创建..."
             rm -rf "$UI_DIR"
         fi
-        git clone "$UI_REPO" "$UI_DIR"
-        log_info "Cloned agent-chat-ui -> $UI_DIR"
+        
+        # 使用 assistant-ui CLI 的 langgraph 模板
+        log_info "正在使用 assistant-ui CLI 创建 LangGraph 模板项目..."
+        npx assistant-ui@latest create -t langgraph "$UI_DIR"
+        
+        # 安装 LangGraph 集成包
+        if [ -f "$UI_DIR/package.json" ]; then
+            log_info "安装 @assistant-ui/react-langgraph..."
+            cd "$UI_DIR"
+            npm install @assistant-ui/react-langgraph || true
+        fi
+        
+        log_info "Created assistant-ui project -> $UI_DIR"
     else
-        log_warn "agent-chat-ui 源码已存在，跳过克隆"
+        log_warn "assistant-ui-chat 源码已存在，跳过创建"
     fi
 
     # 创建 .env 文件，配置连接到本地 LangGraph server
-    if [ ! -f "$UI_DIR/.env" ]; then
+    if [ -f "$UI_DIR/package.json" ] && [ ! -f "$UI_DIR/.env" ]; then
         cat > "$UI_DIR/.env" <<'DOTENV'
+# LangGraph API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:2024
 NEXT_PUBLIC_ASSISTANT_ID=agent
-NEXT_PUBLIC_AUTH_SCHEME=
+
+# Assistant UI Configuration
+NEXT_PUBLIC_APP_NAME=TestCaseAgent
+NEXT_PUBLIC_APP_DESCRIPTION=AI-powered test case generation assistant
 DOTENV
         log_info "Created .env (连接本地 LangGraph server)"
     fi
 
     # 创建 .env.local 文件，设置 UI 服务端口
-    if [ ! -f "$UI_DIR/.env.local" ]; then
+    if [ -f "$UI_DIR/package.json" ] && [ ! -f "$UI_DIR/.env.local" ]; then
         cat > "$UI_DIR/.env.local" <<'DOTENV'
 PORT=8080
 DOTENV
@@ -467,12 +461,12 @@ DOTENV
     fi
 
     cd "$UI_DIR"
+
     if [ -f "node_modules/.bin/next" ]; then
         log_warn "dependencies 已存在，跳过安装"
     else
         rm -rf node_modules
-        echo "onlyBuiltDependencies=esbuild" >> .npmrc
-        pnpm install
+        npm install
         log_info "Dependencies installed"
     fi
     cd "$SCRIPT_DIR"
@@ -517,39 +511,6 @@ DOTENV
             cd "$SCRIPT_DIR"
         fi
     fi
-fi
-
-# ─────────────────────────────────────────────────────
-# 等待 Langfuse 服务启动
-# ─────────────────────────────────────────────────────
-_wait_for_langfuse() {
-    if ! _container_running "langfuse" 2>/dev/null && ! docker ps 2>/dev/null | grep -q ""; then
-        log_warn "无运行中的容器，跳过等待 Langfuse"
-        return 1
-    fi
-
-    local max_wait=60
-    local wait_interval=5
-    local elapsed=0
-
-    log_info "等待 Langfuse 服务启动..."
-
-    while [ $elapsed -lt $max_wait ]; do
-        if curl -s -f http://localhost:3000/api/public/health >/dev/null 2>&1; then
-            log_info "Langfuse 服务已启动"
-            return 0
-        fi
-        sleep $wait_interval
-        elapsed=$((elapsed + wait_interval))
-        log_info "等待中... ($elapsed/$max_wait 秒)"
-    done
-
-    log_warn "Langfuse 服务启动超时，可能需要更多时间"
-    return 1
-}
-
-if _container_running "langfuse" 2>/dev/null || _container_running "langfuse-langfuse" 2>/dev/null; then
-    _wait_for_langfuse
 fi
 
 # ─────────────────────────────────────────────────────
@@ -602,9 +563,8 @@ printf "  %-28s %s\n" "Agent Chat UI"    "http://localhost:3001     (pnpm dev)"
 printf "  %-28s %s\n" "CLI"              "python -m src.agent.cli run/chat/status"
 echo ""
 echo -e "${YELLOW}启动步骤:${NC}"
-echo -e "  ${GREEN}1.${NC} Langfuse: ${GREEN}http://localhost:3000${NC} 注册 -> Settings -> API Keys"
-echo -e "  ${GREEN}2.${NC} 将 API Keys 填入 ${GREEN}.env${NC} 文件中的 LANGFUSE_PUBLIC_KEY 和 LANGFUSE_SECRET_KEY"
-echo -e "  ${GREEN}3.${NC} 设置 LLM API Key: 修改 ${GREEN}.env${NC} 中的 OPENAI_API_KEY"
+echo -e "  ${GREEN}1.${NC} ✅ Langfuse API Key 已自动配置，无需手动操作"
+echo -e "  ${GREEN}2.${NC} 设置 LLM API Key: 修改 ${GREEN}.env${NC} 中的 OPENAI_API_KEY 或使用其他 provider"
 echo ""
 echo -e "  ${BLUE}【终端1】启动 LangGraph Server:${NC}"
 echo -e "    cd $SCRIPT_DIR"
@@ -618,7 +578,7 @@ echo -e "    export PATH=\"$SCRIPT_DIR/.node/bin:\$PATH\""
 echo -e "    pnpm dev"
 echo -e "    -> 访问: http://localhost:3001 (端口可能变化，查看启动日志)"
 echo ""
-echo -e "  ${GREEN}4.${NC} CLI 使用: python -m src.agent.cli run \"提示词\""
+echo -e "  ${GREEN}3.${NC} CLI 使用: python -m src.agent.cli run \"提示词\""
 echo ""
-echo -e "${RED}注意:${NC} 请确保 .env 文件中配置了正确的 LLM API Key 和 Langfuse 密钥"
+echo -e "${RED}注意:${NC} 请确保 .env 文件中配置了正确的 LLM API Key"
 echo -e "${RED}注意:${NC} OTel 链路追踪已配置为使用 Langfuse，确保 Langfuse 服务正常运行"

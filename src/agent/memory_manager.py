@@ -71,6 +71,8 @@ class MemoryManager:
         返回:
             匹配的记忆对象列表，每个对象有 .key 和 .value 属性
         """
+        if not self._runtime.store:
+            return []
         ns = self._build_namespace(namespace)
         return self._runtime.store.search(ns, query=query, limit=limit)
 
@@ -83,8 +85,10 @@ class MemoryManager:
             key: 可选的自定义 key；未提供时自动生成（格式: 前缀_随机8位hex）
 
         返回:
-            实际使用的记忆 key
+            实际使用的记忆 key；如果 store 不可用，返回空字符串
         """
+        if not self._runtime.store:
+            return ""
         ns = self._build_namespace(namespace)
         memory_key = key or f"{namespace[:3]}_{uuid.uuid4().hex[:8]}"
         self._runtime.store.put(ns, memory_key, data)

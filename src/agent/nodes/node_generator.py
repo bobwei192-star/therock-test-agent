@@ -18,6 +18,7 @@ from langgraph.runtime import Runtime
 from ..prompts import get_generator_prompt, get_prompt_by_template
 from ..state import AgentState, AgentContext
 from ..code_output import parse_llm_response
+from ..utils.clean_llm_output import clean_llm_output
 from ..code_security import review_code
 from ..intent_router import IntentType
 from ..logging_config import get_logger
@@ -222,24 +223,29 @@ def generator(state: AgentState, runtime: Any = None, model: Any = None) -> dict
             "errors": quality_issues,
         }
 
-    # 验证失败时保留上一轮有效代码
+    # 验证失败时保留上一轮有效代码，并更新重试计数
     old_code = state.get("generated_code") or state.get("code", "")
     final_code = generated_code
+    generator_retry_count = state.get("generator_retry_count", 0)
 
     if validation_result["status"] == "failed":
+        # 增加重试计数
+        generator_retry_count += 1
+        
         if old_code and _looks_like_python_code(old_code)[0]:
             _logger.warning(
                 "generator_validation_failed_keep_old",
                 new_len=len(generated_code),
                 old_len=len(old_code),
+                retry_count=generator_retry_count,
             )
             final_code = old_code
             validation_result["errors"].insert(
                 0,
-                f"New generation failed ({extraction_status}). Kept previous {len(old_code)} chars code.",
+                f"New generation failed ({extraction_status}). Kept previous {len(old_code)} chars code. Retry #{generator_retry_count}",
             )
         else:
-            _logger.warning("generator_validation_failed_no_old")
+            _logger.warning("generator_validation_failed_no_old", retry_count=generator_retry_count)
 
     # 保存文件
     saved_filepath = None
@@ -266,5 +272,7 @@ def generator(state: AgentState, runtime: Any = None, model: Any = None) -> dict
         "explanation": explanation,
         "validation_result": validation_result,
         "saved_filepath": saved_filepath,
-        "messages": [AIMessage(content=reply)],
+        "generator_retry_count": generator_retry_count,
+        "max_generator_retries": 3,
+        "messages": [AIMessage(content=clean_llm_output(reply))],
     }

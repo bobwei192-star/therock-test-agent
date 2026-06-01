@@ -65,7 +65,7 @@ def get_prompt_by_template(template_name: str, **kwargs: Any) -> str:
     """根据模板名称获取格式化的提示词。
 
     Args:
-        template_name: 模板名称（create_intent/update_intent/query_intent/external_intent/build_intent）
+        template_name: 模板名称（create_intent/update_intent/query_intent/external_intent/build_intent/chat_intent）
         **kwargs: 模板中需要替换的占位符参数
 
     Returns:
@@ -78,6 +78,7 @@ def get_prompt_by_template(template_name: str, **kwargs: Any) -> str:
         "query_intent": "query_intent.md",
         "external_intent": "external_intent.md",
         "build_intent": "build_intent.md",
+        "chat_intent": "chat_intent.md",
     }
 
     filename = template_file_map.get(template_name)

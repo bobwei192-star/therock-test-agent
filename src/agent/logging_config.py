@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Logging configuration using structlog for Test Case Agent.
+Test Case Agent 的结构化日志配置模块（使用 structlog）。
 
-This module configures structured logging that writes detailed logs to:
-1. test_case_agent.log - Detailed JSON-formatted logs for debugging
-2. Console - Human-readable logs for real-time monitoring
+本模块配置结构化日志系统，将日志输出到两个目标：
+1. test_case_agent.log - JSON 格式的详细日志，用于调试和分析
+2. 控制台 - 人类可读的日志格式，用于实时监控
 
-Usage:
+使用示例：
     from src.agent.logging_config import get_logger
     logger = get_logger("my_module")
     logger.info("task_completed", task="test_generation", status="success", duration=12.5)

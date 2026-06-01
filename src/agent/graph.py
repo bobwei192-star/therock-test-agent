@@ -16,6 +16,7 @@ from langgraph.types import RetryPolicy, Command
 from .tools import TOOLS
 
 from .state import AgentState, AgentContext
+from .logging_config import get_logger
 from .nodes import (
     # context_retriever,  # 暂时注释，减少耗时
     generator,
@@ -23,6 +24,8 @@ from .nodes import (
     requirement_parser,
     sandbox_executor,
 )
+
+_logger = get_logger("graph")
 
 
 # Agent 的系统提示词，定义角色和行为约束
@@ -39,6 +42,34 @@ SANDBOX_RETRY_POLICY = RetryPolicy(
     backoff_factor=2.0,
     max_interval=10.0,
 )
+
+
+def route_after_requirement_parser(state: AgentState) -> str:
+    """requirement_parser 后的条件路由函数。
+
+    根据识别到的意图类型决定下一步：
+    - CHAT 意图 → 直接结束（已在 requirement_parser 中返回友好回复）
+    - 其他意图 → 继续到 planner 节点
+    """
+    intent = state.get("parsed_intent", "") or state.get("intent", "")
+    parsed_requirement = state.get("parsed_requirement", "")
+    
+    # DEBUG: 输出路由决策信息
+    _logger.info(
+        "route_after_requirement_parser",
+        intent=intent,
+        parsed_requirement=parsed_requirement[:100] if parsed_requirement else None,
+        state_keys=list(state.keys()) if isinstance(state, dict) else "not_dict"
+    )
+    
+    if intent == "CHAT":
+        print(f"\n[route_after_requirement_parser] 💬 CHAT 意图，直接结束对话")
+        _logger.info("chat_route_to_end", message="CHAT intent detected, routing to END")
+        return END
+    
+    # 其他意图继续正常流程
+    _logger.info("route_to_planner", intent=intent)
+    return "planner"
 
 
 def route_after_sandbox(state: AgentState) -> str:
@@ -85,6 +116,49 @@ def route_after_sandbox(state: AgentState) -> str:
 
     # 已耗尽重试
     print(f"[route_after_sandbox] ⚠️ 已达到最大重试次数 ({max_retries})，终止流程")
+    return END
+
+
+def route_after_generator(state: AgentState) -> str:
+    """generator 节点后的条件路由函数。
+
+    代码校验失败时自动重试策略（最多 3 轮）：
+    - 校验通过 → 继续到 sandbox_executor
+    - 校验失败且未超过最大重试次数 → 回到 generator 重新生成
+    - 校验失败且已耗尽重试 → 终止（END，表示终端失败）
+
+    每轮重试会：
+    1. 记录校验失败原因
+    2. 更新重试计数
+    3. generator 根据校验反馈重新生成代码
+    """
+    validation = state.get("validation_result", {})
+
+    # 校验通过 → 继续到 sandbox_executor
+    if validation.get("status") == "passed":
+        print(f"\n[route_after_generator] ✅ 代码校验通过，继续执行沙盒")
+        return "sandbox_executor"
+
+    # 检查重试次数
+    retry_count = state.get("generator_retry_count", 0)
+    max_retries = state.get("max_generator_retries", 3)
+
+    # 获取校验失败信息
+    quality_gate = validation.get("quality_gate", "unknown")
+    errors = validation.get("errors", [])
+
+    print(f"\n[route_after_generator] ❌ 代码校验失败")
+    print(f"  - 校验关卡: {quality_gate}")
+    print(f"  - 错误信息: {errors}")
+    print(f"  - 重试次数: {retry_count}/{max_retries}")
+
+    # 判断是否可以重试
+    if retry_count < max_retries:
+        print(f"[route_after_generator] 🔄 进入第 {retry_count} 轮重新生成...")
+        return "generator"
+
+    # 已耗尽重试
+    print(f"[route_after_generator] ⚠️ 已达到最大重试次数 ({max_retries})，终止流程")
     return END
 
 
@@ -184,9 +258,29 @@ def build_graph(
     builder.add_edge(START, "requirement_parser")
     # builder.add_edge("requirement_parser", "context_retriever")  # 跳过 context_retriever
     # builder.add_edge("context_retriever", "planner")
-    builder.add_edge("requirement_parser", "planner")  # 直接从 requirement_parser 到 planner
+    
+    # requirement_parser 后的条件路由：CHAT 意图直接结束，其他意图继续到 planner
+    builder.add_conditional_edges(
+        "requirement_parser",
+        route_after_requirement_parser,
+        {
+            "planner": "planner",
+            END: END,
+        },
+    )
+    
     builder.add_edge("planner", "generator")
-    builder.add_edge("generator", "sandbox_executor")
+
+    # generator 后的条件路由：校验通过则继续到 sandbox_executor，失败则重试
+    builder.add_conditional_edges(
+        "generator",
+        route_after_generator,
+        {
+            "sandbox_executor": "sandbox_executor",
+            "generator": "generator",  # 重试
+            END: END,
+        },
+    )
 
     # 沙盒执行后的条件路由：成功则结束，失败则回到 planner 重新规划
     builder.add_conditional_edges(

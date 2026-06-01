@@ -65,6 +65,10 @@ class AgentState(TypedDict, total=False):
     feedback: str  # 沙盒失败后的反馈信息，用于重新规划
     error_log: Annotated[list[str], operator.add]  # 错误日志（累加）
     session_id: str  # 会话 ID
+    
+    # 代码生成重试相关字段
+    generator_retry_count: int  # generator 重试计数
+    max_generator_retries: int  # 最大 generator 重试次数（默认 3）
 
 
 @dataclass

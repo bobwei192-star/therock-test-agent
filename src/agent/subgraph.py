@@ -31,6 +31,7 @@ INTENT_CLUSTER_MAP: dict[str, str] = {
     "query": "query_graph",
     "external": "external_graph",
     "build": "build_graph",
+    "chat": "chat_graph",
 }
 
 
@@ -57,6 +58,8 @@ def route_to_subgraph(state: AgentState) -> str:
             cluster = "external"
         elif intent == "ENV_BUILD":
             cluster = "build"
+        elif intent == "CHAT":
+            cluster = "chat"
 
     subgraph_name = INTENT_CLUSTER_MAP.get(cluster, "standard_gen_graph")
     _logger.info("subgraph_route", cluster=cluster, target=subgraph_name)

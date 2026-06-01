@@ -18,11 +18,12 @@ IntentType = Literal[
     "COVERAGE",
     "PROBE",
     "ENV_BUILD",
+    "CHAT",
 ]
 
 
 def route_intent(raw_requirement: str) -> IntentType:
-    """意图路由：规则匹配 9 选 1
+    """意图路由：规则匹配 10 选 1
 
     Args:
         raw_requirement: 用户原始输入需求
@@ -30,9 +31,20 @@ def route_intent(raw_requirement: str) -> IntentType:
     Returns:
         匹配的意图类型
     """
-    text = raw_requirement.lower()
+    text = raw_requirement.lower().strip()
 
-    # ENV_BUILD 优先级最高（必须放在最前面）
+    # CHAT 闲聊意图（优先级最高）
+    chat_keywords = [
+        "hi", "hello", "你好", "您好", "嗨", "哈喽", "嘿",
+        "在吗", "在", "有人吗", "请问", "请问在吗",
+        "测试", "test", "试一下", "功能测试"
+    ]
+    # 或者是非常短的输入（少于5个字符）且不包含技术关键词
+    if any(k == text for k in chat_keywords) or \
+       (len(text) <= 5 and not any(k in text for k in ["测试", "用例", "pytest", "代码"])):
+        return "CHAT"
+
+    # ENV_BUILD 优先级次高
     env_keywords = [
         "docker", "镜像", "image", "编译环境", "build image",
         "rocm+pytorch", "llvm编译", "基础镜像", "dockerfile",
@@ -65,16 +77,16 @@ def route_intent(raw_requirement: str) -> IntentType:
     return "GENERATE"
 
 
-def get_intent_cluster(intent: IntentType) -> Literal["create", "modify", "query", "external", "build"]:
+def get_intent_cluster(intent: IntentType) -> Literal["create", "modify", "query", "external", "build", "chat"]:
     """获取意图所属聚类
 
     Args:
         intent: 意图类型
 
     Returns:
-        聚类名称：create/modify/query/external/build
+        聚类名称：create/modify/query/external/build/chat
     """
-    cluster_map: dict[IntentType, Literal["create", "modify", "query", "external", "build"]] = {
+    cluster_map: dict[IntentType, Literal["create", "modify", "query", "external", "build", "chat"]] = {
         "GENERATE": "create",
         "APPEND": "create",
         "UPDATE": "modify",
@@ -84,6 +96,7 @@ def get_intent_cluster(intent: IntentType) -> Literal["create", "modify", "query
         "PROBE": "query",
         "EXECUTE_EXTERNAL": "external",
         "ENV_BUILD": "build",
+        "CHAT": "chat",
     }
     return cluster_map[intent]
 
@@ -95,7 +108,7 @@ def get_template_name(intent: IntentType) -> str:
         intent: 意图类型
 
     Returns:
-        模板名称：create_intent/update_intent/query_intent/external_intent/build_intent
+        模板名称：create_intent/update_intent/query_intent/external_intent/build_intent/chat_intent
     """
     template_map: dict[IntentType, str] = {
         "GENERATE": "create_intent",
@@ -107,5 +120,6 @@ def get_template_name(intent: IntentType) -> str:
         "PROBE": "query_intent",
         "EXECUTE_EXTERNAL": "external_intent",
         "ENV_BUILD": "build_intent",
+        "CHAT": "chat_intent",
     }
     return template_map[intent]

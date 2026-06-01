@@ -10,7 +10,7 @@ help:
 	@echo ''
 	@echo '  make install         安装项目依赖 (pip install -e .)'
 	@echo '  make serve           启动 langgraph dev 开发服务器'
-	@echo '  make chat            启动 Agent Chat UI (pnpm dev)'
+	@echo '  make chat            启动 Assistant UI (npm run dev)'
 	@echo '  make test            运行全部单元测试'
 	@echo '  make test-integration 运行集成测试 (需要 langgraph dev)'
 	@echo '  make test-all        运行所有测试'
@@ -58,5 +58,5 @@ mock-gen:
 	$(PYTHON) -m src.agent.mock_gen
 
 chat:
-	. .venv/bin/activate && export PATH="$(PWD)/.node/bin:$${PATH}" && cd etc/agent-chat-ui && pnpm dev
+	export PATH="$(PWD)/.node/bin:$${PATH}" && cd etc/assistant-ui-chat && npm run dev:frontend
 

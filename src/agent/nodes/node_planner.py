@@ -7,6 +7,7 @@ from ..state import AgentState
 from ..prompts import get_planner_prompt
 from ..logging_config import get_logger
 from .utils import _invoke_llm
+from ..utils.clean_llm_output import clean_llm_output
 
 _logger = get_logger("nodes.planner")
 
@@ -89,7 +90,10 @@ def planner(state: AgentState, runtime: Any = None, agent: Any = None) -> dict:
     else:
         case_plan = _invoke_llm(agent, prompt, node_name="planner")
 
-    # 从 case_plan 中解析 execution_plan
+    # 清洗 LLM 输出，移除调试信息和技术性内容
+    cleaned_case_plan = clean_llm_output(case_plan)
+
+    # 从 case_plan 中解析 execution_plan（使用原始内容以便正确解析）
     execution_plan = _parse_execution_plan(case_plan)
 
     if memory is not None:
@@ -105,7 +109,7 @@ def planner(state: AgentState, runtime: Any = None, agent: Any = None) -> dict:
     _logger.info("planner_done", execution_plan_status=execution_plan.get("status", "unknown"))
 
     return {
-        "case_plan": case_plan,
+        "case_plan": cleaned_case_plan,
         "execution_plan": execution_plan,
-        "messages": [AIMessage(content=f"Case plan generated.\n{case_plan[:500]}")],
+        "messages": [AIMessage(content=f"Case plan generated.\n{cleaned_case_plan[:500]}")],
     }

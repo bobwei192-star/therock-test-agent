@@ -272,7 +272,7 @@ def requirement_parser(state, model):
 
 ---
 
-## 六、可观测性问题（4 项缺失）
+## 六、可观测性问题（5 项缺失）
 
 | # | 问题 | 严重程度 | 说明 |
 |---|------|---------|------|
@@ -280,6 +280,9 @@ def requirement_parser(state, model):
 | ⏸️35 | **缺少 Metrics（指标采集）** | 🟡 中 | 需接入 Prometheus exporter，后续迭代 |
 | ⏸️36 | **无 Alerting（告警）** | 🟢 低 | 后续迭代添加 |
 | ✅37 | **Langfuse 部署密码明文暴露** | 🟡 中 | `docker-compose.yml` 所有密码已改为环境变量引用 `${VAR:-default}` |
+| ✅54 | **Langfuse API 密钥未正确配置导致 401 错误** | 🟡 中 | 运行 `make gen` 时出现 `Failed to export span batch code: 401, reason: Unauthorized`，需登录 Langfuse UI 创建 API Key 并配置到 `.env` 的 `LANGFUSE_PUBLIC_KEY` 和 `LANGFUSE_SECRET_KEY` |
+| ✅55 | **planner 节点执行时卡住** | 🔴 高 | `planner_start` 日志输出后无后续日志，程序长时间无响应。根因：`InMemoryStore.search()` 在某些情况下会阻塞。修复：`memory_manager.py` 添加 `store` 为空时的安全检查；`runner.py` 恢复 `use_persistence=True`，重新启用框架原生长期记忆能力 |
+| ✅56 | **generator 节点生成代码不含测试函数** | 🔴 高 | 生成的代码只有工具函数和 fixture，没有 `def test_*` 测试函数，导致 pytest 收集不到测试用例（exit_code=5）。根因：`node_generator.md` 提示词模板存在冲突指令（既要求生成测试用例又要求生成工具库）。修复：清理提示词模板中的冲突指令，明确要求生成测试用例 |
 
 ---
 
@@ -336,24 +339,25 @@ def requirement_parser(state, model):
 | 代码质量 | 8 | 8 | 0 | 0 |
 | 测试覆盖 | 6 | 1 | 0 | 5 |
 | 配置管理 | 5 | 4 | 0 | 1 |
-| 可观测性 | 4 | 2 | 0 | 2 |
+| 可观测性 | 7 | 5 | 0 | 2 |
 | 安全 | 5 | 3 | 2 | 0 |
 | 文档 | 3 | 0 | 1 | 2 |
 | 依赖管理 | 3 | 3 | 0 | 0 |
 | 高级功能 | 5 | 0 | 0 | 5 |
-| **总计** | **53** | **32** | **5** | **16** |
+| **总计** | **56** | **35** | **5** | **13** |
 
 ---
 
 ## 🔥 修复成果总结
 
-### 已完成（32 项）
+### 已完成（35 项）
 - **工程化**: CI/CD、pre-commit、mypy、ruff、editorconfig、CHANGELOG 全部到位
 - **LangGraph 核心**: 消息类型统一 BaseMessage、interrupt_before HITL、生产级 Checkpointer/Store、langgraph.json 完整配置
 - **代码质量**: 消除代码重复、Pydantic v2 迁移、全局状态线程安全、去硬编码 IP、print→structlog、细化异常处理
 - **配置管理**: 启动时配置校验、Ark provider 支持、多环境配置分离
 - **安全**: API Key 鉴权、docker-compose 密码环境变量化、SECURITY.md
 - **依赖管理**: requirements.lock、Dependabot、依赖同步
+- **可观测性**: Langfuse CallbackHandler 支持重连、修复 planner 节点卡住问题（`InMemoryStore.search()` 阻塞）、修复 generator 节点生成代码不含测试函数问题（清理冲突提示词指令）
 
-### 待处理（16 项）
+### 待处理（13 项）
 主要是测试基础设施（单元测试、集成测试、E2E）、高级 LangGraph 功能（Subgraph、流式输出）、可观测性（Metrics、告警）和文档（API 文档、ADR、README 更新）
