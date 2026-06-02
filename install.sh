@@ -331,8 +331,18 @@ fi
 langgraph --version
 
 # ─────────────────────────────────────────────────────
-# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui)
+# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui) - DEPRECATED
+# NOTE: agent-chat-ui 已废弃，改用 assistant-ui-chat
 # ─────────────────────────────────────────────────────
+
+# pip install paramiko
+# 以下是旧的 agent-chat-ui 安装代码，已注释保留
+# if [ ! -d "$SCRIPT_DIR/etc/agent-chat-ui" ]; then
+#     git clone https://github.com/langchain-ai/agent-chat-ui.git "$SCRIPT_DIR/etc/agent-chat-ui"
+# fi
+# cd "$SCRIPT_DIR/etc/agent-chat-ui"
+# npm install
+# cd "$SCRIPT_DIR"
 
 pip install paramiko -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 
@@ -559,7 +569,7 @@ echo ""
 echo -e "${BLUE}服务概览:${NC}"
 printf "  %-28s %s\n" "LangGraph API"    "http://127.0.0.1:2024   (启动: langgraph dev)"
 printf "  %-28s %s\n" "Langfuse"         "http://localhost:3000     (Docker)"
-printf "  %-28s %s\n" "Agent Chat UI"    "http://localhost:3001     (pnpm dev)"
+printf "  %-28s %s\n" "Assistant UI"     "http://localhost:8080     (npm run dev)"
 printf "  %-28s %s\n" "CLI"              "python -m src.agent.cli run/chat/status"
 echo ""
 echo -e "${YELLOW}启动步骤:${NC}"
@@ -572,10 +582,11 @@ echo -e "    source .venv/bin/activate"
 echo -e "    langgraph dev"
 echo -e "    -> 访问: http://127.0.0.1:2024"
 echo ""
-echo -e "  ${BLUE}【终端2】启动 Agent Chat UI:${NC}"
-echo -e "    cd $SCRIPT_DIR/etc/agent-chat-ui"
+echo -e "  ${BLUE}【终端2】启动 Assistant UI (仅前端):${NC}"
+echo -e "    cd $SCRIPT_DIR/etc/assistant-ui-chat"
 echo -e "    export PATH=\"$SCRIPT_DIR/.node/bin:\$PATH\""
-echo -e "    pnpm dev"
+echo -e "    export OPENAI_API_KEY=\$OPENAI_API_KEY"
+echo -e "    npm run dev"
 echo -e "    -> 访问: http://localhost:3001 (端口可能变化，查看启动日志)"
 echo ""
 echo -e "  ${GREEN}3.${NC} CLI 使用: python -m src.agent.cli run \"提示词\""

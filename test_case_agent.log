@@ -44016,3 +44016,4748 @@
   "level": "INFO",
   "timestamp": "2026-06-01T10:07:18.450316Z"
 }
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 12.174816134000025,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.8.7",
+  "timestamp": "2026-06-02T05:21:55.166073Z"
+}
+{
+  "elapsed": 12.598497671000018,
+  "event": "Application started up in 12.598s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.8.7",
+  "timestamp": "2026-06-02T05:21:55.206769Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:21:55.211821Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:21:55.212109Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:21:55.212778Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:21:55.213134Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80512.635876,
+  "pending_runs_wait_time_med_secs": 78927.725367,
+  "pending_unblocked_runs_wait_time_max_secs": 79578.178819,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:21:55.714353Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:22:50.705639Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80568.129093,
+  "pending_runs_wait_time_med_secs": 78983.218584,
+  "pending_unblocked_runs_wait_time_max_secs": 79633.672036,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:22:51.207589Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:23:47.788148Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80625.210773,
+  "pending_runs_wait_time_med_secs": 79040.300264,
+  "pending_unblocked_runs_wait_time_max_secs": 79690.753716,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:23:48.289347Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:24:40.348210Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80677.771229,
+  "pending_runs_wait_time_med_secs": 79092.86072,
+  "pending_unblocked_runs_wait_time_max_secs": 79743.314172,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:24:40.849732Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:25:34.995189Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80732.423854,
+  "pending_runs_wait_time_med_secs": 79147.513345,
+  "pending_unblocked_runs_wait_time_max_secs": 79797.966797,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:25:35.502554Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:26:29.673280Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80787.096197,
+  "pending_runs_wait_time_med_secs": 79202.185688,
+  "pending_unblocked_runs_wait_time_max_secs": 79852.63914,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:26:30.174671Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:27:24.248619Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80841.671419,
+  "pending_runs_wait_time_med_secs": 79256.76091,
+  "pending_unblocked_runs_wait_time_max_secs": 79907.214362,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:27:24.749948Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:28:24.359020Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80896.248623,
+  "pending_runs_wait_time_med_secs": 79311.338114,
+  "pending_unblocked_runs_wait_time_max_secs": 79961.791566,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:28:19.327116Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:29:13.959203Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 80956.42253,
+  "pending_runs_wait_time_med_secs": 79371.512021,
+  "pending_unblocked_runs_wait_time_max_secs": 80021.965473,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:29:19.501101Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:30:14.580926Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81012.004505,
+  "pending_runs_wait_time_med_secs": 79427.093996,
+  "pending_unblocked_runs_wait_time_max_secs": 80077.547448,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:30:15.083032Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:31:03.102490Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81060.52542,
+  "pending_runs_wait_time_med_secs": 79475.614911,
+  "pending_unblocked_runs_wait_time_max_secs": 80126.068363,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:31:03.603929Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:31:57.667828Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81115.089805,
+  "pending_runs_wait_time_med_secs": 79530.179296,
+  "pending_unblocked_runs_wait_time_max_secs": 80180.632748,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:31:58.168290Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:32:52.241983Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81169.665007,
+  "pending_runs_wait_time_med_secs": 79584.754498,
+  "pending_unblocked_runs_wait_time_max_secs": 80235.20795,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:32:52.743465Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:33:46.800527Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81224.223866,
+  "pending_runs_wait_time_med_secs": 79639.313357,
+  "pending_unblocked_runs_wait_time_max_secs": 80289.766809,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:33:47.302469Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:34:41.370741Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81278.793947,
+  "pending_runs_wait_time_med_secs": 79693.883438,
+  "pending_unblocked_runs_wait_time_max_secs": 80344.33689,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:34:41.872534Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:35:36.013670Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81333.436234,
+  "pending_runs_wait_time_med_secs": 79748.525725,
+  "pending_unblocked_runs_wait_time_max_secs": 80398.979177,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:35:36.514761Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:36:30.574671Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81387.997153,
+  "pending_runs_wait_time_med_secs": 79803.086644,
+  "pending_unblocked_runs_wait_time_max_secs": 80453.540096,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:36:31.075658Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:37:25.195124Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81442.617344,
+  "pending_runs_wait_time_med_secs": 79857.706835,
+  "pending_unblocked_runs_wait_time_max_secs": 80508.160287,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:37:25.695843Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:38:25.349988Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81497.182785,
+  "pending_runs_wait_time_med_secs": 79912.272276,
+  "pending_unblocked_runs_wait_time_max_secs": 80562.725728,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:38:20.261263Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:39:14.849187Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81557.369261,
+  "pending_runs_wait_time_med_secs": 79972.458752,
+  "pending_unblocked_runs_wait_time_max_secs": 80622.912204,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:39:20.447791Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:40:09.433175Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81606.855864,
+  "pending_runs_wait_time_med_secs": 80021.945355,
+  "pending_unblocked_runs_wait_time_max_secs": 80672.398807,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:40:09.934387Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:41:04.019666Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81661.442228,
+  "pending_runs_wait_time_med_secs": 80076.531719,
+  "pending_unblocked_runs_wait_time_max_secs": 80726.985171,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:41:04.520701Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:42:04.213108Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81721.635838,
+  "pending_runs_wait_time_med_secs": 80136.725329,
+  "pending_unblocked_runs_wait_time_max_secs": 80787.178781,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:42:04.714469Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:42:53.159552Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81770.582711,
+  "pending_runs_wait_time_med_secs": 80185.672202,
+  "pending_unblocked_runs_wait_time_max_secs": 80836.125654,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:42:53.661358Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:43:47.709592Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81825.132808,
+  "pending_runs_wait_time_med_secs": 80240.222299,
+  "pending_unblocked_runs_wait_time_max_secs": 80890.675751,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:43:48.211344Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:44:42.262524Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81879.685793,
+  "pending_runs_wait_time_med_secs": 80294.775284,
+  "pending_unblocked_runs_wait_time_max_secs": 80945.228736,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:44:42.764339Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:45:36.839241Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81934.262035,
+  "pending_runs_wait_time_med_secs": 80349.351526,
+  "pending_unblocked_runs_wait_time_max_secs": 80999.804978,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:45:37.340558Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:46:31.398945Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 81988.822243,
+  "pending_runs_wait_time_med_secs": 80403.911734,
+  "pending_unblocked_runs_wait_time_max_secs": 81054.365186,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:46:31.900811Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:47:25.963293Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82043.386419,
+  "pending_runs_wait_time_med_secs": 80458.47591,
+  "pending_unblocked_runs_wait_time_max_secs": 81108.929362,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:47:26.464909Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:48:21.016194Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82097.942698,
+  "pending_runs_wait_time_med_secs": 80513.032189,
+  "pending_unblocked_runs_wait_time_max_secs": 81163.485641,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:48:21.021256Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:49:15.606817Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82153.029456,
+  "pending_runs_wait_time_med_secs": 80568.118947,
+  "pending_unblocked_runs_wait_time_max_secs": 81218.572399,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:49:16.107933Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:50:10.202118Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82207.627382,
+  "pending_runs_wait_time_med_secs": 80622.716873,
+  "pending_unblocked_runs_wait_time_max_secs": 81273.170325,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:50:10.705867Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:51:04.807853Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82262.231204,
+  "pending_runs_wait_time_med_secs": 80677.320695,
+  "pending_unblocked_runs_wait_time_max_secs": 81327.774147,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:51:05.309694Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:51:59.394932Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82316.818657,
+  "pending_runs_wait_time_med_secs": 80731.908148,
+  "pending_unblocked_runs_wait_time_max_secs": 81382.3616,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:51:59.897162Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:52:54.055547Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82371.478722,
+  "pending_runs_wait_time_med_secs": 80786.568213,
+  "pending_unblocked_runs_wait_time_max_secs": 81437.021665,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:52:54.557187Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:53:48.614583Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82426.037757,
+  "pending_runs_wait_time_med_secs": 80841.127248,
+  "pending_unblocked_runs_wait_time_max_secs": 81491.5807,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:53:49.116228Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:54:43.220869Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82480.646895,
+  "pending_runs_wait_time_med_secs": 80895.736386,
+  "pending_unblocked_runs_wait_time_max_secs": 81546.189838,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:54:43.725446Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:55:37.805142Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82535.22784,
+  "pending_runs_wait_time_med_secs": 80950.317331,
+  "pending_unblocked_runs_wait_time_max_secs": 81600.770783,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:55:38.306303Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:56:32.417945Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82589.841323,
+  "pending_runs_wait_time_med_secs": 81004.930814,
+  "pending_unblocked_runs_wait_time_max_secs": 81655.384266,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:56:32.922217Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:57:27.043729Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82644.46622,
+  "pending_runs_wait_time_med_secs": 81059.555711,
+  "pending_unblocked_runs_wait_time_max_secs": 81710.009163,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:57:27.544763Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:58:27.351341Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82699.036991,
+  "pending_runs_wait_time_med_secs": 81114.126482,
+  "pending_unblocked_runs_wait_time_max_secs": 81764.579934,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:58:22.115453Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:59:16.721752Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82759.358414,
+  "pending_runs_wait_time_med_secs": 81174.447905,
+  "pending_unblocked_runs_wait_time_max_secs": 81824.901357,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T05:59:22.436938Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:00:11.329087Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82808.752207,
+  "pending_runs_wait_time_med_secs": 81223.841698,
+  "pending_unblocked_runs_wait_time_max_secs": 81874.29515,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:00:11.830688Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:01:05.943913Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82863.369409,
+  "pending_runs_wait_time_med_secs": 81278.4589,
+  "pending_unblocked_runs_wait_time_max_secs": 81928.912352,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:01:06.448009Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:02:00.556509Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82917.979419,
+  "pending_runs_wait_time_med_secs": 81333.06891,
+  "pending_unblocked_runs_wait_time_max_secs": 81983.522362,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:02:01.061828Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:02:55.191791Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 82972.614118,
+  "pending_runs_wait_time_med_secs": 81387.703609,
+  "pending_unblocked_runs_wait_time_max_secs": 82038.157061,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:02:55.692612Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:03:49.824115Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83027.250479,
+  "pending_runs_wait_time_med_secs": 81442.33997,
+  "pending_unblocked_runs_wait_time_max_secs": 82092.793422,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:03:50.329101Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:04:44.482635Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83081.906003,
+  "pending_runs_wait_time_med_secs": 81496.995494,
+  "pending_unblocked_runs_wait_time_max_secs": 82147.448946,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:04:44.984486Z"
+}
+{
+  "method": "GET",
+  "path": "/favicon.ico",
+  "status": 404,
+  "latency_ms": 23,
+  "ttfb_ms": 18.0,
+  "run_id": null,
+  "response_size_bytes": 22,
+  "route": "None",
+  "path_params": {},
+  "query_string": "",
+  "error_detail": null,
+  "proto": "1.1",
+  "req_header": {},
+  "res_header": {},
+  "event": "GET /favicon.ico 404 23ms",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.server",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.8.7",
+  "timestamp": "2026-06-02T06:04:51.279294Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:05:39.090396Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83136.515434,
+  "pending_runs_wait_time_med_secs": 81551.604925,
+  "pending_unblocked_runs_wait_time_max_secs": 82202.058377,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:05:39.602302Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:06:33.729516Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83191.151698,
+  "pending_runs_wait_time_med_secs": 81606.241189,
+  "pending_unblocked_runs_wait_time_max_secs": 82256.694641,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:06:34.230552Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:07:28.351226Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83245.774381,
+  "pending_runs_wait_time_med_secs": 81660.863872,
+  "pending_unblocked_runs_wait_time_max_secs": 82311.317324,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:07:28.859197Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:08:22.985653Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83300.408161,
+  "pending_runs_wait_time_med_secs": 81715.497652,
+  "pending_unblocked_runs_wait_time_max_secs": 82365.951104,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:08:23.486671Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:09:24.395850Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83361.819055,
+  "pending_runs_wait_time_med_secs": 81776.908546,
+  "pending_unblocked_runs_wait_time_max_secs": 82427.361998,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:09:24.897611Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:10:12.729768Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83409.655195,
+  "pending_runs_wait_time_med_secs": 81824.744686,
+  "pending_unblocked_runs_wait_time_max_secs": 82475.198138,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:10:12.733675Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:11:07.356290Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83464.779054,
+  "pending_runs_wait_time_med_secs": 81879.868545,
+  "pending_unblocked_runs_wait_time_max_secs": 82530.321997,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:11:07.857566Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:12:07.786031Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83525.209562,
+  "pending_runs_wait_time_med_secs": 81940.299053,
+  "pending_unblocked_runs_wait_time_max_secs": 82590.752505,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:12:08.289208Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:12:56.573854Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83574.004104,
+  "pending_runs_wait_time_med_secs": 81989.093595,
+  "pending_unblocked_runs_wait_time_max_secs": 82639.547047,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:12:57.086254Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:13:51.189060Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83628.611809,
+  "pending_runs_wait_time_med_secs": 82043.7013,
+  "pending_unblocked_runs_wait_time_max_secs": 82694.154752,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:13:51.699770Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:14:45.810253Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83683.232879,
+  "pending_runs_wait_time_med_secs": 82098.32237,
+  "pending_unblocked_runs_wait_time_max_secs": 82748.775822,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:14:46.311349Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:15:40.438732Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83737.861429,
+  "pending_runs_wait_time_med_secs": 82152.95092,
+  "pending_unblocked_runs_wait_time_max_secs": 82803.404372,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:15:40.940059Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:16:35.078100Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83792.501994,
+  "pending_runs_wait_time_med_secs": 82207.591485,
+  "pending_unblocked_runs_wait_time_max_secs": 82858.044937,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:16:35.582140Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:17:29.688340Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83847.111314,
+  "pending_runs_wait_time_med_secs": 82262.200805,
+  "pending_unblocked_runs_wait_time_max_secs": 82912.654257,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:17:30.189793Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:18:24.311862Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83901.735686,
+  "pending_runs_wait_time_med_secs": 82316.825177,
+  "pending_unblocked_runs_wait_time_max_secs": 82967.278629,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:18:24.814164Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:19:18.943338Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 83956.368672,
+  "pending_runs_wait_time_med_secs": 82371.458163,
+  "pending_unblocked_runs_wait_time_max_secs": 83021.911615,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:19:19.447183Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:20:19.401201Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84010.988916,
+  "pending_runs_wait_time_med_secs": 82426.078407,
+  "pending_unblocked_runs_wait_time_max_secs": 83076.531859,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:20:14.067396Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:21:08.651629Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84071.417395,
+  "pending_runs_wait_time_med_secs": 82486.506886,
+  "pending_unblocked_runs_wait_time_max_secs": 83136.960338,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:21:14.496060Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:22:03.266385Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84120.692638,
+  "pending_runs_wait_time_med_secs": 82535.782129,
+  "pending_unblocked_runs_wait_time_max_secs": 83186.235581,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:22:03.771830Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:22:57.856070Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84175.283223,
+  "pending_runs_wait_time_med_secs": 82590.372714,
+  "pending_unblocked_runs_wait_time_max_secs": 83240.826166,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:22:58.372858Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:23:52.459195Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84229.882026,
+  "pending_runs_wait_time_med_secs": 82644.971517,
+  "pending_unblocked_runs_wait_time_max_secs": 83295.424969,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:23:52.960525Z"
+}
+{
+  "name": "_graph_from_spec",
+  "elapsed_seconds": 28.790790729000037,
+  "graph_id": "agent",
+  "module": null,
+  "path": "./src/agent/app.py",
+  "event": "Graph import exceeded the expected startup time. Slow initialization (often due to work executed at import time) can delay readiness, slow scale-out velocity, and may cause deployments to be marked unhealthy.\n    To get detailed profiling of slow operations, set FF_PROFILE_IMPORTS=true",
+  "thread_name": "ThreadPoolExecutor-1_0",
+  "logger": "langgraph_api.timing.timer",
+  "level": "WARNING",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.8.7",
+  "timestamp": "2026-06-02T06:24:16.180271Z"
+}
+{
+  "elapsed": 29.562627056000565,
+  "event": "Application started up in 29.563s",
+  "thread_name": "MainThread",
+  "logger": "langgraph_api.timing.timer",
+  "level": "INFO",
+  "api_variant": "local_dev",
+  "langgraph_api_version": "0.8.7",
+  "timestamp": "2026-06-02T06:24:16.275380Z"
+}
+{
+  "event": "Starting cron scheduler",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:16.295192Z"
+}
+{
+  "event": "Starting queue with shared loop",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:16.302180Z"
+}
+{
+  "event": "Starting 1 background workers",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:16.303099Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:16.307326Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84253.731435,
+  "pending_runs_wait_time_med_secs": 82668.820926,
+  "pending_unblocked_runs_wait_time_max_secs": 83319.274378,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:16.809933Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:47.080347Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84284.504899,
+  "pending_runs_wait_time_med_secs": 82699.59439,
+  "pending_unblocked_runs_wait_time_max_secs": 83350.047842,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:24:47.583385Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:25:10.954931Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84308.381025,
+  "pending_runs_wait_time_med_secs": 82723.470516,
+  "pending_unblocked_runs_wait_time_max_secs": 83373.923968,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:25:11.459510Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:25:41.681508Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84339.105336,
+  "pending_runs_wait_time_med_secs": 82754.194827,
+  "pending_unblocked_runs_wait_time_max_secs": 83404.648279,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:25:42.185555Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:26:05.571407Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84362.99504,
+  "pending_runs_wait_time_med_secs": 82778.084531,
+  "pending_unblocked_runs_wait_time_max_secs": 83428.537983,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:26:06.073866Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:26:36.297000Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84393.722216,
+  "pending_runs_wait_time_med_secs": 82808.811707,
+  "pending_unblocked_runs_wait_time_max_secs": 83459.265159,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:26:36.811422Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:00.196898Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84417.625288,
+  "pending_runs_wait_time_med_secs": 82832.714779,
+  "pending_unblocked_runs_wait_time_max_secs": 83483.168231,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:00.706556Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:30.979867Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84448.403445,
+  "pending_runs_wait_time_med_secs": 82863.492936,
+  "pending_unblocked_runs_wait_time_max_secs": 83513.946388,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:31.481912Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:54.831345Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84472.254901,
+  "pending_runs_wait_time_med_secs": 82887.344392,
+  "pending_unblocked_runs_wait_time_max_secs": 83537.797844,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:27:55.333771Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:28:25.576115Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84502.998779,
+  "pending_runs_wait_time_med_secs": 82918.08827,
+  "pending_unblocked_runs_wait_time_max_secs": 83568.541722,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:28:26.077329Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:28:49.442630Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84526.865991,
+  "pending_runs_wait_time_med_secs": 82941.955482,
+  "pending_unblocked_runs_wait_time_max_secs": 83592.408934,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:28:49.944593Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:29:20.124010Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84557.546535,
+  "pending_runs_wait_time_med_secs": 82972.636026,
+  "pending_unblocked_runs_wait_time_max_secs": 83623.089478,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:29:20.625009Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:29:44.518515Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84587.336037,
+  "pending_runs_wait_time_med_secs": 83002.425528,
+  "pending_unblocked_runs_wait_time_max_secs": 83652.87898,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:29:50.414538Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:30:14.687073Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84612.109858,
+  "pending_runs_wait_time_med_secs": 83027.199349,
+  "pending_unblocked_runs_wait_time_max_secs": 83677.652801,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:30:15.188455Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:30:39.117789Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84636.541297,
+  "pending_runs_wait_time_med_secs": 83051.630788,
+  "pending_unblocked_runs_wait_time_max_secs": 83702.08424,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:30:39.619854Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:31:15.231112Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84666.748933,
+  "pending_runs_wait_time_med_secs": 83081.838424,
+  "pending_unblocked_runs_wait_time_max_secs": 83732.291876,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:31:09.828247Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:31:33.749229Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84691.175011,
+  "pending_runs_wait_time_med_secs": 83106.264502,
+  "pending_unblocked_runs_wait_time_max_secs": 83756.717954,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:31:34.253623Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:10.383855Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84727.809014,
+  "pending_runs_wait_time_med_secs": 83142.898505,
+  "pending_unblocked_runs_wait_time_max_secs": 83793.351957,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:10.887853Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:28.385882Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84745.808955,
+  "pending_runs_wait_time_med_secs": 83160.898446,
+  "pending_unblocked_runs_wait_time_max_secs": 83811.351898,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:28.887497Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:59.081779Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84776.505002,
+  "pending_runs_wait_time_med_secs": 83191.594493,
+  "pending_unblocked_runs_wait_time_max_secs": 83842.047945,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:32:59.583553Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:33:22.976998Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84800.400159,
+  "pending_runs_wait_time_med_secs": 83215.48965,
+  "pending_unblocked_runs_wait_time_max_secs": 83865.943102,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:33:23.478710Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:33:53.671144Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84831.094503,
+  "pending_runs_wait_time_med_secs": 83246.183994,
+  "pending_unblocked_runs_wait_time_max_secs": 83896.637446,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:33:54.173082Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:34:17.556838Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84854.98046,
+  "pending_runs_wait_time_med_secs": 83270.069951,
+  "pending_unblocked_runs_wait_time_max_secs": 83920.523403,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:34:18.059064Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:34:48.268822Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84885.691684,
+  "pending_runs_wait_time_med_secs": 83300.781175,
+  "pending_unblocked_runs_wait_time_max_secs": 83951.234627,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:34:48.770175Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:35:12.156926Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84909.580176,
+  "pending_runs_wait_time_med_secs": 83324.669667,
+  "pending_unblocked_runs_wait_time_max_secs": 83975.123119,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:35:12.658670Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:35:42.878359Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84940.300796,
+  "pending_runs_wait_time_med_secs": 83355.390287,
+  "pending_unblocked_runs_wait_time_max_secs": 84005.843739,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:35:43.379326Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:36:06.737804Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84964.160952,
+  "pending_runs_wait_time_med_secs": 83379.250443,
+  "pending_unblocked_runs_wait_time_max_secs": 84029.703895,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:36:07.239842Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:36:37.437250Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 84994.86019,
+  "pending_runs_wait_time_med_secs": 83409.949681,
+  "pending_unblocked_runs_wait_time_max_secs": 84060.403133,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:36:37.938758Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:01.297242Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85018.721523,
+  "pending_runs_wait_time_med_secs": 83433.811014,
+  "pending_unblocked_runs_wait_time_max_secs": 84084.264466,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:01.800110Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:32.000156Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85049.423174,
+  "pending_runs_wait_time_med_secs": 83464.512665,
+  "pending_unblocked_runs_wait_time_max_secs": 84114.966117,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:32.501731Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:55.864876Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85073.28766,
+  "pending_runs_wait_time_med_secs": 83488.377151,
+  "pending_unblocked_runs_wait_time_max_secs": 84138.830603,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:37:56.366256Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:38:26.562985Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85103.986111,
+  "pending_runs_wait_time_med_secs": 83519.075602,
+  "pending_unblocked_runs_wait_time_max_secs": 84169.529054,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:38:27.064638Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:38:50.438352Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85127.861145,
+  "pending_runs_wait_time_med_secs": 83542.950636,
+  "pending_unblocked_runs_wait_time_max_secs": 84193.404088,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:38:50.939629Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:39:21.119946Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85158.542526,
+  "pending_runs_wait_time_med_secs": 83573.632017,
+  "pending_unblocked_runs_wait_time_max_secs": 84224.085469,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:39:21.621077Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:39:45.485549Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85182.410782,
+  "pending_runs_wait_time_med_secs": 83597.500273,
+  "pending_unblocked_runs_wait_time_max_secs": 84247.953725,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:39:45.489259Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:40:15.678781Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85213.102324,
+  "pending_runs_wait_time_med_secs": 83628.191815,
+  "pending_unblocked_runs_wait_time_max_secs": 84278.645267,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:40:16.180875Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:40:40.046542Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85237.469255,
+  "pending_runs_wait_time_med_secs": 83652.558746,
+  "pending_unblocked_runs_wait_time_max_secs": 84303.012198,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:40:40.547784Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:41:16.197466Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85267.657243,
+  "pending_runs_wait_time_med_secs": 83682.746734,
+  "pending_unblocked_runs_wait_time_max_secs": 84333.200186,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:41:10.735720Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:41:34.607112Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85292.030306,
+  "pending_runs_wait_time_med_secs": 83707.119797,
+  "pending_unblocked_runs_wait_time_max_secs": 84357.573249,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:41:35.108878Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:42:05.273904Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85328.165778,
+  "pending_runs_wait_time_med_secs": 83743.255269,
+  "pending_unblocked_runs_wait_time_max_secs": 84393.708721,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:42:11.244490Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:42:29.146199Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85346.569509,
+  "pending_runs_wait_time_med_secs": 83761.659,
+  "pending_unblocked_runs_wait_time_max_secs": 84412.112452,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:42:29.648010Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:42:59.800035Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85377.223347,
+  "pending_runs_wait_time_med_secs": 83792.312838,
+  "pending_unblocked_runs_wait_time_max_secs": 84442.76629,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:43:00.301923Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:43:23.691669Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85401.115122,
+  "pending_runs_wait_time_med_secs": 83816.204613,
+  "pending_unblocked_runs_wait_time_max_secs": 84466.658065,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:43:24.193620Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:43:54.363894Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85431.786793,
+  "pending_runs_wait_time_med_secs": 83846.876284,
+  "pending_unblocked_runs_wait_time_max_secs": 84497.329736,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:43:54.865300Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:44:18.243836Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85455.666724,
+  "pending_runs_wait_time_med_secs": 83870.756215,
+  "pending_unblocked_runs_wait_time_max_secs": 84521.209667,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:44:18.745274Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:44:48.923552Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85486.347184,
+  "pending_runs_wait_time_med_secs": 83901.436675,
+  "pending_unblocked_runs_wait_time_max_secs": 84551.890127,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:44:49.425780Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:45:12.798038Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85510.22064,
+  "pending_runs_wait_time_med_secs": 83925.310131,
+  "pending_unblocked_runs_wait_time_max_secs": 84575.763583,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:45:13.299131Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:45:43.480000Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85540.903815,
+  "pending_runs_wait_time_med_secs": 83955.993306,
+  "pending_unblocked_runs_wait_time_max_secs": 84606.446758,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:45:43.982351Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:46:07.347574Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85564.770333,
+  "pending_runs_wait_time_med_secs": 83979.859824,
+  "pending_unblocked_runs_wait_time_max_secs": 84630.313276,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:46:07.848912Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:46:38.023819Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85595.446982,
+  "pending_runs_wait_time_med_secs": 84010.536473,
+  "pending_unblocked_runs_wait_time_max_secs": 84660.989925,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:46:38.525438Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:01.894693Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85619.318103,
+  "pending_runs_wait_time_med_secs": 84034.407594,
+  "pending_unblocked_runs_wait_time_max_secs": 84684.861046,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:02.396638Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:32.579621Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85650.00221,
+  "pending_runs_wait_time_med_secs": 84065.091701,
+  "pending_unblocked_runs_wait_time_max_secs": 84715.545153,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:33.080714Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:56.526257Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85673.948928,
+  "pending_runs_wait_time_med_secs": 84089.038419,
+  "pending_unblocked_runs_wait_time_max_secs": 84739.491871,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:47:57.027408Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:48:27.149204Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85704.572386,
+  "pending_runs_wait_time_med_secs": 84119.661877,
+  "pending_unblocked_runs_wait_time_max_secs": 84770.115329,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:48:27.650856Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:48:57.092347Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85728.504192,
+  "pending_runs_wait_time_med_secs": 84143.593683,
+  "pending_unblocked_runs_wait_time_max_secs": 84794.047135,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:48:51.582657Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:49:21.706255Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85759.128869,
+  "pending_runs_wait_time_med_secs": 84174.21836,
+  "pending_unblocked_runs_wait_time_max_secs": 84824.671812,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:49:22.207360Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:49:46.135407Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85789.073849,
+  "pending_runs_wait_time_med_secs": 84204.16334,
+  "pending_unblocked_runs_wait_time_max_secs": 84854.616792,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:49:52.152355Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:50:22.274235Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85813.676845,
+  "pending_runs_wait_time_med_secs": 84228.766336,
+  "pending_unblocked_runs_wait_time_max_secs": 84879.219788,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:50:16.755361Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:50:40.672715Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85838.095997,
+  "pending_runs_wait_time_med_secs": 84253.185488,
+  "pending_unblocked_runs_wait_time_max_secs": 84903.63894,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:50:41.174499Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:51:11.376064Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85874.318044,
+  "pending_runs_wait_time_med_secs": 84289.407535,
+  "pending_unblocked_runs_wait_time_max_secs": 84939.860987,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:51:17.396519Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:51:35.240203Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85892.662919,
+  "pending_runs_wait_time_med_secs": 84307.75241,
+  "pending_unblocked_runs_wait_time_max_secs": 84958.205862,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:51:35.741431Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:52:12.458600Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85929.881891,
+  "pending_runs_wait_time_med_secs": 84344.971382,
+  "pending_unblocked_runs_wait_time_max_secs": 84995.424834,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:52:12.960357Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:52:29.780627Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85947.204025,
+  "pending_runs_wait_time_med_secs": 84362.293516,
+  "pending_unblocked_runs_wait_time_max_secs": 85012.746968,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:52:30.282497Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:00.490445Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 85977.913287,
+  "pending_runs_wait_time_med_secs": 84393.002778,
+  "pending_unblocked_runs_wait_time_max_secs": 85043.45623,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:00.991748Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:24.324384Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86001.747065,
+  "pending_runs_wait_time_med_secs": 84416.836556,
+  "pending_unblocked_runs_wait_time_max_secs": 85067.290008,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:24.825681Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:55.029065Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86032.452496,
+  "pending_runs_wait_time_med_secs": 84447.541987,
+  "pending_unblocked_runs_wait_time_max_secs": 85097.995439,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:53:55.531029Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:54:18.890989Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86056.313613,
+  "pending_runs_wait_time_med_secs": 84471.403104,
+  "pending_unblocked_runs_wait_time_max_secs": 85121.856556,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:54:19.392085Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:54:49.623168Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86087.046128,
+  "pending_runs_wait_time_med_secs": 84502.135619,
+  "pending_unblocked_runs_wait_time_max_secs": 85152.589071,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:54:50.124597Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:55:13.449887Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86110.872743,
+  "pending_runs_wait_time_med_secs": 84525.962234,
+  "pending_unblocked_runs_wait_time_max_secs": 85176.415686,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:55:13.951208Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:55:44.169290Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86141.592165,
+  "pending_runs_wait_time_med_secs": 84556.681656,
+  "pending_unblocked_runs_wait_time_max_secs": 85207.135108,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:55:44.670715Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:56:08.035463Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86165.458124,
+  "pending_runs_wait_time_med_secs": 84580.547615,
+  "pending_unblocked_runs_wait_time_max_secs": 85231.001067,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:56:08.536615Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:56:38.746647Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86196.169298,
+  "pending_runs_wait_time_med_secs": 84611.258789,
+  "pending_unblocked_runs_wait_time_max_secs": 85261.712241,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:56:39.247886Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:02.619059Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86220.041775,
+  "pending_runs_wait_time_med_secs": 84635.131266,
+  "pending_unblocked_runs_wait_time_max_secs": 85285.584718,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:03.120302Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:33.302652Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86250.725365,
+  "pending_runs_wait_time_med_secs": 84665.814856,
+  "pending_unblocked_runs_wait_time_max_secs": 85316.268308,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:33.803851Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:57.181767Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86274.604042,
+  "pending_runs_wait_time_med_secs": 84689.693533,
+  "pending_unblocked_runs_wait_time_max_secs": 85340.146985,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:57:57.682560Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:58:27.872395Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86305.294622,
+  "pending_runs_wait_time_med_secs": 84720.384113,
+  "pending_unblocked_runs_wait_time_max_secs": 85370.837565,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:58:28.373201Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:58:57.868876Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86329.224625,
+  "pending_runs_wait_time_med_secs": 84744.314116,
+  "pending_unblocked_runs_wait_time_max_secs": 85394.767568,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:58:52.303075Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:59:22.425098Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86359.84801,
+  "pending_runs_wait_time_med_secs": 84774.937501,
+  "pending_unblocked_runs_wait_time_max_secs": 85425.390953,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:59:22.926520Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:59:46.851126Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86384.274428,
+  "pending_runs_wait_time_med_secs": 84799.363919,
+  "pending_unblocked_runs_wait_time_max_secs": 85449.817371,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T06:59:47.352940Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:00:23.081651Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86420.504511,
+  "pending_runs_wait_time_med_secs": 84835.594002,
+  "pending_unblocked_runs_wait_time_max_secs": 85486.047454,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:00:23.583012Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:00:41.409555Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86438.836498,
+  "pending_runs_wait_time_med_secs": 84853.925989,
+  "pending_unblocked_runs_wait_time_max_secs": 85504.379441,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:00:41.915251Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:01:19.811467Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86477.234329,
+  "pending_runs_wait_time_med_secs": 84892.32382,
+  "pending_unblocked_runs_wait_time_max_secs": 85542.777272,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:01:20.312879Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:01:38.979026Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86496.401329,
+  "pending_runs_wait_time_med_secs": 84911.49082,
+  "pending_unblocked_runs_wait_time_max_secs": 85561.944272,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:01:39.479811Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:02:09.618214Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86527.040171,
+  "pending_runs_wait_time_med_secs": 84942.129662,
+  "pending_unblocked_runs_wait_time_max_secs": 85592.583114,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:02:10.118651Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:02:33.545567Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86550.969088,
+  "pending_runs_wait_time_med_secs": 84966.058579,
+  "pending_unblocked_runs_wait_time_max_secs": 85616.512031,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:02:34.047558Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:04.227822Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86581.650167,
+  "pending_runs_wait_time_med_secs": 84996.739658,
+  "pending_unblocked_runs_wait_time_max_secs": 85647.19311,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:04.728633Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:28.149158Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86605.571644,
+  "pending_runs_wait_time_med_secs": 85020.661135,
+  "pending_unblocked_runs_wait_time_max_secs": 85671.114587,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:28.650103Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:58.803062Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86636.226549,
+  "pending_runs_wait_time_med_secs": 85051.31604,
+  "pending_unblocked_runs_wait_time_max_secs": 85701.769492,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:03:59.305040Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:04:22.701730Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86660.125044,
+  "pending_runs_wait_time_med_secs": 85075.214535,
+  "pending_unblocked_runs_wait_time_max_secs": 85725.667987,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:04:23.203559Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:04:53.361061Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86690.783568,
+  "pending_runs_wait_time_med_secs": 85105.873059,
+  "pending_unblocked_runs_wait_time_max_secs": 85756.326511,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:04:53.862116Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:05:17.828262Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86714.747637,
+  "pending_runs_wait_time_med_secs": 85129.837128,
+  "pending_unblocked_runs_wait_time_max_secs": 85780.29058,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:05:17.826129Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:05:47.931820Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86745.354433,
+  "pending_runs_wait_time_med_secs": 85160.443924,
+  "pending_unblocked_runs_wait_time_max_secs": 85810.897376,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:05:48.432928Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:06:12.380826Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86769.803577,
+  "pending_runs_wait_time_med_secs": 85184.893068,
+  "pending_unblocked_runs_wait_time_max_secs": 85835.34652,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:06:12.882239Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:06:48.609919Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86799.917972,
+  "pending_runs_wait_time_med_secs": 85215.007463,
+  "pending_unblocked_runs_wait_time_max_secs": 85865.460915,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:06:42.996467Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:07:06.973970Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86824.397174,
+  "pending_runs_wait_time_med_secs": 85239.486665,
+  "pending_unblocked_runs_wait_time_max_secs": 85889.940117,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:07:07.476219Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:07:37.545358Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86854.968567,
+  "pending_runs_wait_time_med_secs": 85270.058058,
+  "pending_unblocked_runs_wait_time_max_secs": 85920.51151,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:07:38.047087Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:01.538278Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86878.961324,
+  "pending_runs_wait_time_med_secs": 85294.050815,
+  "pending_unblocked_runs_wait_time_max_secs": 85944.504267,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:02.039836Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:32.098472Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86909.522115,
+  "pending_runs_wait_time_med_secs": 85324.611606,
+  "pending_unblocked_runs_wait_time_max_secs": 85975.065058,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:32.600575Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:56.181871Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86933.608044,
+  "pending_runs_wait_time_med_secs": 85348.697535,
+  "pending_unblocked_runs_wait_time_max_secs": 85999.150987,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:08:56.686534Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:09:26.652727Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86964.075927,
+  "pending_runs_wait_time_med_secs": 85379.165418,
+  "pending_unblocked_runs_wait_time_max_secs": 86029.61887,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:09:27.154392Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:09:50.770208Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 86988.192911,
+  "pending_runs_wait_time_med_secs": 85403.282402,
+  "pending_unblocked_runs_wait_time_max_secs": 86053.735854,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:09:51.271378Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:10:21.198789Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87018.622756,
+  "pending_runs_wait_time_med_secs": 85433.712247,
+  "pending_unblocked_runs_wait_time_max_secs": 86084.165699,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:10:21.701230Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:10:45.383554Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87042.806067,
+  "pending_runs_wait_time_med_secs": 85457.895558,
+  "pending_unblocked_runs_wait_time_max_secs": 86108.34901,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:10:45.884558Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:11:15.744070Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87073.166671,
+  "pending_runs_wait_time_med_secs": 85488.256162,
+  "pending_unblocked_runs_wait_time_max_secs": 86138.709614,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:11:16.245203Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:11:40.033526Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87097.456135,
+  "pending_runs_wait_time_med_secs": 85512.545626,
+  "pending_unblocked_runs_wait_time_max_secs": 86162.999078,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:11:40.534615Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:12:10.296505Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87127.718301,
+  "pending_runs_wait_time_med_secs": 85542.807792,
+  "pending_unblocked_runs_wait_time_max_secs": 86193.261244,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:12:10.796819Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:12:34.632730Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87152.056035,
+  "pending_runs_wait_time_med_secs": 85567.145526,
+  "pending_unblocked_runs_wait_time_max_secs": 86217.598978,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:12:35.134602Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:04.828686Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87182.251389,
+  "pending_runs_wait_time_med_secs": 85597.34088,
+  "pending_unblocked_runs_wait_time_max_secs": 86247.794332,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:05.329923Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:29.283269Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87206.705418,
+  "pending_runs_wait_time_med_secs": 85621.794909,
+  "pending_unblocked_runs_wait_time_max_secs": 86272.248361,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:29.783917Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:59.388946Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87236.811078,
+  "pending_runs_wait_time_med_secs": 85651.900569,
+  "pending_unblocked_runs_wait_time_max_secs": 86302.354021,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:13:59.889560Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:14:23.841982Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87261.264377,
+  "pending_runs_wait_time_med_secs": 85676.353868,
+  "pending_unblocked_runs_wait_time_max_secs": 86326.80732,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:14:24.342851Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:14:53.935108Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87291.358224,
+  "pending_runs_wait_time_med_secs": 85706.447715,
+  "pending_unblocked_runs_wait_time_max_secs": 86356.901167,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:14:54.436697Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:15:24.578339Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87315.837305,
+  "pending_runs_wait_time_med_secs": 85730.926796,
+  "pending_unblocked_runs_wait_time_max_secs": 86381.380248,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:15:18.915778Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:15:54.677378Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87345.935987,
+  "pending_runs_wait_time_med_secs": 85761.025478,
+  "pending_unblocked_runs_wait_time_max_secs": 86411.47893,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:15:49.014501Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:16:13.466602Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87376.563872,
+  "pending_runs_wait_time_med_secs": 85791.653363,
+  "pending_unblocked_runs_wait_time_max_secs": 86442.106815,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:16:19.642385Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:16:43.583641Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87406.678457,
+  "pending_runs_wait_time_med_secs": 85821.767948,
+  "pending_unblocked_runs_wait_time_max_secs": 86472.2214,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:16:49.756933Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:17:14.710323Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87432.133935,
+  "pending_runs_wait_time_med_secs": 85847.223426,
+  "pending_unblocked_runs_wait_time_max_secs": 86497.676878,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:17:15.212754Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:17:38.148550Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87455.571225,
+  "pending_runs_wait_time_med_secs": 85870.660716,
+  "pending_unblocked_runs_wait_time_max_secs": 86521.114168,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:17:38.649745Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:02.594232Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87480.017517,
+  "pending_runs_wait_time_med_secs": 85895.107008,
+  "pending_unblocked_runs_wait_time_max_secs": 86545.56046,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:03.095959Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:39.896323Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87509.747963,
+  "pending_runs_wait_time_med_secs": 85924.837454,
+  "pending_unblocked_runs_wait_time_max_secs": 86575.290906,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:32.826466Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:57.149153Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87534.572277,
+  "pending_runs_wait_time_med_secs": 85949.661768,
+  "pending_unblocked_runs_wait_time_max_secs": 86600.11522,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:18:57.650886Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:19:27.250663Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87564.673275,
+  "pending_runs_wait_time_med_secs": 85979.762766,
+  "pending_unblocked_runs_wait_time_max_secs": 86630.216218,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:19:27.751768Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:19:51.751912Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87589.174789,
+  "pending_runs_wait_time_med_secs": 86004.26428,
+  "pending_unblocked_runs_wait_time_max_secs": 86654.717732,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:19:52.253286Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:20:21.801582Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87619.225891,
+  "pending_runs_wait_time_med_secs": 86034.315382,
+  "pending_unblocked_runs_wait_time_max_secs": 86684.768834,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:20:22.304412Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:20:46.344435Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87643.767493,
+  "pending_runs_wait_time_med_secs": 86058.856984,
+  "pending_unblocked_runs_wait_time_max_secs": 86709.310436,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:20:46.846018Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:21:16.382307Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87673.80715,
+  "pending_runs_wait_time_med_secs": 86088.896641,
+  "pending_unblocked_runs_wait_time_max_secs": 86739.350093,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:21:16.885709Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:21:40.904098Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87698.326984,
+  "pending_runs_wait_time_med_secs": 86113.416475,
+  "pending_unblocked_runs_wait_time_max_secs": 86763.869927,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:21:41.405474Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:22:10.953079Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87728.375503,
+  "pending_runs_wait_time_med_secs": 86143.464994,
+  "pending_unblocked_runs_wait_time_max_secs": 86793.918446,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:22:11.453982Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:22:35.439558Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87752.861988,
+  "pending_runs_wait_time_med_secs": 86167.951479,
+  "pending_unblocked_runs_wait_time_max_secs": 86818.404931,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:22:35.940445Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:23:05.506777Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87782.929478,
+  "pending_runs_wait_time_med_secs": 86198.018969,
+  "pending_unblocked_runs_wait_time_max_secs": 86848.472421,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:23:06.007940Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:23:29.992653Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87807.416178,
+  "pending_runs_wait_time_med_secs": 86222.505669,
+  "pending_unblocked_runs_wait_time_max_secs": 86872.959121,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:23:30.494662Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:00.129195Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87837.552744,
+  "pending_runs_wait_time_med_secs": 86252.642235,
+  "pending_unblocked_runs_wait_time_max_secs": 86903.095687,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:00.631235Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:24.569153Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87861.99155,
+  "pending_runs_wait_time_med_secs": 86277.081041,
+  "pending_unblocked_runs_wait_time_max_secs": 86927.534493,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:25.070096Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:54.690507Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87892.11301,
+  "pending_runs_wait_time_med_secs": 86307.202501,
+  "pending_unblocked_runs_wait_time_max_secs": 86957.655953,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:24:55.191632Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:25:25.422591Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87916.591916,
+  "pending_runs_wait_time_med_secs": 86331.681407,
+  "pending_unblocked_runs_wait_time_max_secs": 86982.134859,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:25:19.670402Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:25:55.508046Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87946.701133,
+  "pending_runs_wait_time_med_secs": 86361.790624,
+  "pending_unblocked_runs_wait_time_max_secs": 87012.244076,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:25:49.779727Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:26:13.908128Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 87977.441587,
+  "pending_runs_wait_time_med_secs": 86392.531078,
+  "pending_unblocked_runs_wait_time_max_secs": 87042.98453,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:26:20.520069Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:26:44.417229Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88007.57207,
+  "pending_runs_wait_time_med_secs": 86422.661561,
+  "pending_unblocked_runs_wait_time_max_secs": 87073.115013,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:26:50.650629Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:27:08.883188Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88026.306081,
+  "pending_runs_wait_time_med_secs": 86441.395572,
+  "pending_unblocked_runs_wait_time_max_secs": 87091.849024,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:27:09.384616Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:27:38.965155Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88056.388198,
+  "pending_runs_wait_time_med_secs": 86471.477689,
+  "pending_unblocked_runs_wait_time_max_secs": 87121.931141,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:27:39.466726Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:03.431412Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88080.853766,
+  "pending_runs_wait_time_med_secs": 86495.943257,
+  "pending_unblocked_runs_wait_time_max_secs": 87146.396709,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:03.932224Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:33.509639Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88110.932413,
+  "pending_runs_wait_time_med_secs": 86526.021904,
+  "pending_unblocked_runs_wait_time_max_secs": 87176.475356,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:34.010942Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:57.986024Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88135.410247,
+  "pending_runs_wait_time_med_secs": 86550.499738,
+  "pending_unblocked_runs_wait_time_max_secs": 87200.95319,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:28:58.488733Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:29:28.094241Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88165.517018,
+  "pending_runs_wait_time_med_secs": 86580.606509,
+  "pending_unblocked_runs_wait_time_max_secs": 87231.059961,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:29:28.595519Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:29:52.548523Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88189.971005,
+  "pending_runs_wait_time_med_secs": 86605.060496,
+  "pending_unblocked_runs_wait_time_max_secs": 87255.513948,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:29:53.049498Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:30:22.659698Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88220.082947,
+  "pending_runs_wait_time_med_secs": 86635.172438,
+  "pending_unblocked_runs_wait_time_max_secs": 87285.62589,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:30:23.161419Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:30:47.182171Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88244.604541,
+  "pending_runs_wait_time_med_secs": 86659.694032,
+  "pending_unblocked_runs_wait_time_max_secs": 87310.147484,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:30:47.682995Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:31:17.220502Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88274.642891,
+  "pending_runs_wait_time_med_secs": 86689.732382,
+  "pending_unblocked_runs_wait_time_max_secs": 87340.185834,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:31:17.721428Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:31:41.738894Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88299.161594,
+  "pending_runs_wait_time_med_secs": 86714.251085,
+  "pending_unblocked_runs_wait_time_max_secs": 87364.704537,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:31:42.240080Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:32:11.770348Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88329.19356,
+  "pending_runs_wait_time_med_secs": 86744.283051,
+  "pending_unblocked_runs_wait_time_max_secs": 87394.736503,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:32:12.272030Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:32:36.311462Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88353.734154,
+  "pending_runs_wait_time_med_secs": 86768.823645,
+  "pending_unblocked_runs_wait_time_max_secs": 87419.277097,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:32:36.812627Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:33:06.382344Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88383.804924,
+  "pending_runs_wait_time_med_secs": 86798.894415,
+  "pending_unblocked_runs_wait_time_max_secs": 87449.347867,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:33:06.883400Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:33:30.869359Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88408.292059,
+  "pending_runs_wait_time_med_secs": 86823.38155,
+  "pending_unblocked_runs_wait_time_max_secs": 87473.835002,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:33:31.370542Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:00.945533Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88438.369332,
+  "pending_runs_wait_time_med_secs": 86853.458823,
+  "pending_unblocked_runs_wait_time_max_secs": 87503.912275,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:01.447808Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:25.519573Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88462.942131,
+  "pending_runs_wait_time_med_secs": 86878.031622,
+  "pending_unblocked_runs_wait_time_max_secs": 87528.485074,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:26.020645Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:55.499379Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88492.925921,
+  "pending_runs_wait_time_med_secs": 86908.015412,
+  "pending_unblocked_runs_wait_time_max_secs": 87558.468864,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:34:56.004401Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:35:20.574998Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88517.488921,
+  "pending_runs_wait_time_med_secs": 86932.578412,
+  "pending_unblocked_runs_wait_time_max_secs": 87583.031864,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:35:20.567401Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:35:56.854518Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88554.276932,
+  "pending_runs_wait_time_med_secs": 86969.366423,
+  "pending_unblocked_runs_wait_time_max_secs": 87619.819875,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:35:57.355403Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:36:15.137838Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88572.562236,
+  "pending_runs_wait_time_med_secs": 86987.651727,
+  "pending_unblocked_runs_wait_time_max_secs": 87638.105179,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:36:15.640727Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:36:45.122427Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88602.545473,
+  "pending_runs_wait_time_med_secs": 87017.634964,
+  "pending_unblocked_runs_wait_time_max_secs": 87668.088416,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:36:45.624157Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:37:09.712779Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88627.136212,
+  "pending_runs_wait_time_med_secs": 87042.225703,
+  "pending_unblocked_runs_wait_time_max_secs": 87692.679155,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:37:10.214724Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:37:39.800254Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88657.222733,
+  "pending_runs_wait_time_med_secs": 87072.312224,
+  "pending_unblocked_runs_wait_time_max_secs": 87722.765676,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:37:40.301206Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:11.135634Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88688.557848,
+  "pending_runs_wait_time_med_secs": 87103.647339,
+  "pending_unblocked_runs_wait_time_max_secs": 87754.100791,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:11.636495Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:34.473089Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88711.896113,
+  "pending_runs_wait_time_med_secs": 87126.985604,
+  "pending_unblocked_runs_wait_time_max_secs": 87777.439056,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:34.974657Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:58.892581Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88736.316431,
+  "pending_runs_wait_time_med_secs": 87151.405922,
+  "pending_unblocked_runs_wait_time_max_secs": 87801.859374,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:38:59.394921Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:39:29.034450Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88766.456977,
+  "pending_runs_wait_time_med_secs": 87181.546468,
+  "pending_unblocked_runs_wait_time_max_secs": 87831.99992,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:39:29.535506Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:39:53.453686Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88790.876132,
+  "pending_runs_wait_time_med_secs": 87205.965623,
+  "pending_unblocked_runs_wait_time_max_secs": 87856.419075,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:39:53.954609Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:40:30.926894Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88828.349649,
+  "pending_runs_wait_time_med_secs": 87243.43914,
+  "pending_unblocked_runs_wait_time_max_secs": 87893.892592,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:40:31.428133Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:40:47.997973Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88845.421194,
+  "pending_runs_wait_time_med_secs": 87260.510685,
+  "pending_unblocked_runs_wait_time_max_secs": 87910.964137,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:40:48.499705Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:41:18.159994Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88875.582592,
+  "pending_runs_wait_time_med_secs": 87290.672083,
+  "pending_unblocked_runs_wait_time_max_secs": 87941.125535,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:41:18.661203Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:41:42.614988Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88900.038143,
+  "pending_runs_wait_time_med_secs": 87315.127634,
+  "pending_unblocked_runs_wait_time_max_secs": 87965.581086,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:41:43.116614Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:42:12.806107Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88930.229049,
+  "pending_runs_wait_time_med_secs": 87345.31854,
+  "pending_unblocked_runs_wait_time_max_secs": 87995.771992,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:42:13.307544Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:42:37.358197Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88954.78114,
+  "pending_runs_wait_time_med_secs": 87369.870631,
+  "pending_unblocked_runs_wait_time_max_secs": 88020.324083,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:42:37.859628Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:43:07.423128Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 88984.845814,
+  "pending_runs_wait_time_med_secs": 87399.935305,
+  "pending_unblocked_runs_wait_time_max_secs": 88050.388757,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:43:07.924349Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:43:32.082204Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89009.505337,
+  "pending_runs_wait_time_med_secs": 87424.594828,
+  "pending_unblocked_runs_wait_time_max_secs": 88075.04828,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:43:32.583834Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:01.978226Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89039.400396,
+  "pending_runs_wait_time_med_secs": 87454.489887,
+  "pending_unblocked_runs_wait_time_max_secs": 88104.943339,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:02.478925Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:26.712696Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89064.136133,
+  "pending_runs_wait_time_med_secs": 87479.225624,
+  "pending_unblocked_runs_wait_time_max_secs": 88129.679076,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:27.214657Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:56.539161Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89093.961553,
+  "pending_runs_wait_time_med_secs": 87509.051044,
+  "pending_unblocked_runs_wait_time_max_secs": 88159.504496,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:44:57.040072Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:45:27.639123Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89118.713794,
+  "pending_runs_wait_time_med_secs": 87533.803285,
+  "pending_unblocked_runs_wait_time_max_secs": 88184.256737,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:45:21.792242Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:45:51.595738Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89148.506598,
+  "pending_runs_wait_time_med_secs": 87563.596089,
+  "pending_unblocked_runs_wait_time_max_secs": 88214.049541,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:45:51.585077Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:46:16.479647Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89173.394078,
+  "pending_runs_wait_time_med_secs": 87588.483569,
+  "pending_unblocked_runs_wait_time_max_secs": 88238.937021,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:46:16.472564Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:46:46.146892Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89203.57033,
+  "pending_runs_wait_time_med_secs": 87618.659821,
+  "pending_unblocked_runs_wait_time_max_secs": 88269.113273,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:46:46.648910Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:47:11.071925Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89228.495188,
+  "pending_runs_wait_time_med_secs": 87643.584679,
+  "pending_unblocked_runs_wait_time_max_secs": 88294.038131,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:47:11.573772Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:47:40.712075Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89258.135001,
+  "pending_runs_wait_time_med_secs": 87673.224492,
+  "pending_unblocked_runs_wait_time_max_secs": 88323.677944,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:47:41.213446Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:48:05.649428Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89283.072745,
+  "pending_runs_wait_time_med_secs": 87698.162236,
+  "pending_unblocked_runs_wait_time_max_secs": 88348.615688,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:48:06.151215Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:48:35.282113Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89312.70495,
+  "pending_runs_wait_time_med_secs": 87727.794441,
+  "pending_unblocked_runs_wait_time_max_secs": 88378.247893,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:48:35.783460Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:00.229124Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89337.652189,
+  "pending_runs_wait_time_med_secs": 87752.74168,
+  "pending_unblocked_runs_wait_time_max_secs": 88403.195132,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:00.730699Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:37.222103Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89374.645351,
+  "pending_runs_wait_time_med_secs": 87789.734842,
+  "pending_unblocked_runs_wait_time_max_secs": 88440.188294,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:37.723878Z"
+}
+{
+  "max": 1,
+  "available": 1,
+  "active": 0,
+  "event": "Worker stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:54.795557Z"
+}
+{
+  "n_pending": 11,
+  "n_running": 3,
+  "pending_runs_wait_time_max_secs": 89392.218235,
+  "pending_runs_wait_time_med_secs": 87807.307726,
+  "pending_unblocked_runs_wait_time_max_secs": 88457.761178,
+  "event": "Queue stats",
+  "level": "INFO",
+  "timestamp": "2026-06-02T07:49:55.296716Z"
+}
