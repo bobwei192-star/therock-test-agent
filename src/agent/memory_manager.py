@@ -38,8 +38,9 @@ class MemoryManager:
             runtime: LangGraph 运行时实例，包含 store 和 context
         """
         self._runtime = runtime
-        self._user_id = runtime.context.user_id
-        self._project_id = runtime.context.project_id
+        ctx = getattr(runtime, "context", None)
+        self._user_id = getattr(ctx, "user_id", "anonymous") if ctx else "anonymous"
+        self._project_id = getattr(ctx, "project_id", None) if ctx else None
 
     def _build_namespace(self, suffix: str) -> tuple:
         """构建记忆命名空间元组。

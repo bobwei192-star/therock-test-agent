@@ -51,18 +51,29 @@ def clean_llm_output(content: str) -> str:
     cleaned = re.sub(json_pattern, '[调试信息已隐藏]', cleaned, flags=re.DOTALL)
 
     # 规则 5: 移除 "## 意图识别（必选其一）" 等 prompt 模板说明
-    template_instruction_pattern = r'## 意图识别（必选其一）[\s\S]*?(?=意图：|测试规格输出|$)'
+    template_instruction_pattern = r'## 意图识别（必选其一）[\s\S]*?(?=意图：|意图:|测试规格输出|$)'
     cleaned = re.sub(template_instruction_pattern, '', cleaned)
 
-    # 规则 6: 移除 "分析用户输入，判断属于以下哪种意图：" 等选项列表
+    # 规则 6: 移除意图选项列表（- GENERATE: ... - CHAT: ... 等）
+    # 匹配以 "- " 开头的意图列表行，但不匹配 "意图：GENERATE" 这样的结果行
+    # 只匹配列表项，不匹配 "意图：XXX" 格式
+    intent_list_pattern = r'(?:^|\n)(?:-[\s]+(?:GENERATE|APPEND|UPDATE|REFACTOR|EXECUTE_EXTERNAL|DIAGNOSE|COVERAGE|PROBE|CHAT|ENV_BUILD):[^\n]*(?:\n|$))+'
+    cleaned = re.sub(intent_list_pattern, '', cleaned)
+
+    # 规则 7: 移除 "分析用户输入，判断属于以下哪种意图：" 等选项列表
     # 但保留 "意图：XXX" 这一行
     intent_options_pattern = r'分析用户输入[\s\S]*?(?=\n意图：|意图：|$)'
     cleaned = re.sub(intent_options_pattern, '', cleaned)
 
-    # 规则 7: 清理多余的空白行（连续 3 个以上空行）
+    # 规则 8: 移除多余的 "意图：" 标题（只保留带实际意图值的行）
+    # 匹配单独一行的 "意图："（后面没有具体意图值）
+    intent_header_pattern = r'^意图[\s]*[:：]\s*$'
+    cleaned = re.sub(intent_header_pattern, '', cleaned, flags=re.MULTILINE)
+
+    # 规则 9: 清理多余的空白行（连续 3 个以上空行）
     cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
 
-    # 规则 8: 移除行首行尾的空白
+    # 规则 10: 移除行首行尾的空白
     cleaned = cleaned.strip()
 
     # 如果清洗后内容为空，返回原始内容（避免完全丢失信息）

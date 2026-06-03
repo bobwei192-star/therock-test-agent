@@ -331,18 +331,9 @@ fi
 langgraph --version
 
 # ─────────────────────────────────────────────────────
-# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui) - DEPRECATED
-# NOTE: agent-chat-ui 已废弃，改用 assistant-ui-chat
+# Step 7: Agent Chat UI (langchain-ai/agent-chat-ui)
+# 官方文档: https://github.com/langchain-ai/agent-chat-ui
 # ─────────────────────────────────────────────────────
-
-# pip install paramiko
-# 以下是旧的 agent-chat-ui 安装代码，已注释保留
-# if [ ! -d "$SCRIPT_DIR/etc/agent-chat-ui" ]; then
-#     git clone https://github.com/langchain-ai/agent-chat-ui.git "$SCRIPT_DIR/etc/agent-chat-ui"
-# fi
-# cd "$SCRIPT_DIR/etc/agent-chat-ui"
-# npm install
-# cd "$SCRIPT_DIR"
 
 pip install paramiko -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST"
 
@@ -404,15 +395,15 @@ _install_nodejs() {
     return 1
 }
 
-log_step 7 "Setup Assistant UI (assistant-ui for LangGraph)"
-UI_DIR="$SCRIPT_DIR/etc/assistant-ui-chat"
+log_step 7 "Setup Agent Chat UI (langchain-ai/agent-chat-ui)"
+UI_DIR="$SCRIPT_DIR/etc/agent-chat-ui"
 
 if ! command -v node >/dev/null 2>&1; then
     log_warn "Node.js 未安装，尝试自动安装..."
     if _install_nodejs; then
         log_info "Node.js 安装成功"
     else
-        log_error "Node.js 安装失败，Assistant UI 需要 Node.js 22+。跳过。"
+        log_error "Node.js 安装失败，Agent Chat UI 需要 Node.js 22+。跳过。"
         log_info "手动安装: curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs"
         SKIP_UI=true
     fi
@@ -425,27 +416,35 @@ if [ -z "${SKIP_UI:-}" ]; then
     export NPM_CONFIG_CACHE="$SCRIPT_DIR/.npm-cache"
     mkdir -p "$NPM_CONFIG_CACHE"
 
-    # 使用 npx assistant-ui@latest create 创建 LangGraph 模板项目
+    # 官方安装方式: git clone 或 npx create-agent-chat-app
     if [ ! -d "$UI_DIR" ] || [ ! -f "$UI_DIR/package.json" ]; then
         if [ -d "$UI_DIR" ]; then
-            log_warn "assistant-ui-chat 目录存在但不完整，重新创建..."
+            log_warn "agent-chat-ui 目录存在但不完整，重新创建..."
             rm -rf "$UI_DIR"
         fi
         
-        # 使用 assistant-ui CLI 的 langgraph 模板
-        log_info "正在使用 assistant-ui CLI 创建 LangGraph 模板项目..."
-        npx assistant-ui@latest create -t langgraph "$UI_DIR"
+        log_info "正在克隆 agent-chat-ui 仓库..."
+        git clone https://github.com/langchain-ai/agent-chat-ui.git "$UI_DIR"
         
-        # 安装 LangGraph 集成包
-        if [ -f "$UI_DIR/package.json" ]; then
-            log_info "安装 @assistant-ui/react-langgraph..."
-            cd "$UI_DIR"
-            npm install @assistant-ui/react-langgraph || true
+        log_info "Created agent-chat-ui project -> $UI_DIR"
+    else
+        log_warn "agent-chat-ui 源码已存在，跳过克隆"
+    fi
+
+    # 安装依赖
+    if [ -f "$UI_DIR/package.json" ]; then
+        cd "$UI_DIR"
+        
+        # 使用 pnpm 安装（官方推荐）
+        if command -v pnpm >/dev/null 2>&1; then
+            log_info "使用 pnpm 安装依赖..."
+            pnpm install
+        else
+            log_info "使用 npm 安装依赖..."
+            npm install
         fi
         
-        log_info "Created assistant-ui project -> $UI_DIR"
-    else
-        log_warn "assistant-ui-chat 源码已存在，跳过创建"
+        log_info "Dependencies installed"
     fi
 
     # 创建 .env 文件，配置连接到本地 LangGraph server
@@ -454,31 +453,10 @@ if [ -z "${SKIP_UI:-}" ]; then
 # LangGraph API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:2024
 NEXT_PUBLIC_ASSISTANT_ID=agent
-
-# Assistant UI Configuration
-NEXT_PUBLIC_APP_NAME=TestCaseAgent
-NEXT_PUBLIC_APP_DESCRIPTION=AI-powered test case generation assistant
 DOTENV
         log_info "Created .env (连接本地 LangGraph server)"
     fi
 
-    # 创建 .env.local 文件，设置 UI 服务端口
-    if [ -f "$UI_DIR/package.json" ] && [ ! -f "$UI_DIR/.env.local" ]; then
-        cat > "$UI_DIR/.env.local" <<'DOTENV'
-PORT=8080
-DOTENV
-        log_info "Created .env.local (设置 UI 端口为 8080)"
-    fi
-
-    cd "$UI_DIR"
-
-    if [ -f "node_modules/.bin/next" ]; then
-        log_warn "dependencies 已存在，跳过安装"
-    else
-        rm -rf node_modules
-        npm install
-        log_info "Dependencies installed"
-    fi
     cd "$SCRIPT_DIR"
 fi
 
@@ -569,7 +547,7 @@ echo ""
 echo -e "${BLUE}服务概览:${NC}"
 printf "  %-28s %s\n" "LangGraph API"    "http://127.0.0.1:2024   (启动: langgraph dev)"
 printf "  %-28s %s\n" "Langfuse"         "http://localhost:3000     (Docker)"
-printf "  %-28s %s\n" "Assistant UI"     "http://localhost:8080     (npm run dev)"
+printf "  %-28s %s\n" "Agent Chat UI"     "http://localhost:3000     (pnpm dev, 端口自动选择)"
 printf "  %-28s %s\n" "CLI"              "python -m src.agent.cli run/chat/status"
 echo ""
 echo -e "${YELLOW}启动步骤:${NC}"
@@ -582,12 +560,11 @@ echo -e "    source .venv/bin/activate"
 echo -e "    langgraph dev"
 echo -e "    -> 访问: http://127.0.0.1:2024"
 echo ""
-echo -e "  ${BLUE}【终端2】启动 Assistant UI (仅前端):${NC}"
-echo -e "    cd $SCRIPT_DIR/etc/assistant-ui-chat"
+echo -e "  ${BLUE}【终端2】启动 Agent Chat UI:${NC}"
+echo -e "    cd $SCRIPT_DIR/etc/agent-chat-ui"
 echo -e "    export PATH=\"$SCRIPT_DIR/.node/bin:\$PATH\""
-echo -e "    export OPENAI_API_KEY=\$OPENAI_API_KEY"
-echo -e "    npm run dev"
-echo -e "    -> 访问: http://localhost:3001 (端口可能变化，查看启动日志)"
+echo -e "    pnpm dev"
+echo -e "    -> 访问: http://localhost:3000 (端口可能变化，查看启动日志)"
 echo ""
 echo -e "  ${GREEN}3.${NC} CLI 使用: python -m src.agent.cli run \"提示词\""
 echo ""
