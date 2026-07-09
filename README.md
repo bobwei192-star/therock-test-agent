@@ -5,8 +5,38 @@
 核心分工：
 
 - OpenCode 负责接收指令、调用命令、解释结果。
-- `.opencode/tools/therock_agent.sh` 负责确定性执行、状态落盘、日志和报告。
-- `docs_this_project/` 提供组件排序、需求、汇总报告模板和单组件问题模板。
+- `.opencode/agents/` 定义主协调、执行、报告分析 agent。
+- `.opencode/commands/` 提供 `/therock-run`、`/therock-resume`、`/therock-report`。
+- `.opencode/skills/therock-testing/` 保存 TheRock 测试知识和安全边界。
+- `.opencode/tools/therock_agent.sh` 是薄入口，实际逻辑在 `.opencode/tools/therock_agent/*.py`。
+- `docs_this_project/` 提供组件排序、入口映射、官方排除、汇总报告模板和单组件问题模板。
+
+runner 模块结构：
+
+```text
+.opencode/tools/
+  therock_agent.sh
+  therock_agent/
+    cli.py
+    audit.py
+    config.py
+    artifacts.py
+    state.py
+    planner.py
+    entrypoint.py
+    preflight.py
+    executor.py
+    classifier.py
+    reports.py
+```
+
+配置文件职责：
+
+```text
+docs_this_project/component_sort_order.json        # 决定 task 队列和顺序
+docs_this_project/component_env_script_index.json  # 决定组件入口、脚本、env profile、依赖和 known issue
+docs_this_project/official_exclude.json            # 决定官方排除和无入口组件
+```
 
 ## 1. 安装到 TheRock 目录
 
@@ -23,6 +53,15 @@ cd /home/zx/TheRock_CI测试流程/therock-test-agent
 - `docs_this_project/`
 - `.env_example`
 - 如果目标目录没有 `.env`，会创建 `.env`
+
+安装后会校验：
+
+- `.opencode/tools/therock_agent.sh`
+- `.opencode/tools/therock_agent/cli.py`
+- `.opencode/tools/therock_agent/executor.py`
+- `.opencode/tools/therock_agent/reports.py`
+- `docs_this_project/component_env_script_index.json`
+- `docs_this_project/official_exclude.json`
 
 OpenCode 会自动发现当前工作目录下的 `.opencode/`，不需要修改或 clone OpenCode 源码。
 
@@ -47,6 +86,8 @@ opencode
 ```
 
 runner 只会检查 `sudo -n true`，不会读取或保存 sudo 密码。
+
+`sudo_sensitive` 任务在没有可用 sudo cache 时会被标记为 `blocked`，不会归类为组件失败。
 
 ## 3. OpenCode 常用运行方式
 
@@ -150,6 +191,27 @@ cd /home/zx/TheRock_CI测试流程/TheRock
   --test-types quick
 ```
 
+runner 默认会读取：
+
+```text
+docs_this_project/component_sort_order.json
+docs_this_project/component_env_script_index.json
+docs_this_project/official_exclude.json
+```
+
+`test_runner.py` 入口不会再传 `--component` / `--test-type`，而是通过环境变量设置：
+
+```text
+TEST_COMPONENT
+TEST_TYPE
+AMDGPU_FAMILIES
+THEROCK_BIN_DIR
+OUTPUT_ARTIFACTS_DIR
+ROCM_PATH
+HIP_PATH
+LD_LIBRARY_PATH
+```
+
 ## 5. 查看日志和报告
 
 如果 runner 成功创建 run，输出在：
@@ -164,9 +226,11 @@ runs/<run_id>/
 runs/<run_id>/global_state.json
 runs/<run_id>/agent_activity.jsonl
 runs/<run_id>/tool_calls.jsonl
+runs/<run_id>/wrapper_changes.jsonl
 runs/<run_id>/environment_summary.json
 runs/<run_id>/summary_report.md
 runs/<run_id>/logs/
+runs/<run_id>/wrappers/
 runs/<run_id>/failures/
 ```
 
@@ -184,6 +248,13 @@ runs/_audit/agent_invocations.jsonl
 ```
 
 这个文件记录 OpenCode / runner 何时被调用、参数、cwd、环境摘要、成功或失败原因。
+
+wrapper 说明：
+
+- 每个真实任务会生成 `runs/<run_id>/wrappers/<task_id>.round<N>.sh`。
+- wrapper 只记录 `cd`、`export` 环境变量和最终执行命令。
+- wrapper 不修改 TheRock 组件源码，也不修改 `dist/rocm/bin` 或 `dist/rocm/lib`。
+- 环境变更写入 `runs/<run_id>/wrapper_changes.jsonl`。
 
 ## 6. 恢复中断 run
 
@@ -271,7 +342,10 @@ sudo -v
 常见原因：
 
 - `component_sort_order.json` 中 `status=exclude`
+- `official_exclude.json` 命中官方排除或无入口组件
 - `gpu_hang_risk=true` 且默认 `--gpu-risk skip`
+- `sudo_sensitive` 任务没有可用 sudo cache
+- preflight 发现 artifacts、依赖或必要 env 缺失
 
 ## 9. 本地自测
 
@@ -284,3 +358,12 @@ tests/test_therock_agent.sh
 ```
 
 这两个测试不依赖真实 GPU，用 mock artifacts 和 mock runner 验证安装、状态、日志、报告、resume 和高风险 skip。
+
+测试覆盖：
+
+- overlay 安装是否复制 `.opencode/tools/therock_agent/*.py`
+- runner 是否能通过薄 shell 入口导入 Python package
+- `component_env_script_index.json` 是否驱动入口脚本和环境变量
+- `official_exclude.json` 是否生效
+- sudo-sensitive 任务是否 blocked
+- wrapper 和 hardcoded path 检测是否写入报告

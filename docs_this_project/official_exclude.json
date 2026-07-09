@@ -1,0 +1,31 @@
+{
+  "version": "0.1",
+  "last_updated": "2026-07-09",
+  "description": "TheRock Test Agent 官方排除规则。runner 在 component_sort_order.json 和 component_env_script_index.json 之外优先读取本文件，命中后直接 skip/blocked，不猜脚本、不执行测试。",
+  "entries": [
+    {
+      "component": "hipsparselt",
+      "test_types": ["quick", "standard", "comprehensive", "full"],
+      "amdgpu_families": ["gfx1151"],
+      "status": "skip",
+      "known_issue_category": "gfx1151_exclude_family",
+      "reason": "TheRock/上游测试矩阵对 gfx1151 标记 exclude_family，默认不执行。"
+    },
+    {
+      "component": "rocroller",
+      "test_types": ["quick", "standard", "comprehensive", "full"],
+      "amdgpu_families": ["gfx1151"],
+      "status": "skip",
+      "known_issue_category": "gfx1151_exclude_family",
+      "reason": "gfx1151 架构枚举不识别且官方 exclude_family，默认不执行。"
+    },
+    {
+      "component": "rocprofiler_compute",
+      "test_types": ["quick", "standard", "comprehensive", "full"],
+      "amdgpu_families": ["*"],
+      "status": "skip",
+      "known_issue_category": "no_independent_entrypoint",
+      "reason": "当前无独立测试入口，runner 不应强行猜测脚本。"
+    }
+  ]
+}

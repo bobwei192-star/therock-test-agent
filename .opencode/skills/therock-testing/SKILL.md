@@ -15,6 +15,8 @@ TheRock testing follows a configuration-driven, layered orchestration model:
 - CTest, GoogleTest, pytest, and component-specific executables perform the actual test execution.
 - TheRock's Python scripts are orchestration glue; they do not implement the test assertions themselves.
 - Test machines reuse build artifacts instead of rebuilding ROCm locally.
+- OpenCode agents decide intent, permissions, risk policy, and result interpretation.
+- `.opencode/tools/therock_agent.sh` remains the deterministic executor and state machine.
 
 Reference document:
 
@@ -41,7 +43,23 @@ Within `test_component.yml`, the normal order is:
 
 ## Test Script Types
 
-Most components use:
+Do not guess component entrypoints from memory. The runner must read:
+
+- `docs_this_project/component_env_script_index.json`
+
+This file maps each component to:
+
+- `entrypoint_type`: `test_runner`, `dedicated_python`, or `none`
+- `script`: dedicated `test_<component>.py` when needed
+- `test_component`: value for `TEST_COMPONENT` when using `test_runner.py`
+- `env_profiles`
+- `requires`
+- `known_issue_category`
+- `retry_policy`
+- `gpu_hang_risk`
+- `timeout_hint_seconds`
+
+Most CTest-label components use:
 
 - `build_tools/github_actions/test_executable_scripts/test_runner.py`
 
@@ -61,7 +79,12 @@ Special components may use dedicated scripts, for example:
 - `test_hipsparse.py`
 - `test_rocprofiler_sdk.py`
 
-When the rough runner cannot locate or confidently map the correct test entrypoint, mark the task as `blocked` instead of guessing.
+When `entrypoint_type=none`, skip or block according to config instead of guessing.
+
+Important `test_runner.py` rule:
+
+- Do not pass `--component` or `--test-type`.
+- Set `TEST_COMPONENT` and `TEST_TYPE` in the environment.
 
 ## Test Type Order
 
@@ -91,6 +114,25 @@ The file is authoritative for:
 
 Do not invent a different order unless the user explicitly asks for an experiment.
 
+## Official Exclude Rules
+
+Read official skip/block rules from:
+
+- `docs_this_project/official_exclude.json`
+
+This file has higher priority than `component_sort_order.json` and the entrypoint index. If a task matches official exclude:
+
+- Do not execute it.
+- Do not guess a fallback script.
+- Record `official_exclude` in `global_state.json` and summary output.
+- Report it as `skip` or `blocked` according to the rule.
+
+Current expected examples include:
+
+- `hipsparselt` on `gfx1151`
+- `rocroller` on `gfx1151`
+- `rocprofiler_compute` with no independent entrypoint
+
 ## Artifact Paths
 
 The rough runner should support these artifact path shapes:
@@ -107,7 +149,11 @@ Normalize them into:
 Set runtime environment consistently:
 
 - `ROCM_PATH=<rocm_dist>`
-- `LD_LIBRARY_PATH=<rocm_dist>/lib:$LD_LIBRARY_PATH`
+- `HIP_PATH=<rocm_dist>`
+- `THEROCK_BIN_DIR=<rocm_dist>/bin`
+- `OUTPUT_ARTIFACTS_DIR=<rocm_dist>`
+- `PATH=<rocm_dist>/bin:$PATH`
+- `LD_LIBRARY_PATH=<rocm_dist>/lib:<rocm_dist>/lib64:$LD_LIBRARY_PATH`
 - `AMDGPU_FAMILIES=<gfx family, e.g. gfx1151>`
 - `THEROCK_AMDGPU_FAMILIES=<same gfx family>`
 - `THEROCK_AMDGPU_TARGETS=<same gfx value unless a narrower target list is explicitly provided>`
@@ -140,6 +186,36 @@ Loop behavior:
 
 OpenCode agents should call the runner and interpret results. They should not independently maintain failure sets.
 
+## Execution Wrapper And Audit
+
+Real task execution should go through generated wrappers under:
+
+- `runs/<run_id>/wrappers/<task_id>.round<N>.sh`
+
+The wrapper records:
+
+- target working directory
+- exported environment variables
+- final Python test script command
+
+The wrapper must not mutate:
+
+- component source
+- ROCm submodule source
+- `dist/rocm/bin`
+- `dist/rocm/lib`
+
+Audit and report files include:
+
+- `runs/<run_id>/wrapper_changes.jsonl`
+- `runs/<run_id>/agent_activity.jsonl`
+- `runs/<run_id>/tool_calls.jsonl`
+- `runs/<run_id>/global_state.json`
+- `runs/<run_id>/summary_report.md`
+- `runs/<run_id>/failures/*_failure_report.md`
+
+If logs contain hardcoded path indicators such as `/therock/src/`, `/opt/python/cp312-cp312/bin/python3.12`, or missing `libhipdnn_backend.so`, classify them under `path_hardcode_detection`. Do not patch installed ROCm artifacts automatically.
+
 ## GPU Reset Risk
 
 Default behavior:
@@ -155,6 +231,23 @@ Prefer `quarantine` for real machines: run normal tasks first, then run GPU rese
 
 If logs contain GPU timeout indicators such as `ring gfx`, `GPU reset`, `MES failed`, `PERMISSION_FAULT`, or `HSA_STATUS_ERROR`, preserve the logs and avoid automatic aggressive retries.
 
+## Sudo Policy
+
+Never ask for or store sudo passwords.
+
+Valid policies:
+
+- `THEROCK_SUDO_POLICY=none`
+- `THEROCK_SUDO_POLICY=cache`
+- `THEROCK_SUDO_POLICY=ask`
+
+For non-interactive loop execution, `sudo_sensitive` tasks should only proceed with:
+
+- `THEROCK_SUDO_POLICY=cache`
+- a valid `sudo -v` cache verified by `sudo -n true`
+
+If sudo is unavailable, mark the task `blocked`, not failed.
+
 ## Reports
 
 Each run should produce:
@@ -163,6 +256,8 @@ Each run should produce:
 - `runs/<run_id>/summary_report.md`
 - `runs/<run_id>/logs/*.stdout.log`
 - `runs/<run_id>/logs/*.stderr.log`
+- `runs/<run_id>/wrappers/*.sh`
+- `runs/<run_id>/wrapper_changes.jsonl`
 - `runs/<run_id>/failures/*_failure_report.md`
 
 Failure reports should follow the project problem template:
@@ -181,6 +276,10 @@ At minimum, include:
 - Reproduce or retest steps.
 - CI recommendation.
 - Evidence paths.
+- Index hit details.
+- Official exclude reason when applicable.
+- Wrapper path and environment changes.
+- Hardcoded path detection results.
 
 ## Safety Boundaries
 
@@ -199,7 +298,7 @@ Keep test execution deterministic and auditable:
 Use agents as thin roles around the runner:
 
 - `therock-loop`: main coordinator, accepts user intent and summarizes state.
-- `therock-executor`: restricted executor, calls the shell runner.
-- `therock-reporter`: reads logs/state and improves reports.
+- `therock-executor`: restricted executor, validates command arguments and calls the shell runner.
+- `therock-reporter`: reads logs/state, summarizes results, and checks report completeness.
 
 Do not move the core loop state machine out of `therock_agent.sh`.

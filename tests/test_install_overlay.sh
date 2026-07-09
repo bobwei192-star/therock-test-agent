@@ -16,7 +16,13 @@ test -f "${TARGET_DIR}/.opencode/agents/therock-loop.md"
 test -f "${TARGET_DIR}/.opencode/commands/therock-run.md"
 test -f "${TARGET_DIR}/.opencode/skills/therock-testing/SKILL.md"
 test -x "${TARGET_DIR}/.opencode/tools/therock_agent.sh"
+test -f "${TARGET_DIR}/.opencode/tools/therock_agent/__init__.py"
+test -f "${TARGET_DIR}/.opencode/tools/therock_agent/cli.py"
+test -f "${TARGET_DIR}/.opencode/tools/therock_agent/executor.py"
+test -f "${TARGET_DIR}/.opencode/tools/therock_agent/reports.py"
 test -f "${TARGET_DIR}/docs_this_project/component_sort_order.json"
+test -f "${TARGET_DIR}/docs_this_project/component_env_script_index.json"
+test -f "${TARGET_DIR}/docs_this_project/official_exclude.json"
 test -f "${TARGET_DIR}/docs_this_project/问题模板.md"
 test -f "${TARGET_DIR}/docs_this_project/汇总测试报告.md"
 test -f "${TARGET_DIR}/.env"
@@ -37,6 +43,8 @@ import sys
 
 state = json.load(open(sys.argv[1], encoding="utf-8"))
 assert state["meta"]["component_config"].endswith("docs_this_project/component_sort_order.json")
+assert state["meta"]["component_env_index"].endswith("docs_this_project/component_env_script_index.json")
+assert state["meta"]["official_exclude"].endswith("docs_this_project/official_exclude.json")
 assert state["schedule"]["task_queue"][0]["task_id"] == "hiprand-quick"
 assert state["final_status"] == "running"
 assert state["meta"]["amdgpu_families"] == "gfx1151"
