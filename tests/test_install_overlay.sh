@@ -42,6 +42,38 @@ assert state["final_status"] == "running"
 assert state["meta"]["amdgpu_families"] == "gfx1151"
 PY
 
+"${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
+  --run-id all_components_smoke \
+  --artifacts "${ARTIFACT_DIR}" \
+  --amdgpu-families gfx1151 \
+  --components all \
+  --test-types quick \
+  --output-root "${TMP_DIR}/all_runs"
+
+python3 - "${TMP_DIR}/all_runs/all_components_smoke/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+task_ids = [task["task_id"] for task in state["schedule"]["task_queue"]]
+assert "hiprand-quick" in task_ids
+assert all("all-" not in task_id for task_id in task_ids)
+assert len(task_ids) > 1
+PY
+
+if "${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
+  --run-id invalid_artifacts \
+  --artifacts "${TMP_DIR}/missing/build" \
+  --amdgpu-families gfx1151 \
+  --components hiprand \
+  --test-types quick \
+  --output-root "${TMP_DIR}/invalid_runs" 2>"${TMP_DIR}/invalid.log"; then
+  echo "runner accepted invalid artifacts unexpectedly" >&2
+  exit 1
+fi
+test -f "${TMP_DIR}/invalid_runs/_audit/agent_invocations.jsonl"
+grep -q '"event": "invocation_failed"' "${TMP_DIR}/invalid_runs/_audit/agent_invocations.jsonl"
+
 echo "THEROCK_SUDO_PASSWORD=secret" >> "${TARGET_DIR}/.env"
 if "${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
   --run-id should_reject_sudo_password \

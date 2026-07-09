@@ -56,10 +56,18 @@ RUN_DIR="$(find "${TMP_DIR}/runs" -mindepth 1 -maxdepth 1 -type d | sort | head 
 STATE_FILE="${RUN_DIR}/global_state.json"
 SUMMARY_FILE="${RUN_DIR}/summary_report.md"
 FAILURE_FILE="${RUN_DIR}/failures/fail_component-quick_failure_report.md"
+ACTIVITY_FILE="${RUN_DIR}/agent_activity.jsonl"
+TOOL_CALLS_FILE="${RUN_DIR}/tool_calls.jsonl"
+ENVIRONMENT_FILE="${RUN_DIR}/environment_summary.json"
+GLOBAL_AUDIT_FILE="${TMP_DIR}/runs/_audit/agent_invocations.jsonl"
 
 test -f "${STATE_FILE}"
 test -f "${SUMMARY_FILE}"
 test -f "${FAILURE_FILE}"
+test -f "${ACTIVITY_FILE}"
+test -f "${TOOL_CALLS_FILE}"
+test -f "${ENVIRONMENT_FILE}"
+test -f "${GLOBAL_AUDIT_FILE}"
 
 python3 - "${STATE_FILE}" <<'PY'
 import json
@@ -81,8 +89,15 @@ grep -q "fail_component-quick" "${SUMMARY_FILE}"
 grep -q "risk_component-quick" "${SUMMARY_FILE}"
 grep -q "docs_this_project/汇总测试报告.md" "${SUMMARY_FILE}"
 grep -q "模板字段覆盖" "${SUMMARY_FILE}"
+grep -q "Runner 活动日志" "${SUMMARY_FILE}"
 grep -q "docs_this_project/问题模板.md" "${FAILURE_FILE}"
 grep -q "组件与测试信息" "${FAILURE_FILE}"
+grep -q '"event": "task_start"' "${ACTIVITY_FILE}"
+grep -q '"event": "task_end"' "${ACTIVITY_FILE}"
+grep -q '"event": "report_generated"' "${ACTIVITY_FILE}"
+grep -q '"tool": "shell"' "${TOOL_CALLS_FILE}"
+grep -q '"event": "invocation_start"' "${GLOBAL_AUDIT_FILE}"
+grep -q '"event": "invocation_end"' "${GLOBAL_AUDIT_FILE}"
 
 echo "[test] init and resume"
 "${AGENT}" init \

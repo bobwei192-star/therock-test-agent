@@ -50,9 +50,6 @@ def load_project_env() -> None:
             os.environ[key] = value
 
 
-load_project_env()
-
-
 def now_iso() -> str:
     return dt.datetime.now(dt.timezone.utc).astimezone().isoformat(timespec="seconds")
 
@@ -74,6 +71,84 @@ def append_jsonl(path: Path, record: dict[str, Any]) -> None:
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
+def safe_argv(argv: list[str]) -> list[str]:
+    safe: list[str] = []
+    mask_next = False
+    for item in argv:
+        if mask_next:
+            safe.append("***")
+            mask_next = False
+            continue
+        if "password" in item.lower():
+            safe.append("***")
+            if item.startswith("--"):
+                mask_next = True
+            continue
+        safe.append(item)
+    return safe
+
+
+def env_summary() -> dict[str, str]:
+    keys = [
+        "THEROCK_SUDO_POLICY",
+        "THEROCK_AMDGPU_FAMILIES",
+        "THEROCK_AMDGPU_TARGETS",
+        "THEROCK_REPO",
+        "ROCM_PATH",
+        "AMDGPU_FAMILIES",
+        "TEST_TYPE",
+    ]
+    return {key: os.environ.get(key, "") for key in keys if os.environ.get(key)}
+
+
+def global_audit_path() -> Path:
+    argv = sys.argv[2:]
+    if "--output-root" in argv:
+        index = argv.index("--output-root")
+        if index + 1 < len(argv):
+            return Path(argv[index + 1]).expanduser().resolve() / "_audit" / "agent_invocations.jsonl"
+    return PROJECT_ROOT / "runs" / "_audit" / "agent_invocations.jsonl"
+
+
+def write_global_audit(
+    event: str,
+    status: str,
+    *,
+    command: str | None = None,
+    run_id: str | None = None,
+    output_dir: str | None = None,
+    error: str | None = None,
+) -> None:
+    append_jsonl(
+        global_audit_path(),
+        {
+            "time": now_iso(),
+            "event": event,
+            "status": status,
+            "cwd": str(Path.cwd()),
+            "project_root": str(PROJECT_ROOT),
+            "command": command,
+            "argv": safe_argv(sys.argv[2:]),
+            "run_id": run_id,
+            "output_dir": output_dir,
+            "error": error,
+            "env_summary": env_summary(),
+        },
+    )
+
+
+def append_activity(state: dict[str, Any], event: str, details: dict[str, Any] | None = None) -> None:
+    append_jsonl(
+        Path(state["meta"]["output_dir"]) / "agent_activity.jsonl",
+        {
+            "time": now_iso(),
+            "event": event,
+            "run_id": state["run_id"],
+            "details": details or {},
+        },
+    )
+
+
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -85,7 +160,10 @@ def read_optional_text(path: Path) -> str:
 def normalize_list(value: str | None) -> list[str]:
     if not value:
         return []
-    return [item.strip() for item in value.split(",") if item.strip()]
+    items = [item.strip() for item in value.split(",") if item.strip()]
+    if any(item.lower() in {"all", "*"} for item in items):
+        return []
+    return items
 
 
 def check_sudo_policy(policy: str) -> None:
@@ -272,6 +350,26 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
         "last_checkpoint_time": now_iso(),
     }
     save_state(state)
+    atomic_write_json(
+        output_dir / "environment_summary.json",
+        {
+            "time": now_iso(),
+            "project_root": str(PROJECT_ROOT),
+            "cwd": str(Path.cwd()),
+            "env_summary": env_summary(),
+            "meta": state["meta"],
+        },
+    )
+    append_activity(
+        state,
+        "state_created",
+        {
+            "task_count": len(tasks),
+            "skipped_count": len(skipped),
+            "next_tasks": state["schedule"]["next_tasks"],
+            "skipped_tasks": [task["task_id"] for task in skipped],
+        },
+    )
     return state
 
 
@@ -338,6 +436,18 @@ def run_task(state: dict[str, Any], task: dict[str, Any], round_no: int) -> dict
 
     state["schedule"]["current_task"] = task["task_id"]
     save_state(state)
+    append_activity(
+        state,
+        "task_start",
+        {
+            "task_id": task["task_id"],
+            "round": round_no,
+            "component": task["component"],
+            "test_type": task["test_type"],
+            "stdout_log": str(stdout_path),
+            "stderr_log": str(stderr_path),
+        },
+    )
 
     try:
         command = render_command(state, task, round_no)
@@ -404,6 +514,20 @@ def run_task(state: dict[str, Any], task: dict[str, Any], round_no: int) -> dict
             "return_code": return_code,
             "duration_seconds": duration,
             "status": status,
+        },
+    )
+    append_activity(
+        state,
+        "task_end",
+        {
+            "task_id": task["task_id"],
+            "round": round_no,
+            "command": command_record,
+            "return_code": return_code,
+            "duration_seconds": duration,
+            "status": status,
+            "stdout_log": str(stdout_path),
+            "stderr_log": str(stderr_path),
         },
     )
     return result
@@ -580,13 +704,24 @@ def generate_reports(state: dict[str, Any]) -> None:
             "## 报告产物",
             "",
             f"- 状态文件：`{output_dir / 'global_state.json'}`",
+            f"- Runner 活动日志：`{output_dir / 'agent_activity.jsonl'}`",
+            f"- 环境摘要：`{output_dir / 'environment_summary.json'}`",
             f"- 日志目录：`{output_dir / 'logs'}`",
             f"- 失败报告目录：`{output_dir / 'failures'}`",
             f"- 审计日志：`{output_dir / 'tool_calls.jsonl'}`",
+            f"- 全局调用审计：`{PROJECT_ROOT / 'runs' / '_audit' / 'agent_invocations.jsonl'}`",
         ]
     )
 
     (output_dir / "summary_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    append_activity(
+        state,
+        "report_generated",
+        {
+            "summary_report": str(output_dir / "summary_report.md"),
+            "failure_count": len(final_failures),
+        },
+    )
 
 
 def write_failure_report(state: dict[str, Any], result: dict[str, Any]) -> None:
@@ -812,9 +947,30 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
-    parser = build_parser()
-    args = parser.parse_args(sys.argv[2:])
-    args.func(args)
+    write_global_audit("invocation_start", "running", command=" ".join(safe_argv(sys.argv[2:])))
+    try:
+        load_project_env()
+        parser = build_parser()
+        args = parser.parse_args(sys.argv[2:])
+        args.func(args)
+        write_global_audit("invocation_end", "success", command=" ".join(safe_argv(sys.argv[2:])))
+    except SystemExit as exc:
+        status = "success" if exc.code in (0, None) else "failed"
+        write_global_audit(
+            "invocation_failed" if status == "failed" else "invocation_end",
+            status,
+            command=" ".join(safe_argv(sys.argv[2:])),
+            error=str(exc.code) if exc.code not in (0, None) else None,
+        )
+        raise
+    except Exception as exc:
+        write_global_audit(
+            "invocation_failed",
+            "failed",
+            command=" ".join(safe_argv(sys.argv[2:])),
+            error=f"{type(exc).__name__}: {exc}",
+        )
+        raise
 
 
 if __name__ == "__main__":

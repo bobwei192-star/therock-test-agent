@@ -10,7 +10,7 @@ subtask: true
 
 - `$1`: ARTIFACTS_PATH，必填绝对路径，例如 `/home/zs/TheRock/output-linux-portable/build` 或 `/output/build`
 - `$2`: THEROCK_AMDGPU_FAMILIES / AMDGPU_FAMILIES，必填，例如 `gfx1151`
-- `$3`: 组件列表，可选，逗号分隔，例如 `hiprand,sanity`
+- `$3`: 组件列表，可选，逗号分隔，例如 `hiprand,sanity`；传 `all` 表示全部组件
 - `$4`: 测试类型，可选，逗号分隔，默认 `quick,standard,comprehensive,full`
 - `$5`: GPU risk 策略，可选，默认 `skip`
 
@@ -26,7 +26,7 @@ subtask: true
 
 如果用户提供了可选参数，再追加：
 
-- `$3` 非空时追加 `--components "$3"`
+- `$3` 非空时追加 `--components "$3"`；如果是 `all`，runner 会按 `component_sort_order.json` 执行全部组件
 - `$4` 非空时追加 `--test-types "$4"`
 - `$5` 非空时追加 `--gpu-risk "$5"`，否则保持 runner 默认 `skip`
 
