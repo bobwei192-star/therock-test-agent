@@ -70,7 +70,7 @@ print_usage() {
     echo "  /therock-run /output-linux-portable/build gfx1151"
     echo ""
     echo "也可以直接手动验证 runner："
-    echo "  .opencode/tools/therock_agent.sh init --artifacts /output-linux-portable/build --gpu gfx1151 --components hiprand --test-types quick"
+    echo "  .opencode/tools/therock_agent.sh init --artifacts /output-linux-portable/build --amdgpu-families gfx1151 --components hiprand --test-types quick"
     echo ""
 }
 

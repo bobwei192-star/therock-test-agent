@@ -22,7 +22,8 @@ from typing import Any
 
 PROJECT_ROOT = Path(sys.argv[1]).resolve()
 DEFAULT_COMPONENT_CONFIG = PROJECT_ROOT / "docs_this_project" / "component_sort_order.json"
-DEFAULT_FAILURE_TEMPLATE = PROJECT_ROOT.parent / "1问题描述格式.md"
+DEFAULT_FAILURE_TEMPLATE = PROJECT_ROOT / "docs_this_project" / "问题模板.md"
+DEFAULT_SUMMARY_TEMPLATE = PROJECT_ROOT / "docs_this_project" / "汇总测试报告.md"
 SENSITIVE_ENV_NAMES = {"SUDO_PASSWORD", "THEROCK_SUDO_PASSWORD"}
 
 
@@ -75,6 +76,10 @@ def append_jsonl(path: Path, record: dict[str, Any]) -> None:
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_optional_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8") if path.is_file() else ""
 
 
 def normalize_list(value: str | None) -> list[str]:
@@ -195,6 +200,9 @@ def build_task_plan(
 
 def create_state(args: argparse.Namespace) -> dict[str, Any]:
     build_root, rocm_dist = resolve_artifacts_path(args.artifacts)
+    amdgpu_families = args.amdgpu_families or args.amdgpu_targets or args.gpu
+    if not amdgpu_families:
+        raise SystemExit("缺少 AMD GPU 架构参数，请传入 --amdgpu-families gfx1151 或 --gpu gfx1151。")
     component_config = Path(args.component_config).expanduser().resolve()
     components = normalize_list(args.components)
     test_types = normalize_list(args.test_types) or ["quick", "standard", "comprehensive", "full"]
@@ -218,7 +226,9 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "artifacts_path": str(Path(args.artifacts).expanduser().resolve()),
             "build_root": str(build_root),
             "rocm_dist": str(rocm_dist),
-            "gpu_model": args.gpu,
+            "gpu_model": amdgpu_families,
+            "amdgpu_families": amdgpu_families,
+            "amdgpu_targets": args.amdgpu_targets or amdgpu_families,
             "output_dir": str(output_dir),
             "component_config": str(component_config),
             "components_filter": components,
@@ -320,7 +330,9 @@ def run_task(state: dict[str, Any], task: dict[str, Any], round_no: int) -> dict
     start = time.time()
     env = os.environ.copy()
     rocm_dist = state["meta"]["rocm_dist"]
-    env["AMDGPU_FAMILIES"] = state["meta"]["gpu_model"]
+    env["AMDGPU_FAMILIES"] = state["meta"]["amdgpu_families"]
+    env["THEROCK_AMDGPU_FAMILIES"] = state["meta"]["amdgpu_families"]
+    env["THEROCK_AMDGPU_TARGETS"] = state["meta"].get("amdgpu_targets", state["meta"]["amdgpu_families"])
     env["ROCM_PATH"] = rocm_dist
     env["LD_LIBRARY_PATH"] = f"{rocm_dist}/lib:{env.get('LD_LIBRARY_PATH', '')}"
 
@@ -495,6 +507,12 @@ def generate_reports(state: dict[str, Any]) -> None:
     output_dir = Path(state["meta"]["output_dir"])
     counts = summarize_counts(state)
     history = state["loop"]["failed_task_history"]
+    total_tasks = len(state["schedule"]["task_queue"]) + len(state["schedule"]["skipped_tasks"])
+    final_failures = [
+        result
+        for result in state["results"]["task_results"].values()
+        if result.get("status") in {"fail", "blocked", "timeout", "interrupted"}
+    ]
     skipped_risk = [
         result["task_id"]
         for result in state["results"]["task_results"].values()
@@ -504,16 +522,31 @@ def generate_reports(state: dict[str, Any]) -> None:
     lines = [
         f"# TheRock Test Summary - {state['run_id']}",
         "",
+        f"> 本报告按 `docs_this_project/汇总测试报告.md` 的汇总报告要求自动生成。",
+        f"> 模板路径：`{DEFAULT_SUMMARY_TEMPLATE}`",
+        "",
         "## 基本信息",
         "",
         f"- 状态：`{state['final_status']}`",
-        f"- GPU：`{state['meta']['gpu_model']}`",
+        f"- AMDGPU_FAMILIES：`{state['meta'].get('amdgpu_families', state['meta'].get('gpu_model', ''))}`",
+        f"- THEROCK_AMDGPU_TARGETS：`{state['meta'].get('amdgpu_targets', '')}`",
         f"- artifacts：`{state['meta']['artifacts_path']}`",
         f"- build_root：`{state['meta']['build_root']}`",
         f"- rocm_dist：`{state['meta']['rocm_dist']}`",
         f"- sudo_policy：`{state['meta'].get('sudo_policy', 'none')}`",
         f"- 开始时间：`{state['start_time']}`",
         f"- 结束时间：`{state.get('end_time')}`",
+        "",
+        "## 模板字段覆盖",
+        "",
+        f"- 总任务数：`{total_tasks}`",
+        f"- 通过数：`{counts.get('pass', 0)}`",
+        f"- 失败数：`{counts.get('fail', 0)}`",
+        f"- 跳过数：`{counts.get('skip', 0)}`",
+        f"- blocked 数：`{counts.get('blocked', 0)}`",
+        f"- flaky 数：`{counts.get('flaky', 0)}`",
+        f"- loop 轮次：`{len(history)}`",
+        f"- 最终顽固失败任务数：`{len(final_failures)}`",
         "",
         "## 结果统计",
         "",
@@ -535,33 +568,153 @@ def generate_reports(state: dict[str, Any]) -> None:
         lines.append("- 无")
 
     lines.extend(["", "## 最终失败 / 阻塞任务", ""])
-    for result in state["results"]["task_results"].values():
-        if result.get("status") in {"fail", "blocked", "timeout", "interrupted"}:
+    if final_failures:
+        for result in final_failures:
             lines.append(f"- `{result['task_id']}`: {result.get('failure_summary', '')}")
+    else:
+        lines.append("- 无")
+
+    lines.extend(
+        [
+            "",
+            "## 报告产物",
+            "",
+            f"- 状态文件：`{output_dir / 'global_state.json'}`",
+            f"- 日志目录：`{output_dir / 'logs'}`",
+            f"- 失败报告目录：`{output_dir / 'failures'}`",
+            f"- 审计日志：`{output_dir / 'tool_calls.jsonl'}`",
+        ]
+    )
 
     (output_dir / "summary_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def write_failure_report(state: dict[str, Any], result: dict[str, Any]) -> None:
     output_dir = Path(state["meta"]["output_dir"])
-    template = DEFAULT_FAILURE_TEMPLATE.read_text(encoding="utf-8") if DEFAULT_FAILURE_TEMPLATE.is_file() else ""
+    template = read_optional_text(DEFAULT_FAILURE_TEMPLATE)
+    meta = state["meta"]
     content = [
         f"# {result['task_id']} 失败报告",
         "",
-        "## 自动填充摘要",
+        f"> 本报告按 `docs_this_project/问题模板.md` 的单组件问题模板自动生成。",
+        f"> 模板路径：`{DEFAULT_FAILURE_TEMPLATE}`",
         "",
-        f"- 组件：`{result['component']}`",
-        f"- 测试类型：`{result['test_type']}`",
-        f"- 状态：`{result['status']}`",
-        f"- 返回码：`{result['return_code']}`",
-        f"- 耗时：`{result['duration_seconds']}s`",
-        f"- stdout：`{result['stdout_log']}`",
-        f"- stderr：`{result['stderr_log']}`",
+        "## 问题标题",
+        "",
+        f"{result['component']} {result['test_type']} {result.get('failure_summary', '测试失败')}",
+        "",
+        "## 问题时间",
+        "",
+        result.get("finished_at", now_iso()),
+        "",
+        "## 组件与测试信息",
+        "",
+        "| 字段 | 内容 |",
+        "|------|------|",
+        f"| 组件 | `{result['component']}` |",
+        f"| 测试类型 | `{result['test_type']}` |",
+        "| 测试框架 | TheRock test script / CTest / pytest / GoogleTest |",
+        f"| 测试脚本 | `{result.get('command', '')}` |",
+        f"| 测试命令 | `{result.get('command', '')}` |",
+        "| 单用例复现命令 | 暂未缩小到单用例 |",
+        f"| 测试配置文件 | `{meta.get('component_config', '')}` |",
+        "| 超时配置 | 使用 TheRock 测试脚本默认值 |",
+        "| 并发配置 | 使用 TheRock 测试脚本默认值 |",
+        f"| 返回码 / 信号 | `{result.get('return_code')}` |",
+        f"| 执行耗时 | `{result.get('duration_seconds')}s` |",
+        f"| 日志路径 | stdout: `{result.get('stdout_log')}`<br>stderr: `{result.get('stderr_log')}` |",
+        "",
+        "## 问题具体描述",
+        "",
+        result.get("failure_summary") or "任务返回非 0 或被标记为 blocked，需要结合日志继续分析。",
+        "",
+        "## 原始失败结果",
+        "",
+        "| 项目 | 内容 |",
+        "|------|------|",
+        f"| 原始测试结果 | `{result.get('status')}`, rc=`{result.get('return_code')}` |",
+        "| 失败用例数量 | 暂未解析 |",
+        "| 失败用例名称 | 暂未解析 |",
+        "| 原始判断 | 自动分类待补充 |",
+        f"| 来源位置 | `{result.get('stderr_log')}` |",
+        "| 是否历史失败 | 不确定 |",
+        "| 是否本次新增失败 | 不确定 |",
+        "| 是否影响 CI 阻塞 | 是 |",
+        "",
+        "## 测试环境",
+        "",
+        "| 项目 | 值 |",
+        "|------|----|",
+        "| 测试执行人 | OpenCode / 手动触发 |",
+        "| 问题发生主机 | 自动采集待补充 |",
+        "| OS / Kernel | 自动采集待补充 |",
+        f"| GPU / 架构 | `{meta.get('amdgpu_families', meta.get('gpu_model', ''))}` |",
+        f"| ROCm 版本 | `{meta.get('rocm_dist', '')}` |",
+        "| Python 版本 | 自动采集待补充 |",
+        f"| `AMDGPU_FAMILIES` | `{meta.get('amdgpu_families', '')}` |",
+        f"| 关键环境变量 | `ROCM_PATH={meta.get('rocm_dist', '')}` |",
+        f"| 权限 | sudo_policy=`{meta.get('sudo_policy', 'none')}` |",
+        "| 是否单 GPU | 不确定 |",
+        "| 是否发生 GPU reset / ring timeout | 需检查 stderr / dmesg |",
+        "",
+        "## 代码与构建版本",
+        "",
+        "| 项目 | 值 |",
+        "|------|----|",
+        f"| TheRock 仓库路径 | `{meta.get('therock_repo_path', '')}` |",
+        "| TheRock branch | 自动采集待补充 |",
+        "| TheRock commit | 自动采集待补充 |",
+        "| TheRock 工作区状态 | 自动采集待补充 |",
+        f"| 构建目录 | `{meta.get('build_root', '')}` |",
+        f"| 安装 / 分发目录 | `{meta.get('rocm_dist', '')}` |",
+        f"| 构建目标架构 | `{meta.get('amdgpu_families', '')}` |",
+        "",
+        "## 复现 / 复测步骤",
+        "",
+        "1. 进入 TheRock 仓库目录。",
+        f"2. 确认 artifacts 路径：`{meta.get('artifacts_path', '')}`。",
+        f"3. 执行命令：`{result.get('command', '')}`。",
+        f"4. 查看 stdout：`{result.get('stdout_log')}`。",
+        f"5. 查看 stderr：`{result.get('stderr_log')}`。",
+        "",
+        "## 复测结果",
+        "",
+        "| 项目 | 结果 |",
+        "|------|------|",
+        "| 是否复现原问题 | 是 |",
+        f"| 复测返回码 / 信号 | `{result.get('return_code')}` |",
+        "| 复测用例结果 | 暂未解析 |",
+        "| 与原结果对比 | 当前为自动复测结果 |",
+        f"| 复测结论 | `{result.get('status')}` |",
+        "| 复测次数 | 见 `global_state.json` loop 记录 |",
+        "| 结果稳定性 | 需结合多轮 loop 判断 |",
+        "",
+        "## 问题关键 log",
+        "",
+        f"- stdout log：`{result.get('stdout_log')}`",
+        f"- stderr log：`{result.get('stderr_log')}`",
         f"- 失败摘要：{result.get('failure_summary', '')}",
         "",
-        "## 原始问题模板",
+        "## 问题原因解释",
         "",
-        template or "未找到 1问题描述格式.md 模板。",
+        "自动初步结论：待人工结合日志、GPU 状态和已知 gfx1151 / ROCm issue 继续分类。",
+        "",
+        "## CI 处理建议",
+        "",
+        "- 保留该任务的 stdout / stderr 日志。",
+        "- 如果是环境或 artifacts 缺失，先标记 blocked，不归为组件失败。",
+        "- 如果多轮稳定失败，纳入顽固失败集合并生成上游 issue / CI skip 建议。",
+        "",
+        "## 附件与证据",
+        "",
+        f"- `global_state.json`: `{output_dir / 'global_state.json'}`",
+        f"- `summary_report.md`: `{output_dir / 'summary_report.md'}`",
+        f"- stdout: `{result.get('stdout_log')}`",
+        f"- stderr: `{result.get('stderr_log')}`",
+        "",
+        "## 原始模板参考",
+        "",
+        template or "未找到 docs_this_project/问题模板.md。",
     ]
     (output_dir / "failures" / f"{result['task_id']}_failure_report.md").write_text(
         "\n".join(content) + "\n",
@@ -618,7 +771,9 @@ def build_parser() -> argparse.ArgumentParser:
     def add_common_run_options(target: argparse.ArgumentParser) -> None:
         target.add_argument("--therock-repo", default=os.environ.get("THEROCK_REPO", ""))
         target.add_argument("--artifacts", required=True)
-        target.add_argument("--gpu", required=True)
+        target.add_argument("--gpu", default="", help="Backward-compatible alias for --amdgpu-families")
+        target.add_argument("--amdgpu-families", default=os.environ.get("THEROCK_AMDGPU_FAMILIES", ""))
+        target.add_argument("--amdgpu-targets", default=os.environ.get("THEROCK_AMDGPU_TARGETS", ""))
         target.add_argument("--components", default="")
         target.add_argument("--test-types", default="quick,standard,comprehensive,full")
         target.add_argument("--gpu-risk", choices=["skip", "include", "quarantine"], default="skip")

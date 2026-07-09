@@ -79,6 +79,10 @@ PY
 
 grep -q "fail_component-quick" "${SUMMARY_FILE}"
 grep -q "risk_component-quick" "${SUMMARY_FILE}"
+grep -q "docs_this_project/汇总测试报告.md" "${SUMMARY_FILE}"
+grep -q "模板字段覆盖" "${SUMMARY_FILE}"
+grep -q "docs_this_project/问题模板.md" "${FAILURE_FILE}"
+grep -q "组件与测试信息" "${FAILURE_FILE}"
 
 echo "[test] init and resume"
 "${AGENT}" init \

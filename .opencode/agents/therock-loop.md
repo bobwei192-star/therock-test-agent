@@ -46,7 +46,7 @@ OpenCode 负责：
 .opencode/tools/therock_agent.sh run \
   --therock-repo "<TheRock repo path>" \
   --artifacts "<output-linux-portable/build or output/build>" \
-  --gpu "<gfx model>" \
+  --amdgpu-families "<gfx model>" \
   --components "<optional comma separated components>" \
   --test-types "<optional comma separated test types>" \
   --gpu-risk "skip"

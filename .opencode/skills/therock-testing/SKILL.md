@@ -108,7 +108,9 @@ Set runtime environment consistently:
 
 - `ROCM_PATH=<rocm_dist>`
 - `LD_LIBRARY_PATH=<rocm_dist>/lib:$LD_LIBRARY_PATH`
-- `AMDGPU_FAMILIES=<gpu_model>`
+- `AMDGPU_FAMILIES=<gfx family, e.g. gfx1151>`
+- `THEROCK_AMDGPU_FAMILIES=<same gfx family>`
+- `THEROCK_AMDGPU_TARGETS=<same gfx value unless a narrower target list is explicitly provided>`
 
 ## CTest Selection Model
 

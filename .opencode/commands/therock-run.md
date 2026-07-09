@@ -1,19 +1,34 @@
 ---
 description: Run TheRock loop tests with the rough shell runner
+agent: therock-loop
+subtask: true
 ---
 
-请调用项目内工具启动 TheRock 循环测试：
+启动 TheRock 循环测试。
+
+参数：
+
+- `$1`: ARTIFACTS_PATH，必填绝对路径，例如 `/home/zs/TheRock/output-linux-portable/build` 或 `/output/build`
+- `$2`: THEROCK_AMDGPU_FAMILIES / AMDGPU_FAMILIES，必填，例如 `gfx1151`
+- `$3`: 组件列表，可选，逗号分隔，例如 `hiprand,sanity`
+- `$4`: 测试类型，可选，逗号分隔，默认 `quick,standard,comprehensive,full`
+- `$5`: GPU risk 策略，可选，默认 `skip`
+
+请调用项目内工具启动测试：
 
 ```bash
 .opencode/tools/therock_agent.sh run \
-  --therock-repo "<TheRock repo path>" \
-  --artifacts "<output-linux-portable/build or output/build>" \
-  --gpu "<gfx model, e.g. gfx1151>" \
-  --components "<optional comma separated components>" \
-  --test-types "<optional comma separated test types>" \
-  --gpu-risk "skip" \
+  --therock-repo "$(pwd)" \
+  --artifacts "$1" \
+  --amdgpu-families "$2" \
   --sudo-policy "${THEROCK_SUDO_POLICY:-none}"
 ```
+
+如果用户提供了可选参数，再追加：
+
+- `$3` 非空时追加 `--components "$3"`
+- `$4` 非空时追加 `--test-types "$4"`
+- `$5` 非空时追加 `--gpu-risk "$5"`，否则保持 runner 默认 `skip`
 
 规则：
 
