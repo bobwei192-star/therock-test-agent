@@ -83,11 +83,27 @@ opencode
 - 第 4 个参数：测试类型，可选，例如 `quick`；不传则使用 `quick,standard,comprehensive,full`
 - 第 5 个参数：GPU risk 策略，可选，默认 `skip`
 
-高风险 GPU reset 任务默认跳过。需要执行时再显式传：
+高风险 GPU reset 任务默认跳过，也就是默认等价于：
 
 ```text
-/therock-run /path/to/build gfx1151 rocsparse full quarantine
+/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick skip
 ```
+
+如果确实要执行高风险任务，需要显式传第 5 个参数。
+
+直接混入执行：
+
+```text
+/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick include
+```
+
+更推荐隔离执行：
+
+```text
+/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick quarantine
+```
+
+`quarantine` 的含义是：普通任务先跑，高风险任务排到最后单独跑。
 
 ## 4. 直接调用 runner 验证
 
