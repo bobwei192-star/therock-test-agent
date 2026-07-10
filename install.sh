@@ -61,6 +61,11 @@ verify_overlay_install() {
     local target="$1"
 
     local required_paths=(
+        ".opencode/commands/therock-run.md"
+        ".opencode/commands/therock-status.md"
+        ".opencode/commands/therock-stop.md"
+        ".opencode/commands/therock-resume.md"
+        ".opencode/commands/therock-report.md"
         ".opencode/tools/therock_agent.sh"
         ".opencode/tools/therock_agent/cli.py"
         ".opencode/tools/therock_agent/executor.py"
@@ -153,14 +158,17 @@ print_usage() {
     echo "  nano .env   # 可选：设置 THEROCK_SUDO_POLICY=none/cache/askpass，不要写 sudo 密码"
     echo "  sudo -v     # 可选：仅当 THEROCK_SUDO_POLICY=cache 且本机测试需要 sudo 时执行"
     echo "  ./scripts/therock-sudo-agent run -- opencode  # 推荐：askpass 自动启动并在退出时清理"
-    echo "  /therock-run /output-linux-portable/build gfx1151"
+    echo "  /therock-run artifacts=/output-linux-portable/build gpu=gfx1151 components=all test_types=all gpu_risk=skip"
+    echo "  /therock-status run_id=<run_id>"
+    echo "  /therock-report run_id=<run_id>"
     echo ""
     echo "已安装模块化 runner："
     echo "  .opencode/tools/therock_agent.sh"
     echo "  .opencode/tools/therock_agent/*.py"
     echo ""
     echo "也可以直接手动验证 runner："
-    echo "  .opencode/tools/therock_agent.sh init --artifacts /output-linux-portable/build --amdgpu-families gfx1151 --components hiprand --test-types quick"
+    echo "  .opencode/tools/therock_agent.sh start-kv artifacts=/output-linux-portable/build gpu=gfx1151 components=hiprand test_types=quick"
+    echo "  .opencode/tools/therock_agent.sh status"
     echo ""
 }
 

@@ -26,6 +26,7 @@ subtask: true
 恢复规则：
 
 - 不从聊天上下文推断失败集，必须读取 `global_state.json`。
-- 如果上次中断时 `current_task` 非空，runner 会把该 task 放回 `next_tasks`。
+- 如果 `status=stale` 或上次中断时存在未完成 task，runner 会结合 `progress.jsonl` 和 `global_state.json` 找到 start 但没有 end 的 task，并放回当前轮 pending 队列。
+- 已经 pass 且写入结果的 task 不应重复执行。
 - 如果涉及 `sudo_sensitive`，仍然遵守 `THEROCK_SUDO_POLICY=cache` + 手动 `sudo -v`，或通过 `./scripts/therock-sudo-agent run -- opencode` 启动的 `THEROCK_SUDO_POLICY=askpass` 会话。
 - GPU reset 后不要自动扩大测试范围。

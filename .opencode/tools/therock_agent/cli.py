@@ -2,8 +2,12 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
 import os
+import signal
+import subprocess
 import sys
+import time
 import uuid
 from pathlib import Path
 from typing import Any
@@ -11,6 +15,7 @@ from typing import Any
 from .artifacts import discover_therock_repo as _discover_therock_repo
 from .artifacts import resolve_artifacts_path
 from .audit import append_activity
+from .audit import append_jsonl
 from .audit import atomic_write_json
 from .audit import ensure_dir
 from .audit import env_summary
@@ -151,6 +156,8 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "current_loop": 0,
             "current_task": None,
             "next_tasks": [task["task_id"] for task in tasks],
+            "round_pending_tasks": [],
+            "round_failed_tasks": [],
             "completed_tasks": [],
             "failed_tasks": [],
             "blocked_tasks": [],
@@ -223,6 +230,141 @@ def write_failure_report(state: dict[str, Any], result: dict[str, Any]) -> None:
     _write_failure_report(state, result, DEFAULT_FAILURE_TEMPLATE)
 
 
+def progress_path(state: dict[str, Any]) -> Path:
+    return Path(state["meta"]["output_dir"]) / "progress.jsonl"
+
+
+def append_progress(state: dict[str, Any], event: str, details: dict[str, Any] | None = None) -> None:
+    append_jsonl(
+        progress_path(state),
+        {
+            "time": now_iso(),
+            "event": event,
+            "run_id": state["run_id"],
+            **(details or {}),
+        },
+    )
+
+
+def pid_metadata_path(state: dict[str, Any]) -> Path:
+    return Path(state["meta"]["output_dir"]) / "runner.pid.json"
+
+
+def output_root_from_state(state: dict[str, Any]) -> Path:
+    return Path(state["meta"]["output_dir"]).parent
+
+
+def read_pid_metadata(state: dict[str, Any]) -> dict[str, Any]:
+    path = pid_metadata_path(state)
+    if not path.is_file():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def process_alive(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def process_cmdline(pid: int) -> str:
+    path = Path("/proc") / str(pid) / "cmdline"
+    try:
+        return path.read_bytes().replace(b"\x00", b" ").decode("utf-8", errors="replace")
+    except OSError:
+        return ""
+
+
+def runner_alive(state: dict[str, Any]) -> bool:
+    metadata = read_pid_metadata(state)
+    pid = int(metadata.get("pid") or 0)
+    if pid <= 0 or not process_alive(pid):
+        return False
+    cmdline = process_cmdline(pid)
+    if cmdline and state["run_id"] not in cmdline:
+        return False
+    return True
+
+
+def task_status_counts(state: dict[str, Any]) -> dict[str, int]:
+    counts = {"pass": 0, "fail": 0, "skip": 0, "blocked": 0, "timeout": 0, "flaky": 0, "interrupted": 0}
+    for result in state["results"]["task_results"].values():
+        status = result.get("status", "blocked")
+        counts[status] = counts.get(status, 0) + 1
+    return counts
+
+
+def runnable_total(state: dict[str, Any]) -> int:
+    return len(state["schedule"].get("task_queue") or [])
+
+
+def completed_runnable_count(state: dict[str, Any]) -> int:
+    runnable = {task["task_id"] for task in state["schedule"].get("task_queue") or []}
+    return sum(
+        1
+        for task_id, result in state["results"]["task_results"].items()
+        if task_id in runnable and result.get("status") in {"pass", "fail", "blocked", "timeout", "flaky", "interrupted"}
+    )
+
+
+def latest_progress_events(state: dict[str, Any], limit: int = 5) -> list[dict[str, Any]]:
+    path = progress_path(state)
+    if not path.is_file():
+        return []
+    events: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            events.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return events[-limit:]
+
+
+def effective_status(state: dict[str, Any]) -> str:
+    status = str(state.get("final_status") or "running")
+    if status == "running" and not runner_alive(state):
+        return "stale"
+    return status
+
+
+def write_run_index(state: dict[str, Any], event: str) -> None:
+    append_jsonl(
+        output_root_from_state(state) / "_index.jsonl",
+        {
+            "time": now_iso(),
+            "event": event,
+            "run_id": state["run_id"],
+            "output_dir": state["meta"]["output_dir"],
+            "status": state.get("final_status"),
+        },
+    )
+
+
+def find_interrupted_task_from_progress(state: dict[str, Any]) -> str:
+    last_start = ""
+    path = progress_path(state)
+    if not path.is_file():
+        return str(state["schedule"].get("current_task") or "")
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if event.get("event") == "task_start":
+            last_start = str(event.get("task_id") or "")
+        elif event.get("event") == "task_end" and event.get("task_id") == last_start:
+            last_start = ""
+    return last_start or str(state["schedule"].get("current_task") or "")
+
+
 def run_loop(state: dict[str, Any]) -> dict[str, Any]:
     lookup = task_lookup(state)
     failed_set = list(state["schedule"].get("next_tasks") or [])
@@ -231,29 +373,120 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
         state["end_time"] = now_iso()
         save_state(state)
         generate_reports(state)
+        append_progress(state, "run_end", {"status": state["final_status"]})
         return state
 
     max_rounds = int(state["meta"].get("max_rounds", 10))
     stable_threshold = int(state["meta"].get("stable_threshold", 3))
+    append_progress(
+        state,
+        "run_start",
+        {
+            "runnable_total": runnable_total(state),
+            "skipped": len(state["schedule"].get("skipped_tasks") or []),
+            "max_rounds": max_rounds,
+            "stable_threshold": stable_threshold,
+        },
+    )
 
     while state["schedule"]["current_loop"] < max_rounds:
-        round_no = int(state["schedule"]["current_loop"]) + 1
-        state["schedule"]["current_loop"] = round_no
-        current_failed: list[str] = []
-        print(f"[therock-agent] Round {round_no}: executing {len(failed_set)} task(s)")
+        pending_tasks = list(state["schedule"].get("round_pending_tasks") or [])
+        if pending_tasks:
+            round_no = int(state["schedule"].get("current_loop") or 1)
+            current_failed = list(state["schedule"].get("round_failed_tasks") or [])
+        else:
+            round_no = int(state["schedule"]["current_loop"]) + 1
+            state["schedule"]["current_loop"] = round_no
+            pending_tasks = list(failed_set)
+            current_failed = []
+            state["schedule"]["round_pending_tasks"] = pending_tasks
+            state["schedule"]["round_failed_tasks"] = current_failed
+            append_progress(state, "round_start", {"round": round_no, "task_count": len(pending_tasks)})
+
+        print(f"[therock-agent] Round {round_no}: executing {len(pending_tasks)} task(s)", flush=True)
         save_state(state)
 
-        for index, task_id in enumerate(failed_set, start=1):
+        round_total = len(state["schedule"].get("round_pending_tasks") or [])
+        while state["schedule"].get("round_pending_tasks"):
+            task_id = state["schedule"]["round_pending_tasks"][0]
+            existing_result = state["results"]["task_results"].get(task_id, {})
+            if existing_result.get("status") == "pass":
+                state["schedule"]["round_pending_tasks"] = [
+                    item for item in state["schedule"].get("round_pending_tasks", []) if item != task_id
+                ]
+                completed = list(state["schedule"].get("completed_tasks") or [])
+                if task_id not in completed:
+                    completed.append(task_id)
+                state["schedule"]["completed_tasks"] = completed
+                append_progress(state, "task_checkpoint_skip", {"round": round_no, "task_id": task_id, "status": "pass"})
+                save_state(state)
+                continue
             task = lookup[task_id]
-            print(f"[therock-agent] ({index}/{len(failed_set)}) {task_id}")
+            round_index = round_total - len(state["schedule"].get("round_pending_tasks") or []) + 1
+            print(
+                f"[therock-agent] task_start round={round_no} index={round_index}/{round_total} task={task_id}",
+                flush=True,
+            )
+            append_progress(
+                state,
+                "task_start",
+                {
+                    "round": round_no,
+                    "task_id": task_id,
+                    "round_index": round_index,
+                    "round_total": round_total,
+                    "completed": completed_runnable_count(state),
+                    "total": runnable_total(state),
+                },
+            )
             result = run_task(state, task, round_no)
+            pending = [item for item in state["schedule"].get("round_pending_tasks", []) if item != task_id]
+            state["schedule"]["round_pending_tasks"] = pending
             if result["status"] != "pass":
                 current_failed.append(task_id)
+                state["schedule"]["round_failed_tasks"] = sorted(set(current_failed))
+                if result["status"] == "blocked":
+                    blocked = list(state["schedule"].get("blocked_tasks") or [])
+                    if task_id not in blocked:
+                        blocked.append(task_id)
+                    state["schedule"]["blocked_tasks"] = blocked
                 write_failure_report(state, result)
+            else:
+                completed = list(state["schedule"].get("completed_tasks") or [])
+                if task_id not in completed:
+                    completed.append(task_id)
+                state["schedule"]["completed_tasks"] = completed
+            counts = task_status_counts(state)
+            append_progress(
+                state,
+                "task_end",
+                {
+                    "round": round_no,
+                    "task_id": task_id,
+                    "status": result["status"],
+                    "return_code": result["return_code"],
+                    "duration_seconds": result["duration_seconds"],
+                    "pass": counts.get("pass", 0),
+                    "fail": counts.get("fail", 0),
+                    "skip": counts.get("skip", 0),
+                    "blocked": counts.get("blocked", 0),
+                },
+            )
+            print(
+                "[therock-agent] task_end "
+                f"task={task_id} status={result['status']} rc={result['return_code']} "
+                f"duration={result['duration_seconds']}s pass={counts.get('pass', 0)} "
+                f"fail={counts.get('fail', 0)} blocked={counts.get('blocked', 0)}",
+                flush=True,
+            )
+            save_state(state)
 
-        current_failed_sorted = sorted(current_failed)
+        current_failed_sorted = sorted(set(current_failed))
         history = state["loop"]["failed_task_history"]
         history.append({"round": round_no, "failed_tasks": current_failed_sorted})
+        state["schedule"]["round_pending_tasks"] = []
+        state["schedule"]["round_failed_tasks"] = []
+        append_progress(state, "round_end", {"round": round_no, "failed_tasks": current_failed_sorted})
 
         if not current_failed_sorted:
             state["final_status"] = "passed"
@@ -282,6 +515,8 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
     state["end_time"] = now_iso()
     save_state(state)
     generate_reports(state)
+    append_progress(state, "run_end", {"status": state["final_status"]})
+    write_run_index(state, "run_end")
     return state
 
 
@@ -293,24 +528,104 @@ def cmd_init(args: argparse.Namespace) -> None:
 def cmd_run(args: argparse.Namespace) -> None:
     state = create_state(args)
     run_loop(state)
-    print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}")
-    print(f"[therock-agent] output={state['meta']['output_dir']}")
+    print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}", flush=True)
+    print(f"[therock-agent] output={state['meta']['output_dir']}", flush=True)
+
+
+def start_background_runner(state: dict[str, Any]) -> None:
+    output_dir = Path(state["meta"]["output_dir"])
+    stdout_path = output_dir / "runner.stdout.log"
+    stderr_path = output_dir / "runner.stderr.log"
+    script_path = PROJECT_ROOT / ".opencode" / "tools" / "therock_agent.sh"
+    command = [str(script_path), "_run-existing", state["run_id"], "--output-root", str(output_root_from_state(state))]
+    env = os.environ.copy()
+    env["PYTHONUNBUFFERED"] = "1"
+    with stdout_path.open("a", encoding="utf-8") as stdout_handle, stderr_path.open("a", encoding="utf-8") as stderr_handle:
+        proc = subprocess.Popen(
+            command,
+            cwd=PROJECT_ROOT,
+            env=env,
+            stdout=stdout_handle,
+            stderr=stderr_handle,
+            start_new_session=True,
+            text=True,
+        )
+    metadata = {
+        "backend": "pid",
+        "pid": proc.pid,
+        "pgid": os.getpgid(proc.pid),
+        "run_id": state["run_id"],
+        "started_at": now_iso(),
+        "command": command,
+        "stdout": str(stdout_path),
+        "stderr": str(stderr_path),
+    }
+    atomic_write_json(pid_metadata_path(state), metadata)
+    state.setdefault("runtime", {})
+    state["runtime"].update({"runner_backend": "pid", "runner_pid": proc.pid, "runner_alive": True})
+    save_state(state)
+    append_progress(state, "background_started", {"backend": "pid", "pid": proc.pid})
+    write_run_index(state, "run_start")
+
+
+def cmd_start(args: argparse.Namespace) -> None:
+    state = create_state(args)
+    start_background_runner(state)
+    runnable = runnable_total(state)
+    skipped = len(state["schedule"].get("skipped_tasks") or [])
+    print("[therock-agent] started", flush=True)
+    print(f"run_id={state['run_id']}", flush=True)
+    print(f"output={state['meta']['output_dir']}", flush=True)
+    print("backend=pid", flush=True)
+    print(f"runnable={runnable}", flush=True)
+    print(f"skipped={skipped}", flush=True)
+    print(f"gpu_risk={state['meta']['gpu_reset_risk_policy']}", flush=True)
+    print(f"sudo_policy={state['meta']['sudo_policy']}", flush=True)
+    print(f"status=.opencode/tools/therock_agent.sh status {state['run_id']}", flush=True)
+    print(f"report=.opencode/tools/therock_agent.sh report {state['run_id']}", flush=True)
+
+
+def mark_interrupted(state: dict[str, Any], reason: str) -> None:
+    state["final_status"] = "interrupted"
+    state["end_time"] = now_iso()
+    state.setdefault("runtime", {})
+    state["runtime"]["interrupt_reason"] = reason
+    save_state(state)
+    append_progress(state, "run_interrupted", {"reason": reason})
+    write_run_index(state, "run_interrupted")
+
+
+def cmd_run_existing(args: argparse.Namespace) -> None:
+    state = load_state(args.output_root, args.run_id)
+
+    def handle_signal(signum: int, _frame: Any) -> None:
+        mark_interrupted(state, f"signal:{signum}")
+        raise SystemExit(128 + signum)
+
+    signal.signal(signal.SIGTERM, handle_signal)
+    signal.signal(signal.SIGINT, handle_signal)
+    run_loop(state)
+    print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}", flush=True)
 
 
 def cmd_resume(args: argparse.Namespace) -> None:
     state = load_state(args.output_root, args.run_id)
     sudo_policy = args.sudo_policy or state.get("meta", {}).get("sudo_policy", "none")
-    if state.get("final_status") not in {"running", "interrupted", "stopped"}:
-        print(f"[therock-agent] run 已结束，无需 resume: {state.get('final_status')}")
+    if state.get("final_status") == "running" and runner_alive(state):
+        print(f"[therock-agent] run 仍在执行中，无需 resume: {state['run_id']}", flush=True)
         return
-    if state["schedule"].get("current_task"):
-        interrupted = state["schedule"]["current_task"]
+    if state.get("final_status") not in {"running", "interrupted", "stopped"}:
+        print(f"[therock-agent] run 已结束，无需 resume: {state.get('final_status')}", flush=True)
+        return
+    interrupted = find_interrupted_task_from_progress(state)
+    if interrupted:
         state["schedule"]["interrupted_task"] = interrupted
-        existing = state["schedule"].get("next_tasks") or []
-        state["schedule"]["next_tasks"] = [interrupted] + [task for task in existing if task != interrupted]
+        existing = state["schedule"].get("round_pending_tasks") or state["schedule"].get("next_tasks") or []
+        state["schedule"]["round_pending_tasks"] = [interrupted] + [task for task in existing if task != interrupted]
         state["schedule"]["current_task"] = None
     state["resume_count"] = int(state.get("resume_count", 0)) + 1
     state["final_status"] = "running"
+    state["end_time"] = None
     if args.mock_command:
         state["meta"]["mock_command"] = args.mock_command
     state["meta"]["sudo_policy"] = sudo_policy
@@ -319,14 +634,181 @@ def cmd_resume(args: argparse.Namespace) -> None:
     if args.sudo_agent_socket:
         state["meta"]["sudo_agent_socket"] = args.sudo_agent_socket
     save_state(state)
+    append_progress(state, "resume_start", {"interrupted_task": interrupted})
     run_loop(state)
-    print(f"[therock-agent] resumed run_id={state['run_id']} status={state['final_status']}")
+    print(f"[therock-agent] resumed run_id={state['run_id']} status={state['final_status']}", flush=True)
 
 
 def cmd_report(args: argparse.Namespace) -> None:
     state = load_state(args.output_root, args.run_id)
     generate_reports(state)
     print(Path(state["meta"]["output_dir"]) / "summary_report.md")
+
+
+def iter_run_states(output_root: str) -> list[dict[str, Any]]:
+    root = Path(output_root).expanduser().resolve()
+    if not root.is_dir():
+        return []
+    states: list[dict[str, Any]] = []
+    for child in sorted(root.iterdir(), key=lambda item: item.name):
+        if not child.is_dir() or child.name.startswith("_"):
+            continue
+        state_file = child / "global_state.json"
+        if not state_file.is_file():
+            continue
+        try:
+            states.append(json.loads(state_file.read_text(encoding="utf-8")))
+        except json.JSONDecodeError:
+            continue
+    return states
+
+
+def format_elapsed(state: dict[str, Any]) -> str:
+    start_raw = str(state.get("start_time") or "")
+    if not start_raw:
+        return "unknown"
+    try:
+        start = dt.datetime.fromisoformat(start_raw)
+    except ValueError:
+        return "unknown"
+    end_raw = state.get("end_time")
+    if end_raw:
+        try:
+            end = dt.datetime.fromisoformat(str(end_raw))
+        except ValueError:
+            end = dt.datetime.now().astimezone()
+    else:
+        end = dt.datetime.now().astimezone()
+    seconds = max(0, int((end - start).total_seconds()))
+    hours, rem = divmod(seconds, 3600)
+    minutes, secs = divmod(rem, 60)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+
+
+def print_state_summary(state: dict[str, Any], output_format: str) -> None:
+    counts = task_status_counts(state)
+    completed = completed_runnable_count(state)
+    total = runnable_total(state)
+    status = effective_status(state)
+    current = state["schedule"].get("current_task") or ""
+    if not current and state["schedule"].get("round_pending_tasks"):
+        current = state["schedule"]["round_pending_tasks"][0]
+    if output_format == "json":
+        payload = {
+            "run_id": state["run_id"],
+            "status": status,
+            "round": state["schedule"].get("current_loop"),
+            "progress": {"completed": completed, "total": total},
+            "current_task": current,
+            "elapsed": format_elapsed(state),
+            "counts": counts,
+            "output_dir": state["meta"]["output_dir"],
+            "latest": latest_progress_events(state),
+        }
+        print(json.dumps(payload, ensure_ascii=False, indent=2), flush=True)
+        return
+    if output_format == "brief":
+        print(
+            "|".join(
+                [
+                    status,
+                    str(state["schedule"].get("current_loop") or 0),
+                    f"{completed}/{total}",
+                    current,
+                    format_elapsed(state),
+                    str(counts.get("pass", 0)),
+                    str(counts.get("fail", 0)),
+                    str(counts.get("skip", 0)),
+                    str(counts.get("blocked", 0)),
+                ]
+            ),
+            flush=True,
+        )
+        return
+
+    print(f"run_id: {state['run_id']}", flush=True)
+    print(f"status: {status}", flush=True)
+    print(f"round: {state['schedule'].get('current_loop')}", flush=True)
+    print(f"progress: {completed}/{total}", flush=True)
+    print(f"current: {current or 'none'}", flush=True)
+    print(f"elapsed: {format_elapsed(state)}", flush=True)
+    print(
+        "counts: "
+        f"pass={counts.get('pass', 0)} fail={counts.get('fail', 0)} "
+        f"skip={counts.get('skip', 0)} blocked={counts.get('blocked', 0)} "
+        f"timeout={counts.get('timeout', 0)}",
+        flush=True,
+    )
+    print(f"output: {state['meta']['output_dir']}", flush=True)
+    latest = [event for event in latest_progress_events(state, 8) if event.get("event") in {"task_end", "task_start"}]
+    if latest:
+        print("latest:", flush=True)
+        for event in latest[-5:]:
+            if event.get("event") == "task_end":
+                print(
+                    f"- {event.get('task_id')} {event.get('status')} {event.get('duration_seconds')}s",
+                    flush=True,
+                )
+            else:
+                print(f"- {event.get('task_id')} started", flush=True)
+    if status == "stale":
+        print(f"suggestion: .opencode/tools/therock_agent.sh resume {state['run_id']}", flush=True)
+
+
+def cmd_status(args: argparse.Namespace) -> None:
+    if not args.run_id:
+        states = iter_run_states(args.output_root)
+        if args.format == "json":
+            payload = [
+                {
+                    "run_id": state["run_id"],
+                    "status": effective_status(state),
+                    "progress": f"{completed_runnable_count(state)}/{runnable_total(state)}",
+                    "elapsed": format_elapsed(state),
+                    "output_dir": state["meta"]["output_dir"],
+                }
+                for state in states
+            ]
+            print(json.dumps(payload, ensure_ascii=False, indent=2), flush=True)
+            return
+        print("run_id status progress elapsed output", flush=True)
+        for state in states:
+            print(
+                f"{state['run_id']} {effective_status(state)} "
+                f"{completed_runnable_count(state)}/{runnable_total(state)} "
+                f"{format_elapsed(state)} {state['meta']['output_dir']}",
+                flush=True,
+            )
+        return
+    state = load_state(args.output_root, args.run_id)
+    print_state_summary(state, args.format)
+
+
+def cmd_stop(args: argparse.Namespace) -> None:
+    state = load_state(args.output_root, args.run_id)
+    if state.get("final_status") not in {"running", "interrupted", "stopped"}:
+        print(f"[therock-agent] run already ended run_id={state['run_id']} status={state.get('final_status')}", flush=True)
+        return
+    metadata = read_pid_metadata(state)
+    pid = int(metadata.get("pid") or 0)
+    pgid = int(metadata.get("pgid") or 0)
+    if pid <= 0:
+        raise SystemExit(f"找不到后台 runner pid: {pid_metadata_path(state)}")
+    if not runner_alive(state):
+        mark_interrupted(state, "runner_not_alive")
+        print(f"[therock-agent] runner already stopped run_id={state['run_id']}", flush=True)
+        return
+    target = -pgid if pgid > 0 else pid
+    os.kill(target, signal.SIGTERM)
+    deadline = time.time() + float(args.timeout)
+    while time.time() < deadline:
+        if not process_alive(pid):
+            break
+        time.sleep(0.2)
+    if process_alive(pid):
+        os.kill(target, signal.SIGKILL)
+    mark_interrupted(state, "stop_requested")
+    print(f"[therock-agent] stopped run_id={state['run_id']}", flush=True)
 
 
 def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
@@ -357,6 +839,18 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
         "output-root": "--output-root",
         "run_id": "--run-id",
         "run-id": "--run-id",
+        "component_config": "--component-config",
+        "component-config": "--component-config",
+        "component_env_index": "--component-env-index",
+        "component-env-index": "--component-env-index",
+        "official_exclude": "--official-exclude",
+        "official-exclude": "--official-exclude",
+        "mock_command": "--mock-command",
+        "mock-command": "--mock-command",
+        "sudo_askpass": "--sudo-askpass",
+        "sudo-askpass": "--sudo-askpass",
+        "sudo_agent_socket": "--sudo-agent-socket",
+        "sudo-agent-socket": "--sudo-agent-socket",
     }
     positionals = ["--artifacts", "--amdgpu-families", "--components", "--test-types", "--gpu-risk"]
     argv: list[str] = [command]
@@ -391,6 +885,12 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
 def cmd_run_kv(args: argparse.Namespace) -> None:
     parser = build_parser()
     parsed = parser.parse_args(kv_to_runner_argv("run", args.raw_args))
+    parsed.func(parsed)
+
+
+def cmd_start_kv(args: argparse.Namespace) -> None:
+    parser = build_parser()
+    parsed = parser.parse_args(kv_to_runner_argv("start", args.raw_args))
     parsed.func(parsed)
 
 
@@ -451,6 +951,19 @@ def build_parser() -> argparse.ArgumentParser:
     run_kv_parser.add_argument("raw_args", nargs=argparse.REMAINDER)
     run_kv_parser.set_defaults(func=cmd_run_kv)
 
+    start_parser = subparsers.add_parser("start")
+    add_common_run_options(start_parser)
+    start_parser.set_defaults(func=cmd_start)
+
+    start_kv_parser = subparsers.add_parser("start-kv")
+    start_kv_parser.add_argument("raw_args", nargs=argparse.REMAINDER)
+    start_kv_parser.set_defaults(func=cmd_start_kv)
+
+    run_existing_parser = subparsers.add_parser("_run-existing")
+    run_existing_parser.add_argument("run_id")
+    run_existing_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
+    run_existing_parser.set_defaults(func=cmd_run_existing)
+
     resume_parser = subparsers.add_parser("resume")
     resume_parser.add_argument("run_id")
     resume_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
@@ -464,6 +977,18 @@ def build_parser() -> argparse.ArgumentParser:
     report_parser.add_argument("run_id")
     report_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
     report_parser.set_defaults(func=cmd_report)
+
+    status_parser = subparsers.add_parser("status")
+    status_parser.add_argument("run_id", nargs="?")
+    status_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
+    status_parser.add_argument("--format", choices=["text", "brief", "json"], default="text")
+    status_parser.set_defaults(func=cmd_status)
+
+    stop_parser = subparsers.add_parser("stop")
+    stop_parser.add_argument("run_id")
+    stop_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
+    stop_parser.add_argument("--timeout", type=int, default=5)
+    stop_parser.set_defaults(func=cmd_stop)
     return parser
 
 

@@ -134,7 +134,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
     command_record: str
     original_command_record = ""
     wrapper_details: dict[str, Any] | None = None
-    start = time.time()
+    start = time.monotonic()
     entrypoint = task.get("entrypoint") or resolve_entrypoint(
         load_component_env_index(Path(state["meta"]["component_env_index"])),
         task["component"],
@@ -259,7 +259,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
             first_match = path_hardcode_detection["matches"][0]
             failure_summary = f"{first_match['category']}: {first_match['line']}"
 
-    duration = round(time.time() - start, 3)
+    duration = round(time.monotonic() - start, 3)
     result = {
         "task_id": task["task_id"],
         "component": task["component"],

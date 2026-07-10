@@ -99,6 +99,86 @@ grep -q '"tool": "shell"' "${TOOL_CALLS_FILE}"
 grep -q '"event": "invocation_start"' "${GLOBAL_AUDIT_FILE}"
 grep -q '"event": "invocation_end"' "${GLOBAL_AUDIT_FILE}"
 
+echo "[test] background start/status"
+"${AGENT}" start-kv \
+  "run_id=background_case" \
+  "artifacts=${TMP_DIR}/output/build" \
+  "gpu=gfx1151" \
+  "component_config=${TMP_DIR}/component_sort_order.json" \
+  "components=pass_component" \
+  "test_types=quick" \
+  "output_root=${TMP_DIR}/background_runs" \
+  "mock_command=bash ${TMP_DIR}/mock_runner.sh {task_id}" \
+  "stable_threshold=1" \
+  "max_rounds=1" >"${TMP_DIR}/background_start.out"
+
+grep -q "run_id=background_case" "${TMP_DIR}/background_start.out"
+test -f "${TMP_DIR}/background_runs/background_case/runner.pid.json"
+test -f "${TMP_DIR}/background_runs/background_case/progress.jsonl"
+
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if python3 - "${TMP_DIR}/background_runs/background_case/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if state["final_status"] != "running" else 1)
+PY
+  then
+    break
+  fi
+  sleep 0.2
+done
+
+"${AGENT}" status background_case \
+  --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_status.out"
+"${AGENT}" status background_case \
+  --output-root "${TMP_DIR}/background_runs" \
+  --format brief >"${TMP_DIR}/background_status_brief.out"
+"${AGENT}" status \
+  --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_status_list.out"
+
+grep -q "status: passed" "${TMP_DIR}/background_status.out"
+grep -q "progress: 1/1" "${TMP_DIR}/background_status.out"
+grep -q "passed|1|1/1" "${TMP_DIR}/background_status_brief.out"
+grep -q "background_case" "${TMP_DIR}/background_status_list.out"
+grep -q '"event": "background_started"' "${TMP_DIR}/background_runs/background_case/progress.jsonl"
+grep -q '"event": "task_end"' "${TMP_DIR}/background_runs/background_case/progress.jsonl"
+
+echo "[test] background stop"
+"${AGENT}" start-kv \
+  "run_id=stop_case" \
+  "artifacts=${TMP_DIR}/output/build" \
+  "gpu=gfx1151" \
+  "component_config=${TMP_DIR}/component_sort_order.json" \
+  "components=pass_component" \
+  "test_types=quick" \
+  "output_root=${TMP_DIR}/stop_runs" \
+  "mock_command=python3 -c 'import time; time.sleep(30)'" \
+  "stable_threshold=1" \
+  "max_rounds=1" >"${TMP_DIR}/stop_start.out"
+
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if grep -q '"event": "task_start"' "${TMP_DIR}/stop_runs/stop_case/progress.jsonl"; then
+    break
+  fi
+  sleep 0.2
+done
+
+"${AGENT}" stop stop_case \
+  --output-root "${TMP_DIR}/stop_runs" \
+  --timeout 2 >"${TMP_DIR}/stop.out"
+
+grep -q "stopped run_id=stop_case" "${TMP_DIR}/stop.out"
+python3 - "${TMP_DIR}/stop_runs/stop_case/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+assert state["final_status"] == "interrupted", state["final_status"]
+assert state["runtime"]["interrupt_reason"] in {"stop_requested", "signal:15"}
+PY
+
 echo "[test] sudo cache policy does not block non-sudo tasks"
 "${AGENT}" run \
   --artifacts "${TMP_DIR}/output/build" \

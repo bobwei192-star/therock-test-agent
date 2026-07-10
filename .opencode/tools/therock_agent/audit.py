@@ -20,8 +20,19 @@ def ensure_dir(path: Path) -> None:
 def atomic_write_json(path: Path, data: dict[str, Any]) -> None:
     ensure_dir(path.parent)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with tmp.open("w", encoding="utf-8") as handle:
+        handle.write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
     tmp.replace(path)
+    try:
+        dir_fd = os.open(path.parent, os.O_DIRECTORY)
+    except OSError:
+        return
+    try:
+        os.fsync(dir_fd)
+    finally:
+        os.close(dir_fd)
 
 
 def append_jsonl(path: Path, record: dict[str, Any]) -> None:

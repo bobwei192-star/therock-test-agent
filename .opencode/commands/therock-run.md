@@ -1,10 +1,12 @@
 ---
-description: Run TheRock loop tests through the OpenCode coordinator and deterministic runner
+description: Start TheRock loop tests in the background through the deterministic runner
 agent: therock-loop
 subtask: true
 ---
 
-启动 TheRock 循环测试。不要在 prompt 层手工拆解参数；必须把用户输入原文交给 runner 的 `run-kv` 子命令，由 Python 代码做确定性解析。
+启动 TheRock 循环测试。不要在 prompt 层手工拆解参数；必须把用户输入原文交给 runner 的 `start-kv` 子命令，由 Python 代码做确定性解析。
+
+重要：全量 TheRock 测试是长时间批处理任务，不能在 OpenCode 前台 shell 调用里直接跑完整 `run-kv`。本命令只负责后台启动测试并立即返回 `run_id`。
 
 用户原始参数：
 
@@ -37,13 +39,13 @@ $ARGUMENTS
 - `docs_this_project/component_env_script_index.json`
 - `docs_this_project/official_exclude.json`
 
-请调用项目内工具启动测试，必须使用这一条：
+请调用项目内工具后台启动测试，必须使用这一条：
 
 ```bash
-.opencode/tools/therock_agent.sh run-kv $ARGUMENTS
+.opencode/tools/therock_agent.sh start-kv $ARGUMENTS
 ```
 
-`run-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1` 解析为对应 runner flags。
+`start-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1` 解析为对应 runner flags，创建 `runs/<run_id>/global_state.json`，然后在后台执行内部入口 `_run-existing <run_id>`。
 
 规则：
 
@@ -55,23 +57,21 @@ $ARGUMENTS
 - 如果本次任务包含 `sudo_sensitive` 组件，`THEROCK_SUDO_POLICY=cache` 需要已有 sudo cache，`THEROCK_SUDO_POLICY=askpass` 建议通过 `./scripts/therock-sudo-agent run -- opencode` 启动 OpenCode。
 - 非 sudo 组件不应因为 `THEROCK_SUDO_POLICY=cache` 但 sudo cache 失效而被启动前拦住。
 - `sudo_sensitive` 任务没有可用 sudo cache 或 askpass agent 时应 blocked。
-- 执行完成后读取 `runs/<run_id>/summary_report.md` 和 `global_state.json`，向用户总结结果和输出路径。
+- 启动后向用户返回 `run_id`、输出目录、runnable/skipped 数量，以及 `/therock-status run_id=<run_id>` 查询方式。
+- 后续不要假装测试已经完成；用户询问进度时调用 `status`。
 
-完成后必须检查并总结：
+启动后必须检查并总结：
 
-- `runs/<run_id>/summary_report.md`
 - `runs/<run_id>/global_state.json`
-- `runs/<run_id>/wrapper_changes.jsonl`
 - `runs/<run_id>/agent_activity.jsonl`
-- `runs/<run_id>/tool_calls.jsonl`
-- `runs/<run_id>/failures/`
+- `runs/<run_id>/runner.pid.json`
+- `runs/<run_id>/progress.jsonl`
 
 回复用户时必须包含：
 
 - `run_id`
 - 输出目录
-- pass / fail / skip / blocked 数量
-- official exclude 命中项
-- sudo blocked 项
-- GPU risk skipped / quarantined 项
-- wrapper 目录和 wrapper 变更日志
+- 后台 backend
+- runnable / skipped 数量
+- status 查询命令
+- report 命令

@@ -15,6 +15,8 @@ mkdir -p "${TARGET_DIR}" "${ARTIFACT_DIR}/dist/rocm/bin" "${ARTIFACT_DIR}/dist/r
 test -f "${TARGET_DIR}/.opencode/agents/therock-loop.md"
 test -f "${TARGET_DIR}/.opencode/commands/therock-run.md"
 test -f "${TARGET_DIR}/.opencode/skills/therock-testing/SKILL.md"
+test -f "${TARGET_DIR}/.opencode/commands/therock-status.md"
+test -f "${TARGET_DIR}/.opencode/commands/therock-stop.md"
 test -x "${TARGET_DIR}/.opencode/tools/therock_agent.sh"
 test -f "${TARGET_DIR}/.opencode/tools/therock_agent/__init__.py"
 test -f "${TARGET_DIR}/.opencode/tools/therock_agent/cli.py"
