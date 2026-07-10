@@ -248,7 +248,7 @@ OpenCode 内：
 示例：
 
 ```text
-/therock-run artifacts=/path/to/output/build gpu=gfx1151 components=all test_types=quick gpu_risk=skip
+/therock-run artifacts=/home/zs/TheRock/output-linux-portable/build gpu=gfx1151 components=all test_types=quick gpu_risk=skip
 ```
 
 全组件、全 test type，默认跳过 GPU hang 高风险任务：
@@ -267,7 +267,7 @@ OpenCode 内：
 带 sudo askpass 的全量命令示例：
 
 ```text
-/therock-run artifacts=/path/to/output/build gpu=gfx1151 components=all test_types=all gpu_risk=skip sudo_policy=askpass
+/therock-run artifacts=/home/zs/TheRock/output-linux-portable/build gpu=gfx1151 components=all test_types=all gpu_risk=skip sudo_policy=askpass
 ```
 
 查看后台进度：

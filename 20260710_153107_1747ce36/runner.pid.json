@@ -1,0 +1,16 @@
+{
+  "backend": "pid",
+  "pid": 2917845,
+  "pgid": 2917845,
+  "run_id": "20260710_153107_1747ce36",
+  "started_at": "2026-07-10T15:31:07+08:00",
+  "command": [
+    "/home/zs/TheRock/.opencode/tools/therock_agent.sh",
+    "_run-existing",
+    "20260710_153107_1747ce36",
+    "--output-root",
+    "/home/zs/TheRock/runs"
+  ],
+  "stdout": "/home/zs/TheRock/runs/20260710_153107_1747ce36/runner.stdout.log",
+  "stderr": "/home/zs/TheRock/runs/20260710_153107_1747ce36/runner.stderr.log"
+}
