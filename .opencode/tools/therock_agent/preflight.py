@@ -34,14 +34,16 @@ def check_task_preflight(
     if not (rocm_dist / "lib").is_dir() and not (rocm_dist / "lib64").is_dir():
         return f"missing_artifacts: {rocm_dist}/lib 或 lib64 不存在"
 
-    if metadata.get("requires_sudo_policy") and state["meta"].get("sudo_policy") != "cache":
+    sudo_policy = state["meta"].get("sudo_policy")
+    if metadata.get("requires_sudo_policy") and sudo_policy not in {"askpass", "cache"}:
         return (
             "sudo_unavailable: sudo_sensitive task requires THEROCK_SUDO_POLICY=cache "
-            "and a valid `sudo -v` cache"
+            "with a valid `sudo -v` cache, or THEROCK_SUDO_POLICY=askpass "
+            "with a running session-scoped sudo agent"
         )
-    if metadata.get("requires_sudo_policy") and state["meta"].get("sudo_policy") == "cache":
+    if metadata.get("requires_sudo_policy") and sudo_policy in {"askpass", "cache"}:
         try:
-            check_sudo_policy("cache")
+            check_sudo_policy(sudo_policy, env)
         except SystemExit as exc:
             return f"sudo_unavailable: {exc}"
 

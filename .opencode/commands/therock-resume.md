@@ -27,5 +27,5 @@ subtask: true
 
 - 不从聊天上下文推断失败集，必须读取 `global_state.json`。
 - 如果上次中断时 `current_task` 非空，runner 会把该 task 放回 `next_tasks`。
-- 如果涉及 `sudo_sensitive`，仍然遵守 `THEROCK_SUDO_POLICY=cache` + 手动 `sudo -v`。
+- 如果涉及 `sudo_sensitive`，仍然遵守 `THEROCK_SUDO_POLICY=cache` + 手动 `sudo -v`，或通过 `./scripts/therock-sudo-agent run -- opencode` 启动的 `THEROCK_SUDO_POLICY=askpass` 会话。
 - GPU reset 后不要自动扩大测试范围。

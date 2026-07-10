@@ -29,6 +29,54 @@ test -f "${TARGET_DIR}/.env"
 test -f "${TARGET_DIR}/.env_example"
 ! grep -q "SUDO_PASSWORD=" "${TARGET_DIR}/.env"
 
+SETUP_TARGET_DIR="${TMP_DIR}/TheRockWithSudoAgent"
+TEST_HOME="${TMP_DIR}/home"
+mkdir -p "${SETUP_TARGET_DIR}" "${TEST_HOME}"
+HOME="${TEST_HOME}" "${PROJECT_ROOT}/install.sh" --setup-sudo-agent "${SETUP_TARGET_DIR}"
+test -x "${SETUP_TARGET_DIR}/scripts/therock-sudo-agent"
+test -x "${TEST_HOME}/.therock/sudo-askpass.sh"
+grep -q "THEROCK_SUDO_POLICY=askpass" "${SETUP_TARGET_DIR}/.env"
+grep -q "THEROCK_SUDO_ASKPASS=${TEST_HOME}/.therock/sudo-askpass.sh" "${SETUP_TARGET_DIR}/.env"
+grep -q "THEROCK_SUDO_AGENT_SOCKET=${TEST_HOME}/.therock/sudo-agent.sock" "${SETUP_TARGET_DIR}/.env"
+! grep -q "SUDO_PASSWORD=" "${SETUP_TARGET_DIR}/.env"
+
+ASKPASS_TEST_SOCKET="${TMP_DIR}/askpass-test.sock"
+ASKPASS_TEST_PID="${TMP_DIR}/askpass-test.pid"
+printf '%s\n' "prompt-secret" | "${SETUP_TARGET_DIR}/scripts/therock-sudo-agent" daemon \
+  --socket "${ASKPASS_TEST_SOCKET}" \
+  --pid-file "${ASKPASS_TEST_PID}" &
+ASKPASS_DAEMON_PID="$!"
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if "${SETUP_TARGET_DIR}/scripts/therock-sudo-agent" status \
+    --socket "${ASKPASS_TEST_SOCKET}" \
+    --pid-file "${ASKPASS_TEST_PID}" >/dev/null 2>&1; then
+    break
+  fi
+  sleep 0.1
+done
+ASKPASS_OUTPUT="$("${SETUP_TARGET_DIR}/scripts/therock-sudo-agent" askpass \
+  --socket "${ASKPASS_TEST_SOCKET}" \
+  --pid-file "${ASKPASS_TEST_PID}" \
+  "[sudo] password for zx:")"
+test "${ASKPASS_OUTPUT}" = "prompt-secret"
+"${SETUP_TARGET_DIR}/scripts/therock-sudo-agent" stop \
+  --socket "${ASKPASS_TEST_SOCKET}" \
+  --pid-file "${ASKPASS_TEST_PID}" >/dev/null
+wait "${ASKPASS_DAEMON_PID}" 2>/dev/null || true
+
+if "${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
+  --run-id should_reject_legacy_ask \
+  --artifacts "${ARTIFACT_DIR}" \
+  --amdgpu-families gfx1151 \
+  --components hiprand \
+  --test-types quick \
+  --sudo-policy ask \
+  --output-root "${TMP_DIR}/legacy_ask_runs" 2>"${TMP_DIR}/legacy_ask.log"; then
+  echo "runner accepted legacy sudo_policy=ask unexpectedly" >&2
+  exit 1
+fi
+grep -q "invalid choice" "${TMP_DIR}/legacy_ask.log"
+
 "${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
   --run-id install_smoke \
   --artifacts "${ARTIFACT_DIR}" \

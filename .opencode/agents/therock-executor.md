@@ -28,6 +28,17 @@ permission:
 
 ## 运行命令模板
 
+如果 coordinator 传入 key=value 参数，先拆解为 runner 参数，不能把原始 `key=value` 字符串直接传下去：
+
+- `artifacts=/x/build` → `--artifacts "/x/build"`
+- `gpu=gfx1151` → `--amdgpu-families "gfx1151"`
+- `components=amdsmi` → `--components "amdsmi"`
+- `test_types=standard` → `--test-types "standard"`
+- `gpu_risk=skip` → `--gpu-risk "skip"`
+- `sudo_policy=askpass` → `--sudo-policy "askpass"`
+- `max_rounds=1` → `--max-rounds 1`
+- `stable_threshold=1` → `--stable-threshold 1`
+
 ```bash
 .opencode/tools/therock_agent.sh run \
   --therock-repo "$(pwd)" \
@@ -36,7 +47,9 @@ permission:
   --components "<components-or-all>" \
   --test-types "<test-types>" \
   --gpu-risk "<skip|include|quarantine>" \
-  --sudo-policy "${THEROCK_SUDO_POLICY:-none}"
+  --sudo-policy "${THEROCK_SUDO_POLICY:-none}" \
+  --max-rounds "<n>" \
+  --stable-threshold "<n>"
 ```
 
 ## 执行前检查
@@ -44,7 +57,7 @@ permission:
 - artifacts 参数必须存在且指向 build 或 `dist/rocm`。
 - GPU family 必须明确，例如 `gfx1151`。
 - 默认 `--gpu-risk skip`。
-- `sudo_sensitive` 任务只有在 `THEROCK_SUDO_POLICY=cache` 且用户已手动执行 `sudo -v` 后才可能继续。
+- `sudo_sensitive` 任务只有在 `THEROCK_SUDO_POLICY=cache` 且用户已手动执行 `sudo -v`，或 `THEROCK_SUDO_POLICY=askpass` 且 OpenCode 由 `./scripts/therock-sudo-agent run -- opencode` 启动后才可能继续。
 - 不读取、不保存 sudo 密码。
 
 ## 执行后交付

@@ -5,7 +5,31 @@ set -euo pipefail
 # Install it into the directory where the user will run `opencode`.
 
 AGENT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TARGET_DIR="${1:-$(pwd)}"
+TARGET_DIR=""
+SETUP_SUDO_AGENT=0
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --setup-sudo-agent)
+            SETUP_SUDO_AGENT=1
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: $0 [--setup-sudo-agent] [TARGET_DIR]"
+            exit 0
+            ;;
+        *)
+            if [ -n "$TARGET_DIR" ]; then
+                echo "未知参数或重复目标目录: $1" >&2
+                exit 1
+            fi
+            TARGET_DIR="$1"
+            shift
+            ;;
+    esac
+done
+
+TARGET_DIR="${TARGET_DIR:-$(pwd)}"
 
 resolve_path() {
     local path="$1"
@@ -41,6 +65,7 @@ verify_overlay_install() {
         ".opencode/tools/therock_agent/cli.py"
         ".opencode/tools/therock_agent/executor.py"
         ".opencode/tools/therock_agent/reports.py"
+        "scripts/therock-sudo-agent"
         "docs_this_project/component_sort_order.json"
         "docs_this_project/component_env_script_index.json"
         "docs_this_project/official_exclude.json"
@@ -73,6 +98,46 @@ install_env_template() {
     fi
 }
 
+upsert_env_key() {
+    local env_file="$1"
+    local key="$2"
+    local value="$3"
+    local tmp_file
+
+    tmp_file="$(mktemp)"
+    if [ -f "$env_file" ]; then
+        grep -v -E "^${key}=" "$env_file" > "$tmp_file" || true
+    fi
+    printf '%s=%s\n' "$key" "$value" >> "$tmp_file"
+    mv "$tmp_file" "$env_file"
+    chmod 600 "$env_file"
+}
+
+setup_sudo_agent() {
+    local target="$1"
+    local state_dir="${HOME}/.therock"
+    local helper="${state_dir}/sudo-askpass.sh"
+    local socket_path="${state_dir}/sudo-agent.sock"
+
+    mkdir -p "$state_dir"
+    chmod 700 "$state_dir"
+
+    cat > "$helper" <<EOF
+#!/usr/bin/env bash
+exec "${target}/scripts/therock-sudo-agent" askpass "\$@"
+EOF
+    chmod 700 "$helper"
+
+    upsert_env_key "${target}/.env" "THEROCK_SUDO_POLICY" "askpass"
+    upsert_env_key "${target}/.env" "THEROCK_SUDO_ASKPASS" "$helper"
+    upsert_env_key "${target}/.env" "THEROCK_SUDO_AGENT_SOCKET" "$socket_path"
+
+    echo "已配置 session-scoped sudo agent:"
+    echo "  askpass helper: ${helper}"
+    echo "  socket:         ${socket_path}"
+    echo "  .env:           ${target}/.env"
+}
+
 print_usage() {
     local target="$1"
 
@@ -85,9 +150,9 @@ print_usage() {
     echo ""
     echo "下一步："
     echo "  cd \"${target}\""
-    echo "  nano .env   # 可选：设置 THEROCK_SUDO_POLICY=none/cache/ask，不要写 sudo 密码"
+    echo "  nano .env   # 可选：设置 THEROCK_SUDO_POLICY=none/cache/askpass，不要写 sudo 密码"
     echo "  sudo -v     # 可选：仅当 THEROCK_SUDO_POLICY=cache 且本机测试需要 sudo 时执行"
-    echo "  opencode"
+    echo "  ./scripts/therock-sudo-agent run -- opencode  # 推荐：askpass 自动启动并在退出时清理"
     echo "  /therock-run /output-linux-portable/build gfx1151"
     echo ""
     echo "已安装模块化 runner："
@@ -110,11 +175,18 @@ main() {
 
     copy_overlay_dir "${AGENT_ROOT}/.opencode" "${target_abs}/.opencode" ".opencode"
     copy_overlay_dir "${AGENT_ROOT}/docs_this_project" "${target_abs}/docs_this_project" "docs_this_project"
+    copy_overlay_dir "${AGENT_ROOT}/scripts" "${target_abs}/scripts" "scripts"
     install_env_template "$target_abs"
+    if [ "$SETUP_SUDO_AGENT" -eq 1 ]; then
+        setup_sudo_agent "$target_abs"
+    fi
     verify_overlay_install "$target_abs"
 
     if [ -d "${target_abs}/.opencode/tools" ]; then
         chmod +x "${target_abs}/.opencode/tools/"*.sh 2>/dev/null || true
+    fi
+    if [ -d "${target_abs}/scripts" ]; then
+        chmod +x "${target_abs}/scripts/"* 2>/dev/null || true
     fi
 
     print_usage "$target_abs"

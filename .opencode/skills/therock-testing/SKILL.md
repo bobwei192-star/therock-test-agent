@@ -239,12 +239,16 @@ Valid policies:
 
 - `THEROCK_SUDO_POLICY=none`
 - `THEROCK_SUDO_POLICY=cache`
-- `THEROCK_SUDO_POLICY=ask`
+- `THEROCK_SUDO_POLICY=askpass`
 
-For non-interactive loop execution, `sudo_sensitive` tasks should only proceed with:
+For non-interactive loop execution, `sudo_sensitive` tasks should only proceed with one of:
 
 - `THEROCK_SUDO_POLICY=cache`
 - a valid `sudo -v` cache verified by `sudo -n true`
+- `THEROCK_SUDO_POLICY=askpass`
+- a running `therock-sudo-agent` session verified by `sudo -A true`; prefer launching OpenCode via `./scripts/therock-sudo-agent run -- opencode` so cleanup is automatic
+
+Do not perform a global sudo cache check for every run. Only check sudo during task preflight when the resolved entrypoint profile requires sudo.
 
 If sudo is unavailable, mark the task `blocked`, not failed.
 
@@ -286,8 +290,8 @@ At minimum, include:
 Keep test execution deterministic and auditable:
 
 - Never store sudo passwords in `.env`, prompts, logs, or state files.
-- If sudo is required, use `THEROCK_SUDO_POLICY=cache` plus a manual `sudo -v` before launching OpenCode.
-- The runner may check `sudo -n true` to verify the cache, but it must not prompt for or read the password.
+- If sudo is required for the selected task, use `THEROCK_SUDO_POLICY=cache` plus a manual `sudo -v`, or launch OpenCode with `./scripts/therock-sudo-agent run -- opencode` for `THEROCK_SUDO_POLICY=askpass`.
+- The runner may check `sudo -n true` or `sudo -A true` only for `sudo_sensitive` tasks, but it must not read or store the password.
 - Do not modify ROCm installed artifacts under `dist/rocm/bin` or `dist/rocm/lib`.
 - Do not modify TheRock component source directories by default.
 - If modifications are needed, prefer TheRock `build_tools/**` test wrapper scripts and record the reason, diff, and round.

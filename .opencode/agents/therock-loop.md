@@ -68,6 +68,25 @@ OpenCode 负责：
 
 ## 启动测试
 
+用户可能使用 key=value 格式，例如：
+
+```text
+/therock-run artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
+```
+
+解析时必须去掉 key 前缀后再传给 runner：
+
+- `artifacts=<path>` → `--artifacts "<path>"`
+- `gpu=<gfx>` → `--amdgpu-families "<gfx>"`
+- `components=<list>` → `--components "<list>"`
+- `test_types=<list>` → `--test-types "<list>"`
+- `gpu_risk=<skip|include|quarantine>` → `--gpu-risk "<value>"`
+- `sudo_policy=<none|cache|askpass>` → `--sudo-policy "<value>"`
+- `max_rounds=<n>` → `--max-rounds "<n>"`
+- `stable_threshold=<n>` → `--stable-threshold "<n>"`
+
+不要把 `sudo_policy`、`max_rounds`、`stable_threshold` 合并到 `--gpu-risk`。`--gpu-risk` 只允许 `skip`、`include`、`quarantine`。
+
 ```bash
 .opencode/tools/therock_agent.sh run \
   --therock-repo "<TheRock repo path>" \
@@ -101,9 +120,10 @@ runner 默认使用 `docs_this_project/` 下的项目配置。
 
 ## 安全规则
 
-- 不得要求、读取或保存 sudo 密码；`.env` 只允许保存 `THEROCK_SUDO_POLICY` 等非敏感策略。
-- 如果需要 sudo，提示用户在启动 OpenCode 前手动执行 `sudo -v`，让 runner 使用 sudo 缓存。
-- `sudo_sensitive` 任务在没有可用 sudo cache 时应 blocked，不应当作组件失败。
+- 不得要求、读取或保存 sudo 密码；`.env` 只允许保存 `THEROCK_SUDO_POLICY`、`THEROCK_SUDO_ASKPASS`、`THEROCK_SUDO_AGENT_SOCKET` 等非敏感策略。
+- 只有本次任务包含 `sudo_sensitive` 组件时，才提示用户选择 `cache` 的手动 `sudo -v`，或用 `./scripts/therock-sudo-agent run -- opencode` 启动自动清理的 `askpass` 会话。
+- 非 sudo 组件不应因为 `THEROCK_SUDO_POLICY=cache` 但 sudo cache 失效而被启动前拦住。
+- `sudo_sensitive` 任务在没有可用 sudo cache 或 askpass agent 时应 blocked，不应当作组件失败。
 - 默认 `--gpu-risk skip`，不得执行 `component_sort_order.json` 中 `gpu_hang_risk=true` 的任务，除非用户明确要求。
 - 如果用户要求执行 GPU reset 高风险任务，优先建议 `--gpu-risk quarantine`。
 - 默认只生成 `runs/<run_id>/wrappers/*.sh` wrapper，不修改 TheRock 产物。

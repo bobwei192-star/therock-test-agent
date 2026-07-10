@@ -8,7 +8,6 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from .artifacts import check_sudo_policy
 from .artifacts import discover_therock_repo as _discover_therock_repo
 from .artifacts import resolve_artifacts_path
 from .audit import append_activity
@@ -140,6 +139,8 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "test_types": test_types,
             "gpu_reset_risk_policy": args.gpu_risk,
             "sudo_policy": args.sudo_policy,
+            "sudo_askpass": args.sudo_askpass,
+            "sudo_agent_socket": args.sudo_agent_socket,
             "stable_threshold": args.stable_threshold,
             "max_rounds": args.max_rounds,
             "mock_command": args.mock_command or "",
@@ -290,7 +291,6 @@ def cmd_init(args: argparse.Namespace) -> None:
 
 
 def cmd_run(args: argparse.Namespace) -> None:
-    check_sudo_policy(args.sudo_policy)
     state = create_state(args)
     run_loop(state)
     print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}")
@@ -300,7 +300,6 @@ def cmd_run(args: argparse.Namespace) -> None:
 def cmd_resume(args: argparse.Namespace) -> None:
     state = load_state(args.output_root, args.run_id)
     sudo_policy = args.sudo_policy or state.get("meta", {}).get("sudo_policy", "none")
-    check_sudo_policy(sudo_policy)
     if state.get("final_status") not in {"running", "interrupted", "stopped"}:
         print(f"[therock-agent] run 已结束，无需 resume: {state.get('final_status')}")
         return
@@ -315,6 +314,10 @@ def cmd_resume(args: argparse.Namespace) -> None:
     if args.mock_command:
         state["meta"]["mock_command"] = args.mock_command
     state["meta"]["sudo_policy"] = sudo_policy
+    if args.sudo_askpass:
+        state["meta"]["sudo_askpass"] = args.sudo_askpass
+    if args.sudo_agent_socket:
+        state["meta"]["sudo_agent_socket"] = args.sudo_agent_socket
     save_state(state)
     run_loop(state)
     print(f"[therock-agent] resumed run_id={state['run_id']} status={state['final_status']}")
@@ -349,8 +352,16 @@ def build_parser() -> argparse.ArgumentParser:
         target.add_argument("--mock-command", default="")
         target.add_argument(
             "--sudo-policy",
-            choices=["none", "cache", "ask"],
+            choices=["none", "cache", "askpass"],
             default=os.environ.get("THEROCK_SUDO_POLICY", "none"),
+        )
+        target.add_argument(
+            "--sudo-askpass",
+            default=os.environ.get("THEROCK_SUDO_ASKPASS", ""),
+        )
+        target.add_argument(
+            "--sudo-agent-socket",
+            default=os.environ.get("THEROCK_SUDO_AGENT_SOCKET", ""),
         )
 
     init_parser = subparsers.add_parser("init")
@@ -365,7 +376,9 @@ def build_parser() -> argparse.ArgumentParser:
     resume_parser.add_argument("run_id")
     resume_parser.add_argument("--output-root", default=str(PROJECT_ROOT / "runs"))
     resume_parser.add_argument("--mock-command", default="")
-    resume_parser.add_argument("--sudo-policy", choices=["none", "cache", "ask"], default="")
+    resume_parser.add_argument("--sudo-policy", choices=["none", "cache", "askpass"], default="")
+    resume_parser.add_argument("--sudo-askpass", default=os.environ.get("THEROCK_SUDO_ASKPASS", ""))
+    resume_parser.add_argument("--sudo-agent-socket", default=os.environ.get("THEROCK_SUDO_AGENT_SOCKET", ""))
     resume_parser.set_defaults(func=cmd_resume)
 
     report_parser = subparsers.add_parser("report")

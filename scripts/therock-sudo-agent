@@ -1,0 +1,386 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import getpass
+import os
+import signal
+import socket
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+
+class RunInterrupted(Exception):
+    """Signal wrapper used to break out of child waits and clean up."""
+
+    def __init__(self, signum: int) -> None:
+        self.signum = signum
+        super().__init__(f"interrupted by signal {signum}")
+
+
+def state_dir() -> Path:
+    """Return the private runtime directory for sudo askpass state."""
+    return Path(os.environ.get("THEROCK_SUDO_AGENT_HOME", Path.home() / ".therock")).expanduser()
+
+
+def default_socket_path() -> Path:
+    return Path(os.environ.get("THEROCK_SUDO_AGENT_SOCKET", state_dir() / "sudo-agent.sock")).expanduser()
+
+
+def default_pid_path() -> Path:
+    return state_dir() / "sudo-agent.pid"
+
+
+def default_log_path() -> Path:
+    return state_dir() / "sudo-agent.log"
+
+
+def ensure_private_state_dir() -> Path:
+    directory = state_dir()
+    directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+    directory.chmod(0o700)
+    return directory
+
+
+def socket_peer_uid(conn: socket.socket) -> int | None:
+    """Return peer uid on Linux, or None when SO_PEERCRED is unavailable."""
+    if not hasattr(socket, "SO_PEERCRED"):
+        return None
+    creds = conn.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED, 12)
+    return int.from_bytes(creds[4:8], byteorder=sys.byteorder)
+
+
+def request_agent(socket_path: Path, request: str, timeout: float = 2.0) -> str:
+    client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    client.settimeout(timeout)
+    try:
+        client.connect(str(socket_path))
+        client.sendall(request.encode("utf-8") + b"\n")
+        chunks: list[bytes] = []
+        while True:
+            chunk = client.recv(4096)
+            if not chunk:
+                break
+            chunks.append(chunk)
+    finally:
+        client.close()
+    return b"".join(chunks).decode("utf-8").rstrip("\n")
+
+
+def validate_password(password: str) -> None:
+    """Validate the password once without storing it on disk."""
+    try:
+        result = subprocess.run(
+            ["sudo", "-S", "-v"],
+            input=password + "\n",
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=30,
+        )
+    finally:
+        # askpass mode does not rely on sudo's timestamp cache.
+        subprocess.run(["sudo", "-k"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)
+    if result.returncode != 0:
+        message = result.stderr.strip() or "sudo password validation failed"
+        raise SystemExit(message)
+
+
+def daemon(socket_path: Path, pid_path: Path) -> None:
+    """Serve the password from process memory through a private Unix socket."""
+    password = sys.stdin.readline().rstrip("\n")
+    if not password:
+        raise SystemExit("empty sudo password refused")
+
+    ensure_private_state_dir()
+    if socket_path.exists():
+        socket_path.unlink()
+
+    server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    should_stop = False
+
+    def stop_handler(_signum: int, _frame: object) -> None:
+        nonlocal should_stop
+        should_stop = True
+        try:
+            server.close()
+        except OSError:
+            pass
+
+    signal.signal(signal.SIGTERM, stop_handler)
+    signal.signal(signal.SIGINT, stop_handler)
+
+    server.bind(str(socket_path))
+    socket_path.chmod(0o600)
+    server.listen(8)
+    pid_path.write_text(str(os.getpid()) + "\n", encoding="utf-8")
+    pid_path.chmod(0o600)
+
+    try:
+        while not should_stop:
+            try:
+                conn, _addr = server.accept()
+            except OSError:
+                break
+            with conn:
+                peer_uid = socket_peer_uid(conn)
+                if peer_uid is not None and peer_uid != os.getuid():
+                    conn.sendall(b"permission denied\n")
+                    continue
+                request = conn.recv(128).decode("utf-8", errors="replace").strip()
+                if request == "password":
+                    conn.sendall(password.encode("utf-8") + b"\n")
+                elif request == "ping":
+                    conn.sendall(b"ok\n")
+                elif request == "stop":
+                    conn.sendall(b"stopping\n")
+                    should_stop = True
+                else:
+                    conn.sendall(b"unknown request\n")
+    finally:
+        password = ""
+        try:
+            server.close()
+        except OSError:
+            pass
+        for path in (socket_path, pid_path):
+            try:
+                path.unlink()
+            except FileNotFoundError:
+                pass
+
+
+def cmd_start(args: argparse.Namespace) -> None:
+    ensure_private_state_dir()
+    socket_path = Path(args.socket).expanduser()
+    pid_path = Path(args.pid_file).expanduser()
+    log_path = Path(args.log_file).expanduser()
+
+    try:
+        if request_agent(socket_path, "ping") == "ok":
+            print(f"therock sudo agent already running: {socket_path}")
+            return
+    except OSError:
+        pass
+
+    password = getpass.getpass("sudo password for this session: ")
+    validate_password(password)
+
+    log_handle = log_path.open("a", encoding="utf-8")
+    proc = subprocess.Popen(
+        [
+            sys.executable,
+            str(Path(__file__).resolve()),
+            "daemon",
+            "--socket",
+            str(socket_path),
+            "--pid-file",
+            str(pid_path),
+        ],
+        stdin=subprocess.PIPE,
+        stdout=log_handle,
+        stderr=log_handle,
+        text=True,
+        start_new_session=True,
+    )
+    assert proc.stdin is not None
+    proc.stdin.write(password + "\n")
+    proc.stdin.close()
+    password = ""
+
+    deadline = time.time() + 5
+    while time.time() < deadline:
+        if proc.poll() is not None:
+            raise SystemExit(f"sudo agent exited early with code {proc.returncode}; see {log_path}")
+        try:
+            if request_agent(socket_path, "ping") == "ok":
+                print(f"therock sudo agent started: {socket_path}")
+                print("password is held only in the agent process memory")
+                return
+        except OSError:
+            time.sleep(0.1)
+    raise SystemExit(f"sudo agent did not become ready; see {log_path}")
+
+
+def agent_is_running(socket_path: Path) -> bool:
+    try:
+        return request_agent(socket_path, "ping") == "ok"
+    except OSError:
+        return False
+
+
+def cmd_askpass(args: argparse.Namespace) -> None:
+    socket_path = Path(args.socket).expanduser()
+    try:
+        password = request_agent(socket_path, "password", timeout=5.0)
+    except OSError as exc:
+        raise SystemExit(f"therock sudo agent unavailable: {exc}") from exc
+    if not password or password in {"permission denied", "unknown request"}:
+        raise SystemExit(f"therock sudo agent refused password request: {password}")
+    print(password)
+
+
+def cmd_status(args: argparse.Namespace) -> None:
+    socket_path = Path(args.socket).expanduser()
+    try:
+        response = request_agent(socket_path, "ping")
+    except OSError:
+        print("therock sudo agent: stopped")
+        raise SystemExit(1)
+    if response == "ok":
+        print(f"therock sudo agent: running ({socket_path})")
+        return
+    print(f"therock sudo agent: unexpected response: {response}")
+    raise SystemExit(1)
+
+
+def pid_matches_daemon(pid: int) -> bool:
+    """Return True only when pid appears to be this script's daemon process."""
+    cmdline_path = Path("/proc") / str(pid) / "cmdline"
+    try:
+        raw = cmdline_path.read_bytes()
+    except OSError:
+        return False
+    args = [part.decode("utf-8", errors="replace") for part in raw.split(b"\0") if part]
+    if "daemon" not in args:
+        return False
+    script_path = str(Path(__file__).resolve())
+    return script_path in args or any(arg.endswith("/therock-sudo-agent") for arg in args)
+
+
+def cmd_stop(args: argparse.Namespace) -> None:
+    socket_path = Path(args.socket).expanduser()
+    pid_path = Path(args.pid_file).expanduser()
+    stopped = False
+    try:
+        request_agent(socket_path, "stop")
+        stopped = True
+    except OSError:
+        pass
+
+    if pid_path.is_file():
+        try:
+            pid = int(pid_path.read_text(encoding="utf-8").strip())
+            if pid_matches_daemon(pid):
+                os.kill(pid, signal.SIGTERM)
+                stopped = True
+        except (OSError, ValueError):
+            pass
+    for path in (socket_path, pid_path):
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
+    print("therock sudo agent: stopped" if stopped else "therock sudo agent: not running")
+
+
+def cmd_run(args: argparse.Namespace) -> None:
+    """Start the sudo agent for one child command and always clean up."""
+    socket_path = Path(args.socket).expanduser()
+    command = list(args.command or ["opencode"])
+    if command and command[0] == "--":
+        command = command[1:]
+    if not command:
+        command = ["opencode"]
+
+    was_running = agent_is_running(socket_path)
+    if not was_running:
+        cmd_start(args)
+    else:
+        print(f"therock sudo agent already running: {socket_path}")
+
+    child_env = os.environ.copy()
+    child_env["THEROCK_SUDO_POLICY"] = "askpass"
+    child_env["THEROCK_SUDO_AGENT_SOCKET"] = str(socket_path)
+    child_env["THEROCK_SUDO_ASKPASS"] = child_env.get(
+        "THEROCK_SUDO_ASKPASS",
+        str(state_dir() / "sudo-askpass.sh"),
+    )
+    child_env["SUDO_ASKPASS"] = child_env["THEROCK_SUDO_ASKPASS"]
+
+    child_proc: subprocess.Popen[str] | None = None
+    exit_code = 0
+    managed_signals = [signal.SIGINT, signal.SIGTERM]
+    if hasattr(signal, "SIGHUP"):
+        managed_signals.append(signal.SIGHUP)
+    previous_handlers = {signum: signal.getsignal(signum) for signum in managed_signals}
+
+    def handle_signal(signum: int, _frame: object) -> None:
+        if child_proc and child_proc.poll() is None:
+            try:
+                child_proc.send_signal(signum)
+            except OSError:
+                pass
+        raise RunInterrupted(signum)
+
+    for signum in managed_signals:
+        signal.signal(signum, handle_signal)
+
+    try:
+        child_proc = subprocess.Popen(command, env=child_env, text=True)
+        exit_code = child_proc.wait()
+    except RunInterrupted as exc:
+        exit_code = 128 + exc.signum
+    finally:
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
+        if child_proc and child_proc.poll() is None:
+            child_proc.terminate()
+            try:
+                child_proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                child_proc.kill()
+                child_proc.wait()
+        if not was_running:
+            cmd_stop(args)
+            subprocess.run(["sudo", "-k"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)
+    raise SystemExit(exit_code)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Session-scoped sudo askpass agent for TheRock tests")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    def add_socket_options(target: argparse.ArgumentParser) -> None:
+        target.add_argument("--socket", default=str(default_socket_path()))
+        target.add_argument("--pid-file", default=str(default_pid_path()))
+
+    start_parser = subparsers.add_parser("start")
+    add_socket_options(start_parser)
+    start_parser.add_argument("--log-file", default=str(default_log_path()))
+    start_parser.set_defaults(func=cmd_start)
+
+    daemon_parser = subparsers.add_parser("daemon")
+    add_socket_options(daemon_parser)
+    daemon_parser.set_defaults(func=lambda args: daemon(Path(args.socket).expanduser(), Path(args.pid_file).expanduser()))
+
+    askpass_parser = subparsers.add_parser("askpass")
+    add_socket_options(askpass_parser)
+    askpass_parser.add_argument("prompt", nargs="*", help="Prompt text passed by sudo; ignored")
+    askpass_parser.set_defaults(func=cmd_askpass)
+
+    status_parser = subparsers.add_parser("status")
+    add_socket_options(status_parser)
+    status_parser.set_defaults(func=cmd_status)
+
+    stop_parser = subparsers.add_parser("stop")
+    add_socket_options(stop_parser)
+    stop_parser.set_defaults(func=cmd_stop)
+
+    run_parser = subparsers.add_parser("run", help="Run a command with automatic sudo-agent cleanup")
+    add_socket_options(run_parser)
+    run_parser.add_argument("--log-file", default=str(default_log_path()))
+    run_parser.add_argument("command", nargs=argparse.REMAINDER, help="Command to run, defaults to opencode")
+    run_parser.set_defaults(func=cmd_run)
+    return parser
+
+
+def main() -> None:
+    args = build_parser().parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

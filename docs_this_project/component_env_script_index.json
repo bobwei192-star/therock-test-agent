@@ -76,7 +76,7 @@
       "inherits": [
         "base"
       ],
-      "requires_sudo_policy": "cache_or_ask"
+      "requires_sudo_policy": "cache_or_askpass"
     },
     "gpu_reset_sensitive": {
       "inherits": [

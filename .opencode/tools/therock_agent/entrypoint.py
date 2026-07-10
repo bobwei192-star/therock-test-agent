@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -79,6 +80,47 @@ def prepend_env_value(env: dict[str, str], key: str, values: list[str]) -> None:
     env[key] = ":".join(deduped)
 
 
+def default_sudo_askpass_path() -> str:
+    return str(Path.home() / ".therock" / "sudo-askpass.sh")
+
+
+def default_sudo_agent_socket() -> str:
+    return str(Path.home() / ".therock" / "sudo-agent.sock")
+
+
+def configure_sudo_askpass_env(state: dict[str, Any], env: dict[str, str]) -> None:
+    """Inject askpass settings and a sudo shim without storing passwords."""
+    if state["meta"].get("sudo_policy") != "askpass":
+        return
+
+    askpass = (
+        state["meta"].get("sudo_askpass")
+        or os.environ.get("THEROCK_SUDO_ASKPASS")
+        or os.environ.get("SUDO_ASKPASS")
+        or default_sudo_askpass_path()
+    )
+    socket_path = (
+        state["meta"].get("sudo_agent_socket")
+        or os.environ.get("THEROCK_SUDO_AGENT_SOCKET")
+        or default_sudo_agent_socket()
+    )
+    real_sudo = shutil.which("sudo") or "/usr/bin/sudo"
+    shim_dir = Path(state["meta"]["output_dir"]) / "sudo_askpass_bin"
+    shim_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
+    shim_path = shim_dir / "sudo"
+    shim_path.write_text(
+        "#!/usr/bin/env bash\n"
+        "set -euo pipefail\n"
+        f"exec {real_sudo!r} -A \"$@\"\n",
+        encoding="utf-8",
+    )
+    shim_path.chmod(0o700)
+
+    env["SUDO_ASKPASS"] = str(Path(str(askpass)).expanduser())
+    env["THEROCK_SUDO_AGENT_SOCKET"] = str(Path(str(socket_path)).expanduser())
+    prepend_env_value(env, "PATH", [str(shim_dir)])
+
+
 def task_context(state: dict[str, Any], task: dict[str, Any], entrypoint: dict[str, Any]) -> dict[str, str]:
     meta = state["meta"]
     return {
@@ -121,6 +163,8 @@ def build_task_env(
                     preflight_modules.append(str(module))
             if profile.get("requires_sudo_policy"):
                 requires_sudo_policy = True
+
+    configure_sudo_askpass_env(state, env)
 
     for required in entrypoint.get("requires", []):
         module_name = {

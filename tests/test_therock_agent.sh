@@ -99,6 +99,32 @@ grep -q '"tool": "shell"' "${TOOL_CALLS_FILE}"
 grep -q '"event": "invocation_start"' "${GLOBAL_AUDIT_FILE}"
 grep -q '"event": "invocation_end"' "${GLOBAL_AUDIT_FILE}"
 
+echo "[test] sudo cache policy does not block non-sudo tasks"
+"${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/component_sort_order.json" \
+  --components pass_component \
+  --test-types quick \
+  --output-root "${TMP_DIR}/sudo_cache_non_sudo_runs" \
+  --mock-command "bash ${TMP_DIR}/mock_runner.sh {task_id}" \
+  --sudo-policy cache \
+  --stable-threshold 1 \
+  --max-rounds 1
+
+SUDO_CACHE_NON_SUDO_RUN_DIR="$(find "${TMP_DIR}/sudo_cache_non_sudo_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${SUDO_CACHE_NON_SUDO_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+result = state["results"]["task_results"]["pass_component-quick"]
+
+assert state["final_status"] == "passed", state["final_status"]
+assert result["status"] == "pass"
+assert state["meta"]["sudo_policy"] == "cache"
+PY
+
 echo "[test] init and resume"
 "${AGENT}" init \
   --run-id resume_case \
@@ -200,6 +226,135 @@ assert result["entrypoint_type"] == "dedicated_python"
 PY
 
 grep -q "sudo_unavailable" "${SUDO_RUN_DIR}/failures/amdsmi-standard_failure_report.md"
+
+FAKE_SUDO_FAIL_DIR="${TMP_DIR}/fake_sudo_fail"
+mkdir -p "${FAKE_SUDO_FAIL_DIR}"
+cat >"${FAKE_SUDO_FAIL_DIR}/sudo" <<SH
+#!/usr/bin/env bash
+printf '%s\n' "\$*" >> "${TMP_DIR}/fake_sudo_fail.log"
+exit 1
+SH
+chmod +x "${FAKE_SUDO_FAIL_DIR}/sudo"
+
+PATH="${FAKE_SUDO_FAIL_DIR}:${PATH}" "${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
+  --components amdsmi \
+  --test-types standard \
+  --output-root "${TMP_DIR}/sudo_cache_fail_runs" \
+  --mock-command "echo should-not-run-{task_id}" \
+  --sudo-policy cache \
+  --stable-threshold 1 \
+  --max-rounds 2
+
+SUDO_CACHE_FAIL_RUN_DIR="$(find "${TMP_DIR}/sudo_cache_fail_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${SUDO_CACHE_FAIL_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+result = state["results"]["task_results"]["amdsmi-standard"]
+
+assert state["final_status"] == "failed", state["final_status"]
+assert result["status"] == "blocked"
+assert "sudo_unavailable" in result["failure_summary"]
+assert result["command"] == "blocked before execution"
+PY
+grep -q -- "-n true" "${TMP_DIR}/fake_sudo_fail.log"
+
+FAKE_SUDO_OK_DIR="${TMP_DIR}/fake_sudo_ok"
+mkdir -p "${FAKE_SUDO_OK_DIR}"
+cat >"${FAKE_SUDO_OK_DIR}/sudo" <<SH
+#!/usr/bin/env bash
+printf '%s\n' "\$*" >> "${TMP_DIR}/fake_sudo_ok.log"
+exit 0
+SH
+chmod +x "${FAKE_SUDO_OK_DIR}/sudo"
+
+PATH="${FAKE_SUDO_OK_DIR}:${PATH}" "${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
+  --components amdsmi \
+  --test-types standard \
+  --output-root "${TMP_DIR}/sudo_cache_ok_runs" \
+  --mock-command "echo sudo-sensitive-ran-{task_id}" \
+  --sudo-policy cache \
+  --stable-threshold 1 \
+  --max-rounds 1
+
+SUDO_CACHE_OK_RUN_DIR="$(find "${TMP_DIR}/sudo_cache_ok_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${SUDO_CACHE_OK_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+result = state["results"]["task_results"]["amdsmi-standard"]
+
+assert state["final_status"] == "passed", state["final_status"]
+assert result["status"] == "pass"
+assert result["command"].startswith("echo sudo-sensitive-ran-")
+PY
+grep -q -- "-n true" "${TMP_DIR}/fake_sudo_ok.log"
+grep -q "sudo-sensitive-ran-amdsmi-standard" "${SUDO_CACHE_OK_RUN_DIR}/logs/amdsmi-standard.round1.stdout.log"
+
+FAKE_ASKPASS="${TMP_DIR}/fake_askpass.sh"
+cat >"${FAKE_ASKPASS}" <<SH
+#!/usr/bin/env bash
+printf '%s\n' "askpass-called" >> "${TMP_DIR}/fake_askpass.log"
+printf '%s\n' "fake-password"
+SH
+chmod +x "${FAKE_ASKPASS}"
+
+FAKE_SUDO_ASKPASS_DIR="${TMP_DIR}/fake_sudo_askpass"
+mkdir -p "${FAKE_SUDO_ASKPASS_DIR}"
+cat >"${FAKE_SUDO_ASKPASS_DIR}/sudo" <<SH
+#!/usr/bin/env bash
+printf '%s\n' "\$*" >> "${TMP_DIR}/fake_sudo_askpass.log"
+if [ -n "\${SUDO_ASKPASS:-}" ]; then
+  "\${SUDO_ASKPASS}" >/dev/null
+fi
+if [ "\${1:-}" = "-A" ]; then
+  shift
+fi
+if [ "\${1:-}" = "true" ]; then
+  exit 0
+fi
+exec "\$@"
+SH
+chmod +x "${FAKE_SUDO_ASKPASS_DIR}/sudo"
+
+PATH="${FAKE_SUDO_ASKPASS_DIR}:${PATH}" \
+THEROCK_SUDO_ASKPASS="${FAKE_ASKPASS}" \
+"${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
+  --components amdsmi \
+  --test-types standard \
+  --output-root "${TMP_DIR}/sudo_askpass_runs" \
+  --mock-command "sudo echo sudo-askpass-ran-{task_id}" \
+  --sudo-policy askpass \
+  --stable-threshold 1 \
+  --max-rounds 1
+
+SUDO_ASKPASS_RUN_DIR="$(find "${TMP_DIR}/sudo_askpass_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${SUDO_ASKPASS_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+result = state["results"]["task_results"]["amdsmi-standard"]
+
+assert state["final_status"] == "passed", state["final_status"]
+assert result["status"] == "pass"
+assert result["command"].startswith("sudo echo sudo-askpass-ran-")
+PY
+grep -q -- "-A true" "${TMP_DIR}/fake_sudo_askpass.log"
+grep -q -- "-A echo sudo-askpass-ran-amdsmi-standard" "${TMP_DIR}/fake_sudo_askpass.log"
+grep -q "askpass-called" "${TMP_DIR}/fake_askpass.log"
+grep -q "sudo-askpass-ran-amdsmi-standard" "${SUDO_ASKPASS_RUN_DIR}/logs/amdsmi-standard.round1.stdout.log"
 
 echo "[test] native index-driven execution"
 FAKE_THEROCK="${TMP_DIR}/TheRock"
