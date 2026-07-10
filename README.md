@@ -1,91 +1,296 @@
 # TheRock Test Agent
 
-这是一个面向 TheRock ROCm 测试的 OpenCode 项目级 overlay。
+`therock-test-agent` 是一个面向 ROCm/TheRock 多组件测试的 OpenCode 项目级 overlay。它不修改 OpenCode 源码，不把测试状态放在聊天上下文里，而是把 OpenCode 的交互、权限和解释能力，与一个确定性的本地 Python runner 组合起来，用于执行 TheRock 组件测试、重跑失败集、生成报告和保留全过程审计。
 
-核心分工：
+本 README 按 GitHub 对 README 的推荐组织：说明项目做什么、为什么有用、如何开始、主要目录和文件作用、如何运行与排障。
 
-- OpenCode 负责接收指令、调用命令、解释结果。
-- `.opencode/agents/` 定义主协调、执行、报告分析 agent。
-- `.opencode/commands/` 提供 `/therock-run`、`/therock-resume`、`/therock-report`。
-- `.opencode/skills/therock-testing/` 保存 TheRock 测试知识和安全边界。
-- `.opencode/tools/therock_agent.sh` 是薄入口，实际逻辑在 `.opencode/tools/therock_agent/*.py`。
-- `docs_this_project/` 提供组件排序、入口映射、官方排除、汇总报告模板和单组件问题模板。
+## 目录
 
-runner 模块结构：
+- [项目定位](#项目定位)
+- [核心特点](#核心特点)
+- [项目结构](#项目结构)
+- [主要目录与文件](#主要目录与文件)
+- [快速开始](#快速开始)
+- [运行测试](#运行测试)
+- [sudo 策略](#sudo-策略)
+- [输出产物](#输出产物)
+- [恢复与报告](#恢复与报告)
+- [本地自测](#本地自测)
+- [常见问题](#常见问题)
+- [更多文档](#更多文档)
+
+## 项目定位
+
+TheRock 的组件测试覆盖 CTest、GoogleTest、pytest 和组件专用测试脚本。手动测试时，常见问题是组件入口不统一、环境变量容易遗漏、失败重跑成本高、GPU reset 风险难控、sudo 权限策略不清晰、报告和日志分散。
+
+本项目将这些问题收敛到一个可审计的本地 runner 中：
+
+- OpenCode 负责接收用户指令、选择策略、调用 runner、解释结果。
+- Python runner 负责参数解析、任务计划、preflight、执行、状态机、报告和审计。
+- TheRock 官方测试脚本仍然是最终测试入口，不重写组件测试逻辑。
+
+典型目标：
+
+- 自动串行执行 TheRock 多组件测试。
+- 支持 `quick -> standard -> comprehensive -> full` 分级执行。
+- 只重跑失败任务，让失败集逐轮收敛。
+- 自动生成汇总报告、失败报告、原始日志和审计记录。
+- 对 sudo-sensitive 和 GPU reset 高风险任务提供明确边界。
+
+## 核心特点
+
+- **OpenCode 薄协调，runner 厚执行**：OpenCode 只负责意图、策略和解释；`.opencode/tools/therock_agent/*.py` 承担确定性执行逻辑。
+- **配置驱动**：组件顺序、入口脚本、环境 profile、官方排除和风险策略由 JSON 文件控制，避免在 prompt 中猜测。
+- **Loop Engineering**：第一轮执行目标任务，后续只重跑失败任务，直到全部通过、失败集稳定或达到最大轮次。
+- **状态可恢复**：每次运行生成 `runs/<run_id>/global_state.json`，作为唯一状态源，支持 `/therock-resume`。
+- **完整审计**：默认记录 agent 活动、终端命令、tool 调用、wrapper 变更、stdout/stderr、summary 和 failure report，方便审计、复盘和对比人工测试效率。
+- **低侵入 wrapper**：默认只生成 `runs/<run_id>/wrappers/*.sh`，不修改 OpenCode、TheRock 源码或 ROCm 构建产物。
+- **GPU 风险控制**：默认跳过 `gpu_hang_risk=true` 任务，可通过 `skip/include/quarantine` 显式控制。
+- **sudo 安全策略**：支持 `none/cache/askpass`，不把 sudo 密码写入 `.env`、日志或状态文件。
+- **鲁棒参数入口**：`/therock-run` 通过 runner 的 `run-kv` 子命令解析 `key=value` 参数，避免 prompt 层误读。
+- **内置上游 issue 语料**：随项目维护 TheRock 和 ROCm GitHub issue 资料，方便将测试失败与上游已知问题、硬件限制和构建缺陷做对照。
+- **内置 ROCm/AMD 领域词汇**：提供 ROCm、AMD、TheRock 相关专业缩写和组件术语资料，帮助 agent 理解组件含义，提升报告和根因分析的准确性。
+
+## 项目结构
 
 ```text
-.opencode/tools/
-  therock_agent.sh
-  therock_agent/
-    cli.py
-    audit.py
-    config.py
-    artifacts.py
-    state.py
-    planner.py
-    entrypoint.py
-    preflight.py
-    executor.py
-    classifier.py
-    reports.py
+therock-test-agent/
+├── .opencode/
+│   ├── agents/
+│   ├── commands/
+│   ├── skills/
+│   └── tools/
+│       ├── therock_agent.sh
+│       └── therock_agent/
+├── docs_this_project/
+├── scripts/
+├── tests/
+├── test-results/
+├── runs/
+├── install.sh
+├── .env_example
+└── README.md
 ```
 
-配置文件职责：
+## 主要目录与文件
 
-```text
-docs_this_project/component_sort_order.json        # 决定 task 队列和顺序
-docs_this_project/component_env_script_index.json  # 决定组件入口、脚本、env profile、依赖和 known issue
-docs_this_project/official_exclude.json            # 决定官方排除和无入口组件
-```
+### `.opencode/`
 
-## 1. 安装到 TheRock 目录
+项目级 OpenCode overlay。安装到 TheRock checkout 后，OpenCode 会自动发现该目录。
 
-在本项目目录执行：
+| 路径 | 作用 |
+|------|------|
+| `.opencode/agents/therock-loop.md` | 主协调 agent。解释用户输入、选择 GPU/sudo 策略、调用 runner、总结结果。 |
+| `.opencode/agents/therock-executor.md` | 受限执行 agent。校验参数并调用 `.opencode/tools/therock_agent.sh`。 |
+| `.opencode/agents/therock-reporter.md` | 报告 agent。读取 `runs/<run_id>/` 产物并总结结果。 |
+| `.opencode/commands/therock-run.md` | `/therock-run` 命令定义。使用 `$ARGUMENTS` 调用 `run-kv`。 |
+| `.opencode/commands/therock-resume.md` | `/therock-resume` 命令定义。恢复中断 run。 |
+| `.opencode/commands/therock-report.md` | `/therock-report` 命令定义。重新生成或读取报告。 |
+| `.opencode/skills/therock-testing/SKILL.md` | TheRock 测试领域知识、测试入口、安全边界和风险策略。 |
+| `.opencode/tools/therock_agent.sh` | 薄 shell 入口，设置 `PYTHONPATH` 后调用 Python runner。 |
+
+### `.opencode/tools/therock_agent/`
+
+确定性 Python runner。所有状态机和执行逻辑都在这里，不依赖聊天上下文。
+
+| 文件 | 作用 |
+|------|------|
+| `cli.py` | CLI 编排入口；实现 `init/run/run-kv/init-kv/resume/report`。 |
+| `config.py` | 读取 `.env` 和 JSON 配置；拒绝从 `.env` 读取 sudo 密码。 |
+| `artifacts.py` | 解析 ROCm artifacts 路径、发现 TheRock repo、检查 sudo 策略。 |
+| `planner.py` | 根据组件排序、test type、官方排除和 GPU risk 生成任务队列。 |
+| `entrypoint.py` | 解析组件入口、合并 env profile、注入 askpass sudo shim。 |
+| `preflight.py` | 执行前检查 artifacts、env、Python 依赖和 sudo 可用性。 |
+| `executor.py` | 生成 wrapper、执行任务、写 stdout/stderr、记录 tool calls。 |
+| `classifier.py` | 提取失败摘要，检测 hardcoded path 等常见问题。 |
+| `reports.py` | 生成 `summary_report.md` 和单组件 failure report。 |
+| `state.py` | 读写 `global_state.json`。 |
+| `audit.py` | 写入 activity、tool calls、wrapper changes 和全局调用审计。 |
+
+### `docs_this_project/`
+
+项目配置、模板和设计文档。
+
+| 文件 | 作用 |
+|------|------|
+| `component_sort_order.json` | 决定组件和 test type 的执行顺序、默认状态、GPU hang 风险。 |
+| `component_env_script_index.json` | 决定组件测试入口、脚本、环境 profile、依赖和 known issue。 |
+| `official_exclude.json` | 记录官方排除、无独立入口或应跳过/阻塞的组件规则。 |
+| `汇总测试报告.md` | 汇总报告模板。 |
+| `问题模板.md` | 单组件失败报告模板。 |
+| `sudo方案.md` | session-scoped sudo askpass 设计。 |
+| `需求.md` | 项目需求、状态机、报告和权限边界说明。 |
+| `ROCm_TheRock—测试test流程与设计` | TheRock 测试流程和入口背景。 |
+| `loop_engineering.md` | 失败集收缩重跑的 loop 设计。 |
+| `github_issue_TheRock_repo/` | TheRock 上游 issue 资料，用于比对测试失败和已知问题。 |
+| `github_issue_Rocm_repo/` | ROCm 上游 issue 资料，用于比对驱动、runtime、GPU hang、组件缺陷等问题。 |
+| `词汇_rocm_all_1000.md` | ROCm/AMD 领域专业缩写词汇资料。 |
+| `词汇_rocm_the_rock.md` | TheRock/ROCm 组件术语资料。 |
+
+### `scripts/`
+
+辅助运行脚本。
+
+| 文件 | 作用 |
+|------|------|
+| `therock-sudo-agent` | session-scoped sudo askpass agent。密码只保存在进程内存中，支持 `start/status/stop/run/askpass`。 |
+
+### `tests/`
+
+本地回归测试，不依赖真实 GPU。
+
+| 文件 | 作用 |
+|------|------|
+| `test_install_overlay.sh` | 验证安装 overlay、`.env` 安全规则、`run-kv/init-kv` 参数解析、askpass prompt 兼容性。 |
+| `test_therock_agent.sh` | 验证任务 loop、resume、官方排除、sudo preflight、wrapper、path hardcode 检测。 |
+
+### `runs/`
+
+运行时输出目录。
+
+| 路径 | 作用 |
+|------|------|
+| `runs/<run_id>/global_state.json` | 本次 run 的唯一状态源。 |
+| `runs/<run_id>/summary_report.md` | 汇总报告。 |
+| `runs/<run_id>/logs/` | 每个任务的 stdout/stderr。 |
+| `runs/<run_id>/wrappers/` | 每个真实任务生成的执行 wrapper。 |
+| `runs/<run_id>/failures/` | 单组件失败报告。 |
+| `runs/<run_id>/agent_activity.jsonl` | 任务生命周期和事件记录。 |
+| `runs/<run_id>/tool_calls.jsonl` | 命令调用、返回码、耗时和日志路径。 |
+| `runs/<run_id>/wrapper_changes.jsonl` | wrapper 和环境变量变更审计。 |
+| `runs/_audit/agent_invocations.jsonl` | runner 全局调用审计。 |
+
+### 根目录文件
+
+| 文件 | 作用 |
+|------|------|
+| `install.sh` | 将 `.opencode/`、`docs_this_project/`、`scripts/` 安装到目标 TheRock checkout。 |
+| `.env_example` | 本地环境模板，只允许非敏感配置，不允许 sudo 密码。 |
+| `README.md` | 项目入口文档。 |
+
+## 快速开始
+
+### 1. 安装 overlay
+
+在 `therock-test-agent` 项目目录执行：
 
 ```bash
 cd /home/zx/TheRock_CI测试流程/therock-test-agent
 ./install.sh /home/zx/TheRock_CI测试流程/TheRock
 ```
 
-安装内容：
-
-- `.opencode/`
-- `docs_this_project/`
-- `.env_example`
-- 如果目标目录没有 `.env`，会创建 `.env`
-
-安装后会校验：
-
-- `.opencode/tools/therock_agent.sh`
-- `.opencode/tools/therock_agent/cli.py`
-- `.opencode/tools/therock_agent/executor.py`
-- `.opencode/tools/therock_agent/reports.py`
-- `docs_this_project/component_env_script_index.json`
-- `docs_this_project/official_exclude.json`
-
-OpenCode 会自动发现当前工作目录下的 `.opencode/`，不需要修改或 clone OpenCode 源码。
-
-## 2. sudo 策略
-
-不要把 sudo 密码写入 `.env`。
-
-可选策略：
+如果需要运行 sudo-sensitive 组件，例如 `amdsmi`，使用 askpass 安装模式：
 
 ```bash
-THEROCK_SUDO_POLICY=none
-THEROCK_SUDO_POLICY=cache
-THEROCK_SUDO_POLICY=askpass
+./install.sh --setup-sudo-agent /home/zx/TheRock_CI测试流程/TheRock
 ```
 
-如果使用 `cache`：
+安装后，进入 TheRock checkout：
 
 ```bash
 cd /home/zx/TheRock_CI测试流程/TheRock
-sudo -v
 opencode
 ```
 
-如果使用 `askpass`，先安装 helper，然后在启动 OpenCode 前开启本次会话的 sudo agent：
+### 2. 运行一个轻量组件
+
+OpenCode 内：
+
+```text
+/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=hiprand test_types=quick
+```
+
+### 3. 运行 sudo-sensitive 组件
+
+先用 wrapper 启动 OpenCode：
+
+```bash
+cd /home/zx/TheRock_CI测试流程/TheRock
+./scripts/therock-sudo-agent run -- opencode
+```
+
+OpenCode 内：
+
+```text
+/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
+```
+
+## 运行测试
+
+推荐使用 `key=value` 参数。`/therock-run` 会把原始参数交给 runner 的 `run-kv` 子命令做确定性解析。
+
+常用参数：
+
+| 参数 | 说明 |
+|------|------|
+| `artifacts=<path>` | 必填。ROCm build 目录或 `dist/rocm` 路径。 |
+| `gpu=<gfx>` | 必填。例如 `gfx1151`。 |
+| `components=<list>` | 可选。逗号分隔；`all` 表示全部组件。 |
+| `test_types=<list>` | 可选。默认 `quick,standard,comprehensive,full`。 |
+| `gpu_risk=<policy>` | 可选。`skip/include/quarantine`，默认 `skip`。 |
+| `sudo_policy=<policy>` | 可选。`none/cache/askpass`，默认读取环境或 `none`。 |
+| `max_rounds=<n>` | 可选。最大 loop 轮数。 |
+| `stable_threshold=<n>` | 可选。失败集稳定阈值。 |
+
+示例：
+
+```text
+/therock-run artifacts=/path/to/output/build gpu=gfx1151 components=all test_types=quick gpu_risk=skip
+```
+
+全组件、全 test type，默认跳过 GPU hang 高风险任务：
+
+```text
+/therock-run artifacts=/path/to/output/build gpu=gfx1151 components=all test_types=all gpu_risk=skip
+```
+
+说明：
+
+- `components=all` 表示按 `component_sort_order.json` 覆盖全部组件。
+- `test_types=all` 表示使用默认全集：`quick,standard,comprehensive,full`。不传 `test_types` 也等价于全 test type。
+- `gpu_risk=skip` 会跳过 `gpu_hang_risk=true` 的任务，适合日常全量验证；需要覆盖高风险任务时再显式使用 `include` 或 `quarantine`。
+- 如果全量测试包含 sudo-sensitive 组件，并且希望获得完整覆盖，可通过 `./scripts/therock-sudo-agent run -- opencode` 启动后追加 `sudo_policy=askpass`。
+
+带 sudo askpass 的全量命令示例：
+
+```text
+/therock-run artifacts=/path/to/output/build gpu=gfx1151 components=all test_types=all gpu_risk=skip sudo_policy=askpass
+```
+
+直接调用 runner：
+
+```bash
+.opencode/tools/therock_agent.sh run-kv \
+  artifacts=/path/to/output/build \
+  gpu=gfx1151 \
+  components=hiprand \
+  test_types=quick
+```
+
+传统 flags 也可以直接调用：
+
+```bash
+.opencode/tools/therock_agent.sh run \
+  --therock-repo "$(pwd)" \
+  --artifacts /path/to/output/build \
+  --amdgpu-families gfx1151 \
+  --components hiprand \
+  --test-types quick
+```
+
+## sudo 策略
+
+不要把 sudo 密码写入 `.env`。
+
+支持三种策略：
+
+| 策略 | 行为 |
+|------|------|
+| `none` | 默认策略。sudo-sensitive task 直接 `blocked`。 |
+| `cache` | 只检查已有 sudo cache，执行 `sudo -n true`。 |
+| `askpass` | 使用 session-scoped sudo agent，执行 `sudo -A true` 和临时 sudo shim。 |
+
+`askpass` 模式：
 
 ```bash
 ./install.sh --setup-sudo-agent /home/zx/TheRock_CI测试流程/TheRock
@@ -93,295 +298,108 @@ cd /home/zx/TheRock_CI测试流程/TheRock
 ./scripts/therock-sudo-agent run -- opencode
 ```
 
-`run -- opencode` 会在 OpenCode 启动前提示一次 sudo 密码，并在 OpenCode 退出时自动停止 sudo agent、执行 `sudo -k`。如果进程异常退出，可手动执行 `./scripts/therock-sudo-agent stop && sudo -k` 兜底清理。
+`run -- opencode` 会在启动前提示一次 sudo 密码，OpenCode 退出时自动停止 sudo agent 并执行 `sudo -k`。密码只保存在 `therock-sudo-agent` 进程内存里，不写入 `.env`、日志或状态文件。
 
-`askpass` 模式下，密码只保存在 `therock-sudo-agent` 进程内存里；`~/.therock/sudo-askpass.sh` 和 `.env` 只保存 helper/socket 路径，不保存密码。
+## 输出产物
 
-runner 只会在 task 命中 `sudo_sensitive` profile 时检查 `sudo -n true` 或 `sudo -A true`，不会读取或保存 sudo 密码。
-
-`sudo_sensitive` 任务在没有可用 sudo cache 或 askpass agent 时会被标记为 `blocked`，不会归类为组件失败。
-非 sudo 组件，例如 `hiprand quick`，即使 `.env` 中配置了 `THEROCK_SUDO_POLICY=cache`，也不会因为 sudo cache 失效而被启动前拦住。
-
-## 3. OpenCode 常用运行方式
-
-进入 TheRock 目录：
-
-```bash
-cd /home/zx/TheRock_CI测试流程/TheRock
-opencode
-```
-
-先跑一个轻量组件：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 hiprand quick
-```
-
-也可以使用更清晰的 key=value 格式：
-
-```text
-/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=hiprand test_types=quick
-```
-
-sudo-sensitive 组件示例：
-
-```text
-/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
-```
-
-跑全部组件的 `quick`：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick
-```
-
-跑全部组件、全部测试类型：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all
-```
-
-参数含义：
-
-- 第 1 个参数：`ARTIFACTS_PATH`
-- 第 2 个参数：`THEROCK_AMDGPU_FAMILIES` / `AMDGPU_FAMILIES`
-- 第 3 个参数：组件列表，可选，逗号分隔；传 `all` 表示全部组件
-- 第 4 个参数：测试类型，可选，例如 `quick`；不传则使用 `quick,standard,comprehensive,full`
-- 第 5 个参数：GPU risk 策略，可选，默认 `skip`
-- key=value 格式中，`sudo_policy`、`max_rounds`、`stable_threshold` 是独立参数，不属于 GPU risk；GPU risk 请使用 `gpu_risk=skip|include|quarantine`
-
-高风险 GPU reset 任务默认跳过，也就是默认等价于：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick skip
-```
-
-如果确实要执行高风险任务，需要显式传第 5 个参数。
-
-直接混入执行：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick include
-```
-
-更推荐隔离执行：
-
-```text
-/therock-run /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build gfx1151 all quick quarantine
-```
-
-`quarantine` 的含义是：普通任务先跑，高风险任务排到最后单独跑。
-
-## 4. 直接调用 runner 验证
-
-如果想绕过 OpenCode，先验证 shell runner：
-
-```bash
-cd /home/zx/TheRock_CI测试流程/TheRock
-.opencode/tools/therock_agent.sh init \
-  --artifacts /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build \
-  --amdgpu-families gfx1151 \
-  --components hiprand \
-  --test-types quick
-```
-
-全部组件 quick：
-
-```bash
-.opencode/tools/therock_agent.sh run \
-  --therock-repo "$(pwd)" \
-  --artifacts /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build \
-  --amdgpu-families gfx1151 \
-  --components all \
-  --test-types quick
-```
-
-全部组件、全部测试类型：
-
-```bash
-.opencode/tools/therock_agent.sh run \
-  --therock-repo "$(pwd)" \
-  --artifacts /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build \
-  --amdgpu-families gfx1151 \
-  --components all
-```
-
-真正执行：
-
-```bash
-.opencode/tools/therock_agent.sh run \
-  --therock-repo "$(pwd)" \
-  --artifacts /home/zx/TheRock_CI测试流程/TheRock/output-linux-portable/build \
-  --amdgpu-families gfx1151 \
-  --components hiprand \
-  --test-types quick
-```
-
-runner 默认会读取：
-
-```text
-docs_this_project/component_sort_order.json
-docs_this_project/component_env_script_index.json
-docs_this_project/official_exclude.json
-```
-
-`test_runner.py` 入口不会再传 `--component` / `--test-type`，而是通过环境变量设置：
-
-```text
-TEST_COMPONENT
-TEST_TYPE
-AMDGPU_FAMILIES
-THEROCK_BIN_DIR
-OUTPUT_ARTIFACTS_DIR
-ROCM_PATH
-HIP_PATH
-LD_LIBRARY_PATH
-```
-
-## 5. 查看日志和报告
-
-如果 runner 成功创建 run，输出在：
+每次运行会生成：
 
 ```text
 runs/<run_id>/
+├── global_state.json
+├── environment_summary.json
+├── summary_report.md
+├── agent_activity.jsonl
+├── tool_calls.jsonl
+├── wrapper_changes.jsonl
+├── logs/
+├── wrappers/
+├── failures/
+└── memory/
 ```
 
-常看文件：
-
-```text
-runs/<run_id>/global_state.json
-runs/<run_id>/agent_activity.jsonl
-runs/<run_id>/tool_calls.jsonl
-runs/<run_id>/wrapper_changes.jsonl
-runs/<run_id>/environment_summary.json
-runs/<run_id>/summary_report.md
-runs/<run_id>/logs/
-runs/<run_id>/wrappers/
-runs/<run_id>/failures/
-```
-
-单任务日志示例：
-
-```text
-runs/<run_id>/logs/hiprand-quick.round1.stdout.log
-runs/<run_id>/logs/hiprand-quick.round1.stderr.log
-```
-
-如果连 run 都没创建，例如 artifacts 路径错误，也看全局调用审计：
+如果连 run 都没有创建，例如 artifacts 路径错误，查看：
 
 ```text
 runs/_audit/agent_invocations.jsonl
 ```
 
-这个文件记录 OpenCode / runner 何时被调用、参数、cwd、环境摘要、成功或失败原因。
+## 恢复与报告
 
-wrapper 说明：
-
-- 每个真实任务会生成 `runs/<run_id>/wrappers/<task_id>.round<N>.sh`。
-- wrapper 只记录 `cd`、`export` 环境变量和最终执行命令。
-- wrapper 不修改 TheRock 组件源码，也不修改 `dist/rocm/bin` 或 `dist/rocm/lib`。
-- 环境变更写入 `runs/<run_id>/wrapper_changes.jsonl`。
-
-## 6. 恢复中断 run
-
-OpenCode 内：
+恢复中断 run：
 
 ```text
 /therock-resume <run_id>
 ```
 
-或直接调用：
+直接调用：
 
 ```bash
 .opencode/tools/therock_agent.sh resume <run_id>
 ```
 
-恢复依赖：
-
-- `runs/<run_id>/global_state.json`
-- `runs/<run_id>/logs/`
-- `runs/<run_id>/agent_activity.jsonl`
-
-如果 GPU reset 后机器状态不健康，先处理系统状态，再恢复。
-
-## 7. 重新生成报告
-
-OpenCode 内：
+重新生成报告：
 
 ```text
 /therock-report <run_id>
 ```
 
-或直接调用：
+直接调用：
 
 ```bash
 .opencode/tools/therock_agent.sh report <run_id>
 ```
 
-报告模板来源：
+## 本地自测
 
-- 汇总报告：`docs_this_project/汇总测试报告.md`
-- 单组件失败报告：`docs_this_project/问题模板.md`
+在 `therock-test-agent` 项目目录执行：
 
-## 8. 常见问题
+```bash
+cd /home/zx/TheRock_CI测试流程/therock-test-agent
+bash tests/test_install_overlay.sh
+bash tests/test_therock_agent.sh
+python3 -m py_compile .opencode/tools/therock_agent/cli.py scripts/therock-sudo-agent
+```
 
-### artifacts 路径不存在
+这些测试不依赖真实 GPU，使用 mock artifacts 和 mock command 验证：
 
-错误表现：没有生成 `runs/<run_id>/`，或 `_audit` 里记录 artifacts 校验失败。
+- overlay 安装
+- Python package 导入
+- `run-kv/init-kv` 参数解析
+- official exclude
+- sudo preflight
+- askpass prompt 兼容
+- wrapper 审计
+- hardcoded path 检测
+- resume 和报告生成
+
+## 常见问题
+
+### artifacts 路径不合法
 
 确认路径里有：
 
 ```text
-dist/rocm/
+dist/rocm/bin
 ```
 
-支持的路径形态：
+支持：
 
 ```text
-/output-linux-portable/build
-/output/build
-/path/to/build/dist/rocm
+/path/to/output/build
+/path/to/output/build/dist/rocm
 ```
 
 ### OpenCode 要求 shell 权限
 
-这是正常行为。首次执行 `.opencode/tools/therock_agent.sh` 时可以选 `Allow once`。确认命令可信后，再按需选择 `Allow always`。
-
-### sudo cache 不可用
-
-如果 `.env` 里是：
-
-```bash
-THEROCK_SUDO_POLICY=cache
-```
-
-需要先执行：
-
-```bash
-sudo -v
-```
-
-否则 runner 会失败并在 `_audit` 中记录原因。
+这是正常行为。首次执行 `.opencode/tools/therock_agent.sh` 时可以选择 `Allow once`。确认命令可信后，再按需选择 `Allow always`。
 
 ### sudo askpass agent 不可用
 
-如果 `.env` 里是：
-
-```bash
-THEROCK_SUDO_POLICY=askpass
-```
-
-推荐执行：
+使用 askpass 时推荐从 wrapper 启动 OpenCode：
 
 ```bash
 ./scripts/therock-sudo-agent run -- opencode
-```
-
-也可以手动管理 session：
-
-```bash
-./scripts/therock-sudo-agent start
-./scripts/therock-sudo-agent status
 ```
 
 异常退出时兜底清理：
@@ -391,33 +409,21 @@ THEROCK_SUDO_POLICY=askpass
 sudo -k
 ```
 
-### 任务被 skipped
+### 任务被 skipped 或 blocked
 
 常见原因：
 
-- `component_sort_order.json` 中 `status=exclude`
-- `official_exclude.json` 命中官方排除或无入口组件
-- `gpu_hang_risk=true` 且默认 `--gpu-risk skip`
-- `sudo_sensitive` 任务没有可用 sudo cache 或 askpass agent
-- preflight 发现 artifacts、依赖或必要 env 缺失
+- `official_exclude.json` 命中官方排除或无入口组件。
+- `component_sort_order.json` 中任务状态为 exclude。
+- `gpu_hang_risk=true` 且 `gpu_risk=skip`。
+- sudo-sensitive task 没有可用 sudo cache 或 askpass agent。
+- preflight 发现 artifacts、依赖或必要环境变量缺失。
 
-## 9. 本地自测
+## 更多文档
 
-在 agent 项目目录执行：
-
-```bash
-cd /home/zx/TheRock_CI测试流程/therock-test-agent
-tests/test_install_overlay.sh
-tests/test_therock_agent.sh
-```
-
-这两个测试不依赖真实 GPU，用 mock artifacts 和 mock runner 验证安装、状态、日志、报告、resume 和高风险 skip。
-
-测试覆盖：
-
-- overlay 安装是否复制 `.opencode/tools/therock_agent/*.py`
-- runner 是否能通过薄 shell 入口导入 Python package
-- `component_env_script_index.json` 是否驱动入口脚本和环境变量
-- `official_exclude.json` 是否生效
-- sudo-sensitive 任务是否 blocked
-- wrapper 和 hardcoded path 检测是否写入报告
+- `docs_this_project/需求.md`
+- `docs_this_project/ROCm_TheRock—测试test流程与设计`
+- `docs_this_project/loop_engineering.md`
+- `docs_this_project/sudo方案.md`
+- `docs_this_project/汇总测试报告.md`
+- `docs_this_project/问题模板.md`
