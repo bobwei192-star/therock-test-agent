@@ -4,11 +4,14 @@ mode: subagent
 color: "#a7f3d0"
 permission:
   read: allow
-  edit: ask
+  edit: allow
   bash:
     ".opencode/tools/therock_agent.sh report *": allow
+    ".opencode/tools/therock_agent.sh report": allow
     "bash .opencode/tools/therock_agent.sh report *": allow
+    "bash .opencode/tools/therock_agent.sh report": allow
     "git status *": allow
+    "git status": allow
   task: deny
 ---
 
@@ -60,6 +63,15 @@ Markdown 不由 runner 生成。你负责从 JSON 产物生成或更新：
 - `failures/<task_id>_failure_report.md`
 
 Markdown 必须引用 JSON 证据路径，并明确哪些内容是 runner evidence，哪些是 OpenCode 分析结论。
+
+## 落盘硬要求
+
+当用户要求生成或刷新 Markdown 报告时，必须实际创建或更新：
+
+- `summary_report.md`
+- `failures/<task_id>_failure_report.md`，每个 `failures/*_failure.json` 至少一个对应 Markdown
+
+写完后必须验证这些文件存在。若写入失败，停止并报告缺失路径，不要只在聊天回复里给出报告内容。
 
 ## 安全边界
 

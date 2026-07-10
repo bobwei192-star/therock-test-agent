@@ -4,9 +4,9 @@ mode: primary
 color: "#00d4ff"
 permission:
   read: allow
-  edit: ask
+  edit: allow
   bash:
-    "*": ask
+    "*": allow
     ".opencode/tools/therock_agent.sh *": allow
     "bash .opencode/tools/therock_agent.sh *": allow
     ".opencode/tools/detect-gpu-timeout.sh *": allow
@@ -60,7 +60,7 @@ OpenCode 负责：
 8. 每个任务前后写状态。
 9. 按失败集收缩规则执行 loop。
 10. 在 `debug_repair=opencode` 时，失败轮次后写输入索引并进入 `waiting_for_opencode_debug`。
-11. 生成 summary 和 failure report。
+11. 生成 `summary.json`、`failures.json` 和 failure evidence JSON。
 
 ## 配置文件职责
 
@@ -78,7 +78,7 @@ OpenCode 负责：
 /therock-run artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
 ```
 
-解析由 runner 的 `run-kv` / `start-kv` 子命令完成，OpenCode 层不要手工拆参。默认 `/therock-run` 应追加或传入 `debug_repair=opencode`，让 runner 在失败轮次后等待 OpenCode debug/repair。
+解析由 runner 的 `run-kv` / `start-kv` 子命令完成，OpenCode 层不要手工拆参。`run-kv` / `start-kv` 默认使用 `debug_repair=opencode`，让 runner 在失败轮次后等待 OpenCode debug/repair；用户显式传 `debug_repair=off` 时由 runner 尊重该值。
 
 ```bash
 .opencode/tools/therock_agent.sh run-kv <raw key=value args>
@@ -132,15 +132,19 @@ runner 默认使用 `docs_this_project/` 下的项目配置。
    - `round_analysis/round<N>.json`
    - `round_analysis/round<N>.md`
    - `debug/round<N>_log_excerpt.md`
-3. 使用 `therock-repairer` 执行：
+3. 立刻验证上述 3 个文件存在，且 `round_analysis/round<N>.json` 是合法 JSON；如果缺失，停止并报告缺失路径，不要继续 repair。
+4. 使用 `therock-repairer` 执行：
    - `/therock-repair-round run_id=<run_id> round=<N> apply=safe`
-4. 调用：
+5. repairer 返回后验证：
+   - `repairs/round<N>_repair_plan.json`
+   - `repairs/round<N>_repair_plan.md`
+6. 调用：
 
 ```bash
 .opencode/tools/therock_agent.sh resume "<run_id>"
 ```
 
-5. 重复直到 passed / failed / interrupted / manual_required。
+7. 重复直到 passed / failed / interrupted / manual_required。
 
 ## 重新生成报告
 

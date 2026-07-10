@@ -1,6 +1,6 @@
 ---
 description: Regenerate TheRock loop test reports for an existing run
-agent: therock-loop
+agent: therock-reporter
 subtask: true
 ---
 
@@ -26,6 +26,8 @@ Markdown 输出由 `therock-reporter` 从 JSON 生成：
 
 - `runs/<run_id>/summary_report.md`
 - `runs/<run_id>/failures/*_failure_report.md`
+
+写完后必须验证 Markdown 文件存在；如果创建失败，明确报告缺失路径。
 
 检查报告是否覆盖 `需求.md` 中的三类输出：
 

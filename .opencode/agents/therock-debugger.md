@@ -4,14 +4,20 @@ mode: subagent
 color: "#fbbf24"
 permission:
   read: allow
-  edit: ask
+  edit: allow
   bash:
     ".opencode/tools/therock_agent.sh status *": allow
+    ".opencode/tools/therock_agent.sh status": allow
     "bash .opencode/tools/therock_agent.sh status *": allow
+    "bash .opencode/tools/therock_agent.sh status": allow
     ".opencode/tools/therock_agent.sh report *": allow
+    ".opencode/tools/therock_agent.sh report": allow
     "bash .opencode/tools/therock_agent.sh report *": allow
+    "bash .opencode/tools/therock_agent.sh report": allow
     "python3 -m json.tool *": allow
+    "python3 -m json.tool": allow
     "git status *": allow
+    "git status": allow
   task: deny
 ---
 
@@ -83,6 +89,51 @@ run_id=<run_id> round=<N>
 - 向 `progress.jsonl` 追加 `opencode_debug_written`
 
 这些文件是 OpenCode 生成的分析产物。runner 只负责 `round<N>_inputs.json` 和 `round<N>_failure_index.json`。
+
+## 落盘硬要求
+
+不要只在聊天回复里给出分析。你必须实际创建或更新上述 3 个文件，并在回复前重新读取或列出文件确认它们存在。
+
+如果写文件失败：
+
+1. 不要继续 repair。
+2. 明确输出失败的目标路径和失败原因。
+3. 不要声明 debug analysis 已完成。
+
+`round_analysis/round<N>.json` 至少包含：
+
+```json
+{
+  "schema_version": "0.2",
+  "run_id": "<run_id>",
+  "round": 1,
+  "tasks": [
+    {
+      "task_id": "sanity-quick",
+      "classification": "missing_python_dependency",
+      "root_cause": "...",
+      "confidence": "high",
+      "next_action": "repair_then_retry",
+      "repair_policy": "safe_auto",
+      "repairable": true,
+      "repair_items": [
+        {"type": "python_package", "name": "prettytable", "command": "python3 -m pip install prettytable"}
+      ],
+      "evidence": []
+    }
+  ],
+  "complete": true,
+  "gaps": []
+}
+```
+
+当 runner evidence 中存在 `missing_python_modules` 时：
+
+- `classification` 应为 `missing_python_dependency`。
+- `repair_policy` 应为 `safe_auto`。
+- `repair_items` 必须列出每个缺失模块对应的 Python package 安装项。
+
+如果无法确认 package 名与 module 名一致，`repair_policy` 改为 `safe_plan_only`，并在 `gaps` 里说明需要人工确认包名。
 
 ## 权限与边界
 

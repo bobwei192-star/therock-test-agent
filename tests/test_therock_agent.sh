@@ -42,6 +42,27 @@ esac
 SH
 chmod +x "${TMP_DIR}/mock_runner.sh"
 
+python3 - "${PROJECT_ROOT}" <<'PY'
+import sys
+from pathlib import Path
+
+project_root = Path(sys.argv[1])
+sys.path.insert(0, str(project_root / ".opencode" / "tools"))
+
+from therock_agent.cli import kv_to_runner_argv
+
+start_argv = kv_to_runner_argv("start", ["artifacts=/tmp/build", "gpu=gfx1151"])
+assert start_argv[-2:] == ["--debug-repair", "opencode"], start_argv
+
+off_argv = kv_to_runner_argv("start", ["artifacts=/tmp/build", "gpu=gfx1151", "debug_repair=off"])
+assert off_argv.count("--debug-repair") == 1, off_argv
+assert off_argv[-2:] == ["--debug-repair", "off"], off_argv
+
+flag_off_argv = kv_to_runner_argv("start", ["artifacts=/tmp/build", "gpu=gfx1151", "--debug-repair=off"])
+assert "--debug-repair=off" in flag_off_argv, flag_off_argv
+assert flag_off_argv[-1] != "opencode", flag_off_argv
+PY
+
 echo "[test] run loop with risk skip"
 "${AGENT}" run \
   --artifacts "${TMP_DIR}/output/build" \
@@ -204,15 +225,21 @@ done
 
 "${AGENT}" status background_case \
   --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_status.out"
+"${AGENT}" status run_id=background_case \
+  --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_status_kv.out"
 "${AGENT}" status background_case \
   --output-root "${TMP_DIR}/background_runs" \
   --format brief >"${TMP_DIR}/background_status_brief.out"
+"${AGENT}" report run_id=background_case \
+  --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_report_kv.out"
 "${AGENT}" status \
   --output-root "${TMP_DIR}/background_runs" >"${TMP_DIR}/background_status_list.out"
 
 grep -q "status: passed" "${TMP_DIR}/background_status.out"
+grep -q "status: passed" "${TMP_DIR}/background_status_kv.out"
 grep -q "progress: 1/1" "${TMP_DIR}/background_status.out"
 grep -q "passed|1|1/1" "${TMP_DIR}/background_status_brief.out"
+grep -q "summary.json" "${TMP_DIR}/background_report_kv.out"
 grep -q "background_case" "${TMP_DIR}/background_status_list.out"
 grep -q '"event": "background_started"' "${TMP_DIR}/background_runs/background_case/progress.jsonl"
 grep -q '"event": "task_end"' "${TMP_DIR}/background_runs/background_case/progress.jsonl"
@@ -237,7 +264,7 @@ for _ in 1 2 3 4 5 6 7 8 9 10; do
   sleep 0.2
 done
 
-"${AGENT}" stop stop_case \
+"${AGENT}" stop run_id=stop_case \
   --output-root "${TMP_DIR}/stop_runs" \
   --timeout 2 >"${TMP_DIR}/stop.out"
 
@@ -288,7 +315,7 @@ echo "[test] init and resume"
   --output-root "${TMP_DIR}/resume_runs" \
   --mock-command "bash ${TMP_DIR}/mock_runner.sh {task_id}"
 
-"${AGENT}" resume resume_case \
+"${AGENT}" resume run_id=resume_case \
   --output-root "${TMP_DIR}/resume_runs" \
   --mock-command "bash ${TMP_DIR}/mock_runner.sh {task_id}"
 

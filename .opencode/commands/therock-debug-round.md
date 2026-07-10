@@ -49,8 +49,19 @@ $ARGUMENTS
    - `round_analysis/round<N>.json`
    - `round_analysis/round<N>.md`
    - `debug/round<N>_log_excerpt.md`
-6. 向 `progress.jsonl` 追加 `opencode_debug_written` 事件。
-7. 输出 debug 结论。
+6. 写完后必须验证这 3 个文件真实存在且 `round_analysis/round<N>.json` 是合法 JSON。
+7. 向 `progress.jsonl` 追加 `opencode_debug_written` 事件。
+8. 输出 debug 结论。
+
+## 成功判定
+
+只有当以下文件都存在时，才允许回复“debug analysis 已完成”：
+
+- `round_analysis/round<N>.json`
+- `round_analysis/round<N>.md`
+- `debug/round<N>_log_excerpt.md`
+
+如果任一文件创建失败，必须停止并报告缺失路径；不要继续进入 repair。
 
 ## 权限与边界
 

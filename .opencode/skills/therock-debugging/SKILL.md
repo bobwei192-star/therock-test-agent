@@ -91,4 +91,6 @@ Allowed `safe_auto` execution:
 - `python3 -m pip install <package>` for explicit `missing_python_dependency`.
 - Retry/resume recommendation for clear `network_transient`.
 
+For `missing_python_dependency`, the debug analysis must include concrete `repair_items`. If the debugger omitted them, the repairer should fall back to `failure_evidence.missing_python_modules` in `failures/*_failure.json` before stopping.
+
 Do not execute CMake, runtime path, sudo, disk cleanup, timeout expansion, GPU-risk, component-source, or artifact mutations automatically.

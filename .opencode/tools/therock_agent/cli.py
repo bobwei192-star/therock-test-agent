@@ -780,7 +780,17 @@ def cmd_run_existing(args: argparse.Namespace) -> None:
     print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}", flush=True)
 
 
+def normalize_run_id_arg(run_id: str | None) -> str | None:
+    if run_id is None:
+        return None
+    for prefix in ("run_id=", "run-id="):
+        if run_id.startswith(prefix):
+            return run_id.split("=", 1)[1]
+    return run_id
+
+
 def cmd_resume(args: argparse.Namespace) -> None:
+    args.run_id = normalize_run_id_arg(args.run_id)
     state = load_state(args.output_root, args.run_id)
     sudo_policy = args.sudo_policy or state.get("meta", {}).get("sudo_policy", "none")
     if state.get("final_status") == "running" and runner_alive(state):
@@ -812,6 +822,7 @@ def cmd_resume(args: argparse.Namespace) -> None:
 
 
 def cmd_report(args: argparse.Namespace) -> None:
+    args.run_id = normalize_run_id_arg(args.run_id)
     state = load_state(args.output_root, args.run_id)
     generate_reports(state)
     print(Path(state["meta"]["output_dir"]) / "summary.json")
@@ -928,6 +939,7 @@ def print_state_summary(state: dict[str, Any], output_format: str) -> None:
 
 
 def cmd_status(args: argparse.Namespace) -> None:
+    args.run_id = normalize_run_id_arg(args.run_id)
     if not args.run_id:
         states = iter_run_states(args.output_root)
         if args.format == "json":
@@ -957,6 +969,7 @@ def cmd_status(args: argparse.Namespace) -> None:
 
 
 def cmd_stop(args: argparse.Namespace) -> None:
+    args.run_id = normalize_run_id_arg(args.run_id)
     state = load_state(args.output_root, args.run_id)
     if state.get("final_status") not in {"running", "interrupted", "stopped"}:
         print(f"[therock-agent] run already ended run_id={state['run_id']} status={state.get('final_status')}", flush=True)
@@ -1029,6 +1042,7 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
     positionals = ["--artifacts", "--amdgpu-families", "--components", "--test-types", "--gpu-risk"]
     argv: list[str] = [command]
     positional_index = 0
+    has_debug_repair = False
 
     for token in raw_args:
         if not token:
@@ -1044,15 +1058,21 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
                 raise SystemExit(f"未知 /therock-run 参数: {key}")
             if not value or value in {"<你的真实build路径>", "<path>"}:
                 raise SystemExit(f"{key} 参数缺少有效值")
+            if flag == "--debug-repair":
+                has_debug_repair = True
             argv.extend([flag, value])
             continue
         if token.startswith("--"):
+            if token == "--debug-repair" or token.startswith("--debug-repair="):
+                has_debug_repair = True
             argv.append(token)
             continue
         if positional_index >= len(positionals):
             raise SystemExit(f"无法解析多余位置参数: {token}")
         argv.extend([positionals[positional_index], token])
         positional_index += 1
+    if command in {"run", "start"} and not has_debug_repair:
+        argv.extend(["--debug-repair", "opencode"])
     return argv
 
 

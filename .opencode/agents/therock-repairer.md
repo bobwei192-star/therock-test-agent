@@ -4,14 +4,24 @@ mode: subagent
 color: "#fb7185"
 permission:
   read: allow
-  edit: ask
+  edit: allow
   bash:
     "python3 -m pip show *": allow
-    "python3 -m pip install *": ask
+    "python3 -m pip install *": allow
+    "python -m pip show *": allow
+    "python -m pip install *": allow
+    "pip3 show *": allow
+    "pip3 install *": allow
+    "pip show *": allow
+    "pip install *": allow
     "git diff *": allow
+    "git diff": allow
     "git status *": allow
+    "git status": allow
     ".opencode/tools/therock_agent.sh status *": allow
+    ".opencode/tools/therock_agent.sh status": allow
     "bash .opencode/tools/therock_agent.sh status *": allow
+    "bash .opencode/tools/therock_agent.sh status": allow
   task: deny
 ---
 
@@ -53,6 +63,8 @@ permission:
 - `missing_python_dependency` 且 `repair_items` 明确的 `python3 -m pip install <pkg>`。
 - `network_transient` 的有限重试建议或 resume 指令，不 patch 文件。
 
+如果 `classification=missing_python_dependency` 但 `repair_items` 缺失或为空，必须读取对应 `failures/*_failure.json` 的 `failure_evidence.missing_python_modules` 作为兜底生成 repair items。只有在 evidence 里也找不到明确模块名时，才停止并要求重新运行 debug analysis。
+
 `safe_plan_only`、`safe_patch_limited`、`manual_required` 默认不直接执行；先生成计划和风险说明。
 
 ## 权限与边界
@@ -77,6 +89,8 @@ permission:
 
 - `repairs/round<N>_repair_plan.json`
 - `repairs/round<N>_repair_plan.md`
+
+写完 repair plan 后必须验证文件存在。若 `round_analysis/round<N>.json` 缺失，必须停止并提示先成功运行 `/therock-debug-round run_id=<run_id> round=<N>`；不要基于聊天记忆或临时分析继续 repair。
 
 如果执行了动作，必须记录：
 

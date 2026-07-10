@@ -43,10 +43,10 @@ $ARGUMENTS
 请调用项目内工具后台启动测试，必须使用这一条：
 
 ```bash
-.opencode/tools/therock_agent.sh start-kv $ARGUMENTS debug_repair=opencode
+.opencode/tools/therock_agent.sh start-kv $ARGUMENTS
 ```
 
-如果用户显式传了 `debug_repair=off`，尊重用户输入，不再追加 `debug_repair=opencode`。
+`start-kv` 默认使用 `debug_repair=opencode`。如果用户显式传了 `debug_repair=off`，runner 会尊重用户输入。
 
 `start-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1 debug_repair=opencode` 解析为对应 runner flags，创建 `runs/<run_id>/global_state.json`，然后在后台执行内部入口 `_run-existing <run_id>`。
 
@@ -58,7 +58,9 @@ $ARGUMENTS
 2. 如果状态为 `running`，继续等待或提示用户可随时查询。
 3. 如果状态为 `waiting_for_opencode_debug`：
    - 调用 `/therock-debug-round run_id=<run_id> round=<current_loop>`，由 OpenCode 生成 `round_analysis/round<N>.json/.md` 和 `debug/round<N>_log_excerpt.md`。
+   - 立刻验证这 3 个文件存在，且 `round_analysis/round<N>.json` 是合法 JSON；若缺失，停止并报告缺失路径，不要进入 repair。
    - 调用 `/therock-repair-round run_id=<run_id> round=<current_loop> apply=safe`，由 OpenCode 执行 `safe_auto` 修复并写 `repairs/**`。
+   - 验证 `repairs/round<N>_repair_plan.json` 和 `repairs/round<N>_repair_plan.md` 存在。
    - 调用 `/therock-resume run_id=<run_id>` 进入下一轮验证。
 4. 重复上述过程，直到状态为 `passed`、`failed`、`interrupted` 或需要人工确认。
 

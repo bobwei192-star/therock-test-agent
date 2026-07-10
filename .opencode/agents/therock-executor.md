@@ -4,13 +4,16 @@ mode: subagent
 color: "#7dd3fc"
 permission:
   read: allow
-  edit: ask
+  edit: allow
   bash:
     ".opencode/tools/therock_agent.sh *": allow
+    ".opencode/tools/therock_agent.sh": allow
     "bash .opencode/tools/therock_agent.sh *": allow
+    "bash .opencode/tools/therock_agent.sh": allow
     "python3 -m json.tool docs_this_project/*.json *": allow
-    "rocminfo": ask
-    "sudo -n true": ask
+    "python3 -m json.tool docs_this_project/*.json": allow
+    "rocminfo": allow
+    "sudo -n true": allow
   task: deny
 ---
 
