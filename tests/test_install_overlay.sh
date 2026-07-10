@@ -98,6 +98,35 @@ assert state["final_status"] == "running"
 assert state["meta"]["amdgpu_families"] == "gfx1151"
 PY
 
+"${TARGET_DIR}/.opencode/tools/therock_agent.sh" init-kv \
+  "artifacts=${ARTIFACT_DIR}" \
+  "gpu=gfx1151" \
+  "components=amdsmi" \
+  "test_types=standard" \
+  "sudo_policy=askpass" \
+  "max_rounds=1" \
+  "stable_threshold=1" \
+  "output_root=${TMP_DIR}/kv_runs" \
+  "run_id=kv_smoke"
+
+python3 - "${TMP_DIR}/kv_runs/kv_smoke/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+meta = state["meta"]
+
+assert meta["artifacts_path"].endswith("/output/build")
+assert meta["amdgpu_families"] == "gfx1151"
+assert meta["components_filter"] == ["amdsmi"]
+assert meta["test_types"] == ["standard"]
+assert meta["gpu_reset_risk_policy"] == "skip"
+assert meta["sudo_policy"] == "askpass"
+assert meta["max_rounds"] == 1
+assert meta["stable_threshold"] == 1
+assert state["schedule"]["task_queue"][0]["task_id"] == "amdsmi-standard"
+PY
+
 "${TARGET_DIR}/.opencode/tools/therock_agent.sh" init \
   --run-id all_components_smoke \
   --artifacts "${ARTIFACT_DIR}" \

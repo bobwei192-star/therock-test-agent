@@ -4,11 +4,15 @@ agent: therock-loop
 subtask: true
 ---
 
-启动 TheRock 循环测试。
+启动 TheRock 循环测试。不要在 prompt 层手工拆解参数；必须把用户输入原文交给 runner 的 `run-kv` 子命令，由 Python 代码做确定性解析。
 
-参数：
+用户原始参数：
 
-优先支持 key=value 格式：
+```text
+$ARGUMENTS
+```
+
+支持 key=value 格式：
 
 - `artifacts=<path>`：ARTIFACTS_PATH，必填绝对路径，例如 `/home/zs/TheRock/output-linux-portable/build` 或 `/output/build`
 - `gpu=<gfx>`：THEROCK_AMDGPU_FAMILIES / AMDGPU_FAMILIES，必填，例如 `gfx1151`
@@ -19,20 +23,13 @@ subtask: true
 - `max_rounds=<n>`：最大 loop 轮数，可选，默认 runner 内置值
 - `stable_threshold=<n>`：失败集稳定阈值，可选，默认 runner 内置值
 
-也兼容旧位置参数：
-
-- `$1`: ARTIFACTS_PATH
-- `$2`: GPU family
-- `$3`: components
-- `$4`: test_types
-- `$5`: gpu_risk
-
 解析规则：
 
-- key=value 输入时必须去掉 key 前缀，只把 value 传给 runner，例如 `components=amdsmi` 传 `--components "amdsmi"`，不要传 `--components "components=amdsmi"`。
+- 不要自己去掉 key 前缀，不要自己拼 `--components` / `--gpu-risk` 等 flags。
+- 不要把 `artifacts=...`、`gpu=...` 等原始 token 当作 runner flag value。
 - `sudo_policy`、`max_rounds`、`stable_threshold` 是独立参数，绝不能合并到 `--gpu-risk`。
 - `--gpu-risk` 只允许 `skip`、`include`、`quarantine`。
-- 如果 `artifacts` 是 `<你的真实build路径>`、空值或不存在，先向用户索要真实路径，不要启动 runner。
+- 如果 runner 返回 artifacts 缺失或路径不存在，再向用户索要真实路径。
 
 项目默认配置：
 
@@ -40,41 +37,13 @@ subtask: true
 - `docs_this_project/component_env_script_index.json`
 - `docs_this_project/official_exclude.json`
 
-请调用项目内工具启动测试：
+请调用项目内工具启动测试，必须使用这一条：
 
 ```bash
-.opencode/tools/therock_agent.sh run \
-  --therock-repo "$(pwd)" \
-  --artifacts "<artifacts_value>" \
-  --amdgpu-families "<gpu_value>" \
-  --component-config "docs_this_project/component_sort_order.json" \
-  --component-env-index "docs_this_project/component_env_script_index.json" \
-  --official-exclude "docs_this_project/official_exclude.json" \
-  --sudo-policy "<sudo_policy_or_env_default>"
+.opencode/tools/therock_agent.sh run-kv $ARGUMENTS
 ```
 
-如果用户提供了可选参数，再追加：
-
-- `components` 非空时追加 `--components "<components_value>"`；如果是 `all`，runner 会按 `component_sort_order.json` 执行全部组件
-- `test_types` 非空时追加 `--test-types "<test_types_value>"`
-- `gpu_risk` 非空时追加 `--gpu-risk "<gpu_risk_value>"`，否则保持 runner 默认 `skip`
-- `max_rounds` 非空时追加 `--max-rounds "<max_rounds_value>"`
-- `stable_threshold` 非空时追加 `--stable-threshold "<stable_threshold_value>"`
-
-示例：
-
-```bash
-.opencode/tools/therock_agent.sh run \
-  --therock-repo "$(pwd)" \
-  --artifacts "/real/output/build" \
-  --amdgpu-families "gfx1151" \
-  --components "amdsmi" \
-  --test-types "standard" \
-  --gpu-risk "skip" \
-  --sudo-policy "askpass" \
-  --max-rounds 1 \
-  --stable-threshold 1
-```
+`run-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1` 解析为对应 runner flags。
 
 规则：
 

@@ -74,7 +74,13 @@ OpenCode 负责：
 /therock-run artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
 ```
 
-解析时必须去掉 key 前缀后再传给 runner：
+解析由 runner 的 `run-kv` 子命令完成，OpenCode 层不要手工拆参。命令层应调用：
+
+```bash
+.opencode/tools/therock_agent.sh run-kv <raw key=value args>
+```
+
+`run-kv` 会执行以下映射：
 
 - `artifacts=<path>` → `--artifacts "<path>"`
 - `gpu=<gfx>` → `--amdgpu-families "<gfx>"`

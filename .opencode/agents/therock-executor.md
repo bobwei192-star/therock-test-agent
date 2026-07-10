@@ -28,7 +28,13 @@ permission:
 
 ## 运行命令模板
 
-如果 coordinator 传入 key=value 参数，先拆解为 runner 参数，不能把原始 `key=value` 字符串直接传下去：
+如果 coordinator 传入 key=value 参数，优先调用 runner 的确定性解析入口：
+
+```bash
+.opencode/tools/therock_agent.sh run-kv <raw key=value args>
+```
+
+`run-kv` 会拆解为 runner 参数，不能把原始 `key=value` 字符串传给普通 `run` 子命令：
 
 - `artifacts=/x/build` → `--artifacts "/x/build"`
 - `gpu=gfx1151` → `--amdgpu-families "gfx1151"`

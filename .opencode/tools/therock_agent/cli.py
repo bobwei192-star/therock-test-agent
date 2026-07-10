@@ -329,6 +329,77 @@ def cmd_report(args: argparse.Namespace) -> None:
     print(Path(state["meta"]["output_dir"]) / "summary_report.md")
 
 
+def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
+    """Convert /therock-run key=value tokens into canonical runner flags."""
+    key_map = {
+        "artifacts": "--artifacts",
+        "artifact": "--artifacts",
+        "gpu": "--amdgpu-families",
+        "amdgpu_families": "--amdgpu-families",
+        "amdgpu-families": "--amdgpu-families",
+        "amdgpu_targets": "--amdgpu-targets",
+        "amdgpu-targets": "--amdgpu-targets",
+        "components": "--components",
+        "component": "--components",
+        "test_types": "--test-types",
+        "test-types": "--test-types",
+        "gpu_risk": "--gpu-risk",
+        "gpu-risk": "--gpu-risk",
+        "sudo_policy": "--sudo-policy",
+        "sudo-policy": "--sudo-policy",
+        "max_rounds": "--max-rounds",
+        "max-rounds": "--max-rounds",
+        "stable_threshold": "--stable-threshold",
+        "stable-threshold": "--stable-threshold",
+        "therock_repo": "--therock-repo",
+        "therock-repo": "--therock-repo",
+        "output_root": "--output-root",
+        "output-root": "--output-root",
+        "run_id": "--run-id",
+        "run-id": "--run-id",
+    }
+    positionals = ["--artifacts", "--amdgpu-families", "--components", "--test-types", "--gpu-risk"]
+    argv: list[str] = [command]
+    positional_index = 0
+
+    for token in raw_args:
+        if not token:
+            continue
+        if token == "--":
+            continue
+        if "=" in token and not token.startswith("--"):
+            key, value = token.split("=", 1)
+            key = key.strip().lower()
+            value = value.strip()
+            flag = key_map.get(key)
+            if not flag:
+                raise SystemExit(f"未知 /therock-run 参数: {key}")
+            if not value or value in {"<你的真实build路径>", "<path>"}:
+                raise SystemExit(f"{key} 参数缺少有效值")
+            argv.extend([flag, value])
+            continue
+        if token.startswith("--"):
+            argv.append(token)
+            continue
+        if positional_index >= len(positionals):
+            raise SystemExit(f"无法解析多余位置参数: {token}")
+        argv.extend([positionals[positional_index], token])
+        positional_index += 1
+    return argv
+
+
+def cmd_run_kv(args: argparse.Namespace) -> None:
+    parser = build_parser()
+    parsed = parser.parse_args(kv_to_runner_argv("run", args.raw_args))
+    parsed.func(parsed)
+
+
+def cmd_init_kv(args: argparse.Namespace) -> None:
+    parser = build_parser()
+    parsed = parser.parse_args(kv_to_runner_argv("init", args.raw_args))
+    parsed.func(parsed)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="TheRock rough loop test agent")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -368,9 +439,17 @@ def build_parser() -> argparse.ArgumentParser:
     add_common_run_options(init_parser)
     init_parser.set_defaults(func=cmd_init)
 
+    init_kv_parser = subparsers.add_parser("init-kv")
+    init_kv_parser.add_argument("raw_args", nargs=argparse.REMAINDER)
+    init_kv_parser.set_defaults(func=cmd_init_kv)
+
     run_parser = subparsers.add_parser("run")
     add_common_run_options(run_parser)
     run_parser.set_defaults(func=cmd_run)
+
+    run_kv_parser = subparsers.add_parser("run-kv")
+    run_kv_parser.add_argument("raw_args", nargs=argparse.REMAINDER)
+    run_kv_parser.set_defaults(func=cmd_run_kv)
 
     resume_parser = subparsers.add_parser("resume")
     resume_parser.add_argument("run_id")
