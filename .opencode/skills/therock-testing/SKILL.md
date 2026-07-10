@@ -211,10 +211,72 @@ Audit and report files include:
 - `runs/<run_id>/agent_activity.jsonl`
 - `runs/<run_id>/tool_calls.jsonl`
 - `runs/<run_id>/global_state.json`
-- `runs/<run_id>/summary_report.md`
-- `runs/<run_id>/failures/*_failure_report.md`
+- `runs/<run_id>/summary.json`
+- `runs/<run_id>/failures.json`
+- `runs/<run_id>/failures/*_failure.json`
+- `runs/<run_id>/round_analysis/round<N>_inputs.json`
+- `runs/<run_id>/debug/round<N>_failure_index.json`
+- OpenCode-generated `runs/<run_id>/round_analysis/round<N>.json`
+- OpenCode-generated `runs/<run_id>/round_analysis/round<N>.md`
+- OpenCode-generated `runs/<run_id>/debug/round<N>_log_excerpt.md`
 
 If logs contain hardcoded path indicators such as `/therock/src/`, `/opt/python/cp312-cp312/bin/python3.12`, or missing `libhipdnn_backend.so`, classify them under `path_hardcode_detection`. Do not patch installed ROCm artifacts automatically.
+
+## Debug / Repair Loop Artifacts
+
+Every failed round should be debuggable from files, not chat memory:
+
+- `round_analysis/round<N>_inputs.json`: structured input for that round, including failed/blocked tasks and log paths.
+- `debug/round<N>_failure_index.json`: compact failure index with task IDs, status, logs, and reports.
+- `round_analysis/round<N>.json`: OpenCode-generated machine-readable classification, `next_action`, `repair_policy`, and repairability.
+- `round_analysis/round<N>.md`: OpenCode-generated human-readable round analysis.
+- `debug/round<N>_log_excerpt.md`: OpenCode-generated curated stdout/stderr excerpts.
+
+Use these before reading raw full logs. Read full stdout/stderr only when excerpts are insufficient.
+
+## Failure Classifications
+
+OpenCode, not the runner, owns final root cause and repair policy. Use runner evidence plus these categories consistently in debug reports and repair plans:
+
+| Classification | Typical Signals | next_action | repair_policy |
+|----------------|-----------------|-------------|---------------|
+| `missing_python_dependency` | `ModuleNotFoundError: No module named X` | `repair_then_retry` | `safe_auto` |
+| `missing_dependency` | `missing_dependency: X` | `repair_then_retry` or `inspect_dependency_then_retry` | `safe_auto` only for confirmed Python packages |
+| `network_transient` | DNS failures, connection reset, timeout, HTTP 5xx, TLS temporary failure | `retry_transient` | `safe_auto` |
+| `cmake_configuration_error` | `CMake Error`, `Could NOT find`, `find_package`, `CMAKE_PREFIX_PATH`, `ninja: error` | `plan_wrapper_or_build_tools_repair` | `safe_plan_only` |
+| `missing_runtime_library` | `cannot open shared object file`, missing `.so` | `inspect_runtime_path_then_retry` | `safe_plan_only` |
+| `runtime_path_error` | `LD_LIBRARY_PATH`, `ROCM_PATH`, `HIP_PATH`, artifact path mismatch | `inspect_runtime_path_then_retry` | `safe_plan_only` |
+| `permission_or_sudo` | `sudo_unavailable`, `Permission denied`, `Operation not permitted` | `check_sudo_policy_then_retry` | `manual_required` |
+| `disk_space_error` | `No space left on device`, `Disk quota exceeded`, `ENOSPC` | `needs_environment_cleanup` | `manual_required` |
+| `timeout` | `TimeoutExpired`, `timed out`, `SIGTERM` | `retry_or_timeout_review` | `manual_required` |
+| `gpu_runtime_error` | `HSA_STATUS_ERROR`, `PERMISSION_FAULT`, ROCr/HIP runtime errors | `quarantine_or_manual` | `manual_required` |
+| `gpu_hang_risk` | ring timeout, GPU reset, MES failure | `quarantine_or_manual` | `manual_required` |
+| `test_assertion_failure` | `AssertionError`, pytest/gtest failure lines | `retry_until_stable` | `manual_required` |
+
+## Repair Policy Rules
+
+Repair planning must be conservative:
+
+- `safe_auto`: only Python dependency installation, clearly transient retry, and writing run-directory audit outputs.
+- `safe_plan_only`: generate a plan and evidence. Do not mutate files automatically.
+- `safe_patch_limited`: only patch TheRock `build_tools/**` or this overlay's wrapper-generation logic, and always record diff and reason.
+- `manual_required`: do not execute repair; report the blocker and required manual decision.
+
+Never modify:
+
+- TheRock component source.
+- ROCm submodule source.
+- `dist/rocm/bin`.
+- `dist/rocm/lib`.
+- Build artifacts or installed ROCm payload.
+
+Repair execution is an OpenCode responsibility:
+
+- The deterministic runner generates failed-round inputs and logs.
+- `/therock-debug-round run_id=<run_id> round=<N>` invokes `therock-debugger` to generate analysis.
+- `/therock-repair-round run_id=<run_id> round=<N> apply=safe` invokes `therock-repairer`.
+- `therock-repairer` may execute only `safe_auto` actions and must write `repairs/**` audit files.
+- The runner must not silently execute repair commands in the background without OpenCode-visible permissions and records.
 
 ## GPU Reset Risk
 
@@ -254,19 +316,21 @@ If sudo is unavailable, mark the task `blocked`, not failed.
 
 ## Reports
 
-Each run should produce:
+Runner produces structured data:
 
 - `runs/<run_id>/global_state.json`
-- `runs/<run_id>/summary_report.md`
+- `runs/<run_id>/summary.json`
+- `runs/<run_id>/failures.json`
 - `runs/<run_id>/logs/*.stdout.log`
 - `runs/<run_id>/logs/*.stderr.log`
 - `runs/<run_id>/wrappers/*.sh`
 - `runs/<run_id>/wrapper_changes.jsonl`
+- `runs/<run_id>/failures/*_failure.json`
+
+`therock-reporter` generates Markdown from JSON when needed:
+
+- `runs/<run_id>/summary_report.md`
 - `runs/<run_id>/failures/*_failure_report.md`
-
-Failure reports should follow the project problem template:
-
-- `../1问题描述格式.md`
 
 At minimum, include:
 

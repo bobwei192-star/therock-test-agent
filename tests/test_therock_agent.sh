@@ -30,6 +30,7 @@ case "$1" in
     exit 0
     ;;
   fail_component-quick)
+    echo "ModuleNotFoundError: No module named 'prettytable'"
     echo "[  FAILED  ] mock stable failure" >&2
     exit 8
     ;;
@@ -54,50 +55,121 @@ echo "[test] run loop with risk skip"
 
 RUN_DIR="$(find "${TMP_DIR}/runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
 STATE_FILE="${RUN_DIR}/global_state.json"
-SUMMARY_FILE="${RUN_DIR}/summary_report.md"
-FAILURE_FILE="${RUN_DIR}/failures/fail_component-quick_failure_report.md"
+SUMMARY_FILE="${RUN_DIR}/summary.json"
+FAILURES_FILE="${RUN_DIR}/failures.json"
+FAILURE_FILE="${RUN_DIR}/failures/fail_component-quick_failure.json"
 ACTIVITY_FILE="${RUN_DIR}/agent_activity.jsonl"
 TOOL_CALLS_FILE="${RUN_DIR}/tool_calls.jsonl"
 ENVIRONMENT_FILE="${RUN_DIR}/environment_summary.json"
 GLOBAL_AUDIT_FILE="${TMP_DIR}/runs/_audit/agent_invocations.jsonl"
+ROUND1_INPUTS_FILE="${RUN_DIR}/round_analysis/round1_inputs.json"
+ROUND1_FAILURE_INDEX_FILE="${RUN_DIR}/debug/round1_failure_index.json"
+ROUND2_INPUTS_FILE="${RUN_DIR}/round_analysis/round2_inputs.json"
+ROUND2_FAILURE_INDEX_FILE="${RUN_DIR}/debug/round2_failure_index.json"
 
 test -f "${STATE_FILE}"
 test -f "${SUMMARY_FILE}"
+test -f "${FAILURES_FILE}"
 test -f "${FAILURE_FILE}"
 test -f "${ACTIVITY_FILE}"
 test -f "${TOOL_CALLS_FILE}"
 test -f "${ENVIRONMENT_FILE}"
 test -f "${GLOBAL_AUDIT_FILE}"
+test -f "${ROUND1_INPUTS_FILE}"
+test -f "${ROUND1_FAILURE_INDEX_FILE}"
+test -f "${ROUND2_INPUTS_FILE}"
+test -f "${ROUND2_FAILURE_INDEX_FILE}"
+test ! -f "${RUN_DIR}/round_analysis/round1.json"
+test ! -f "${RUN_DIR}/round_analysis/round1.md"
+test ! -f "${RUN_DIR}/debug/round1_log_excerpt.md"
 
-python3 - "${STATE_FILE}" <<'PY'
+python3 - "${STATE_FILE}" "${RUN_DIR}" <<'PY'
 import json
+from pathlib import Path
 import sys
 
 state = json.load(open(sys.argv[1], encoding="utf-8"))
+run_dir = Path(sys.argv[2])
 results = state["results"]["task_results"]
+summary = json.load(open(run_dir / "summary.json", encoding="utf-8"))
+failures = json.load(open(run_dir / "failures.json", encoding="utf-8"))
+failure = json.load(open(run_dir / "failures" / "fail_component-quick_failure.json", encoding="utf-8"))
+round1_inputs = json.load(open(run_dir / "round_analysis" / "round1_inputs.json", encoding="utf-8"))
+round1_index = json.load(open(run_dir / "debug" / "round1_failure_index.json", encoding="utf-8"))
+round2_inputs = json.load(open(run_dir / "round_analysis" / "round2_inputs.json", encoding="utf-8"))
+round2_index = json.load(open(run_dir / "debug" / "round2_failure_index.json", encoding="utf-8"))
 
 assert state["final_status"] == "failed", state["final_status"]
 assert results["pass_component-quick"]["status"] == "pass"
 assert results["fail_component-quick"]["status"] == "fail"
 assert results["risk_component-quick"]["status"] == "skip"
 assert results["exclude_component-quick"]["status"] == "skip"
+assert summary["status"] == "failed"
+assert summary["counts"]["pass"] == 1
+assert summary["counts"]["fail"] == 1
+assert summary["artifacts"]["summary_json"].endswith("summary.json")
+assert summary["reporter_note"].startswith("Markdown summaries are generated")
+assert failures["failures"][0]["task_id"] == "fail_component-quick"
+assert failure["task"]["failure_evidence"]["kind"] == "runner_evidence"
+assert failure["task"]["failure_evidence"]["missing_python_modules"] == ["prettytable"]
 assert state["loop"]["stable_failed_count"] == 1
 assert state["schedule"]["failed_tasks"] == ["fail_component-quick"]
+assert state["schedule"]["failed_tasks_this_round"] == ["fail_component-quick"]
+assert state["schedule"]["blocked_tasks_this_round"] == []
+assert state["schedule"]["round_failed_tasks"] == ["fail_component-quick"]
+assert round1_inputs["round"] == 1
+assert round1_inputs["failed_tasks"][0]["task_id"] == "fail_component-quick"
+assert round1_inputs["failed_tasks"][0]["stdout_log"] == "logs/fail_component-quick.round1.stdout.log"
+assert round1_inputs["blocked_tasks"] == []
+assert round1_index["round_failed_task_ids"] == ["fail_component-quick"]
+assert round2_inputs["round"] == 2
+assert round2_inputs["failed_tasks"][0]["stdout_log"] == "logs/fail_component-quick.round2.stdout.log"
+assert round2_index["failed_task_ids"] == ["fail_component-quick"]
 PY
 
-grep -q "fail_component-quick" "${SUMMARY_FILE}"
-grep -q "risk_component-quick" "${SUMMARY_FILE}"
-grep -q "docs_this_project/汇总测试报告.md" "${SUMMARY_FILE}"
-grep -q "模板字段覆盖" "${SUMMARY_FILE}"
-grep -q "Runner 活动日志" "${SUMMARY_FILE}"
-grep -q "docs_this_project/问题模板.md" "${FAILURE_FILE}"
-grep -q "组件与测试信息" "${FAILURE_FILE}"
 grep -q '"event": "task_start"' "${ACTIVITY_FILE}"
 grep -q '"event": "task_end"' "${ACTIVITY_FILE}"
 grep -q '"event": "report_generated"' "${ACTIVITY_FILE}"
 grep -q '"tool": "shell"' "${TOOL_CALLS_FILE}"
 grep -q '"event": "invocation_start"' "${GLOBAL_AUDIT_FILE}"
 grep -q '"event": "invocation_end"' "${GLOBAL_AUDIT_FILE}"
+grep -q '"event": "round_failure_index_written"' "${RUN_DIR}/progress.jsonl"
+! grep -q '"event": "auto_debug_start"' "${RUN_DIR}/progress.jsonl"
+! grep -q '"event": "auto_debug_end"' "${RUN_DIR}/progress.jsonl"
+
+echo "[test] opencode debug handoff"
+"${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/component_sort_order.json" \
+  --components fail_component \
+  --test-types quick \
+  --output-root "${TMP_DIR}/opencode_handoff_runs" \
+  --mock-command "bash ${TMP_DIR}/mock_runner.sh {task_id}" \
+  --stable-threshold 1 \
+  --max-rounds 3 \
+  --debug-repair opencode
+
+OPENCODE_HANDOFF_RUN_DIR="$(find "${TMP_DIR}/opencode_handoff_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${OPENCODE_HANDOFF_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+
+assert state["final_status"] == "waiting_for_opencode_debug", state["final_status"]
+assert state["schedule"]["current_loop"] == 1
+assert state["schedule"]["next_tasks"] == ["fail_component-quick"]
+assert state["debug_repair"]["mode"] == "opencode"
+assert state["debug_repair"]["last_failed_round"] == 1
+assert state["debug_repair"]["last_inputs"] == "round_analysis/round1_inputs.json"
+assert state["debug_repair"]["last_failure_index"] == "debug/round1_failure_index.json"
+PY
+test -f "${OPENCODE_HANDOFF_RUN_DIR}/round_analysis/round1_inputs.json"
+test -f "${OPENCODE_HANDOFF_RUN_DIR}/debug/round1_failure_index.json"
+test ! -f "${OPENCODE_HANDOFF_RUN_DIR}/round_analysis/round1.json"
+test ! -f "${OPENCODE_HANDOFF_RUN_DIR}/debug/round1_log_excerpt.md"
+grep -q '"event": "waiting_for_opencode_debug"' "${OPENCODE_HANDOFF_RUN_DIR}/progress.jsonl"
 
 echo "[test] background start/status"
 "${AGENT}" start-kv \
@@ -267,8 +339,16 @@ assert results["rocprofiler_compute-quick"]["status"] == "skip"
 assert results["rocprofiler_compute-quick"]["official_exclude"]["known_issue_category"] == "no_independent_entrypoint"
 PY
 
-grep -q "official_exclude" "${OFFICIAL_EXCLUDE_RUN_DIR}/summary_report.md"
-grep -q "TheRock/上游测试矩阵" "${OFFICIAL_EXCLUDE_RUN_DIR}/summary_report.md"
+python3 - "${OFFICIAL_EXCLUDE_RUN_DIR}/summary.json" <<'PY'
+import json
+import sys
+
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+tasks = {task["task_id"]: task for task in summary["tasks"]}
+
+assert tasks["hipsparselt-quick"]["official_exclude"]["known_issue_category"] == "gfx1151_exclude_family"
+assert tasks["rocprofiler_compute-quick"]["official_exclude"]["known_issue_category"] == "no_independent_entrypoint"
+PY
 
 cat >"${TMP_DIR}/sudo_component_sort_order.json" <<'JSON'
 {
@@ -305,7 +385,7 @@ assert "sudo_unavailable" in result["failure_summary"]
 assert result["entrypoint_type"] == "dedicated_python"
 PY
 
-grep -q "sudo_unavailable" "${SUDO_RUN_DIR}/failures/amdsmi-standard_failure_report.md"
+grep -q "sudo_unavailable" "${SUDO_RUN_DIR}/failures/amdsmi-standard_failure.json"
 
 FAKE_SUDO_FAIL_DIR="${TMP_DIR}/fake_sudo_fail"
 mkdir -p "${FAKE_SUDO_FAIL_DIR}"
@@ -524,8 +604,16 @@ grep -q "export TEST_COMPONENT=hiprand" "${NATIVE_RUN_DIR}/wrappers/hiprand-quic
 grep -q "export OUTPUT_ARTIFACTS_DIR=" "${NATIVE_RUN_DIR}/wrappers/sanity-quick.round1.sh"
 grep -q '"event": "wrapper_generated"' "${NATIVE_RUN_DIR}/wrapper_changes.jsonl"
 grep -q '"event": "wrapper_generated"' "${NATIVE_RUN_DIR}/agent_activity.jsonl"
-grep -q "Index 命中规则" "${NATIVE_RUN_DIR}/summary_report.md"
-grep -q "Wrapper 变更日志" "${NATIVE_RUN_DIR}/summary_report.md"
+python3 - "${NATIVE_RUN_DIR}/summary.json" <<'PY'
+import json
+import sys
+
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+tasks = {task["task_id"]: task for task in summary["tasks"]}
+
+assert tasks["hiprand-quick"]["entrypoint_type"] == "test_runner"
+assert "OUTPUT_ARTIFACTS_DIR" in tasks["hiprand-quick"]["wrapper_env_change_keys"]
+PY
 
 echo "[test] path hardcode detection"
 cat >"${TMP_DIR}/path_hardcode_component_sort_order.json" <<'JSON'
@@ -574,7 +662,15 @@ assert result["wrapper_path"].endswith("hipdnn-quick.round2.sh")
 PY
 
 grep -q "path_hardcode_detected" "${PATH_HARDCODE_RUN_DIR}/agent_activity.jsonl"
-grep -q "硬编码路径检测" "${PATH_HARDCODE_RUN_DIR}/summary_report.md"
-grep -q "wrapper_changes.jsonl" "${PATH_HARDCODE_RUN_DIR}/failures/hipdnn-quick_failure_report.md"
+python3 - "${PATH_HARDCODE_RUN_DIR}/summary.json" "${PATH_HARDCODE_RUN_DIR}/failures/hipdnn-quick_failure.json" <<'PY'
+import json
+import sys
+
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+failure = json.load(open(sys.argv[2], encoding="utf-8"))
+
+assert summary["path_hardcode_task_ids"] == ["hipdnn-quick"]
+assert failure["task"]["path_hardcode_detection"]["detected"]
+PY
 
 echo "[test] all assertions passed"

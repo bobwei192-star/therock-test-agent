@@ -37,6 +37,7 @@ $ARGUMENTS
 输出解读：
 
 - `status=running`：后台 runner 仍在运行。
+- `status=waiting_for_opencode_debug`：runner 已完成当前失败轮次，正在等待 OpenCode 执行 `/therock-debug-round`、`/therock-repair-round apply=safe` 和 `/therock-resume` 编排。
 - `status=stale`：`global_state.json` 仍是 running，但后台进程不存在，应提示用户 `/therock-resume run_id=<run_id>`。
 - `status=passed/failed/interrupted/stopped`：run 已进入终态或被停止。
 - `progress`：已完成 runnable task / runnable 总数。

@@ -16,6 +16,7 @@ from .audit import now_iso
 from .audit import safe_env_value
 from .classifier import detect_failure_summary
 from .classifier import detect_path_hardcode
+from .classifier import extract_failure_evidence
 from .config import SENSITIVE_ENV_NAMES
 from .config import load_component_env_index
 from .entrypoint import build_task_env
@@ -243,6 +244,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
         stderr_path.write_text(str(exc) + "\n", encoding="utf-8")
 
     path_hardcode_detection = detect_path_hardcode(stdout_path, stderr_path)
+    failure_evidence = extract_failure_evidence(stdout_path, stderr_path) if status != "pass" else {}
     if path_hardcode_detection["detected"]:
         append_activity(
             state,
@@ -285,6 +287,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
         "wrapper_path": wrapper_details["wrapper_path"] if wrapper_details else "",
         "wrapper_env_change_keys": sorted(wrapper_details["env_changes"].keys()) if wrapper_details else [],
         "path_hardcode_detection": path_hardcode_detection,
+        "failure_evidence": failure_evidence,
         "finished_at": now_iso(),
     }
 
@@ -303,6 +306,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
             "wrapper_path": wrapper_details["wrapper_path"] if wrapper_details else "",
             "wrapper_env_change_keys": sorted(wrapper_details["env_changes"].keys()) if wrapper_details else [],
             "path_hardcode_detection": path_hardcode_detection,
+            "failure_evidence": failure_evidence,
             "return_code": return_code,
             "duration_seconds": duration,
             "status": status,

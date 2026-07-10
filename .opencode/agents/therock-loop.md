@@ -27,7 +27,8 @@ permission:
 - 明确 GPU risk 策略。
 - 明确 sudo 策略。
 - 调用 runner。
-- 读取 `summary_report.md`、`global_state.json`、`agent_activity.jsonl`。
+- 读取 `summary.json`、`failures.json`、`global_state.json`、`agent_activity.jsonl`。
+- 当 runner 进入 `waiting_for_opencode_debug` 时，调用 OpenCode debugger 和 repairer。
 - 向用户解释结果、风险、下一步。
 
 ## 核心原则
@@ -43,7 +44,9 @@ OpenCode 负责：
    - `docs_this_project/component_env_script_index.json`
    - `docs_this_project/official_exclude.json`
 4. 读取并解释测试结果。
-5. 总结日志、失败报告、wrapper 审计和下一步建议。
+5. 由 OpenCode 生成 round debug analysis 和修复建议。
+6. 由 OpenCode repairer 执行 `safe_auto` 修复。
+7. 总结日志、失败报告、wrapper 审计和下一步建议。
 
 `.opencode/tools/therock_agent.sh` 负责：
 
@@ -56,7 +59,8 @@ OpenCode 负责：
 7. 串行执行测试。
 8. 每个任务前后写状态。
 9. 按失败集收缩规则执行 loop。
-10. 生成 summary 和 failure report。
+10. 在 `debug_repair=opencode` 时，失败轮次后写输入索引并进入 `waiting_for_opencode_debug`。
+11. 生成 summary 和 failure report。
 
 ## 配置文件职责
 
@@ -74,7 +78,7 @@ OpenCode 负责：
 /therock-run artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
 ```
 
-解析由 runner 的 `run-kv` 子命令完成，OpenCode 层不要手工拆参。命令层应调用：
+解析由 runner 的 `run-kv` / `start-kv` 子命令完成，OpenCode 层不要手工拆参。默认 `/therock-run` 应追加或传入 `debug_repair=opencode`，让 runner 在失败轮次后等待 OpenCode debug/repair。
 
 ```bash
 .opencode/tools/therock_agent.sh run-kv <raw key=value args>
@@ -90,6 +94,7 @@ OpenCode 负责：
 - `sudo_policy=<none|cache|askpass>` → `--sudo-policy "<value>"`
 - `max_rounds=<n>` → `--max-rounds "<n>"`
 - `stable_threshold=<n>` → `--stable-threshold "<n>"`
+- `debug_repair=opencode` → `--debug-repair "opencode"`
 
 不要把 `sudo_policy`、`max_rounds`、`stable_threshold` 合并到 `--gpu-risk`。`--gpu-risk` 只允许 `skip`、`include`、`quarantine`。
 
@@ -118,6 +123,25 @@ runner 默认使用 `docs_this_project/` 下的项目配置。
 .opencode/tools/therock_agent.sh resume "<run_id>"
 ```
 
+## 全自动 Debug/Repair 编排
+
+当 runner 状态为 `waiting_for_opencode_debug`：
+
+1. 读取 `global_state.json` 获取 `schedule.current_loop`。
+2. 使用 `therock-debugger` 生成：
+   - `round_analysis/round<N>.json`
+   - `round_analysis/round<N>.md`
+   - `debug/round<N>_log_excerpt.md`
+3. 使用 `therock-repairer` 执行：
+   - `/therock-repair-round run_id=<run_id> round=<N> apply=safe`
+4. 调用：
+
+```bash
+.opencode/tools/therock_agent.sh resume "<run_id>"
+```
+
+5. 重复直到 passed / failed / interrupted / manual_required。
+
 ## 重新生成报告
 
 ```bash
@@ -143,7 +167,8 @@ runner 默认使用 `docs_this_project/` 下的项目配置。
 - pass / fail / skip / blocked 数量
 - loop 轮次
 - 顽固失败列表
-- `summary_report.md` 路径
+- `summary.json` / `failures.json` 路径
+- 如已由 reporter 生成，包含 `summary_report.md` 路径
 - `failures/` 路径
 - `wrappers/` 和 `wrapper_changes.jsonl` 路径
 - 官方排除命中数量或说明

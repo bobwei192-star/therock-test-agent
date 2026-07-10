@@ -14,7 +14,8 @@ subtask: true
 恢复后检查：
 
 - `runs/<run_id>/global_state.json`
-- `runs/<run_id>/summary_report.md`
+- `runs/<run_id>/summary.json`
+- `runs/<run_id>/failures.json`
 - `runs/<run_id>/logs/`
 - `runs/<run_id>/wrappers/`
 - `runs/<run_id>/wrapper_changes.jsonl`

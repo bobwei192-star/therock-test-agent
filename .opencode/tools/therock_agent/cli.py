@@ -90,6 +90,34 @@ def discover_therock_repo(raw_path: str = "") -> Path | None:
     return _discover_therock_repo(PROJECT_ROOT, raw_path)
 
 
+def short_command_output(command: list[str], cwd: Path | None = None) -> str:
+    try:
+        proc = subprocess.run(command, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=5)
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    return (proc.stdout or proc.stderr).strip()[:2000]
+
+
+def dependency_probe(names: list[str]) -> dict[str, str]:
+    results: dict[str, str] = {}
+    for name in names:
+        output = short_command_output([sys.executable, "-m", "pip", "show", name])
+        results[name] = "installed" if output else "missing"
+    return results
+
+
+def runtime_summary(therock_repo: Path | None) -> dict[str, Any]:
+    repo = therock_repo or PROJECT_ROOT
+    return {
+        "python_executable": sys.executable,
+        "python_version": sys.version.split()[0],
+        "git_branch": short_command_output(["git", "branch", "--show-current"], repo),
+        "git_commit": short_command_output(["git", "rev-parse", "HEAD"], repo),
+        "git_dirty": bool(short_command_output(["git", "status", "--porcelain"], repo)),
+        "dependency_probe": dependency_probe(["lit", "prettytable"]),
+    }
+
+
 def create_state(args: argparse.Namespace) -> dict[str, Any]:
     build_root, rocm_dist = resolve_artifacts_path(args.artifacts)
     amdgpu_families = args.amdgpu_families or args.amdgpu_targets or args.gpu
@@ -119,6 +147,8 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
     )
     ensure_dir(output_dir / "logs")
     ensure_dir(output_dir / "failures")
+    ensure_dir(output_dir / "round_analysis")
+    ensure_dir(output_dir / "debug")
     ensure_dir(output_dir / "memory")
     ensure_dir(output_dir / "wrappers")
 
@@ -148,6 +178,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "sudo_agent_socket": args.sudo_agent_socket,
             "stable_threshold": args.stable_threshold,
             "max_rounds": args.max_rounds,
+            "debug_repair": args.debug_repair,
             "mock_command": args.mock_command or "",
         },
         "schedule": {
@@ -158,6 +189,8 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "next_tasks": [task["task_id"] for task in tasks],
             "round_pending_tasks": [],
             "round_failed_tasks": [],
+            "failed_tasks_this_round": [],
+            "blocked_tasks_this_round": [],
             "completed_tasks": [],
             "failed_tasks": [],
             "blocked_tasks": [],
@@ -202,6 +235,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "project_root": str(PROJECT_ROOT),
             "cwd": str(Path.cwd()),
             "env_summary": env_summary(),
+            "runtime_summary": runtime_summary(therock_repo),
             "meta": state["meta"],
         },
     )
@@ -242,6 +276,103 @@ def append_progress(state: dict[str, Any], event: str, details: dict[str, Any] |
             "event": event,
             "run_id": state["run_id"],
             **(details or {}),
+        },
+    )
+
+
+def run_relative_path(state: dict[str, Any], path: Path) -> str:
+    output_dir = Path(state["meta"]["output_dir"])
+    try:
+        return str(path.relative_to(output_dir))
+    except ValueError:
+        return str(path)
+
+
+def round_failure_report_path(state: dict[str, Any], task_id: str) -> Path:
+    return Path(state["meta"]["output_dir"]) / "failures" / f"{task_id}_failure.json"
+
+
+def round_task_failure_record(
+    state: dict[str, Any],
+    round_no: int,
+    task_id: str,
+    lookup: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    output_dir = Path(state["meta"]["output_dir"])
+    result = state["results"]["task_results"].get(task_id, {})
+    task = lookup.get(task_id, {})
+    stdout_log = Path(
+        result.get("stdout_log")
+        or output_dir / "logs" / f"{task_id}.round{round_no}.stdout.log"
+    )
+    stderr_log = Path(
+        result.get("stderr_log")
+        or output_dir / "logs" / f"{task_id}.round{round_no}.stderr.log"
+    )
+    failure_report = round_failure_report_path(state, task_id)
+    return {
+        "task_id": task_id,
+        "component": result.get("component") or task.get("component", ""),
+        "test_type": result.get("test_type") or task.get("test_type", ""),
+        "status": result.get("status", "blocked"),
+        "round": round_no,
+        "stdout_log": run_relative_path(state, stdout_log),
+        "stderr_log": run_relative_path(state, stderr_log),
+        "failure_report": run_relative_path(state, failure_report),
+        "failure_summary": result.get("failure_summary", ""),
+        "repairable_hint": result.get("failure_evidence", {}).get("summary", ""),
+    }
+
+
+def write_round_failure_index(
+    state: dict[str, Any],
+    round_no: int,
+    failed_tasks: list[str],
+    lookup: dict[str, dict[str, Any]],
+) -> None:
+    output_dir = Path(state["meta"]["output_dir"])
+    round_analysis_dir = output_dir / "round_analysis"
+    debug_dir = output_dir / "debug"
+    ensure_dir(round_analysis_dir)
+    ensure_dir(debug_dir)
+
+    records = [round_task_failure_record(state, round_no, task_id, lookup) for task_id in failed_tasks]
+    failed_records = [record for record in records if record["status"] != "blocked"]
+    blocked_records = [record for record in records if record["status"] == "blocked"]
+    input_path = round_analysis_dir / f"round{round_no}_inputs.json"
+    index_path = debug_dir / f"round{round_no}_failure_index.json"
+
+    input_data = {
+        "run_id": state["run_id"],
+        "round": round_no,
+        "generated_at": now_iso(),
+        "global_state": "global_state.json",
+        "progress": "progress.jsonl",
+        "failed_tasks": failed_records,
+        "blocked_tasks": blocked_records,
+        "all_failed_tasks": records,
+    }
+    index_data = {
+        "run_id": state["run_id"],
+        "round": round_no,
+        "generated_at": input_data["generated_at"],
+        "failed_task_ids": [record["task_id"] for record in failed_records],
+        "blocked_task_ids": [record["task_id"] for record in blocked_records],
+        "round_failed_task_ids": [record["task_id"] for record in records],
+        "tasks": records,
+    }
+    atomic_write_json(input_path, input_data)
+    atomic_write_json(index_path, index_data)
+    append_progress(
+        state,
+        "round_failure_index_written",
+        {
+            "round": round_no,
+            "failed_tasks": index_data["failed_task_ids"],
+            "blocked_tasks": index_data["blocked_task_ids"],
+            "round_failed_tasks": index_data["round_failed_task_ids"],
+            "inputs": run_relative_path(state, input_path),
+            "failure_index": run_relative_path(state, index_path),
         },
     )
 
@@ -401,6 +532,8 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
             current_failed = []
             state["schedule"]["round_pending_tasks"] = pending_tasks
             state["schedule"]["round_failed_tasks"] = current_failed
+            state["schedule"]["failed_tasks_this_round"] = []
+            state["schedule"]["blocked_tasks_this_round"] = []
             append_progress(state, "round_start", {"round": round_no, "task_count": len(pending_tasks)})
 
         print(f"[therock-agent] Round {round_no}: executing {len(pending_tasks)} task(s)", flush=True)
@@ -482,11 +615,50 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
             save_state(state)
 
         current_failed_sorted = sorted(set(current_failed))
+        blocked_this_round = sorted(
+            task_id
+            for task_id in current_failed_sorted
+            if state["results"]["task_results"].get(task_id, {}).get("status") == "blocked"
+        )
+        failed_this_round = [task_id for task_id in current_failed_sorted if task_id not in set(blocked_this_round)]
         history = state["loop"]["failed_task_history"]
         history.append({"round": round_no, "failed_tasks": current_failed_sorted})
         state["schedule"]["round_pending_tasks"] = []
-        state["schedule"]["round_failed_tasks"] = []
+        state["schedule"]["round_failed_tasks"] = current_failed_sorted
+        state["schedule"]["failed_tasks_this_round"] = failed_this_round
+        state["schedule"]["blocked_tasks_this_round"] = blocked_this_round
         append_progress(state, "round_end", {"round": round_no, "failed_tasks": current_failed_sorted})
+        if current_failed_sorted:
+            write_round_failure_index(state, round_no, current_failed_sorted, lookup)
+            if state["meta"].get("debug_repair") == "opencode":
+                state["final_status"] = "waiting_for_opencode_debug"
+                state["schedule"]["next_tasks"] = current_failed_sorted
+                state["schedule"]["failed_tasks"] = current_failed_sorted
+                state.setdefault("debug_repair", {})
+                state["debug_repair"].update(
+                    {
+                        "mode": "opencode",
+                        "last_failed_round": round_no,
+                        "last_inputs": f"round_analysis/round{round_no}_inputs.json",
+                        "last_failure_index": f"debug/round{round_no}_failure_index.json",
+                        "status": "waiting_for_opencode_debug",
+                    }
+                )
+                state["end_time"] = now_iso()
+                save_state(state)
+                generate_reports(state)
+                append_progress(
+                    state,
+                    "waiting_for_opencode_debug",
+                    {
+                        "round": round_no,
+                        "failed_tasks": current_failed_sorted,
+                        "inputs": f"round_analysis/round{round_no}_inputs.json",
+                        "failure_index": f"debug/round{round_no}_failure_index.json",
+                    },
+                )
+                write_run_index(state, "waiting_for_opencode_debug")
+                return state
 
         if not current_failed_sorted:
             state["final_status"] = "passed"
@@ -614,7 +786,7 @@ def cmd_resume(args: argparse.Namespace) -> None:
     if state.get("final_status") == "running" and runner_alive(state):
         print(f"[therock-agent] run 仍在执行中，无需 resume: {state['run_id']}", flush=True)
         return
-    if state.get("final_status") not in {"running", "interrupted", "stopped"}:
+    if state.get("final_status") not in {"running", "interrupted", "stopped", "waiting_for_opencode_debug"}:
         print(f"[therock-agent] run 已结束，无需 resume: {state.get('final_status')}", flush=True)
         return
     interrupted = find_interrupted_task_from_progress(state)
@@ -642,7 +814,7 @@ def cmd_resume(args: argparse.Namespace) -> None:
 def cmd_report(args: argparse.Namespace) -> None:
     state = load_state(args.output_root, args.run_id)
     generate_reports(state)
-    print(Path(state["meta"]["output_dir"]) / "summary_report.md")
+    print(Path(state["meta"]["output_dir"]) / "summary.json")
 
 
 def iter_run_states(output_root: str) -> list[dict[str, Any]]:
@@ -830,6 +1002,8 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
         "sudo_policy": "--sudo-policy",
         "sudo-policy": "--sudo-policy",
         "max_rounds": "--max-rounds",
+        "debug_repair": "--debug-repair",
+        "debug-repair": "--debug-repair",
         "max-rounds": "--max-rounds",
         "stable_threshold": "--stable-threshold",
         "stable-threshold": "--stable-threshold",
@@ -920,6 +1094,7 @@ def build_parser() -> argparse.ArgumentParser:
         target.add_argument("--run-id", default="")
         target.add_argument("--stable-threshold", type=int, default=3)
         target.add_argument("--max-rounds", type=int, default=10)
+        target.add_argument("--debug-repair", choices=["off", "opencode"], default="off")
         target.add_argument("--mock-command", default="")
         target.add_argument(
             "--sudo-policy",

@@ -4,9 +4,9 @@ agent: therock-loop
 subtask: true
 ---
 
-启动 TheRock 循环测试。不要在 prompt 层手工拆解参数；必须把用户输入原文交给 runner 的 `start-kv` 子命令，由 Python 代码做确定性解析。
+启动 TheRock 全自动循环测试。不要在 prompt 层手工拆解参数；必须把用户输入原文交给 runner 的 `start-kv` 子命令，由 Python 代码做确定性解析。
 
-重要：全量 TheRock 测试是长时间批处理任务，不能在 OpenCode 前台 shell 调用里直接跑完整 `run-kv`。本命令只负责后台启动测试并立即返回 `run_id`。
+重要：测试执行仍由后台 runner 完成，问题分析、debug 建议和 safe repair 由 OpenCode 原生 agent 完成。本命令默认执行全自动编排，不只是启动后台任务。
 
 用户原始参数：
 
@@ -24,6 +24,7 @@ $ARGUMENTS
 - `sudo_policy=<none|cache|askpass>`：sudo 策略，可选，默认 `${THEROCK_SUDO_POLICY:-none}`
 - `max_rounds=<n>`：最大 loop 轮数，可选，默认 runner 内置值
 - `stable_threshold=<n>`：失败集稳定阈值，可选，默认 runner 内置值
+- `debug_repair=<opencode|off>`：debug/repair 编排模式，可选，默认 `opencode`
 
 解析规则：
 
@@ -42,10 +43,24 @@ $ARGUMENTS
 请调用项目内工具后台启动测试，必须使用这一条：
 
 ```bash
-.opencode/tools/therock_agent.sh start-kv $ARGUMENTS
+.opencode/tools/therock_agent.sh start-kv $ARGUMENTS debug_repair=opencode
 ```
 
-`start-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1` 解析为对应 runner flags，创建 `runs/<run_id>/global_state.json`，然后在后台执行内部入口 `_run-existing <run_id>`。
+如果用户显式传了 `debug_repair=off`，尊重用户输入，不再追加 `debug_repair=opencode`。
+
+`start-kv` 会把 `artifacts=/real/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1 debug_repair=opencode` 解析为对应 runner flags，创建 `runs/<run_id>/global_state.json`，然后在后台执行内部入口 `_run-existing <run_id>`。
+
+## 全自动 OpenCode 编排
+
+启动后不要只返回 `run_id` 就结束。默认继续执行：
+
+1. 调用 `/therock-status run_id=<run_id>` 或 runner `status` 观察状态。
+2. 如果状态为 `running`，继续等待或提示用户可随时查询。
+3. 如果状态为 `waiting_for_opencode_debug`：
+   - 调用 `/therock-debug-round run_id=<run_id> round=<current_loop>`，由 OpenCode 生成 `round_analysis/round<N>.json/.md` 和 `debug/round<N>_log_excerpt.md`。
+   - 调用 `/therock-repair-round run_id=<run_id> round=<current_loop> apply=safe`，由 OpenCode 执行 `safe_auto` 修复并写 `repairs/**`。
+   - 调用 `/therock-resume run_id=<run_id>` 进入下一轮验证。
+4. 重复上述过程，直到状态为 `passed`、`failed`、`interrupted` 或需要人工确认。
 
 规则：
 
@@ -57,8 +72,8 @@ $ARGUMENTS
 - 如果本次任务包含 `sudo_sensitive` 组件，`THEROCK_SUDO_POLICY=cache` 需要已有 sudo cache，`THEROCK_SUDO_POLICY=askpass` 建议通过 `./scripts/therock-sudo-agent run -- opencode` 启动 OpenCode。
 - 非 sudo 组件不应因为 `THEROCK_SUDO_POLICY=cache` 但 sudo cache 失效而被启动前拦住。
 - `sudo_sensitive` 任务没有可用 sudo cache 或 askpass agent 时应 blocked。
-- 启动后向用户返回 `run_id`、输出目录、runnable/skipped 数量，以及 `/therock-status run_id=<run_id>` 查询方式。
-- 后续不要假装测试已经完成；用户询问进度时调用 `status`。
+- 启动后向用户返回 `run_id`、输出目录、runnable/skipped 数量，以及当前自动编排阶段。
+- 不要假装测试已经完成；每次推进前都以 `global_state.json` / `status` 为准。
 
 启动后必须检查并总结：
 

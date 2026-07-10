@@ -73,7 +73,8 @@ permission:
 - `run_id`
 - output dir
 - runner exit status
-- `summary_report.md`
+- `summary.json`
+- `failures.json`
 - `global_state.json`
 - `agent_activity.jsonl`
 - `tool_calls.jsonl`
