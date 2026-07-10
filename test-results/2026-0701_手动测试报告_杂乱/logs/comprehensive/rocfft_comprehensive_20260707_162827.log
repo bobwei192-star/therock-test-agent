@@ -1,0 +1,335 @@
+[2026-07-07 16:28:27] ===== Starting rocfft comprehensive test =====
+PID=41871  TIMEOUT=21600s  LOG=/home/zs/test_case/scripts/logs/comprehensive/rocfft_comprehensive_20260707_162827.log
+[INFO] PID file: /tmp/therock_rocfft_comprehensive.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-07 16:28:27] test running...
+Disk free: 764G available
+Memory: 16Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-07 16:28:27] Running with sudo: timeout 21600 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^comprehensive$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/rocfft -V --tests-information 1,,1
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/test-dirs/rocfft/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/rocfft
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 2
+    Start 2: rocfft-test_standard_suite
+
+2: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocFFT/build/clients/staging/rocfft-test "--gtest_filter=*-*multi_gpu*" "--test_prob" "0.02"
+2: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocFFT/build/clients/tests
+2: Test timeout computed to be: 3600
+2: half epsilon: 0.000977	single epsilon: 3.75e-05	double epsilon: 1e-15
+2: Random seed: 1975095546
+2: rocFFT version: 1.0.38.abd990e7d9f
+2: Refraining from using more than 29 GiB 488 MiB of system memory.
+2: Refraining from using more than 96 GiB of device memory.
+2: Note: Google Test filter = *-*multi_gpu*
+2: [==========] Running 35520 tests from 75 test suites.
+2: [----------] Global test environment set-up.
+2: [----------] 2 tests from manual
+2: [ RUN      ] manual.vs_fftw
+2: Manual test:
+2: 	length: 8
+2: 	istride: 1
+2: 	idist: 8
+2: 	ostride: 1
+2: 	odist: 8
+2: 	batch: 1
+2: 	isize: 8
+2: 	osize: 8
+2: 	ioffset: 0 0
+2: 	ooffset: 0 0
+2: 	in-place
+2: 	transform_type: fft_transform_type_complex_forward
+2: 	fft_array_type_complex_interleaved -> fft_array_type_complex_interleaved
+2: 	single-precision
+2: 	ilength: 8
+2: 	olength: 8
+2: 	ibuffer_size: 64
+2: 	obuffer_size: 64
+2: 	
+2: Token: complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0
+2: [       OK ] manual.vs_fftw (102 ms)
+2: [ RUN      ] manual.bitwise_reproducibility
+2: /therock/src/rocm-libraries/projects/rocfft/clients/tests/gtest_main.cpp:860: Skipped
+2: A database file is required for this test.
+2: 
+2: 
+2: [  SKIPPED ] manual.bitwise_reproducibility (0 ms)
+2: [----------] 2 tests from manual (102 ms total)
+2: 
+2: [----------] 3 tests from bitwise_repro_test
+2: [ RUN      ] bitwise_repro_test.compare_precisions
+2: [       OK ] bitwise_repro_test.compare_precisions (1160 ms)
+2: [ RUN      ] bitwise_repro_test.compare_lengths
+2: /therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:75: Skipped
+2: 
+2: 
+2: [  SKIPPED ] bitwise_repro_test.compare_lengths (0 ms)
+2: [ RUN      ] bitwise_repro_test.compare_transform_types
+2: /therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:112: Skipped
+2: 
+2: 
+2: [  SKIPPED ] bitwise_repro_test.compare_transform_types (0 ms)
+2: [----------] 3 tests from bitwise_repro_test (1160 ms total)
+2: 
+2: [----------] 25 tests from rocfft_UnitTest
+2: [ RUN      ] rocfft_UnitTest.buffer_hashing_half
+2: [       OK ] rocfft_UnitTest.buffer_hashing_half (25 ms)
+2: [ RUN      ] rocfft_UnitTest.buffer_hashing_single
+2: [       OK ] rocfft_UnitTest.buffer_hashing_single (16 ms)
+2: [ RUN      ] rocfft_UnitTest.buffer_hashing_double
+2: [       OK ] rocfft_UnitTest.buffer_hashing_double (15 ms)
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_single
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_double
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_single
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_double
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_single
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_double
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_single
+2: [ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_double
+2: [ RUN      ] rocfft_UnitTest.1D_hermitian_single_small
+2: [       OK ] rocfft_UnitTest.1D_hermitian_single_small (57 ms)
+2: [ RUN      ] rocfft_UnitTest.1D_hermitian_single_large
+2: [       OK ] rocfft_UnitTest.1D_hermitian_single_large (75 ms)
+2: [ RUN      ] rocfft_UnitTest.gpu_symmetrizer
+2: [       OK ] rocfft_UnitTest.gpu_symmetrizer (558 ms)
+2: [ RUN      ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers
+2: [       OK ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers (34 ms)
+2: [ RUN      ] rocfft_UnitTest.hipGraph_execution
+2: [       OK ] rocfft_UnitTest.hipGraph_execution (121 ms)
+2: [ RUN      ] rocfft_UnitTest.simple_multistream_1D
+2: [       OK ] rocfft_UnitTest.simple_multistream_1D (286 ms)
+2: [ RUN      ] rocfft_UnitTest.simple_multistream_2D
+2: [       OK ] rocfft_UnitTest.simple_multistream_2D (312 ms)
+2: [ RUN      ] rocfft_UnitTest.simple_multistream_3D
+2: [       OK ] rocfft_UnitTest.simple_multistream_3D (608 ms)
+2: [ RUN      ] rocfft_UnitTest.plan_description
+2: [       OK ] rocfft_UnitTest.plan_description (4 ms)
+2: [ RUN      ] rocfft_UnitTest.plan_description_reuse
+2: [       OK ] rocfft_UnitTest.plan_description_reuse (96 ms)
+2: [ RUN      ] rocfft_UnitTest.nonzero_offsets
+2: [       OK ] rocfft_UnitTest.nonzero_offsets (0 ms)
+2: [ RUN      ] rocfft_UnitTest.log_levels
+2: [       OK ] rocfft_UnitTest.log_levels (5717 ms)
+2: [ RUN      ] rocfft_UnitTest.log_multithreading
+2: [       OK ] rocfft_UnitTest.log_multithreading (22 ms)
+2: [ RUN      ] rocfft_UnitTest.workmem_missing
+2: [       OK ] rocfft_UnitTest.workmem_missing (364 ms)
+2: [ RUN      ] rocfft_UnitTest.workmem_small
+2: [       OK ] rocfft_UnitTest.workmem_small (45 ms)
+2: [ RUN      ] rocfft_UnitTest.workmem_big
+2: [       OK ] rocfft_UnitTest.workmem_big (42 ms)
+2: [ RUN      ] rocfft_UnitTest.workmem_null
+2: [       OK ] rocfft_UnitTest.workmem_null (42 ms)
+2: [ RUN      ] rocfft_UnitTest.rtc_cache_iter_1
+2: [       OK ] rocfft_UnitTest.rtc_cache_iter_1 (1717 ms)
+2: [ RUN      ] rocfft_UnitTest.rtc_cache_iter_2
+2: [       OK ] rocfft_UnitTest.rtc_cache_iter_2 (1561 ms)
+2: [ RUN      ] rocfft_UnitTest.rtc_cache_null
+2: [       OK ] rocfft_UnitTest.rtc_cache_null (0 ms)
+2: [ RUN      ] rocfft_UnitTest.rtc_helper_crash
+2: [       OK ] rocfft_UnitTest.rtc_helper_crash (492 ms)
+2: [ RUN      ] rocfft_UnitTest.rtc_test_harness
+2: [       OK ] rocfft_UnitTest.rtc_test_harness (18705 ms)
+2: [----------] 25 tests from rocfft_UnitTest (30936 ms total)
+2: 
+2: [----------] 1 test from rocfft
+2: [ RUN      ] rocfft.cApi
+2: [       OK ] rocfft.cApi (2 ms)
+2: [----------] 1 test from rocfft (2 ms total)
+2: 
+2: [----------] 15 tests from pow2_1D/accuracy_test
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_2_double_ip_batch_2_istride_1_CI_ostride_1_CI_idist_2_odist_2_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_2_double_ip_batch_2_istride_1_CI_ostride_1_CI_idist_2_odist_2_ioffset_0_0_ooffset_0_0 (287 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0 (356 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_4096_single_ip_batch_4_istride_1_CI_ostride_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_4096_single_ip_batch_4_istride_1_CI_ostride_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0 (341 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_65536_single_ip_batch_2_istride_1_CI_ostride_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_65536_single_ip_batch_2_istride_1_CI_ostride_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0 (1531 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_131072_double_op_batch_2_istride_1_CI_ostride_1_CI_idist_131072_odist_131072_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_131072_double_op_batch_2_istride_1_CI_ostride_1_CI_idist_131072_odist_131072_ioffset_0_0_ooffset_0_0 (2320 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8388608_double_op_batch_4_istride_1_CI_ostride_1_CI_idist_8388608_odist_8388608_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8388608_double_op_batch_4_istride_1_CI_ostride_1_CI_idist_8388608_odist_8388608_ioffset_0_0_ooffset_0_0 (12605 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_16777216_single_op_batch_2_istride_1_CI_ostride_1_CI_idist_16777216_odist_16777216_ioffset_0_0_ooffset_0_0
+2: [       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_16777216_single_op_batch_2_istride_1_CI_ostride_1_CI_idist_16777216_odist_16777216_ioffset_0_0_ooffset_0_0 (2174 ms)
+2: [ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_33554432_double_ip_batch_4_istride_1_CI_ostride_1_CI_idist_33554432_odist_33554432_ioffset_0_0_ooffset_0_0
+[HEARTBEAT 2026-07-07 16:29:27] test running...
+[HEARTBEAT 2026-07-07 16:30:28] test running...
+1/1 Test #2: rocfft-test_standard_suite .......Subprocess killed***Exception: 139.12 sec
+half epsilon: 0.000977	single epsilon: 3.75e-05	double epsilon: 1e-15
+Random seed: 1975095546
+rocFFT version: 1.0.38.abd990e7d9f
+Refraining from using more than 29 GiB 488 MiB of system memory.
+Refraining from using more than 96 GiB of device memory.
+Note: Google Test filter = *-*multi_gpu*
+[==========] Running 35520 tests from 75 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from manual
+[ RUN      ] manual.vs_fftw
+Manual test:
+	length: 8
+	istride: 1
+	idist: 8
+	ostride: 1
+	odist: 8
+	batch: 1
+	isize: 8
+	osize: 8
+	ioffset: 0 0
+	ooffset: 0 0
+	in-place
+	transform_type: fft_transform_type_complex_forward
+	fft_array_type_complex_interleaved -> fft_array_type_complex_interleaved
+	single-precision
+	ilength: 8
+	olength: 8
+	ibuffer_size: 64
+	obuffer_size: 64
+	
+Token: complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0
+[       OK ] manual.vs_fftw (102 ms)
+[ RUN      ] manual.bitwise_reproducibility
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/gtest_main.cpp:860: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] manual.bitwise_reproducibility (0 ms)
+[----------] 2 tests from manual (102 ms total)
+
+[----------] 3 tests from bitwise_repro_test
+[ RUN      ] bitwise_repro_test.compare_precisions
+[       OK ] bitwise_repro_test.compare_precisions (1160 ms)
+[ RUN      ] bitwise_repro_test.compare_lengths
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:75: Skipped
+
+
+[  SKIPPED ] bitwise_repro_test.compare_lengths (0 ms)
+[ RUN      ] bitwise_repro_test.compare_transform_types
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:112: Skipped
+
+
+[  SKIPPED ] bitwise_repro_test.compare_transform_types (0 ms)
+[----------] 3 tests from bitwise_repro_test (1160 ms total)
+
+[----------] 25 tests from rocfft_UnitTest
+[ RUN      ] rocfft_UnitTest.buffer_hashing_half
+[       OK ] rocfft_UnitTest.buffer_hashing_half (25 ms)
+[ RUN      ] rocfft_UnitTest.buffer_hashing_single
+[       OK ] rocfft_UnitTest.buffer_hashing_single (16 ms)
+[ RUN      ] rocfft_UnitTest.buffer_hashing_double
+[       OK ] rocfft_UnitTest.buffer_hashing_double (15 ms)
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_double
+[ RUN      ] rocfft_UnitTest.1D_hermitian_single_small
+[       OK ] rocfft_UnitTest.1D_hermitian_single_small (57 ms)
+[ RUN      ] rocfft_UnitTest.1D_hermitian_single_large
+[       OK ] rocfft_UnitTest.1D_hermitian_single_large (75 ms)
+[ RUN      ] rocfft_UnitTest.gpu_symmetrizer
+[       OK ] rocfft_UnitTest.gpu_symmetrizer (558 ms)
+[ RUN      ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers
+[       OK ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers (34 ms)
+[ RUN      ] rocfft_UnitTest.hipGraph_execution
+[       OK ] rocfft_UnitTest.hipGraph_execution (121 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_1D
+[       OK ] rocfft_UnitTest.simple_multistream_1D (286 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_2D
+[       OK ] rocfft_UnitTest.simple_multistream_2D (312 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_3D
+[       OK ] rocfft_UnitTest.simple_multistream_3D (608 ms)
+[ RUN      ] rocfft_UnitTest.plan_description
+[       OK ] rocfft_UnitTest.plan_description (4 ms)
+[ RUN      ] rocfft_UnitTest.plan_description_reuse
+[       OK ] rocfft_UnitTest.plan_description_reuse (96 ms)
+[ RUN      ] rocfft_UnitTest.nonzero_offsets
+[       OK ] rocfft_UnitTest.nonzero_offsets (0 ms)
+[ RUN      ] rocfft_UnitTest.log_levels
+[       OK ] rocfft_UnitTest.log_levels (5717 ms)
+[ RUN      ] rocfft_UnitTest.log_multithreading
+[       OK ] rocfft_UnitTest.log_multithreading (22 ms)
+[ RUN      ] rocfft_UnitTest.workmem_missing
+[       OK ] rocfft_UnitTest.workmem_missing (364 ms)
+[ RUN      ] rocfft_UnitTest.workmem_small
+[       OK ] rocfft_UnitTest.workmem_small (45 ms)
+[ RUN      ] rocfft_UnitTest.workmem_big
+[       OK ] rocfft_UnitTest.workmem_big (42 ms)
+[ RUN      ] rocfft_UnitTest.workmem_null
+[       OK ] rocfft_UnitTest.workmem_null (42 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_iter_1
+[       OK ] rocfft_UnitTest.rtc_cache_iter_1 (1717 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_iter_2
+[       OK ] rocfft_UnitTest.rtc_cache_iter_2 (1561 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_null
+[       OK ] rocfft_UnitTest.rtc_cache_null (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_helper_crash
+[       OK ] rocfft_UnitTest.rtc_helper_crash (492 ms)
+[ RUN      ] rocfft_UnitTest.rtc_test_harness
+[       OK ] rocfft_UnitTest.rtc_test_harness (18705 ms)
+[----------] 25 tests from rocfft_UnitTest (30936 ms total)
+
+[----------] 1 test from rocfft
+[ RUN      ] rocfft.cApi
+[       OK ] rocfft.cApi (2 ms)
+[----------] 1 test from rocfft (2 ms total)
+
+[----------] 15 tests from pow2_1D/accuracy_test
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_2_double_ip_batch_2_istride_1_CI_ostride_1_CI_idist_2_odist_2_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_2_double_ip_batch_2_istride_1_CI_ostride_1_CI_idist_2_odist_2_ioffset_0_0_ooffset_0_0 (287 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0 (356 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_4096_single_ip_batch_4_istride_1_CI_ostride_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_4096_single_ip_batch_4_istride_1_CI_ostride_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0 (341 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_65536_single_ip_batch_2_istride_1_CI_ostride_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_65536_single_ip_batch_2_istride_1_CI_ostride_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0 (1531 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_131072_double_op_batch_2_istride_1_CI_ostride_1_CI_idist_131072_odist_131072_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_131072_double_op_batch_2_istride_1_CI_ostride_1_CI_idist_131072_odist_131072_ioffset_0_0_ooffset_0_0 (2320 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8388608_double_op_batch_4_istride_1_CI_ostride_1_CI_idist_8388608_odist_8388608_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_8388608_double_op_batch_4_istride_1_CI_ostride_1_CI_idist_8388608_odist_8388608_ioffset_0_0_ooffset_0_0 (12605 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_16777216_single_op_batch_2_istride_1_CI_ostride_1_CI_idist_16777216_odist_16777216_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_16777216_single_op_batch_2_istride_1_CI_ostride_1_CI_idist_16777216_odist_16777216_ioffset_0_0_ooffset_0_0 (2174 ms)
+[ RUN      ] pow2_1D/accuracy_test.vs_fftw/complex_forward_len_33554432_double_ip_batch_4_istride_1_CI_ostride_1_CI_idist_33554432_odist_33554432_ioffset_0_0_ooffset_0_0
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+comprehensive    = 139.12 sec*proc (1 test)
+full             = 139.12 sec*proc (1 test)
+standard         = 139.12 sec*proc (1 test)
+
+Total Test time (real) = 139.14 sec
+
+The following tests FAILED:
+	  2 - rocfft-test_standard_suite (Subprocess killed)    comprehensive full standard
+Errors while running CTest
+# TEST_COMPONENT: rocfft -> Test Directory: /home/zs/TheRock/output-linux-portable/build/test-dirs/rocfft
+# TEST_TYPE: comprehensive -> Category: comprehensive
+# AMDGPU_FAMILIES: None -> GPU Architecture: 
+
+# Discovering available test labels...
+# Warning: No GPU specific test suites available
+
+# Running: ctest -L ^comprehensive$ -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/rocfft -V --tests-information 1,,1
+

@@ -1,0 +1,384 @@
+[2026-07-06 17:47:33] ===== Starting rocdecode comprehensive test =====
+PID=584346  TIMEOUT=21600s  LOG=/home/zs/test_case/scripts/logs/comprehensive/rocdecode_comprehensive_20260706_174733.log
+[INFO] PID file: /tmp/therock_rocdecode_comprehensive.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-06 17:47:33] test running...
+Disk free: 764G available
+Memory: 19Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-06 17:47:33] Running with sudo: timeout 21600 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_rocdecode.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ INFO: rocdecode tests found in /home/zs/TheRock/output-linux-portable/build/share/rocdecode/test
+INFO:root:++ rocdecode setting ROCM_PATH=/home/zs/TheRock/output-linux-portable/build
+INFO:root:++ rocdecode setting LD_LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/lib
+INFO:root:++ rocdecode setting LD_PRELOAD=/home/zs/TheRock/output-linux-portable/build/lib/rocm_sysdeps/lib/librocm_sysdeps_va.so.2:/home/zs/TheRock/output-linux-portable/build/lib/rocm_sysdeps/lib/librocm_sysdeps_va-drm.so.2
+INFO:root:++ rocdecode setting LIBVA_DRIVERS_PATH=/home/zs/TheRock/output-linux-portable/build/lib/rocm_sysdeps/lib
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ cmake -GNinja -DENABLE_EXTENDED_TESTS=ON /home/zs/TheRock/output-linux-portable/build/share/rocdecode/test
+-- [37mrocdecode-test: rocdecode found with find_package(rocdecode QUIET)[m
+-- 	[37mrocdecode_INCLUDE_DIR -- /home/zs/TheRock/output-linux-portable/build/include[m
+-- 	[37mrocdecode_LIB_DIR -- /home/zs/TheRock/output-linux-portable/build/lib[m
+-- 	[37mrocdecode_LIBRARY -- /home/zs/TheRock/output-linux-portable/build/lib/librocdecode.so[m
+-- 	[37mrocdecode_FOUND -- 1[m
+-- 	[37mrocdecode_VERSION -- 1.8.0[m
+-- 	[37mrocdecode_VERSION_MAJOR -- 1[m
+-- 	[37mrocdecode_VERSION_MINOR -- 8[m
+-- 	[37mrocdecode_VERSION_PATCH -- 0[m
+-- [33mrocdecode-test rocdecode-host is optional. Install rocdecode-host to run additional tests before running CTests
+-- Checking for module 'libavcodec'
+--   Package 'libavcodec' not found
+-- Checking for module 'libavformat'
+--   Package 'libavformat' not found
+-- Checking for module 'libavutil'
+--   Package 'libavutil' not found
+-- [33mNOTE: FindFFmpeg failed to find -- FFMPEG[m
+-- [33mrocdecode-test FFmpeg NOT found. rocdecode tests requiring FFmpeg excluded
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ ctest -N
+INFO:root:Test project /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+  Test #1: video_decodeRaw-HEVC
+  Test #2: video_decodeRaw-AVC
+  Test #3: video_decodeRaw-AV1
+  Test #4: video_decodeRaw-VP9
+  Test #5: rocdec_Decode-HEVC
+  Test #6: rocDecode_Negative_API_Tests
+
+Total Tests: 6
+
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ ctest --extra-verbose --output-on-failure
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/rocdecode-test/DartConfiguration.tcl
+Parse Config file:/home/zs/TheRock/output-linux-portable/build/rocdecode-test/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: video_decodeRaw-HEVC
+
+1: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/samples/videoDecodeRaw" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-HEVC" "--build-generator" "Ninja" "--test-command" "videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-H265.265"
+1: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+1: Test timeout computed to be: 1500
+1: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-HEVC
+1: ======== CMake output     ======
+1: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+1: Configuring done (0.0s)
+1: Generating done (0.0s)
+1: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-HEVC
+1: ======== End CMake output ======
+1: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-HEVC'
+1: 
+1: Run Clean Command: /usr/bin/ninja clean
+1: [1/1] Cleaning all built files...
+1: Cleaning... 3 files.
+1: 
+1: Run Build Command(s): /usr/bin/ninja
+1: [1/3] Building CXX object CMakeFiles/videodecoderaw.dir/videodecoderaw.cpp.o
+1: [2/3] Building CXX object CMakeFiles/videodecoderaw.dir/home/zs/TheRock/output-linux-portable/build/share/rocdecode/utils/rocvideodecode/roc_video_dec.cpp.o
+1: [3/3] Linking CXX executable videodecoderaw
+1: 
+1: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-HEVC/videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-H265.265"
+1: info: Input file: AMD_driving_virtual_20-H265.265
+1: info: Using built-in bitstream reader
+1: info: Using GPU device 0 - AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+1: info: decoding started, please wait!
+1: Input Video Information
+1: 	Codec        : H.265/HEVC
+1: 	Frame rate   : 30000/1001 = 29.97 fps
+1: 	Sequence     : Progressive
+1: 	Coded size   : [2048, 1024]
+1: 	Display area : [0, 0, 2048, 1024]
+1: 	Chroma       : YUV 420
+1: 	Bit depth    : 8
+1: Video Decoding Params:
+1: 	Num Surfaces : 7
+1: 	Crop         : [0, 0, 2048, 1024]
+1: 	Resize       : 2048x1024
+1: 
+1: info: Total pictures decoded: 601
+1: info: Total frames output/displayed: 601
+1: info: avg decoding time per picture: 0.811239 ms
+1: info: avg decode FPS: 1232.68
+1: info: avg output/display time per frame: 0.811239 ms
+1: info: avg output/display FPS: 1232.68
+1/6 Test #1: video_decodeRaw-HEVC .............   Passed    1.54 sec
+test 2
+    Start 2: video_decodeRaw-AVC
+
+2: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/samples/videoDecodeRaw" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AVC" "--build-generator" "Ninja" "--test-command" "videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-H264.264"
+2: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+2: Test timeout computed to be: 1500
+2: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AVC
+2: ======== CMake output     ======
+2: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+2: Configuring done (0.0s)
+2: Generating done (0.0s)
+2: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AVC
+2: ======== End CMake output ======
+2: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AVC'
+2: 
+2: Run Clean Command: /usr/bin/ninja clean
+2: [1/1] Cleaning all built files...
+2: Cleaning... 3 files.
+2: 
+2: Run Build Command(s): /usr/bin/ninja
+2: [1/3] Building CXX object CMakeFiles/videodecoderaw.dir/videodecoderaw.cpp.o
+2: [2/3] Building CXX object CMakeFiles/videodecoderaw.dir/home/zs/TheRock/output-linux-portable/build/share/rocdecode/utils/rocvideodecode/roc_video_dec.cpp.o
+2: [3/3] Linking CXX executable videodecoderaw
+2: 
+2: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AVC/videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-H264.264"
+2: info: Input file: AMD_driving_virtual_20-H264.264
+2: info: Using built-in bitstream reader
+2: info: Using GPU device 0 - AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+2: info: decoding started, please wait!
+2: Input Video Information
+2: 	Codec        : AVC/H.264
+2: 	Frame rate   : 60000/2002 = 29.97 fps
+2: 	Sequence     : Progressive
+2: 	Coded size   : [2048, 1024]
+2: 	Display area : [0, 0, 2048, 1024]
+2: 	Chroma       : YUV 420
+2: 	Bit depth    : 8
+2: Video Decoding Params:
+2: 	Num Surfaces : 7
+2: 	Crop         : [0, 0, 2048, 1024]
+2: 	Resize       : 2048x1024
+2: 
+2: info: Total pictures decoded: 601
+2: info: Total frames output/displayed: 601
+2: info: avg decoding time per picture: 0.624189 ms
+2: info: avg decode FPS: 1602.08
+2: info: avg output/display time per frame: 0.624189 ms
+2: info: avg output/display FPS: 1602.08
+2/6 Test #2: video_decodeRaw-AVC ..............   Passed    1.41 sec
+test 3
+    Start 3: video_decodeRaw-AV1
+
+3: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/samples/videoDecodeRaw" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AV1" "--build-generator" "Ninja" "--test-command" "videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-AV1.ivf"
+3: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+3: Test timeout computed to be: 1500
+3: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AV1
+3: ======== CMake output     ======
+3: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+3: Configuring done (0.0s)
+3: Generating done (0.0s)
+3: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AV1
+3: ======== End CMake output ======
+3: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AV1'
+3: 
+3: Run Clean Command: /usr/bin/ninja clean
+3: [1/1] Cleaning all built files...
+3: Cleaning... 3 files.
+3: 
+3: Run Build Command(s): /usr/bin/ninja
+3: [1/3] Building CXX object CMakeFiles/videodecoderaw.dir/videodecoderaw.cpp.o
+3: [2/3] Building CXX object CMakeFiles/videodecoderaw.dir/home/zs/TheRock/output-linux-portable/build/share/rocdecode/utils/rocvideodecode/roc_video_dec.cpp.o
+3: [3/3] Linking CXX executable videodecoderaw
+3: 
+3: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-AV1/videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-AV1.ivf"
+3: info: Input file: AMD_driving_virtual_20-AV1.ivf
+3: info: Using built-in bitstream reader
+3: info: Using GPU device 0 - AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+3: info: decoding started, please wait!
+3: Input Video Information
+3: 	Codec        : AV1
+3: 	Sequence     : Progressive
+3: 	Coded size   : [2048, 1024]
+3: 	Display area : [0, 0, 2048, 1024]
+3: 	Chroma       : YUV 420
+3: 	Bit depth    : 8
+3: Video Decoding Params:
+3: 	Num Surfaces : 12
+3: 	Crop         : [0, 0, 2048, 1024]
+3: 	Resize       : 2048x1024
+3: 
+3: info: Total pictures decoded: 602
+3: info: Total frames output/displayed: 601
+3: info: avg decoding time per picture: 0.854994 ms
+3: info: avg decode FPS: 1169.6
+3: info: avg output/display time per frame: 0.856417 ms
+3: info: avg output/display FPS: 1167.66
+3/6 Test #3: video_decodeRaw-AV1 ..............   Passed    1.59 sec
+test 4
+    Start 4: video_decodeRaw-VP9
+
+4: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/samples/videoDecodeRaw" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-VP9" "--build-generator" "Ninja" "--test-command" "videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-VP9.ivf"
+4: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+4: Test timeout computed to be: 1500
+4: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-VP9
+4: ======== CMake output     ======
+4: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+4: Configuring done (0.0s)
+4: Generating done (0.0s)
+4: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-VP9
+4: ======== End CMake output ======
+4: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-VP9'
+4: 
+4: Run Clean Command: /usr/bin/ninja clean
+4: [1/1] Cleaning all built files...
+4: Cleaning... 3 files.
+4: 
+4: Run Build Command(s): /usr/bin/ninja
+4: [1/3] Building CXX object CMakeFiles/videodecoderaw.dir/videodecoderaw.cpp.o
+4: [2/3] Building CXX object CMakeFiles/videodecoderaw.dir/home/zs/TheRock/output-linux-portable/build/share/rocdecode/utils/rocvideodecode/roc_video_dec.cpp.o
+4: [3/3] Linking CXX executable videodecoderaw
+4: 
+4: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/videoDecodeRaw-VP9/videodecoderaw" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/video/AMD_driving_virtual_20-VP9.ivf"
+4: info: Input file: AMD_driving_virtual_20-VP9.ivf
+4: info: Using built-in bitstream reader
+4: info: Using GPU device 0 - AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+4: info: decoding started, please wait!
+4: Input Video Information
+4: 	Codec        : VP9
+4: 	Sequence     : Progressive
+4: 	Coded size   : [2048, 1024]
+4: 	Display area : [0, 0, 2048, 1024]
+4: 	Chroma       : YUV 420
+4: 	Bit depth    : 8
+4: Video Decoding Params:
+4: 	Num Surfaces : 12
+4: 	Crop         : [0, 0, 2048, 1024]
+4: 	Resize       : 2048x1024
+4: 
+4: info: Total pictures decoded: 601
+4: info: Total frames output/displayed: 601
+4: info: avg decoding time per picture: 0.913811 ms
+4: info: avg decode FPS: 1094.32
+4: info: avg output/display time per frame: 0.913811 ms
+4: info: avg output/display FPS: 1094.32
+4/6 Test #4: video_decodeRaw-VP9 ..............   Passed    1.54 sec
+test 5
+    Start 5: rocdec_Decode-HEVC
+
+5: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/samples/rocdecDecode" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecDecode" "--build-generator" "Ninja" "--test-command" "rocdecdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/frames"
+5: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+5: Test timeout computed to be: 1500
+5: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecDecode
+5: ======== CMake output     ======
+5: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+5: Checking for module 'libavcodec'
+5:   Package 'libavcodec' not found
+5: Checking for module 'libavformat'
+5:   Package 'libavformat' not found
+5: Checking for module 'libavutil'
+5:   Package 'libavutil' not found
+5: -- NOTE: FindFFmpeg failed to find -- FFMPEG
+5: Configuring done (0.1s)
+5: Generating done (0.0s)
+5: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecDecode
+5: ======== End CMake output ======
+5: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecDecode'
+5: 
+5: Run Clean Command: /usr/bin/ninja clean
+5: [1/1] Cleaning all built files...
+5: Cleaning... 2 files.
+5: 
+5: Run Build Command(s): /usr/bin/ninja
+5: [1/2] Building CXX object CMakeFiles/rocdecdecode.dir/rocdecdecode.cpp.o
+5: [2/2] Linking CXX executable rocdecdecode
+5: 
+5: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecDecode/rocdecdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/frames"
+5: Read 53 frames from disk.
+5: Input Video Information
+5: 	Codec        : 4
+5: 	Frame rate   : 30000/1001 = 29.97 fps
+5: 	Sequence     : Progressive
+5: 	Coded size   : [2048, 1024]
+5: 	Display area : [0, 0, 2048, 1024]
+5: 	Bit depth    : 8
+5: Total decoded frames in iteration 0: 53
+5: Decoding time: 44332 microseconds
+5: Success.
+5: 
+5: 
+5/6 Test #5: rocdec_Decode-HEVC ...............   Passed    0.94 sec
+test 6
+    Start 6: rocDecode_Negative_API_Tests
+
+6: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocdecode/test/rocDecodeNegativeApiTests" "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecodenegativetest" "--build-generator" "Ninja" "--test-command" "rocdecodenegativetest"
+6: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+6: Test timeout computed to be: 1500
+6: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecodenegativetest
+6: ======== CMake output     ======
+6: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+6: Configuring done (0.0s)
+6: Generating done (0.0s)
+6: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecodenegativetest
+6: ======== End CMake output ======
+6: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecodenegativetest'
+6: 
+6: Run Clean Command: /usr/bin/ninja clean
+6: [1/1] Cleaning all built files...
+6: Cleaning... 3 files.
+6: 
+6: Run Build Command(s): /usr/bin/ninja
+6: [1/3] Building CXX object CMakeFiles/rocdecodenegativetest.dir/rocdecodenegativetest.cpp.o
+6: [2/3] Building CXX object CMakeFiles/rocdecodenegativetest.dir/rocdecode_api_negative_tests.cpp.o
+6: [3/3] Linking CXX executable rocdecodenegativetest
+6: 
+6: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocdecode-test/rocdecodenegativetest/rocdecodenegativetest"
+6: info: Executing negative test cases for the rocDecCreateDecoder API
+6: [0, Critical] rocdecode_api.cpp:37: 4558520072 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecCreateDecoder(): Null pointer
+6: [0, Critical] roc_decoder.cpp:51: 4558520099 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Invalid number of decode surfaces.
+6: [0, Critical] vaapi_videodecoder.cpp:1028: 4558544246 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitHIP(): ERROR: the requested device_id is not found!
+6: [0, Critical] vaapi_videodecoder.cpp:686: 4558544259 us: [pid:585827 tid:585827 hashid:0x3d9c5] GetVaContext(): Failed to initialize the HIP.
+6: [0, Critical] vaapi_videodecoder.cpp:824: 4558544267 us: [pid:585827 tid:585827 hashid:0x3d9c5] CheckDecCapForCodecType(): Failed to initialize.
+6: [0, Critical] rocdecode_api.cpp:90: 4558544271 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetDecoderCaps(): Error: Failed to obtain decoder capabilities from driver.
+6: [0, Critical] vaapi_videodecoder.cpp:130: 4558544275 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): The codec config combination is not supported.
+6: [0, Critical] roc_decoder.cpp:61: 4558544279 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Failed to initialize the VAAPI Video decoder.
+6: [0, Critical] vaapi_videodecoder.cpp:130: 4558545317 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): The codec config combination is not supported.
+6: [0, Critical] roc_decoder.cpp:61: 4558545322 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Failed to initialize the VAAPI Video decoder.
+6: [0, Critical] vaapi_videodecoder.cpp:130: 4558545326 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): The codec config combination is not supported.
+6: [0, Critical] roc_decoder.cpp:61: 4558545328 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Failed to initialize the VAAPI Video decoder.
+6: [0, Critical] vaapi_videodecoder.cpp:130: 4558545339 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): The codec config combination is not supported.
+6: [0, Critical] roc_decoder.cpp:61: 4558545341 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Failed to initialize the VAAPI Video decoder.
+6: [0, Critical] vaapi_videodecoder.cpp:894: 4558545351 us: [pid:585827 tid:585827 hashid:0x3d9c5] CheckDecCapForCodecType(): VAAPI failure: vaCreateConfig(va_contexts_[va_ctx_id].va_display, va_contexts_[va_ctx_id].va_profile, VAEntrypointVLD, &va_config_attrib, 1, &va_contexts_[va_ctx_id].va_config_id) failed with 'status: 13: the requested VAEntryPoint is not supported' at /therock/src/rocm-systems/projects/rocdecode/src/rocdecode/vaapi/vaapi_videodecoder.cpp:894
+6: [0, Critical] rocdecode_api.cpp:90: 4558545360 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetDecoderCaps(): Error: Failed to obtain decoder capabilities from driver.
+6: [0, Critical] vaapi_videodecoder.cpp:130: 4558545362 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): The codec config combination is not supported.
+6: [0, Critical] roc_decoder.cpp:61: 4558545364 us: [pid:585827 tid:585827 hashid:0x3d9c5] InitializeDecoder(): Failed to initialize the VAAPI Video decoder.
+6: info: Executing negative test cases for the rocDecDestroyDecoder API
+6: info: Executing negative test cases for the rocDecGetDecoderCaps API
+6: info: Executing negative test cases for the rocDecDecodeFrame API
+6: info: Executing negative test cases for the rocDecGetDecodeStatus API
+6: info: Executing negative test cases for the rocDecReconfigureDecoder API
+6: info: Executing negative test cases for the rocDecGetVideoFrame API
+6: [0, Critical] roc_decoder.cpp:124: 4558545605 us: [pid:585827 tid:585827 hashid:0x3d9c5] GetVideoFrame(): Invalid parameters.
+6: info: Executing negative test cases for the rocDecGetErrorName API
+6: info: Executing negative test cases for the rocDecCreateVideoParser API
+6: [0, Critical] rocparser_api.cpp:44: 4558545618 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecCreateVideoParser(): Error: The current version of rocDecode officially supports only the H.265 (HEVC), H.264 (AVC), AV1 and VP9 codecs.
+6: info: Executing negative test cases for the rocDecParseVideoData API
+6: info: Executing negative test cases for the rocDecDestroyVideoParser API
+6: info: Executing negative test cases for the rocDecCreateBitstreamReader API
+6: [0, Critical] roc_bs_reader_api.cpp:31: 4558545764 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecCreateBitstreamReader(): Null pointer
+6: [0, Critical] roc_bs_reader_api.cpp:31: 4558545767 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecCreateBitstreamReader(): Null pointer
+6: info: Executing negative test cases for the rocDecGetBitstreamCodecType API
+6: [0, Critical] roc_bs_reader_api.cpp:52: 4558545770 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamCodecType(): Null pointer
+6: [0, Critical] roc_bs_reader_api.cpp:52: 4558545772 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamCodecType(): Null pointer
+6: info: Executing negative test cases for the rocDecGetBitstreamBitDepth API
+6: [0, Critical] roc_bs_reader_api.cpp:74: 4558545775 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamBitDepth(): Null pointer
+6: [0, Critical] roc_bs_reader_api.cpp:74: 4558545777 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamBitDepth(): Null pointer
+6: info: Executing negative test cases for the rocDecGetBitstreamPicData API
+6: [0, Critical] roc_bs_reader_api.cpp:96: 4558545780 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamPicData(): Null pointer
+6: [0, Critical] roc_bs_reader_api.cpp:96: 4558545783 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecGetBitstreamPicData(): Null pointer
+6: info: Executing negative test cases for the rocDecDestroyBitstreamReader API
+6: [0, Critical] roc_bs_reader_api.cpp:118: 4558545785 us: [pid:585827 tid:585827 hashid:0x3d9c5] rocDecDestroyBitstreamReader(): Null pointer
+6: Test Passed!
+6/6 Test #6: rocDecode_Negative_API_Tests .....   Passed    0.46 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =   7.49 sec
+[2026-07-06 17:47:41] ===== rocdecode comprehensive: PASS (8s, rc=0) =====

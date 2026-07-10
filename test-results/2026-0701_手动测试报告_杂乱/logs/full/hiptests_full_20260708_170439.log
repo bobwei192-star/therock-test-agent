@@ -1,0 +1,943 @@
+[2026-07-08 17:04:39] ===== Starting hiptests full test =====
+PID=1546068  TIMEOUT=43200s  LOG=/home/zs/test_case/scripts/logs/full/hiptests_full_20260708_170439.log
+[INFO] PID file: /tmp/therock_hiptests_full.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-08 17:04:39] test running...
+Disk free: 793G available
+Memory: 18Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-08 17:04:39] Running with sudo: timeout 43200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_hiptests.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Setting LD_LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/lib
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest --tests-information 0,,1 --test-dir /home/zs/TheRock/output-linux-portable/build/share/hip/catch_tests --output-on-failure --timeout 600
+Test project /home/zs/TheRock/output-linux-portable/build/share/hip/catch_tests
+          Start    1: Unit_hiprtc_saxpy
+   1/4221 Test    #1: Unit_hiprtc_saxpy ...........................................................................   Passed    0.22 sec
+          Start    2: Unit_hiprtc_warpsize
+   2/4221 Test    #2: Unit_hiprtc_warpsize ........................................................................   Passed    0.08 sec
+          Start    3: Unit_hiprtc_functional
+   3/4221 Test    #3: Unit_hiprtc_functional ......................................................................   Passed    0.37 sec
+          Start    4: Unit_hipStreamCaptureRtc
+   4/4221 Test    #4: Unit_hipStreamCaptureRtc ....................................................................   Passed    0.09 sec
+          Start    5: Unit_hiprtc_includepath
+   5/4221 Test    #5: Unit_hiprtc_includepath .....................................................................   Passed    0.09 sec
+          Start    6: Unit_hiprtc_devicemalloc
+   6/4221 Test    #6: Unit_hiprtc_devicemalloc ....................................................................   Passed    0.10 sec
+          Start    7: Unit_hiprtcGetLoweredName_templateKrnls
+   7/4221 Test    #7: Unit_hiprtcGetLoweredName_templateKrnls .....................................................   Passed    0.10 sec
+          Start    8: Unit_hiprtc_cpp17
+   8/4221 Test    #8: Unit_hiprtc_cpp17 ...........................................................................   Passed    0.08 sec
+          Start    9: Unit_hiprtc_namehandling
+   9/4221 Test    #9: Unit_hiprtc_namehandling ....................................................................   Passed    0.07 sec
+          Start   10: Unit_hiprtc_getloweredname
+  10/4221 Test   #10: Unit_hiprtc_getloweredname ..................................................................   Passed    0.07 sec
+          Start   11: Unit_hiprtc_test_hip_bfloat16
+  11/4221 Test   #11: Unit_hiprtc_test_hip_bfloat16 ...............................................................   Passed    0.08 sec
+          Start   12: Unit_RTC_LinkerAPI_Negative
+  12/4221 Test   #12: Unit_RTC_LinkerAPI_Negative .................................................................   Passed    0.02 sec
+          Start   13: Unit_RTC_LinkDestroy_Negative
+  13/4221 Test   #13: Unit_RTC_LinkDestroy_Negative ...............................................................   Passed    0.02 sec
+          Start   14: Unit_RTC_LinkDestroy_Default
+  14/4221 Test   #14: Unit_RTC_LinkDestroy_Default ................................................................   Passed    0.02 sec
+          Start   15: Unit_RTC_LinkerAPI
+  15/4221 Test   #15: Unit_RTC_LinkerAPI ..........................................................................   Passed    0.09 sec
+          Start   16: Unit_RTC_LinkAddFile_Negative
+  16/4221 Test   #16: Unit_RTC_LinkAddFile_Negative ...............................................................   Passed    0.02 sec
+          Start   17: Unit_RTC_LinkAddFile_Default
+  17/4221 Test   #17: Unit_RTC_LinkAddFile_Default ................................................................   Passed    0.06 sec
+          Start   18: Unit_hiprtc_half_shuffle
+  18/4221 Test   #18: Unit_hiprtc_half_shuffle ....................................................................   Passed    0.12 sec
+          Start   19: Unit_hiprtc_half_shuffle_sync
+  19/4221 Test   #19: Unit_hiprtc_half_shuffle_sync ...............................................................   Passed    0.11 sec
+          Start   20: Unit_Rtc_ReduceRandom
+  20/4221 Test   #20: Unit_Rtc_ReduceRandom .......................................................................   Passed    0.26 sec
+          Start   21: Unit_Rtc_CoopReduce
+  21/4221 Test   #21: Unit_Rtc_CoopReduce .........................................................................   Passed    0.18 sec
+          Start   22: Unit_hiprtc_stdheaders
+  22/4221 Test   #22: Unit_hiprtc_stdheaders ......................................................................   Passed    0.08 sec
+          Start   23: Unit_Rtc_MathConstants_header
+  23/4221 Test   #23: Unit_Rtc_MathConstants_header ...............................................................   Passed    0.09 sec
+          Start   24: Unit_Rtc_VectorTypes_header
+  24/4221 Test   #24: Unit_Rtc_VectorTypes_header .................................................................   Passed    0.09 sec
+          Start   25: Unit_Rtc_MathFunctions_header
+  25/4221 Test   #25: Unit_Rtc_MathFunctions_header ...............................................................   Passed    0.08 sec
+          Start   26: Unit_Rtc_fp16_header
+  26/4221 Test   #26: Unit_Rtc_fp16_header ........................................................................   Passed    0.09 sec
+          Start   27: Unit_Rtc_TextureTypes_header
+  27/4221 Test   #27: Unit_Rtc_TextureTypes_header ................................................................   Passed    0.08 sec
+          Start   28: Unit_Rtc_HipComplex_header
+  28/4221 Test   #28: Unit_Rtc_HipComplex_header ..................................................................   Passed    0.11 sec
+          Start   29: Unit_hipRTC_Ptrdiff_t_Check
+  29/4221 Test   #29: Unit_hipRTC_Ptrdiff_t_Check .................................................................   Passed    0.11 sec
+          Start   30: Unit_hipRTC_Check_Ptrdiff_t_FrmChildProcess
+  30/4221 Test   #30: Unit_hipRTC_Check_Ptrdiff_t_FrmChildProcess .................................................   Passed    0.20 sec
+          Start   31: Unit_hiprtc_bitcode_undefined_function
+  31/4221 Test   #31: Unit_hiprtc_bitcode_undefined_function ......................................................   Passed    0.07 sec
+          Start   32: Unit_Rtc_bfloat16_header
+  32/4221 Test   #32: Unit_Rtc_bfloat16_header ....................................................................   Passed    0.09 sec
+          Start   33: Unit_hiprtc_fp8_simple
+  33/4221 Test   #33: Unit_hiprtc_fp8_simple ......................................................................   Passed    0.09 sec
+          Start   34: Unit_RTC_BUNDLE_FROM_FILE
+  34/4221 Test   #34: Unit_RTC_BUNDLE_FROM_FILE ...................................................................   Passed    0.06 sec
+          Start   35: Unit_hiprtcGpuArchComplrOptnTst
+  35/4221 Test   #35: Unit_hiprtcGpuArchComplrOptnTst .............................................................   Passed    0.07 sec
+          Start   36: Unit_hiprtcGpuRdcComplrOptnTst
+  36/4221 Test   #36: Unit_hiprtcGpuRdcComplrOptnTst ..............................................................   Passed    0.09 sec
+          Start   37: Unit_hiprtcEnabledDenormalsComplrOptnTst
+  37/4221 Test   #37: Unit_hiprtcEnabledDenormalsComplrOptnTst ....................................................   Passed    0.16 sec
+          Start   38: Unit_hiprtcDisabledDenormalsComplrOptnTst
+  38/4221 Test   #38: Unit_hiprtcDisabledDenormalsComplrOptnTst ...................................................   Passed    0.16 sec
+          Start   39: Unit_hiprtcOff_ffpContractComplrOptnTst
+  39/4221 Test   #39: Unit_hiprtcOff_ffpContractComplrOptnTst .....................................................   Passed    0.24 sec
+          Start   40: Unit_hiprtcOnffpContractComplrOptnTst
+  40/4221 Test   #40: Unit_hiprtcOnffpContractComplrOptnTst .......................................................   Passed    0.26 sec
+          Start   41: Unit_hiprtcFastffpContractComplrOptnTst
+  41/4221 Test   #41: Unit_hiprtcFastffpContractComplrOptnTst .....................................................   Passed    0.23 sec
+          Start   42: Unit_hiprtcEnabledFastMathComplrOptnTst
+  42/4221 Test   #42: Unit_hiprtcEnabledFastMathComplrOptnTst .....................................................   Passed    0.23 sec
+          Start   43: Unit_hiprtcDisabledFastMathComplrOptnTst
+  43/4221 Test   #43: Unit_hiprtcDisabledFastMathComplrOptnTst ....................................................   Passed    0.27 sec
+          Start   44: Unit_hiprtcEnabledSlpVectorizeComplrOptnTst
+  44/4221 Test   #44: Unit_hiprtcEnabledSlpVectorizeComplrOptnTst .................................................   Passed    0.22 sec
+          Start   45: Unit_hiprtcDisabledSlpVectorizeComplrOptnTst
+  45/4221 Test   #45: Unit_hiprtcDisabledSlpVectorizeComplrOptnTst ................................................   Passed    0.21 sec
+          Start   46: Unit_hiprtcDefineMacroComplrOptnTst
+  46/4221 Test   #46: Unit_hiprtcDefineMacroComplrOptnTst .........................................................   Passed    0.09 sec
+          Start   47: Unit_hiprtcUndefMacroComplrOptnTst
+  47/4221 Test   #47: Unit_hiprtcUndefMacroComplrOptnTst ..........................................................   Passed    0.20 sec
+          Start   48: Unit_hiprtcHeaderDirectoryComplrOptnTst
+  48/4221 Test   #48: Unit_hiprtcHeaderDirectoryComplrOptnTst .....................................................   Passed    0.10 sec
+          Start   49: Unit_hiprtcWarningComplrOptnTst
+  49/4221 Test   #49: Unit_hiprtcWarningComplrOptnTst .............................................................   Passed    0.07 sec
+          Start   50: Unit_hiprtcRpassInlineComplrOptnTst
+  50/4221 Test   #50: Unit_hiprtcRpassInlineComplrOptnTst .........................................................   Passed    0.07 sec
+          Start   51: Unit_hiprtcEnabledConversionErrComplrOptnTst
+  51/4221 Test   #51: Unit_hiprtcEnabledConversionErrComplrOptnTst ................................................   Passed    0.21 sec
+          Start   52: Unit_hiprtcDisabledConversionErrComplrOptnTst
+  52/4221 Test   #52: Unit_hiprtcDisabledConversionErrComplrOptnTst ...............................................   Passed    0.08 sec
+          Start   53: Unit_hiprtcEnabledConversionWarningComplrOptnTst
+  53/4221 Test   #53: Unit_hiprtcEnabledConversionWarningComplrOptnTst ............................................   Passed    0.07 sec
+          Start   54: Unit_hiprtcDisabledConversionWarningComplrOptnTst
+  54/4221 Test   #54: Unit_hiprtcDisabledConversionWarningComplrOptnTst ...........................................   Passed    0.06 sec
+          Start   55: Unit_hiprtcGpuMaxThreadPerBlockComplrOptnTst
+  55/4221 Test   #55: Unit_hiprtcGpuMaxThreadPerBlockComplrOptnTst ................................................   Passed    0.09 sec
+          Start   56: Unit_hiprtcEnabledUnsafeAtomicComplrOptnTst
+  56/4221 Test   #56: Unit_hiprtcEnabledUnsafeAtomicComplrOptnTst .................................................   Passed    0.09 sec
+          Start   57: Unit_hiprtcDisabledUnsafeAtomicComplrOptnTst
+  57/4221 Test   #57: Unit_hiprtcDisabledUnsafeAtomicComplrOptnTst ................................................   Passed    0.08 sec
+          Start   58: Unit_hiprtcEnabledInfiniteNumComplrOptnTst
+  58/4221 Test   #58: Unit_hiprtcEnabledInfiniteNumComplrOptnTst ..................................................   Passed    0.22 sec
+          Start   59: Unit_hiprtcDisabledInfiniteNumComplrOptnTst
+  59/4221 Test   #59: Unit_hiprtcDisabledInfiniteNumComplrOptnTst .................................................   Passed    0.24 sec
+          Start   60: Unit_hiprtcEnabledNANComplrOptnTst
+  60/4221 Test   #60: Unit_hiprtcEnabledNANComplrOptnTst ..........................................................   Passed    0.22 sec
+          Start   61: Unit_hiprtcDisabledNANComplrOptnTst
+  61/4221 Test   #61: Unit_hiprtcDisabledNANComplrOptnTst .........................................................   Passed    0.22 sec
+          Start   62: Unit_hiprtcEnabledFiniteMathComplrOptnTst
+  62/4221 Test   #62: Unit_hiprtcEnabledFiniteMathComplrOptnTst ...................................................   Passed    0.22 sec
+          Start   63: Unit_hiprtcDisabledFiniteMathComplrOptnTst
+  63/4221 Test   #63: Unit_hiprtcDisabledFiniteMathComplrOptnTst ..................................................   Passed    0.40 sec
+          Start   64: Unit_hiprtcEnabledAssociativeMathComplrOptnTst
+  64/4221 Test   #64: Unit_hiprtcEnabledAssociativeMathComplrOptnTst ..............................................   Passed    0.22 sec
+          Start   65: Unit_hiprtcDisabledAssociativeMathComplrOptnTst
+  65/4221 Test   #65: Unit_hiprtcDisabledAssociativeMathComplrOptnTst .............................................   Passed    0.23 sec
+          Start   66: Unit_hiprtcEnabledSignedZerosComplrOptnTst
+  66/4221 Test   #66: Unit_hiprtcEnabledSignedZerosComplrOptnTst ..................................................   Passed    0.25 sec
+          Start   67: Unit_hiprtcDisabledSignedZerosComplrOptnTst
+  67/4221 Test   #67: Unit_hiprtcDisabledSignedZerosComplrOptnTst .................................................   Passed    0.21 sec
+          Start   68: Unit_hiprtcEnabledTrappingMathComplrOptnTst
+  68/4221 Test   #68: Unit_hiprtcEnabledTrappingMathComplrOptnTst .................................................   Passed    0.22 sec
+          Start   69: Unit_hiprtcDisabledTrappingMathComplrOptnTst
+  69/4221 Test   #69: Unit_hiprtcDisabledTrappingMathComplrOptnTst ................................................   Passed    0.22 sec
+          Start   70: Unit_hiprtcCombiComplrOptnTst
+  70/4221 Test   #70: Unit_hiprtcCombiComplrOptnTst ...............................................................   Passed    8.49 sec
+          Start   71: Unit_hipGraphAddEmptyNode_Functional
+  71/4221 Test   #71: Unit_hipGraphAddEmptyNode_Functional ........................................................   Passed    0.19 sec
+          Start   72: Unit_hipGraphAddEmptyNode_NegTest
+  72/4221 Test   #72: Unit_hipGraphAddEmptyNode_NegTest ...........................................................   Passed    0.05 sec
+          Start   73: Unit_hipGraphAddEmptyNode_BarrierFunc
+  73/4221 Test   #73: Unit_hipGraphAddEmptyNode_BarrierFunc .......................................................   Passed    0.09 sec
+          Start   74: Unit_hipGraphAddDependencies_Positive_Functional
+  74/4221 Test   #74: Unit_hipGraphAddDependencies_Positive_Functional ............................................   Passed    0.09 sec
+          Start   75: Unit_hipGraphAddDependencies_Positive_Parameters
+  75/4221 Test   #75: Unit_hipGraphAddDependencies_Positive_Parameters ............................................   Passed    0.05 sec
+          Start   76: Unit_hipGraphAddDependencies_Negative_Parameters
+  76/4221 Test   #76: Unit_hipGraphAddDependencies_Negative_Parameters ............................................   Passed    0.05 sec
+          Start   77: Unit_hipGraphAddEventRecordNode_Functional_Simple
+  77/4221 Test   #77: Unit_hipGraphAddEventRecordNode_Functional_Simple ...........................................   Passed    0.07 sec
+          Start   78: Unit_hipGraphAddEventRecordNode_Functional_WithoutFlags
+  78/4221 Test   #78: Unit_hipGraphAddEventRecordNode_Functional_WithoutFlags .....................................   Passed    0.08 sec
+          Start   79: Unit_hipGraphAddEventRecordNode_Functional_ElapsedTime
+  79/4221 Test   #79: Unit_hipGraphAddEventRecordNode_Functional_ElapsedTime ......................................   Passed    0.08 sec
+          Start   80: Unit_hipGraphAddEventRecordNode_Functional_WithFlags
+  80/4221 Test   #80: Unit_hipGraphAddEventRecordNode_Functional_WithFlags ........................................   Passed    0.09 sec
+          Start   81: Unit_hipGraphAddEventRecordNode_MultipleRun
+  81/4221 Test   #81: Unit_hipGraphAddEventRecordNode_MultipleRun .................................................   Passed    0.08 sec
+          Start   82: Unit_hipGraphAddEventRecordNode_Functional_TimingDisabled
+  82/4221 Test   #82: Unit_hipGraphAddEventRecordNode_Functional_TimingDisabled ...................................   Passed    0.07 sec
+          Start   83: Unit_hipGraphAddEventRecordNode_Positive_Parameters
+  83/4221 Test   #83: Unit_hipGraphAddEventRecordNode_Positive_Parameters .........................................   Passed    0.06 sec
+          Start   84: Unit_hipGraphAddEventRecordNode_Negative
+  84/4221 Test   #84: Unit_hipGraphAddEventRecordNode_Negative ....................................................   Passed    0.06 sec
+          Start   85: Unit_hipGraphAddEventWaitNode_Functional_Simple
+  85/4221 Test   #85: Unit_hipGraphAddEventWaitNode_Functional_Simple .............................................   Passed    0.08 sec
+          Start   86: Unit_hipGraphAddEventWaitNode_MultGraphMultStrmDependency
+  86/4221 Test   #86: Unit_hipGraphAddEventWaitNode_MultGraphMultStrmDependency ...................................   Passed    0.11 sec
+          Start   87: Unit_hipGraphAddEventWaitNode_MultipleRun
+  87/4221 Test   #87: Unit_hipGraphAddEventWaitNode_MultipleRun ...................................................   Passed    0.09 sec
+          Start   88: Unit_hipGraphAddEventWaitNode_MultGraphOneStrmDependency
+  88/4221 Test   #88: Unit_hipGraphAddEventWaitNode_MultGraphOneStrmDependency ....................................   Passed    0.08 sec
+          Start   89: Unit_hipGraphAddEventWaitNode_differentFlags
+  89/4221 Test   #89: Unit_hipGraphAddEventWaitNode_differentFlags ................................................   Passed    0.08 sec
+          Start   90: Unit_hipGraphAddEventWaitNode_Positive_Parameters
+  90/4221 Test   #90: Unit_hipGraphAddEventWaitNode_Positive_Parameters ...........................................   Passed    0.05 sec
+          Start   91: Unit_hipGraphAddEventWaitNode_Negative
+  91/4221 Test   #91: Unit_hipGraphAddEventWaitNode_Negative ......................................................   Passed    0.05 sec
+          Start   92: Unit_hipGraph_BasicFunctional
+  92/4221 Test   #92: Unit_hipGraph_BasicFunctional ...............................................................   Passed    0.19 sec
+          Start   93: Unit_hipGraph_SimpleGraphWithKernel
+  93/4221 Test   #93: Unit_hipGraph_SimpleGraphWithKernel .........................................................   Passed    1.20 sec
+          Start   94: Unit_hipGraphAddMemcpyNode_Positive_Basic
+  94/4221 Test   #94: Unit_hipGraphAddMemcpyNode_Positive_Basic ...................................................   Passed    0.10 sec
+          Start   95: Unit_hipGraphAddMemcpyNode_Negative_Parameters
+  95/4221 Test   #95: Unit_hipGraphAddMemcpyNode_Negative_Parameters ..............................................   Passed    0.06 sec
+          Start   96: Unit_hipGraphClone_Negative
+  96/4221 Test   #96: Unit_hipGraphClone_Negative .................................................................   Passed    0.06 sec
+          Start   97: Unit_hipGraphClone_Functional
+  97/4221 Test   #97: Unit_hipGraphClone_Functional ...............................................................   Passed    0.10 sec
+          Start   98: Unit_hipGraphClone_MultiThreaded
+  98/4221 Test   #98: Unit_hipGraphClone_MultiThreaded ............................................................   Passed    0.06 sec
+          Start   99: Unit_hipGraphInstantiateWithFlags_Negative
+  99/4221 Test   #99: Unit_hipGraphInstantiateWithFlags_Negative ..................................................   Passed    0.06 sec
+          Start  100: Unit_hipGraphInstantiateWithFlags_DependencyGraph
+ 100/4221 Test  #100: Unit_hipGraphInstantiateWithFlags_DependencyGraph ...........................................   Passed    0.08 sec
+          Start  101: Unit_hipGraphInstantiateWithFlags_StreamCapture
+ 101/4221 Test  #101: Unit_hipGraphInstantiateWithFlags_StreamCapture .............................................***Skipped   0.06 sec
+          Start  102: Unit_hipGraphInstantiateWithFlags_FlagAutoFreeOnLaunch_check
+ 102/4221 Test  #102: Unit_hipGraphInstantiateWithFlags_FlagAutoFreeOnLaunch_check ................................   Passed    0.07 sec
+          Start  103: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchInLoop
+ 103/4221 Test  #103: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchInLoop ....................................   Passed    0.08 sec
+          Start  104: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchFillKernel
+ 104/4221 Test  #104: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchFillKernel ................................   Passed    1.86 sec
+          Start  105: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchDoubleKernel
+ 105/4221 Test  #105: Unit_hipGraphInstantiateWithFlags_AutoFreeOnLaunchDoubleKernel ..............................   Passed    3.04 sec
+          Start  106: Unit_hipGraphInstantiateWithFlags_WithDefaultAndAutoFreeOnLaunch
+ 106/4221 Test  #106: Unit_hipGraphInstantiateWithFlags_WithDefaultAndAutoFreeOnLaunch ............................   Passed    3.01 sec
+          Start  107: Unit_hipGraphInstantiateWithParams_Negative
+ 107/4221 Test  #107: Unit_hipGraphInstantiateWithParams_Negative .................................................   Passed    0.06 sec
+          Start  108: Unit_hipGraphInstantiateWithParams_DependencyGraph
+ 108/4221 Test  #108: Unit_hipGraphInstantiateWithParams_DependencyGraph ..........................................   Passed    0.10 sec
+          Start  109: Unit_hipGraphInstantiateWithParams_StreamCapture
+ 109/4221 Test  #109: Unit_hipGraphInstantiateWithParams_StreamCapture ............................................   Passed    0.08 sec
+          Start  110: Unit_hipGraphAddHostNode_Negative
+ 110/4221 Test  #110: Unit_hipGraphAddHostNode_Negative ...........................................................   Passed    0.05 sec
+          Start  111: Unit_hipGraphAddHostNode_ClonedGraphWithHostNode
+ 111/4221 Test  #111: Unit_hipGraphAddHostNode_ClonedGraphWithHostNode ............................................   Passed    0.07 sec
+          Start  112: Unit_hipGraphAddHostNode_VectorSquare
+ 112/4221 Test  #112: Unit_hipGraphAddHostNode_VectorSquare .......................................................   Passed    0.09 sec
+          Start  113: Unit_hipGraphAddHostNode_BasicFunc
+ 113/4221 Test  #113: Unit_hipGraphAddHostNode_BasicFunc ..........................................................   Passed    0.08 sec
+          Start  114: Unit_hipGraphAddMemcpyNodeFromSymbol_Negative
+ 114/4221 Test  #114: Unit_hipGraphAddMemcpyNodeFromSymbol_Negative ...............................................   Passed    0.06 sec
+          Start  115: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalMemory
+ 115/4221 Test  #115: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalMemory ...........................................   Passed    0.07 sec
+          Start  116: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalConstMemory
+ 116/4221 Test  #116: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalConstMemory ......................................   Passed    0.07 sec
+          Start  117: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalMemoryWithKernel
+ 117/4221 Test  #117: Unit_hipGraphAddMemcpyNodeFromSymbol_GlobalMemoryWithKernel .................................   Passed    0.07 sec
+          Start  118: Unit_hipGraphAddMemcpyNodeFromSymbol_Positive_Basic
+ 118/4221 Test  #118: Unit_hipGraphAddMemcpyNodeFromSymbol_Positive_Basic .........................................   Passed    0.09 sec
+          Start  119: Unit_hipGraphAddMemcpyNodeFromSymbol_Negative_Parameters
+ 119/4221 Test  #119: Unit_hipGraphAddMemcpyNodeFromSymbol_Negative_Parameters ....................................   Passed    0.05 sec
+          Start  120: Unit_hipGraphChildGraphNodeGetGraph_Functional
+ 120/4221 Test  #120: Unit_hipGraphChildGraphNodeGetGraph_Functional ..............................................   Passed    0.07 sec
+          Start  121: Unit_hipGraphChildGraphNodeGetGraph_Negative
+ 121/4221 Test  #121: Unit_hipGraphChildGraphNodeGetGraph_Negative ................................................   Passed    0.06 sec
+          Start  122: Unit_hipGraphNodeFindInClone_Negative
+ 122/4221 Test  #122: Unit_hipGraphNodeFindInClone_Negative .......................................................   Passed    0.06 sec
+          Start  123: Unit_hipGraphNodeFindInClone_Functional
+ 123/4221 Test  #123: Unit_hipGraphNodeFindInClone_Functional .....................................................   Passed    0.06 sec
+          Start  124: Unit_hipGraphNodeFindInClone_MultipleClone
+ 124/4221 Test  #124: Unit_hipGraphNodeFindInClone_MultipleClone ..................................................   Passed    0.05 sec
+          Start  125: Unit_hipGraphExecHostNodeSetParams_Negative
+ 125/4221 Test  #125: Unit_hipGraphExecHostNodeSetParams_Negative .................................................   Passed    0.11 sec
+          Start  126: Unit_hipGraphExecHostNodeSetParams_ClonedGraphWithHostNode
+ 126/4221 Test  #126: Unit_hipGraphExecHostNodeSetParams_ClonedGraphWithHostNode ..................................   Passed    0.09 sec
+          Start  127: Unit_hipGraphExecHostNodeSetParams_BasicFunc
+ 127/4221 Test  #127: Unit_hipGraphExecHostNodeSetParams_BasicFunc ................................................   Passed    0.08 sec
+          Start  128: Unit_hipGraphAddMemcpyNodeToSymbol_Negative
+ 128/4221 Test  #128: Unit_hipGraphAddMemcpyNodeToSymbol_Negative .................................................   Passed    0.07 sec
+          Start  129: Unit_hipGraphAddMemcpyNodeToSymbol_GlobalMemory
+ 129/4221 Test  #129: Unit_hipGraphAddMemcpyNodeToSymbol_GlobalMemory .............................................   Passed    0.08 sec
+          Start  130: Unit_hipGraphAddMemcpyNodeToSymbol_GlobalConstMemory
+ 130/4221 Test  #130: Unit_hipGraphAddMemcpyNodeToSymbol_GlobalConstMemory ........................................   Passed    0.07 sec
+          Start  131: Unit_hipGraphAddMemcpyNodeToSymbol_MemcpyToSymbolNodeWithKernel
+ 131/4221 Test  #131: Unit_hipGraphAddMemcpyNodeToSymbol_MemcpyToSymbolNodeWithKernel .............................   Passed    0.07 sec
+          Start  132: Unit_hipGraphAddMemcpyNodeToSymbol_Positive_Basic
+ 132/4221 Test  #132: Unit_hipGraphAddMemcpyNodeToSymbol_Positive_Basic ...........................................   Passed    0.09 sec
+          Start  133: Unit_hipGraphAddMemcpyNodeToSymbol_Negative_Parameters
+ 133/4221 Test  #133: Unit_hipGraphAddMemcpyNodeToSymbol_Negative_Parameters ......................................   Passed    0.06 sec
+          Start  134: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint8_t
+ 134/4221 Test  #134: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint8_t ...............................   Passed    0.09 sec
+          Start  135: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint16_t
+ 135/4221 Test  #135: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint16_t ..............................   Passed    0.08 sec
+          Start  136: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint32_t
+ 136/4221 Test  #136: Unit_hipGraphExecMemsetNodeSetParams_Positive_Basic - uint32_t ..............................   Passed    0.08 sec
+          Start  137: Unit_hipGraphExecMemsetNodeSetParams_Negative_Parameters
+ 137/4221 Test  #137: Unit_hipGraphExecMemsetNodeSetParams_Negative_Parameters ....................................   Passed    0.07 sec
+          Start  138: Unit_hipGraphExecMemsetNodeSetParams_Negative_Updating_Non1D_Node
+ 138/4221 Test  #138: Unit_hipGraphExecMemsetNodeSetParams_Negative_Updating_Non1D_Node ...........................   Passed    0.07 sec
+          Start  139: Unit_hipGraphMemcpyNodeSetParamsToSymbol_Positive_Basic
+ 139/4221 Test  #139: Unit_hipGraphMemcpyNodeSetParamsToSymbol_Positive_Basic .....................................   Passed    0.09 sec
+          Start  140: Unit_hipGraphMemcpyNodeSetParamsToSymbol_Negative_Parameters
+ 140/4221 Test  #140: Unit_hipGraphMemcpyNodeSetParamsToSymbol_Negative_Parameters ................................   Passed    0.06 sec
+          Start  141: Unit_hipGraphDestroyNode_Negative
+ 141/4221 Test  #141: Unit_hipGraphDestroyNode_Negative ...........................................................   Passed    0.06 sec
+          Start  142: Unit_hipGraphDestroyNode_BasicFunctionality
+ 142/4221 Test  #142: Unit_hipGraphDestroyNode_BasicFunctionality .................................................   Passed    0.05 sec
+          Start  143: Unit_hipGraphDestroyNode_DestroyDependencyNode
+ 143/4221 Test  #143: Unit_hipGraphDestroyNode_DestroyDependencyNode ..............................................   Passed    0.08 sec
+          Start  144: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep
+ 144/4221 Test  #144: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep ...........................................   Passed    0.06 sec
+          Start  145: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep_ClonedGrph
+ 145/4221 Test  #145: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep_ClonedGrph ................................   Passed    0.05 sec
+          Start  146: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep_ChldNode
+ 146/4221 Test  #146: Unit_hipGraphDestroyNode_Complx_ChkNumOfNodesNDep_ChldNode ..................................   Passed    0.06 sec
+          Start  147: Unit_hipGraphGetNodes_Positive_Functional
+ 147/4221 Test  #147: Unit_hipGraphGetNodes_Positive_Functional ...................................................   Passed    0.11 sec
+          Start  148: Unit_hipGraphGetNodes_Positive_CapturedStream
+ 148/4221 Test  #148: Unit_hipGraphGetNodes_Positive_CapturedStream ...............................................   Passed    0.11 sec
+          Start  149: Unit_hipGraphGetNodes_Negative_Parameters
+ 149/4221 Test  #149: Unit_hipGraphGetNodes_Negative_Parameters ...................................................   Passed    0.05 sec
+          Start  150: Unit_hipGraphGetRootNodes_Positive_Functional
+ 150/4221 Test  #150: Unit_hipGraphGetRootNodes_Positive_Functional ...............................................   Passed    0.12 sec
+          Start  151: Unit_hipGraphGetRootNodes_Positive_CapturedStream
+ 151/4221 Test  #151: Unit_hipGraphGetRootNodes_Positive_CapturedStream ...........................................   Passed    0.11 sec
+          Start  152: Unit_hipGraphGetRootNodes_Negative_Parameters
+ 152/4221 Test  #152: Unit_hipGraphGetRootNodes_Negative_Parameters ...............................................   Passed    0.06 sec
+          Start  153: Unit_hipGraphGetRootNodes_Functional
+ 153/4221 Test  #153: Unit_hipGraphGetRootNodes_Functional ........................................................   Passed    0.09 sec
+          Start  154: Unit_hipGraphGetRootNodes_CapturedStream
+ 154/4221 Test  #154: Unit_hipGraphGetRootNodes_CapturedStream ....................................................   Passed    0.10 sec
+          Start  155: Unit_hipGraphGetRootNodes_ParamValidation
+ 155/4221 Test  #155: Unit_hipGraphGetRootNodes_ParamValidation ...................................................   Passed    0.10 sec
+          Start  156: Unit_hipGraphGetRootNodes_Complx_NumRootNodes
+ 156/4221 Test  #156: Unit_hipGraphGetRootNodes_Complx_NumRootNodes ...............................................   Passed    0.06 sec
+          Start  157: Unit_hipGraphGetRootNodes_Complx_NumRootNodes_ClonedGrph
+ 157/4221 Test  #157: Unit_hipGraphGetRootNodes_Complx_NumRootNodes_ClonedGrph ....................................   Passed    0.06 sec
+          Start  158: Unit_hipGraphGetRootNodes_Complx_NRootNodesAsChildGraph
+ 158/4221 Test  #158: Unit_hipGraphGetRootNodes_Complx_NRootNodesAsChildGraph .....................................   Passed    0.06 sec
+          Start  159: Unit_hipGraphHostNodeSetParams_Negative
+ 159/4221 Test  #159: Unit_hipGraphHostNodeSetParams_Negative .....................................................   Passed    0.05 sec
+          Start  160: Unit_hipGraphHostNodeSetParams_ClonedGraphWithHostNode
+ 160/4221 Test  #160: Unit_hipGraphHostNodeSetParams_ClonedGraphWithHostNode ......................................   Passed    0.07 sec
+          Start  161: Unit_hipGraphHostNodeSetParams_BasicFunc
+ 161/4221 Test  #161: Unit_hipGraphHostNodeSetParams_BasicFunc ....................................................   Passed    0.07 sec
+          Start  162: Unit_hipGraphAddMemcpyNode1D_Positive_Basic
+ 162/4221 Test  #162: Unit_hipGraphAddMemcpyNode1D_Positive_Basic .................................................   Passed    0.10 sec
+          Start  163: Unit_hipGraphAddMemcpyNode1D_Negative_Parameters
+ 163/4221 Test  #163: Unit_hipGraphAddMemcpyNode1D_Negative_Parameters ............................................   Passed    0.05 sec
+          Start  164: Unit_hipGraphAddChildGraphNode_Negative
+ 164/4221 Test  #164: Unit_hipGraphAddChildGraphNode_Negative .....................................................   Passed    0.05 sec
+          Start  165: Unit_hipGraphAddChildGraphNode_OrgGraphAsChildGraph
+ 165/4221 Test  #165: Unit_hipGraphAddChildGraphNode_OrgGraphAsChildGraph .........................................   Passed    0.08 sec
+          Start  166: Unit_hipGraphAddChildGraphNode_ExecuteChildGraph
+ 166/4221 Test  #166: Unit_hipGraphAddChildGraphNode_ExecuteChildGraph ............................................   Passed    0.08 sec
+          Start  167: Unit_hipGraphAddChildGraphNode_CloneChildGraph
+ 167/4221 Test  #167: Unit_hipGraphAddChildGraphNode_CloneChildGraph ..............................................   Passed    0.07 sec
+          Start  168: Unit_hipGraphAddChildGraphNode_MultipleChildNodes
+ 168/4221 Test  #168: Unit_hipGraphAddChildGraphNode_MultipleChildNodes ...........................................   Passed    0.07 sec
+          Start  169: Unit_hipGraphAddChildGraphNode_SingleChildNode
+ 169/4221 Test  #169: Unit_hipGraphAddChildGraphNode_SingleChildNode ..............................................   Passed    0.09 sec
+          Start  170: Unit_hipGraphAddChildGraphNode_Cmplx_NestedGraphs
+ 170/4221 Test  #170: Unit_hipGraphAddChildGraphNode_Cmplx_NestedGraphs ...........................................   Passed    0.09 sec
+          Start  171: Unit_hipGraphAddChildGraphNode_CmplxClone_NestedGraphs
+ 171/4221 Test  #171: Unit_hipGraphAddChildGraphNode_CmplxClone_NestedGraphs ......................................   Passed    0.09 sec
+          Start  172: Unit_hipGraphAddChildGraphNode_EmptyGraphAsChildNode
+ 172/4221 Test  #172: Unit_hipGraphAddChildGraphNode_EmptyGraphAsChildNode ........................................   Passed    0.05 sec
+          Start  173: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerFun
+ 173/4221 Test  #173: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerFun .......................................   Passed    0.08 sec
+          Start  174: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerFun_Clone
+ 174/4221 Test  #174: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerFun_Clone .................................   Passed    0.08 sec
+          Start  175: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerDim
+ 175/4221 Test  #175: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_UpdKerDim .......................................   Passed    0.08 sec
+          Start  176: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_DelAddNode
+ 176/4221 Test  #176: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_DelAddNode ......................................   Passed    0.08 sec
+          Start  177: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddNode_Clone
+ 177/4221 Test  #177: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddNode_Clone ...................................   Passed    0.09 sec
+          Start  178: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddChdNode
+ 178/4221 Test  #178: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddChdNode ......................................   Passed    0.08 sec
+          Start  179: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddChdNode_Clone
+ 179/4221 Test  #179: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_AddChdNode_Clone ................................   Passed    0.08 sec
+          Start  180: Unit_hipGraphAddChildGraphNode_MultGraphsAsSingleGraph
+ 180/4221 Test  #180: Unit_hipGraphAddChildGraphNode_MultGraphsAsSingleGraph ......................................   Passed    0.11 sec
+          Start  181: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_MultGPU
+ 181/4221 Test  #181: Unit_hipGraphAddChildGraphNode_CmplxNstGrph_MultGPU .........................................***Skipped   0.05 sec
+          Start  182: Unit_hipGraphAddChildGraphNode_CmplxGrph_SchedLogic
+ 182/4221 Test  #182: Unit_hipGraphAddChildGraphNode_CmplxGrph_SchedLogic .........................................   Passed    0.07 sec
+          Start  183: Unit_hipGraphNodeGetType_Negative
+ 183/4221 Test  #183: Unit_hipGraphNodeGetType_Negative ...........................................................   Passed    0.05 sec
+          Start  184: Unit_hipGraphNodeGetType_Functional
+ 184/4221 Test  #184: Unit_hipGraphNodeGetType_Functional .........................................................   Passed    0.08 sec
+          Start  185: Unit_hipGraphNodeGetType_NodeType
+ 185/4221 Test  #185: Unit_hipGraphNodeGetType_NodeType ...........................................................   Passed    0.08 sec
+          Start  186: Unit_hipGraphNodeGetType_NodeTypeOfClonedGraph_NodeTypeInThread
+ 186/4221 Test  #186: Unit_hipGraphNodeGetType_NodeTypeOfClonedGraph_NodeTypeInThread .............................   Passed    0.09 sec
+          Start  187: Unit_hipGraphNodeGetType_NodeTypeOfChildGraph
+ 187/4221 Test  #187: Unit_hipGraphNodeGetType_NodeTypeOfChildGraph ...............................................   Passed    0.08 sec
+          Start  188: Unit_hipGraphNodeGetType_ClonedGraph_InThread_WithDependencies
+ 188/4221 Test  #188: Unit_hipGraphNodeGetType_ClonedGraph_InThread_WithDependencies ..............................   Passed    0.08 sec
+          Start  189: Unit_hipGraphNodeGetType_NodeTypeOfChildGraph_WithDependency
+ 189/4221 Test  #189: Unit_hipGraphNodeGetType_NodeTypeOfChildGraph_WithDependency ................................   Passed    0.09 sec
+          Start  190: Unit_hipGraphExecMemcpyNodeSetParams1D_Functional
+ 190/4221 Test  #190: Unit_hipGraphExecMemcpyNodeSetParams1D_Functional ...........................................   Passed    0.08 sec
+          Start  191: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative
+ 191/4221 Test  #191: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative .............................................   Passed    0.07 sec
+          Start  192: Unit_hipGraphExecMemcpyNodeSetParams1D_Positive_Basic
+ 192/4221 Test  #192: Unit_hipGraphExecMemcpyNodeSetParams1D_Positive_Basic .......................................   Passed    0.08 sec
+          Start  193: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative_Parameters
+ 193/4221 Test  #193: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative_Parameters ..................................   Passed    0.05 sec
+          Start  194: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative_Changing_Memcpy_Direction
+ 194/4221 Test  #194: Unit_hipGraphExecMemcpyNodeSetParams1D_Negative_Changing_Memcpy_Direction ...................   Passed    0.08 sec
+          Start  195: Unit_hipGraphGetEdges_Positive_Functional
+ 195/4221 Test  #195: Unit_hipGraphGetEdges_Positive_Functional ...................................................   Passed    0.06 sec
+          Start  196: Unit_hipGraphGetEdges_Positive_CapturedStream
+ 196/4221 Test  #196: Unit_hipGraphGetEdges_Positive_CapturedStream ...............................................   Passed    0.08 sec
+          Start  197: Unit_hipGraphGetEdges_Negative_Parameters
+ 197/4221 Test  #197: Unit_hipGraphGetEdges_Negative_Parameters ...................................................   Passed    0.05 sec
+          Start  198: Unit_hipGraphRemoveDependencies_Positive_Functional
+ 198/4221 Test  #198: Unit_hipGraphRemoveDependencies_Positive_Functional .........................................   Passed    0.06 sec
+          Start  199: Unit_hipGraphRemoveDependenciesPositive_CapturedStream
+ 199/4221 Test  #199: Unit_hipGraphRemoveDependenciesPositive_CapturedStream ......................................   Passed    0.09 sec
+          Start  200: Unit_hipGraphRemoveDependencies_Positive_ChangeComputeFunc
+ 200/4221 Test  #200: Unit_hipGraphRemoveDependencies_Positive_ChangeComputeFunc ..................................   Passed    0.08 sec
+          Start  201: Unit_hipGraphRemoveDependencies_Positive_Parameters
+ 201/4221 Test  #201: Unit_hipGraphRemoveDependencies_Positive_Parameters .........................................   Passed    0.05 sec
+          Start  202: Unit_hipGraphRemoveDependencies_Negative_Parameters
+ 202/4221 Test  #202: Unit_hipGraphRemoveDependencies_Negative_Parameters .........................................   Passed    0.05 sec
+          Start  203: Unit_hipGraphInstantiate_Negative
+ 203/4221 Test  #203: Unit_hipGraphInstantiate_Negative ...........................................................   Passed    0.05 sec
+          Start  204: Unit_hipGraphInstantiate_Basic
+ 204/4221 Test  #204: Unit_hipGraphInstantiate_Basic ..............................................................   Passed    0.05 sec
+          Start  205: Unit_hipGraphInstantiate_functionalScenarios
+ 205/4221 Test  #205: Unit_hipGraphInstantiate_functionalScenarios ................................................   Passed    0.08 sec
+          Start  206: Unit_hipGraphExecUpdate_Negative_Basic
+ 206/4221 Test  #206: Unit_hipGraphExecUpdate_Negative_Basic ......................................................   Passed    0.06 sec
+          Start  207: Unit_hipGraphExecUpdate_Negative_TypeChange
+ 207/4221 Test  #207: Unit_hipGraphExecUpdate_Negative_TypeChange .................................................   Passed    0.07 sec
+          Start  208: Unit_hipGraphExecUpdate_Negative_CountDiffer
+ 208/4221 Test  #208: Unit_hipGraphExecUpdate_Negative_CountDiffer ................................................   Passed    0.11 sec
+          Start  209: Unit_hipGraphExecUpdate_Functional
+ 209/4221 Test  #209: Unit_hipGraphExecUpdate_Functional ..........................................................   Passed    0.08 sec
+          Start  210: Unit_hipGraphExecUpdate_Negative_Functional_ParametersChanged
+ 210/4221 Test  #210: Unit_hipGraphExecUpdate_Negative_Functional_ParametersChanged ...............................   Passed    0.05 sec
+          Start  211: Unit_hipGraphExecUpdate_Negative_Functional_CountDiffer_1
+ 211/4221 Test  #211: Unit_hipGraphExecUpdate_Negative_Functional_CountDiffer_1 ...................................   Passed    0.07 sec
+          Start  212: Unit_hipGraphExecUpdate_Negative_Functional_CountDiffer_2
+ 212/4221 Test  #212: Unit_hipGraphExecUpdate_Negative_Functional_CountDiffer_2 ...................................   Passed    0.08 sec
+          Start  213: Unit_hipGraphExecUpdate_Negative_Dependent_NodesDiffer
+ 213/4221 Test  #213: Unit_hipGraphExecUpdate_Negative_Dependent_NodesDiffer ......................................   Passed    0.05 sec
+          Start  214: Unit_hipGraphExecUpdate_Negative_NodeType_Changed
+ 214/4221 Test  #214: Unit_hipGraphExecUpdate_Negative_NodeType_Changed ...........................................   Passed    0.06 sec
+          Start  215: Unit_hipGraphExecUpdate_Negative_MultiDevice_Context_Changed
+ 215/4221 Test  #215: Unit_hipGraphExecUpdate_Negative_MultiDevice_Context_Changed ................................***Skipped   0.06 sec
+          Start  216: Unit_hipGraphExecUpdate_Functional_KernelFunction_Changed
+ 216/4221 Test  #216: Unit_hipGraphExecUpdate_Functional_KernelFunction_Changed ...................................   Passed    0.08 sec
+          Start  217: Unit_hipGraphExecEventRecordNodeSetEvent_Functional
+ 217/4221 Test  #217: Unit_hipGraphExecEventRecordNodeSetEvent_Functional .........................................   Passed    0.08 sec
+          Start  218: Unit_hipGraphExecEventRecordNodeSetEvent_VerifyEventNotChanged
+ 218/4221 Test  #218: Unit_hipGraphExecEventRecordNodeSetEvent_VerifyEventNotChanged ..............................   Passed    0.05 sec
+          Start  219: Unit_hipGraphExecEventRecordNodeSetEvent_Positive_DifferentDevices
+ 219/4221 Test  #219: Unit_hipGraphExecEventRecordNodeSetEvent_Positive_DifferentDevices ..........................***Skipped   0.05 sec
+          Start  220: Unit_hipGraphExecEventRecordNodeSetEvent_Negative
+ 220/4221 Test  #220: Unit_hipGraphExecEventRecordNodeSetEvent_Negative ...........................................   Passed    0.06 sec
+          Start  221: Unit_hipGraphEventWaitNodeSetEvent_SetProp
+ 221/4221 Test  #221: Unit_hipGraphEventWaitNodeSetEvent_SetProp ..................................................   Passed    0.08 sec
+          Start  222: Unit_hipGraphEventWaitNodeSetEvent_SetGet
+ 222/4221 Test  #222: Unit_hipGraphEventWaitNodeSetEvent_SetGet ...................................................   Passed    0.05 sec
+          Start  223: Unit_hipGraphEventWaitNodeSetEvent_Negative
+ 223/4221 Test  #223: Unit_hipGraphEventWaitNodeSetEvent_Negative .................................................   Passed    0.05 sec
+          Start  224: Unit_hipGraphMemsetNodeGetParams_Negative_Parameters
+ 224/4221 Test  #224: Unit_hipGraphMemsetNodeGetParams_Negative_Parameters ........................................   Passed    0.05 sec
+          Start  225: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint8_t
+ 225/4221 Test  #225: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint8_t ...................................   Passed    0.09 sec
+          Start  226: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint16_t
+ 226/4221 Test  #226: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint16_t ..................................   Passed    0.09 sec
+          Start  227: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint32_t
+ 227/4221 Test  #227: Unit_hipGraphMemsetNodeSetParams_Positive_Basic - uint32_t ..................................   Passed    0.08 sec
+          Start  228: Unit_hipGraphMemsetNodeSetParams_Negative_Parameters
+ 228/4221 Test  #228: Unit_hipGraphMemsetNodeSetParams_Negative_Parameters ........................................   Passed    0.05 sec
+          Start  229: Unit_hipGraphMemsetNodeSetParams_FlatAlloc_2D_Positive
+ 229/4221 Test  #229: Unit_hipGraphMemsetNodeSetParams_FlatAlloc_2D_Positive ......................................   Passed    0.08 sec
+          Start  230: Unit_hipGraphMemsetNodeSetParams_PitchedAlloc_OverExtent_Negative
+ 230/4221 Test  #230: Unit_hipGraphMemsetNodeSetParams_PitchedAlloc_OverExtent_Negative ...........................   Passed    0.06 sec
+          Start  231: Unit_hipGraphExecUpdate_FlatAlloc_2DMemset_Idempotent
+ 231/4221 Test  #231: Unit_hipGraphExecUpdate_FlatAlloc_2DMemset_Idempotent .......................................   Passed    0.08 sec
+          Start  232: Unit_hipGraphExecUpdate_2DMemset_ShapeChange_Negative
+ 232/4221 Test  #232: Unit_hipGraphExecUpdate_2DMemset_ShapeChange_Negative .......................................   Passed    0.07 sec
+          Start  233: Unit_hipGraphExecUpdate_2DMemset_ValueAndDst_Positive
+ 233/4221 Test  #233: Unit_hipGraphExecUpdate_2DMemset_ValueAndDst_Positive .......................................   Passed    0.08 sec
+          Start  234: Unit_hipGraphExecUpdate_FlatAlloc_2DMemset_ChildGraph
+ 234/4221 Test  #234: Unit_hipGraphExecUpdate_FlatAlloc_2DMemset_ChildGraph .......................................   Passed    0.09 sec
+          Start  235: Unit_hipGraphExecMemsetNodeSetParams_FlatAlloc_2D
+ 235/4221 Test  #235: Unit_hipGraphExecMemsetNodeSetParams_FlatAlloc_2D ...........................................   Passed    0.07 sec
+          Start  236: Unit_hipGraphExecNodeSetParams_Memset_FlatAlloc_2D
+ 236/4221 Test  #236: Unit_hipGraphExecNodeSetParams_Memset_FlatAlloc_2D ..........................................   Passed    0.08 sec
+          Start  237: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Negative
+ 237/4221 Test  #237: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Negative .....................................   Passed    0.06 sec
+          Start  238: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Functional
+ 238/4221 Test  #238: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Functional ...................................   Passed    0.07 sec
+          Start  239: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Positive_Basic
+ 239/4221 Test  #239: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Positive_Basic ...............................   Passed    0.09 sec
+          Start  240: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Negative_Parameters
+ 240/4221 Test  #240: Unit_hipGraphExecMemcpyNodeSetParamsFromSymbol_Negative_Parameters ..........................   Passed    0.06 sec
+          Start  241: Unit_hipGraphEventRecordNodeGetEvent_Functional
+ 241/4221 Test  #241: Unit_hipGraphEventRecordNodeGetEvent_Functional .............................................   Passed    0.05 sec
+          Start  242: Unit_hipGraphEventRecordNodeGetEvent_Negative
+ 242/4221 Test  #242: Unit_hipGraphEventRecordNodeGetEvent_Negative ...............................................   Passed    0.05 sec
+          Start  243: Unit_hipGraphEventRecordNodeSetEvent_SetEventProperty
+ 243/4221 Test  #243: Unit_hipGraphEventRecordNodeSetEvent_SetEventProperty .......................................   Passed    0.08 sec
+          Start  244: Unit_hipGraphEventRecordNodeSetEvent_SetGet
+ 244/4221 Test  #244: Unit_hipGraphEventRecordNodeSetEvent_SetGet .................................................   Passed    0.05 sec
+          Start  245: Unit_hipGraphEventRecordNodeSetEvent_Negative
+ 245/4221 Test  #245: Unit_hipGraphEventRecordNodeSetEvent_Negative ...............................................   Passed    0.06 sec
+          Start  246: Unit_hipGraphEventWaitNodeGetEvent_Functional
+ 246/4221 Test  #246: Unit_hipGraphEventWaitNodeGetEvent_Functional ...............................................   Passed    0.06 sec
+          Start  247: Unit_hipGraphEventWaitNodeGetEvent_Negative
+ 247/4221 Test  #247: Unit_hipGraphEventWaitNodeGetEvent_Negative .................................................   Passed    0.05 sec
+          Start  248: Unit_hipGraphExecMemcpyNodeSetParams_Positive_Basic
+ 248/4221 Test  #248: Unit_hipGraphExecMemcpyNodeSetParams_Positive_Basic .........................................   Passed    0.09 sec
+          Start  249: Unit_hipGraphExecMemcpyNodeSetParams_Negative_Parameters
+ 249/4221 Test  #249: Unit_hipGraphExecMemcpyNodeSetParams_Negative_Parameters ....................................   Passed    0.05 sec
+          Start  250: Unit_hipGraphExecMemcpyNodeSetParams_Negative_Changing_Memcpy_Direction
+ 250/4221 Test  #250: Unit_hipGraphExecMemcpyNodeSetParams_Negative_Changing_Memcpy_Direction .....................   Passed    0.07 sec
+          Start  251: Unit_hipGraphExecMemcpyNodeSetParams_Negative
+ 251/4221 Test  #251: Unit_hipGraphExecMemcpyNodeSetParams_Negative ...............................................   Passed    0.05 sec
+          Start  252: Unit_hipGraphExecMemcpyNodeSetParams_Functional
+ 252/4221 Test  #252: Unit_hipGraphExecMemcpyNodeSetParams_Functional .............................................   Passed    0.07 sec
+          Start  253: Unit_hipStreamBeginCapture_Positive_Functional
+ 253/4221 Test  #253: Unit_hipStreamBeginCapture_Positive_Functional ..............................................   Passed    0.25 sec
+          Start  254: Unit_hipStreamBeginCapture_Negative_Parameters
+ 254/4221 Test  #254: Unit_hipStreamBeginCapture_Negative_Parameters ..............................................   Passed    0.07 sec
+          Start  255: Unit_hipStreamBeginCapture_Positive_Basic
+ 255/4221 Test  #255: Unit_hipStreamBeginCapture_Positive_Basic ...................................................   Passed    0.08 sec
+          Start  256: Unit_hipStreamBeginCapture_Positive_InterStrmEventSync_Flags
+ 256/4221 Test  #256: Unit_hipStreamBeginCapture_Positive_InterStrmEventSync_Flags ................................   Passed    0.10 sec
+          Start  257: Unit_hipStreamBeginCapture_Positive_InterStrmEventSync_Priority
+ 257/4221 Test  #257: Unit_hipStreamBeginCapture_Positive_InterStrmEventSync_Priority .............................   Passed    0.08 sec
+          Start  258: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCapture_Flags
+ 258/4221 Test  #258: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCapture_Flags .............................   Passed    0.09 sec
+          Start  259: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCapture_Prio
+ 259/4221 Test  #259: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCapture_Prio ..............................   Passed    0.08 sec
+          Start  260: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCaptureFunc
+ 260/4221 Test  #260: Unit_hipStreamBeginCapture_Positive_ColligatedStrmCaptureFunc ...............................   Passed    0.10 sec
+          Start  261: Unit_hipStreamBeginCapture_Positive_Multithreaded
+ 261/4221 Test  #261: Unit_hipStreamBeginCapture_Positive_Multithreaded ...........................................   Passed    0.15 sec
+          Start  262: Unit_hipStreamBeginCapture_Positive_Multiplestrms
+ 262/4221 Test  #262: Unit_hipStreamBeginCapture_Positive_Multiplestrms ...........................................   Passed    0.10 sec
+          Start  263: Unit_hipStreamBeginCapture_Positive_CapturingFromWithinStrms
+ 263/4221 Test  #263: Unit_hipStreamBeginCapture_Positive_CapturingFromWithinStrms ................................   Passed    0.09 sec
+          Start  264: Unit_hipStreamBeginCapture_Negative_DetectingInvalidCapture
+ 264/4221 Test  #264: Unit_hipStreamBeginCapture_Negative_DetectingInvalidCapture .................................   Passed    0.07 sec
+          Start  265: Unit_hipStreamBeginCapture_Positive_CapturingMultGraphsFrom1Strm
+ 265/4221 Test  #265: Unit_hipStreamBeginCapture_Positive_CapturingMultGraphsFrom1Strm ............................   Passed    0.07 sec
+          Start  266: Unit_hipStreamBeginCapture_Negative_CheckingSyncDuringCapture
+ 266/4221 Test  #266: Unit_hipStreamBeginCapture_Negative_CheckingSyncDuringCapture ...............................   Passed    0.12 sec
+          Start  267: Unit_hipStreamBeginCapture_Negative_Concurrent_CheckingSyncDuringCapture
+ 267/4221 Test  #267: Unit_hipStreamBeginCapture_Negative_Concurrent_CheckingSyncDuringCapture ....................   Passed    0.18 sec
+          Start  268: Unit_hipStreamBeginCapture_Negative_UnsafeCallsDuringCapture
+ 268/4221 Test  #268: Unit_hipStreamBeginCapture_Negative_UnsafeCallsDuringCapture ................................   Passed    0.09 sec
+          Start  269: Unit_hipStreamBeginCapture_Negative_EndingCapwhenCapInProg
+ 269/4221 Test  #269: Unit_hipStreamBeginCapture_Negative_EndingCapwhenCapInProg ..................................   Passed    0.08 sec
+          Start  270: Unit_hipStreamBeginCapture_Positive_MultiGPU
+ 270/4221 Test  #270: Unit_hipStreamBeginCapture_Positive_MultiGPU ................................................***Skipped   0.06 sec
+          Start  271: Unit_hipStreamBeginCapture_Positive_nestedStreamCapture
+ 271/4221 Test  #271: Unit_hipStreamBeginCapture_Positive_nestedStreamCapture .....................................   Passed    0.09 sec
+          Start  272: Unit_hipStreamBeginCapture_Positive_streamReuse
+ 272/4221 Test  #272: Unit_hipStreamBeginCapture_Positive_streamReuse .............................................   Passed    0.09 sec
+          Start  273: Unit_hipStreamBeginCapture_Positive_captureComplexGraph
+ 273/4221 Test  #273: Unit_hipStreamBeginCapture_Positive_captureComplexGraph .....................................   Passed    0.11 sec
+          Start  274: Unit_hipStreamBeginCapture_Positive_captureEmptyStreams
+ 274/4221 Test  #274: Unit_hipStreamBeginCapture_Positive_captureEmptyStreams .....................................   Passed    0.08 sec
+          Start  275: Unit_hipStreamBeginCapture_StreamSync_OngoingCapture
+ 275/4221 Test  #275: Unit_hipStreamBeginCapture_StreamSync_OngoingCapture ........................................   Passed    0.10 sec
+          Start  276: Unit_hipStreamBeginCapture_StreamSync_OngoingCapture_MThread
+ 276/4221 Test  #276: Unit_hipStreamBeginCapture_StreamSync_OngoingCapture_MThread ................................   Passed    0.11 sec
+          Start  277: Unit_hipStreamBeginCapture_MultipleStreams_ReuseEvent
+ 277/4221 Test  #277: Unit_hipStreamBeginCapture_MultipleStreams_ReuseEvent .......................................   Passed    0.08 sec
+          Start  278: Unit_hipGraphAddMemcpyNode1D_Functional
+ 278/4221 Test  #278: Unit_hipGraphAddMemcpyNode1D_Functional .....................................................   Passed    0.08 sec
+          Start  279: Unit_hipGraphAddMemcpyNode1D_Negative
+ 279/4221 Test  #279: Unit_hipGraphAddMemcpyNode1D_Negative .......................................................   Passed    0.05 sec
+          Start  280: Unit_hipGraphAddMemcpyNode1D_HostToHost
+ 280/4221 Test  #280: Unit_hipGraphAddMemcpyNode1D_HostToHost .....................................................   Passed    0.07 sec
+          Start  281: Unit_hipStreamBeginCapture_BasicFunctional
+ 281/4221 Test  #281: Unit_hipStreamBeginCapture_BasicFunctional ..................................................   Passed    0.11 sec
+          Start  282: Unit_hipStreamBeginCapture_hipStreamPerThread
+ 282/4221 Test  #282: Unit_hipStreamBeginCapture_hipStreamPerThread ...............................................   Passed    0.12 sec
+          Start  283: Unit_hipStreamBeginCapture_Negative
+ 283/4221 Test  #283: Unit_hipStreamBeginCapture_Negative .........................................................   Passed    0.08 sec
+          Start  284: Unit_hipStreamBeginCapture_Basic
+ 284/4221 Test  #284: Unit_hipStreamBeginCapture_Basic ............................................................   Passed    0.08 sec
+          Start  285: Unit_hipStreamBeginCapture_InterStrmEventSync_defaultflag
+ 285/4221 Test  #285: Unit_hipStreamBeginCapture_InterStrmEventSync_defaultflag ...................................   Passed    0.09 sec
+          Start  286: Unit_hipStreamBeginCapture_InterStrmEventSync_blockingflag
+ 286/4221 Test  #286: Unit_hipStreamBeginCapture_InterStrmEventSync_blockingflag ..................................   Passed    0.08 sec
+          Start  287: Unit_hipStreamBeginCapture_InterStrmEventSync_diffflags
+ 287/4221 Test  #287: Unit_hipStreamBeginCapture_InterStrmEventSync_diffflags .....................................   Passed    0.08 sec
+          Start  288: Unit_hipStreamBeginCapture_InterStrmEventSync_diffprio
+ 288/4221 Test  #288: Unit_hipStreamBeginCapture_InterStrmEventSync_diffprio ......................................   Passed    0.08 sec
+          Start  289: Unit_hipStreamBeginCapture_ColligatedStrmCapture_defaultflag
+ 289/4221 Test  #289: Unit_hipStreamBeginCapture_ColligatedStrmCapture_defaultflag ................................   Passed    0.08 sec
+          Start  290: Unit_hipStreamBeginCapture_ColligatedStrmCapture_blockingflag
+ 290/4221 Test  #290: Unit_hipStreamBeginCapture_ColligatedStrmCapture_blockingflag ...............................   Passed    0.08 sec
+          Start  291: Unit_hipStreamBeginCapture_ColligatedStrmCapture_diffflags
+ 291/4221 Test  #291: Unit_hipStreamBeginCapture_ColligatedStrmCapture_diffflags ..................................   Passed    0.08 sec
+          Start  292: Unit_hipStreamBeginCapture_ColligatedStrmCapture_diffprio
+ 292/4221 Test  #292: Unit_hipStreamBeginCapture_ColligatedStrmCapture_diffprio ...................................   Passed    0.08 sec
+          Start  293: Unit_hipStreamBeginCapture_multiplestrms
+ 293/4221 Test  #293: Unit_hipStreamBeginCapture_multiplestrms ....................................................   Passed    0.10 sec
+          Start  294: Unit_hipStreamBeginCapture_ColligatedStrmCapture_func
+ 294/4221 Test  #294: Unit_hipStreamBeginCapture_ColligatedStrmCapture_func .......................................   Passed    0.09 sec
+          Start  295: Unit_hipStreamBeginCapture_Multithreaded_Global
+ 295/4221 Test  #295: Unit_hipStreamBeginCapture_Multithreaded_Global .............................................   Passed    0.09 sec
+          Start  296: Unit_hipStreamBeginCapture_Multithreaded_ThreadLocal
+ 296/4221 Test  #296: Unit_hipStreamBeginCapture_Multithreaded_ThreadLocal ........................................   Passed    0.09 sec
+          Start  297: Unit_hipStreamBeginCapture_Multithreaded_Relaxed
+ 297/4221 Test  #297: Unit_hipStreamBeginCapture_Multithreaded_Relaxed ............................................   Passed    0.08 sec
+          Start  298: Unit_hipStreamBeginCapture_CapturingFromWithinStrms
+ 298/4221 Test  #298: Unit_hipStreamBeginCapture_CapturingFromWithinStrms .........................................   Passed    0.10 sec
+          Start  299: Unit_hipStreamBeginCapture_DetectingInvalidCapture
+ 299/4221 Test  #299: Unit_hipStreamBeginCapture_DetectingInvalidCapture ..........................................   Passed    0.07 sec
+          Start  300: Unit_hipStreamBeginCapture_CapturingMultGraphsFrom1Strm
+ 300/4221 Test  #300: Unit_hipStreamBeginCapture_CapturingMultGraphsFrom1Strm .....................................   Passed    0.08 sec
+          Start  301: Unit_hipStreamBeginCapture_EndingCapturewhenCaptureInProgress
+ 301/4221 Test  #301: Unit_hipStreamBeginCapture_EndingCapturewhenCaptureInProgress ...............................   Passed    0.08 sec
+          Start  302: Unit_hipStreamBeginCapture_MultiGPU
+ 302/4221 Test  #302: Unit_hipStreamBeginCapture_MultiGPU .........................................................***Skipped   0.05 sec
+          Start  303: Unit_hipStreamBeginCapture_nestedStreamCapture
+ 303/4221 Test  #303: Unit_hipStreamBeginCapture_nestedStreamCapture ..............................................   Passed    0.09 sec
+          Start  304: Unit_hipStreamBeginCapture_streamReuse
+ 304/4221 Test  #304: Unit_hipStreamBeginCapture_streamReuse ......................................................   Passed    0.09 sec
+          Start  305: Unit_hipStreamBeginCapture_captureComplexGraph
+ 305/4221 Test  #305: Unit_hipStreamBeginCapture_captureComplexGraph ..............................................   Passed    0.17 sec
+          Start  306: Unit_hipStreamBeginCapture_captureEmptyStreams
+ 306/4221 Test  #306: Unit_hipStreamBeginCapture_captureEmptyStreams ..............................................   Passed    0.08 sec
+          Start  307: Unit_hipStreamIsCapturing_Negative_Parameters
+ 307/4221 Test  #307: Unit_hipStreamIsCapturing_Negative_Parameters ...............................................   Passed    0.08 sec
+          Start  308: Unit_hipStreamIsCapturing_Positive_Basic
+ 308/4221 Test  #308: Unit_hipStreamIsCapturing_Positive_Basic ....................................................   Passed    0.07 sec
+          Start  309: Unit_hipStreamIsCapturing_Positive_Functional
+ 309/4221 Test  #309: Unit_hipStreamIsCapturing_Positive_Functional ...............................................   Passed    0.13 sec
+          Start  310: Unit_hipStreamIsCapturing_Positive_Thread
+ 310/4221 Test  #310: Unit_hipStreamIsCapturing_Positive_Thread ...................................................   Passed    0.07 sec
+          Start  311: Unit_hipStreamIsCapturing_ParentAndForkedStream
+ 311/4221 Test  #311: Unit_hipStreamIsCapturing_ParentAndForkedStream .............................................   Passed    0.08 sec
+          Start  312: Unit_hipStreamIsCapturing_ChkNullStrmStatus
+ 312/4221 Test  #312: Unit_hipStreamIsCapturing_ChkNullStrmStatus .................................................   Passed    0.09 sec
+          Start  313: Unit_hipGraphMemFreeNodeGetParams_ValidArgs
+ 313/4221 Test  #313: Unit_hipGraphMemFreeNodeGetParams_ValidArgs .................................................   Passed    0.07 sec
+          Start  314: Unit_hipGraphUserObj_Int_float_Objects
+ 314/4221 Test  #314: Unit_hipGraphUserObj_Int_float_Objects ......................................................   Passed    0.09 sec
+          Start  315: Unit_hipGraphUserObj_HostRegister
+ 315/4221 Test  #315: Unit_hipGraphUserObj_HostRegister ...........................................................   Passed    0.08 sec
+          Start  316: Unit_hipGraphUserObj_Struct_Class_Ojects
+ 316/4221 Test  #316: Unit_hipGraphUserObj_Struct_Class_Ojects ....................................................   Passed    0.08 sec
+          Start  317: Unit_hipGraphUserObj_ClonedGraph
+ 317/4221 Test  #317: Unit_hipGraphUserObj_ClonedGraph ............................................................   Passed    0.08 sec
+          Start  318: Unit_hipGraphUserObj_ManualGraph
+ 318/4221 Test  #318: Unit_hipGraphUserObj_ManualGraph ............................................................   Passed    0.08 sec
+          Start  319: Unit_hipGraphExecBatchMemOpNodeSetParams_NegativeTsts
+ 319/4221 Test  #319: Unit_hipGraphExecBatchMemOpNodeSetParams_NegativeTsts .......................................   Passed    0.05 sec
+          Start  320: Unit_hipGraphAddBatchMemOpNode_NegativeTsts
+ 320/4221 Test  #320: Unit_hipGraphAddBatchMemOpNode_NegativeTsts .................................................   Passed    0.05 sec
+          Start  321: Unit_hipGraphBatchMemOpNodeSetParams_NegativeTsts
+ 321/4221 Test  #321: Unit_hipGraphBatchMemOpNodeSetParams_NegativeTsts ...........................................   Passed    0.05 sec
+          Start  322: Unit_hipGraphBatchMemOpNodeGetParams_NegativeTsts
+ 322/4221 Test  #322: Unit_hipGraphBatchMemOpNodeGetParams_NegativeTsts ...........................................   Passed    0.05 sec
+          Start  323: Unit_hipDrvGraphExecMemcpyNodeSetParams_Negative
+ 323/4221 Test  #323: Unit_hipDrvGraphExecMemcpyNodeSetParams_Negative ............................................   Passed    0.07 sec
+          Start  324: Unit_hipDrvGraphExecMemcpyNodeSetParams_Positive
+ 324/4221 Test  #324: Unit_hipDrvGraphExecMemcpyNodeSetParams_Positive ............................................   Passed    0.07 sec
+          Start  325: Unit_hipDrvGraphAddMemFreeNode_Negative_Params
+ 325/4221 Test  #325: Unit_hipDrvGraphAddMemFreeNode_Negative_Params ..............................................   Passed    0.05 sec
+          Start  326: Unit_hipDrvGraphAddMemFreeNode_Positive
+ 326/4221 Test  #326: Unit_hipDrvGraphAddMemFreeNode_Positive .....................................................   Passed    0.08 sec
+          Start  327: Unit_hipGraph_ConcurrentCreate_GraphIDRace
+ 327/4221 Test  #327: Unit_hipGraph_ConcurrentCreate_GraphIDRace ..................................................   Passed    0.07 sec
+          Start  328: Unit_hipGraph_ConcurrentConstruct_NextIDRace
+ 328/4221 Test  #328: Unit_hipGraph_ConcurrentConstruct_NextIDRace ................................................   Passed    0.06 sec
+          Start  329: Unit_hipGraph_ConcurrentConstruct_LaunchDropSmoke
+ 329/4221 Test  #329: Unit_hipGraph_ConcurrentConstruct_LaunchDropSmoke ...........................................   Passed    2.07 sec
+          Start  330: Unit_hipStreamCapture_ExtModuleLaunchKernel
+ 330/4221 Test  #330: Unit_hipStreamCapture_ExtModuleLaunchKernel .................................................   Passed    0.10 sec
+          Start  331: Unit_hipStreamBeginCaptureToGraph_BasicFunctional
+ 331/4221 Test  #331: Unit_hipStreamBeginCaptureToGraph_BasicFunctional ...........................................   Passed    0.17 sec
+          Start  332: Unit_hipStreamBeginCaptureToGraph_CaptureIndepGraph
+ 332/4221 Test  #332: Unit_hipStreamBeginCaptureToGraph_CaptureIndepGraph .........................................   Passed    0.13 sec
+          Start  333: Unit_hipStreamBeginCaptureToGraph_CaptureDepGraph
+ 333/4221 Test  #333: Unit_hipStreamBeginCaptureToGraph_CaptureDepGraph ...........................................   Passed    0.10 sec
+          Start  334: Unit_hipStreamBeginCaptureToGraph_ComplexGraph
+ 334/4221 Test  #334: Unit_hipStreamBeginCaptureToGraph_ComplexGraph ..............................................   Passed    0.14 sec
+          Start  335: Unit_hipStreamBeginCaptureToGraph_CaptureTwice
+ 335/4221 Test  #335: Unit_hipStreamBeginCaptureToGraph_CaptureTwice ..............................................   Passed    0.19 sec
+          Start  336: Unit_hipStreamBeginCaptureToGraph_ModifyCloneGraph
+ 336/4221 Test  #336: Unit_hipStreamBeginCaptureToGraph_ModifyCloneGraph ..........................................   Passed    0.14 sec
+          Start  337: Unit_hipStreamBeginCaptureToGraph_CaptureChildpGraph
+ 337/4221 Test  #337: Unit_hipStreamBeginCaptureToGraph_CaptureChildpGraph ........................................   Passed    0.13 sec
+          Start  338: Unit_hipStreamBeginCaptureToGraph_ModifyChildpGraph
+ 338/4221 Test  #338: Unit_hipStreamBeginCaptureToGraph_ModifyChildpGraph .........................................   Passed    0.12 sec
+          Start  339: Unit_hipStreamBeginCaptureToGraph_Negative
+ 339/4221 Test  #339: Unit_hipStreamBeginCaptureToGraph_Negative ..................................................   Passed    0.08 sec
+          Start  340: Unit_hipStreamBeginCaptureToGraph_StateTesting
+ 340/4221 Test  #340: Unit_hipStreamBeginCaptureToGraph_StateTesting ..............................................   Passed    0.07 sec
+          Start  341: Unit_hipStreamBeginCaptureToGraph_GetCaptureInfo
+ 341/4221 Test  #341: Unit_hipStreamBeginCaptureToGraph_GetCaptureInfo ............................................   Passed    0.08 sec
+          Start  342: Unit_hipStreamBeginCaptureToGraph_EndingWhileCaptureInProgress
+ 342/4221 Test  #342: Unit_hipStreamBeginCaptureToGraph_EndingWhileCaptureInProgress ..............................   Passed    0.09 sec
+          Start  343: Unit_hipStreamBeginCaptureToGraph_MultipleFlags
+ 343/4221 Test  #343: Unit_hipStreamBeginCaptureToGraph_MultipleFlags .............................................   Passed    0.18 sec
+          Start  344: Unit_hipStreamBeginCaptureToGraph_CapturePartialInThreads
+ 344/4221 Test  #344: Unit_hipStreamBeginCaptureToGraph_CapturePartialInThreads ...................................   Passed    0.11 sec
+          Start  345: Unit_hipStreamBeginCaptureToGraph_IndepGraphsThreads
+ 345/4221 Test  #345: Unit_hipStreamBeginCaptureToGraph_IndepGraphsThreads ........................................   Passed    0.13 sec
+          Start  346: Unit_hipGetProcAddress_GraphAPIs_StreamCapture
+ 346/4221 Test  #346: Unit_hipGetProcAddress_GraphAPIs_StreamCapture ..............................................   Passed    0.10 sec
+          Start  347: Unit_hipGetProcAddress_GraphAPIs_AddMemcpy1DKernelNodes
+ 347/4221 Test  #347: Unit_hipGetProcAddress_GraphAPIs_AddMemcpy1DKernelNodes .....................................   Passed    0.07 sec
+          Start  348: Unit_hipGetProcAddress_GraphAPIs_AddMemsetMemcpyNodes
+ 348/4221 Test  #348: Unit_hipGetProcAddress_GraphAPIs_AddMemsetMemcpyNodes .......................................   Passed    0.09 sec
+          Start  349: Unit_hipGetProcAddress_GraphAPIs_SetGetParamsMemsetMemcpy
+ 349/4221 Test  #349: Unit_hipGetProcAddress_GraphAPIs_SetGetParamsMemsetMemcpy ...................................   Passed    0.08 sec
+          Start  350: Unit_hipGetProcAddress_GraphAPIs_KernelNodeSetGetParams
+ 350/4221 Test  #350: Unit_hipGetProcAddress_GraphAPIs_KernelNodeSetGetParams .....................................   Passed    0.08 sec
+          Start  351: Unit_hipGetProcAddress_GraphAPIs_KernelNodeSetGetAttribute
+ 351/4221 Test  #351: Unit_hipGetProcAddress_GraphAPIs_KernelNodeSetGetAttribute ..................................   Passed    0.07 sec
+          Start  352: Unit_hipGetProcAddress_GraphAPIs_HostNode
+ 352/4221 Test  #352: Unit_hipGetProcAddress_GraphAPIs_HostNode ...................................................   Passed    0.08 sec
+          Start  353: Unit_hipGetProcAddress_GraphAPIs_ExecUpdate
+ 353/4221 Test  #353: Unit_hipGetProcAddress_GraphAPIs_ExecUpdate .................................................   Passed    0.07 sec
+          Start  354: Unit_hipGetProcAddress_GraphAPIs_Memcpy1DSetParams
+ 354/4221 Test  #354: Unit_hipGetProcAddress_GraphAPIs_Memcpy1DSetParams ..........................................   Passed    0.07 sec
+          Start  355: Unit_hipGetProcAddress_GraphAPIs_MemAllocAndFree
+ 355/4221 Test  #355: Unit_hipGetProcAddress_GraphAPIs_MemAllocAndFree ............................................   Passed    0.07 sec
+          Start  356: Unit_hipGetProcAddress_GraphAPIs_ExecMemsetMemcpySetParams
+ 356/4221 Test  #356: Unit_hipGetProcAddress_GraphAPIs_ExecMemsetMemcpySetParams ..................................   Passed    0.08 sec
+          Start  357: Unit_hipGraphExecNodeSetParams_Negative_Parameters
+ 357/4221 Test  #357: Unit_hipGraphExecNodeSetParams_Negative_Parameters ..........................................   Passed    0.07 sec
+          Start  358: Unit_hipGraphExecNodeSetParams_Positive
+ 358/4221 Test  #358: Unit_hipGraphExecNodeSetParams_Positive .....................................................   Passed    0.07 sec
+          Start  359: Unit_hipGraphNodeSetParams_Negative_Parameters
+ 359/4221 Test  #359: Unit_hipGraphNodeSetParams_Negative_Parameters ..............................................   Passed    0.07 sec
+          Start  360: Unit_hipGraphNodeSetParams_Positive
+ 360/4221 Test  #360: Unit_hipGraphNodeSetParams_Positive .........................................................   Passed    0.07 sec
+          Start  361: Unit_hipGraphExecGetFlags_Negative
+ 361/4221 Test  #361: Unit_hipGraphExecGetFlags_Negative ..........................................................   Passed    0.06 sec
+          Start  362: Unit_hipGraphExecGetFlags_Positive
+ 362/4221 Test  #362: Unit_hipGraphExecGetFlags_Positive ..........................................................   Passed    0.06 sec
+          Start  363: Unit_hipStreamGetCaptureInfo_ParentAndForkedStrm_CaptureStatus
+ 363/4221 Test  #363: Unit_hipStreamGetCaptureInfo_ParentAndForkedStrm_CaptureStatus ..............................   Passed    0.10 sec
+          Start  364: Unit_hipStreamGetCaptureInfo_CaptureStatus_InThread
+ 364/4221 Test  #364: Unit_hipStreamGetCaptureInfo_CaptureStatus_InThread .........................................   Passed    0.07 sec
+          Start  365: Unit_hipStreamGetCaptureInfo_CaptureStatus_Througout_Capture
+ 365/4221 Test  #365: Unit_hipStreamGetCaptureInfo_CaptureStatus_Througout_Capture ................................   Passed    0.08 sec
+          Start  366: Unit_hipStreamGetCaptureInfo_Nullstream_CaptureInfo
+ 366/4221 Test  #366: Unit_hipStreamGetCaptureInfo_Nullstream_CaptureInfo .........................................   Passed    0.18 sec
+          Start  367: Unit_hipStreamGetCaptureInfo_v2_Positive_Functional
+ 367/4221 Test  #367: Unit_hipStreamGetCaptureInfo_v2_Positive_Functional .........................................   Passed    0.25 sec
+          Start  368: Unit_hipStreamGetCaptureInfo_v2_Positive_UniqueID
+ 368/4221 Test  #368: Unit_hipStreamGetCaptureInfo_v2_Positive_UniqueID ...........................................   Passed    0.31 sec
+          Start  369: Unit_hipStreamGetCaptureInfo_v2_Negative_Parameters
+ 369/4221 Test  #369: Unit_hipStreamGetCaptureInfo_v2_Negative_Parameters .........................................   Passed    0.07 sec
+          Start  370: Unit_hipStreamSetCaptureDependencies_Positive_Functional
+ 370/4221 Test  #370: Unit_hipStreamSetCaptureDependencies_Positive_Functional ....................................   Passed    0.27 sec
+          Start  371: Unit_hipStreamAddCaptureDependencies_Positive_Functional
+ 371/4221 Test  #371: Unit_hipStreamAddCaptureDependencies_Positive_Functional ....................................   Passed    0.28 sec
+          Start  372: Unit_hipStreamUpdateCaptureDependencies_Positive_Parameters
+ 372/4221 Test  #372: Unit_hipStreamUpdateCaptureDependencies_Positive_Parameters .................................   Passed    0.09 sec
+          Start  373: Unit_hipStreamUpdateCaptureDependencies_Negative_Parameters
+ 373/4221 Test  #373: Unit_hipStreamUpdateCaptureDependencies_Negative_Parameters .................................   Passed    0.08 sec
+          Start  374: Unit_hipStreamBeginCapture_with_hipGraphAddHostNode
+ 374/4221 Test  #374: Unit_hipStreamBeginCapture_with_hipGraphAddHostNode .........................................   Passed    0.09 sec
+          Start  375: Unit_hipStreamEndCapture_first_and_add_a_node_later
+ 375/4221 Test  #375: Unit_hipStreamEndCapture_first_and_add_a_node_later .........................................   Passed    0.15 sec
+          Start  376: Unit_hipStreamEndCapture_first_and_add_other_graph_node_later
+ 376/4221 Test  #376: Unit_hipStreamEndCapture_first_and_add_other_graph_node_later ...............................   Passed    0.10 sec
+          Start  377: Unit_hipStreamEndCapture_later_and_addEmptyNode
+ 377/4221 Test  #377: Unit_hipStreamEndCapture_later_and_addEmptyNode .............................................   Passed    0.08 sec
+          Start  378: Unit_hipGraph_SimpleGraphWithKernel_kernel_arg_prefetch
+ 378/4221 Test  #378: Unit_hipGraph_SimpleGraphWithKernel_kernel_arg_prefetch .....................................***Skipped   0.06 sec
+          Start  379: Unit_hipStreamGetCaptureInfo_Positive_Functional
+ 379/4221 Test  #379: Unit_hipStreamGetCaptureInfo_Positive_Functional ............................................   Passed    0.12 sec
+          Start  380: Unit_hipStreamGetCaptureInfo_Positive_UniqueID
+ 380/4221 Test  #380: Unit_hipStreamGetCaptureInfo_Positive_UniqueID ..............................................   Passed    0.30 sec
+          Start  381: Unit_hipStreamGetCaptureInfo_Negative_Parameters
+ 381/4221 Test  #381: Unit_hipStreamGetCaptureInfo_Negative_Parameters ............................................   Passed    0.07 sec
+          Start  382: Unit_hipStreamEndCapture_Negative_Parameters
+ 382/4221 Test  #382: Unit_hipStreamEndCapture_Negative_Parameters ................................................   Passed    0.07 sec
+          Start  383: Unit_hipStreamEndCapture_Positive_GraphDestroy
+[HEARTBEAT 2026-07-08 17:05:39] test running...
+ 383/4221 Test  #383: Unit_hipStreamEndCapture_Positive_GraphDestroy ..............................................   Passed    0.07 sec
+          Start  384: Unit_hipStreamEndCapture_Negative_Thread
+ 384/4221 Test  #384: Unit_hipStreamEndCapture_Negative_Thread ....................................................   Passed    0.07 sec
+          Start  385: Unit_hipStreamEndCapture_Positive_Thread
+ 385/4221 Test  #385: Unit_hipStreamEndCapture_Positive_Thread ....................................................   Passed    0.09 sec
+          Start  386: Unit_hipStreamEndCapture_Negative_InvalidatedStateReset
+ 386/4221 Test  #386: Unit_hipStreamEndCapture_Negative_InvalidatedStateReset .....................................   Passed    0.07 sec
+          Start  387: Unit_hipStreamEndCapture_Negative
+ 387/4221 Test  #387: Unit_hipStreamEndCapture_Negative ...........................................................   Passed    0.08 sec
+          Start  388: Unit_hipStreamEndCapture_Thread_Negative
+ 388/4221 Test  #388: Unit_hipStreamEndCapture_Thread_Negative ....................................................   Passed    0.09 sec
+          Start  389: Unit_hipStreamEndCapture_mode_hipStreamCaptureModeRelaxed
+ 389/4221 Test  #389: Unit_hipStreamEndCapture_mode_hipStreamCaptureModeRelaxed ...................................   Passed    0.07 sec
+          Start  390: Unit_hipStreamEndCapture_chkError_on_wrongStream
+ 390/4221 Test  #390: Unit_hipStreamEndCapture_chkError_on_wrongStream ............................................   Passed    0.08 sec
+          Start  391: Unit_hipStreamEndCapture_streamMerge_in_thread
+ 391/4221 Test  #391: Unit_hipStreamEndCapture_streamMerge_in_thread ..............................................   Passed    0.08 sec
+          Start  392: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Negative
+ 392/4221 Test  #392: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Negative .........................................   Passed    0.06 sec
+          Start  393: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Positive_Basic
+ 393/4221 Test  #393: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Positive_Basic ...................................   Passed    0.08 sec
+          Start  394: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Negative_Parameters
+ 394/4221 Test  #394: Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Negative_Parameters ..............................   Passed    0.05 sec
+          Start  395: Unit_hipGraphExecEventWaitNodeSetEvent_SetAndVerifyMemory
+ 395/4221 Test  #395: Unit_hipGraphExecEventWaitNodeSetEvent_SetAndVerifyMemory ...................................   Passed    0.09 sec
+          Start  396: Unit_hipGraphExecEventWaitNodeSetEvent_VerifyEventNotChanged
+ 396/4221 Test  #396: Unit_hipGraphExecEventWaitNodeSetEvent_VerifyEventNotChanged ................................   Passed    0.05 sec
+          Start  397: Unit_hipGraphExecEventWaitNodeSetEvent_Negative
+ 397/4221 Test  #397: Unit_hipGraphExecEventWaitNodeSetEvent_Negative .............................................   Passed    0.09 sec
+          Start  398: Unit_hipGraphAddMemsetNode_Positive_Basic - uint8_t
+ 398/4221 Test  #398: Unit_hipGraphAddMemsetNode_Positive_Basic - uint8_t .........................................   Passed    0.09 sec
+          Start  399: Unit_hipGraphAddMemsetNode_Positive_Basic - uint16_t
+ 399/4221 Test  #399: Unit_hipGraphAddMemsetNode_Positive_Basic - uint16_t ........................................   Passed    0.09 sec
+          Start  400: Unit_hipGraphAddMemsetNode_Positive_Basic - uint32_t
+ 400/4221 Test  #400: Unit_hipGraphAddMemsetNode_Positive_Basic - uint32_t ........................................   Passed    0.08 sec
+          Start  401: Unit_hipGraphAddMemsetNode_Negative_Parameters
+ 401/4221 Test  #401: Unit_hipGraphAddMemsetNode_Negative_Parameters ..............................................   Passed    0.05 sec
+          Start  402: Unit_hipGraphAddMemsetNode_hipMallocPitch_2D
+ 402/4221 Test  #402: Unit_hipGraphAddMemsetNode_hipMallocPitch_2D ................................................   Passed    0.09 sec
+          Start  403: Unit_hipGraphAddMemsetNode_hipMallocPitch_1D
+ 403/4221 Test  #403: Unit_hipGraphAddMemsetNode_hipMallocPitch_1D ................................................   Passed    0.08 sec
+          Start  404: Unit_hipGraphAddMemsetNode_hipMalloc3D_2D
+ 404/4221 Test  #404: Unit_hipGraphAddMemsetNode_hipMalloc3D_2D ...................................................   Passed    0.09 sec
+          Start  405: Unit_hipGraphAddMemsetNode_hipMalloc3D_1D
+ 405/4221 Test  #405: Unit_hipGraphAddMemsetNode_hipMalloc3D_1D ...................................................   Passed    0.08 sec
+          Start  406: Unit_hipGraphAddMemsetNode_hipMalloc_1D
+ 406/4221 Test  #406: Unit_hipGraphAddMemsetNode_hipMalloc_1D .....................................................   Passed    0.08 sec
+          Start  407: Unit_hipGraphAddMemsetNode_hipMallocManaged
+ 407/4221 Test  #407: Unit_hipGraphAddMemsetNode_hipMallocManaged .................................................   Passed    0.07 sec
+          Start  408: Unit_hipGraphAddKernelNode_Negative
+ 408/4221 Test  #408: Unit_hipGraphAddKernelNode_Negative .........................................................   Passed    0.05 sec
+          Start  409: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_graphNclonedGraph
+ 409/4221 Test  #409: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_graphNclonedGraph .............................   Passed    0.09 sec
+          Start  410: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_kernelFnUpdate
+ 410/4221 Test  #410: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_kernelFnUpdate ................................   Passed    0.09 sec
+          Start  411: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_childGraph
+ 411/4221 Test  #411: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_childGraph ....................................   Passed    0.08 sec
+          Start  412: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_streamCapture
+ 412/4221 Test  #412: Unit_hipGraphAddKernelNode_moduleLoadKernelFn_streamCapture .................................   Passed    0.08 sec
+          Start  413: Unit_hipGraphMemcpyNodeGetParams_Negative_Parameters
+ 413/4221 Test  #413: Unit_hipGraphMemcpyNodeGetParams_Negative_Parameters ........................................   Passed    0.05 sec
+          Start  414: Unit_hipGraphMemcpyNodeGetParams_Negative
+ 414/4221 Test  #414: Unit_hipGraphMemcpyNodeGetParams_Negative ...................................................   Passed    0.05 sec
+          Start  415: Unit_hipGraphMemcpyNodeGetParams_Functional
+ 415/4221 Test  #415: Unit_hipGraphMemcpyNodeGetParams_Functional .................................................   Passed    0.05 sec
+          Start  416: Unit_hipGraphMemcpyNodeSetParams_Positive_Basic
+ 416/4221 Test  #416: Unit_hipGraphMemcpyNodeSetParams_Positive_Basic .............................................   Passed    0.10 sec
+          Start  417: Unit_hipGraphMemcpyNodeSetParams_Negative_Parameters
+ 417/4221 Test  #417: Unit_hipGraphMemcpyNodeSetParams_Negative_Parameters ........................................   Passed    0.06 sec
+          Start  418: Unit_hipGraphKernelNodeGetParams_Negative
+ 418/4221 Test  #418: Unit_hipGraphKernelNodeGetParams_Negative ...................................................   Passed    0.06 sec
+          Start  419: Unit_hipGraphKernelNodeGetParams_Functional
+ 419/4221 Test  #419: Unit_hipGraphKernelNodeGetParams_Functional .................................................   Passed    0.06 sec
+          Start  420: Unit_hipGraphKernelNodeSetParams_Negative
+ 420/4221 Test  #420: Unit_hipGraphKernelNodeSetParams_Negative ...................................................   Passed    0.06 sec
+          Start  421: Unit_hipGraphKernelNodeSetParams_Functional
+ 421/4221 Test  #421: Unit_hipGraphKernelNodeSetParams_Functional .................................................   Passed    0.09 sec
+          Start  422: Unit_hipGraphKernelNodeGetSetParams_Functional
+ 422/4221 Test  #422: Unit_hipGraphKernelNodeGetSetParams_Functional ..............................................   Passed    0.08 sec
+          Start  423: Unit_hipGraphExecKernelNodeSetParams_Negative
+ 423/4221 Test  #423: Unit_hipGraphExecKernelNodeSetParams_Negative ...............................................   Passed    0.09 sec
+          Start  424: Unit_hipGraphExecKernelNodeSetParams_Functional
+ 424/4221 Test  #424: Unit_hipGraphExecKernelNodeSetParams_Functional .............................................   Passed    0.08 sec
+          Start  425: Unit_hipGraphLaunch_Positive
+ 425/4221 Test  #425: Unit_hipGraphLaunch_Positive ................................................................   Passed    0.07 sec
+          Start  426: Unit_hipGraphLaunch_Negative_Parameters
+ 426/4221 Test  #426: Unit_hipGraphLaunch_Negative_Parameters .....................................................   Passed    0.08 sec
+          Start  427: Unit_hipGraphLaunch_Functional_multidevice_test
+ 427/4221 Test  #427: Unit_hipGraphLaunch_Functional_multidevice_test .............................................   Passed    0.07 sec
+          Start  428: Unit_hipGraphLaunch_Functional_MultipleLaunch
+ 428/4221 Test  #428: Unit_hipGraphLaunch_Functional_MultipleLaunch ...............................................   Passed    0.09 sec
+          Start  429: Unit_hipGraphMemcpyNodeSetParams1D_Positive_Basic
+ 429/4221 Test  #429: Unit_hipGraphMemcpyNodeSetParams1D_Positive_Basic ...........................................   Passed    0.08 sec
+          Start  430: Unit_hipGraphMemcpyNodeSetParams1D_Negative_Parameters
+ 430/4221 Test  #430: Unit_hipGraphMemcpyNodeSetParams1D_Negative_Parameters ......................................   Passed    0.05 sec
+          Start  431: Unit_hipGraphMemcpyNodeSetParams1D_Negative
+ 431/4221 Test  #431: Unit_hipGraphMemcpyNodeSetParams1D_Negative .................................................   Passed    0.05 sec
+          Start  432: Unit_hipGraphMemcpyNodeSetParams1D_Functional
+ 432/4221 Test  #432: Unit_hipGraphMemcpyNodeSetParams1D_Functional ...............................................   Passed    0.08 sec
+          Start  433: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Negative
+ 433/4221 Test  #433: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Negative .......................................   Passed    0.06 sec
+          Start  434: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Functional
+ 434/4221 Test  #434: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Functional .....................................   Passed    0.07 sec
+          Start  435: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Positive_Basic
+ 435/4221 Test  #435: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Positive_Basic .................................   Passed    0.09 sec
+          Start  436: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Negative_Parameters
+ 436/4221 Test  #436: Unit_hipGraphExecMemcpyNodeSetParamsToSymbol_Negative_Parameters ............................   Passed    0.06 sec
+          Start  437: Unit_hipGraphNodeGetDependentNodes_Positive_Functional
+ 437/4221 Test  #437: Unit_hipGraphNodeGetDependentNodes_Positive_Functional ......................................   Passed    0.15 sec
+          Start  438: Unit_hipGraphNodeGetDependentNodes_Negative_Parameters
+ 438/4221 Test  #438: Unit_hipGraphNodeGetDependentNodes_Negative_Parameters ......................................   Passed    0.05 sec
+          Start  439: Unit_hipGraphNodeGetDependencies_Positive_Functional
+ 439/4221 Test  #439: Unit_hipGraphNodeGetDependencies_Positive_Functional ........................................   Passed    0.10 sec
+          Start  440: Unit_hipGraphNodeGetDependencies_Negative_Parameters
+ 440/4221 Test  #440: Unit_hipGraphNodeGetDependencies_Negative_Parameters ........................................   Passed    0.05 sec
+          Start  441: Unit_hipGraphHostNodeGetParams_Negative
+ 441/4221 Test  #441: Unit_hipGraphHostNodeGetParams_Negative .....................................................   Passed    0.06 sec
+          Start  442: Unit_hipGraphHostNodeGetParams_ClonedGraphWithHostNode
+ 442/4221 Test  #442: Unit_hipGraphHostNodeGetParams_ClonedGraphWithHostNode ......................................   Passed    0.08 sec
+          Start  443: Unit_hipGraphHostNodeGetParams_BasicFunc
+ 443/4221 Test  #443: Unit_hipGraphHostNodeGetParams_BasicFunc ....................................................   Passed    0.07 sec
+          Start  444: Unit_hipGraphHostNodeGetParams_SetParams
+ 444/4221 Test  #444: Unit_hipGraphHostNodeGetParams_SetParams ....................................................   Passed    0.08 sec
+          Start  445: Unit_hipGraphExecChildGraphNodeSetParams_Negative
+ 445/4221 Test  #445: Unit_hipGraphExecChildGraphNodeSetParams_Negative ...........................................   Passed    0.10 sec
+          Start  446: Unit_hipGraphExecChildGraphNodeSetParams_BasicFunc
+ 446/4221 Test  #446: Unit_hipGraphExecChildGraphNodeSetParams_BasicFunc ..........................................   Passed    0.07 sec
+          Start  447: Unit_hipGraphExecChildGraphNodeSetParams_ChildTopology
+ 447/4221 Test  #447: Unit_hipGraphExecChildGraphNodeSetParams_ChildTopology ......................................   Passed    0.08 sec
+          Start  448: Unit_hipGraphCreate_Negative_Parameters
+ 448/4221 Test  #448: Unit_hipGraphCreate_Negative_Parameters .....................................................   Passed    0.05 sec
+          Start  449: Unit_hipGraphCreate_Positive_Basic
+ 449/4221 Test  #449: Unit_hipGraphCreate_Positive_Basic ..........................................................   Passed    0.05 sec
+          Start  450: Unit_hipGraphDestroy_Positive_Basic
+ 450/4221 Test  #450: Unit_hipGraphDestroy_Positive_Basic .........................................................   Passed    0.05 sec
+          Start  451: Unit_hipGraphDestroy_Negative_Parameters
+ 451/4221 Test  #451: Unit_hipGraphDestroy_Negative_Parameters ....................................................   Passed    0.05 sec
+          Start  452: Unit_hipThreadExchangeStreamCaptureMode_Positive_Functional
+ 452/4221 Test  #452: Unit_hipThreadExchangeStreamCaptureMode_Positive_Functional .................................   Passed    0.10 sec
+          Start  453: Unit_hipThreadExchangeStreamCaptureMode_Negative_Parameters
+ 453/4221 Test  #453: Unit_hipThreadExchangeStreamCaptureMode_Negative_Parameters .................................   Passed    0.05 sec
+          Start  454: Unit_hipLaunchHostFunc_Negative_Parameters
+ 454/4221 Test  #454: Unit_hipLaunchHostFunc_Negative_Parameters ..................................................   Passed    0.07 sec
+          Start  455: Unit_hipLaunchHostFunc_Positive_Functional
+ 455/4221 Test  #455: Unit_hipLaunchHostFunc_Positive_Functional ..................................................   Passed    0.08 sec
+          Start  456: Unit_hipLaunchHostFunc_Positive_Thread
+ 456/4221 Test  #456: Unit_hipLaunchHostFunc_Positive_Thread ......................................................   Passed    0.08 sec
+          Start  457: Unit_hipLaunchHostFunc_H2D_Kernel_D2H_Capture
+ 457/4221 Test  #457: Unit_hipLaunchHostFunc_H2D_Kernel_D2H_Capture ...............................................   Passed    0.10 sec
+          Start  458: Unit_hipLaunchHostFunc_CrossStreamDep_UncapturedFirstNode
+[HEARTBEAT 2026-07-08 17:06:39] test running...
+[HEARTBEAT 2026-07-08 17:07:39] test running...
+[HEARTBEAT 2026-07-08 17:08:39] test running...
+[2026-07-08 17:09:05] WARN: Received signal, cleaning up...

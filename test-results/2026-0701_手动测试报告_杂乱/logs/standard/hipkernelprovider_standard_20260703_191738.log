@@ -1,0 +1,42 @@
+[2026-07-03 19:17:38] ===== Starting hipkernelprovider standard test =====
+PID=3273969  TIMEOUT=7200s  LOG=/home/zs/test_case/scripts/logs/standard/hipkernelprovider_standard_20260703_191738.log
+[INFO] PID file: /tmp/therock_hipkernelprovider_standard.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-03 19:17:38] test running...
+Disk free: 767G available
+Memory: 13Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-03 19:17:38] Running with sudo: timeout 7200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_hipkernelprovider.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hip_kernel_provider --output-on-failure
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/hip_kernel_provider
+    Start 1: hip-kernel-provider_test_name_validation
+1/3 Test #1: hip-kernel-provider_test_name_validation ...   Passed    0.13 sec
+    Start 2: hip_kernel_provider_tests
+2/3 Test #2: hip_kernel_provider_tests ..................   Passed    0.38 sec
+    Start 3: hip_kernel_provider_integration_tests
+[HEARTBEAT 2026-07-03 19:18:38] test running...
+[HEARTBEAT 2026-07-03 19:19:38] test running...
+[HEARTBEAT 2026-07-03 19:20:38] test running...
+3/3 Test #3: hip_kernel_provider_integration_tests ......   Passed  207.68 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Label Time Summary:
+integration_test    = 207.81 sec*proc (2 tests)
+quick               =   0.13 sec*proc (1 test)
+slow                = 207.68 sec*proc (1 test)
+unit_test           =   0.51 sec*proc (2 tests)
+
+Total Test time (real) = 208.19 sec
+[2026-07-03 19:21:06] ===== hipkernelprovider standard: PASS (208s, rc=0) =====

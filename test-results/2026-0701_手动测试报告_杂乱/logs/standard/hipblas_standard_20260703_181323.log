@@ -1,0 +1,717 @@
+[2026-07-03 18:13:23] ===== Starting hipblas standard test =====
+PID=2760021  TIMEOUT=7200s  LOG=/home/zs/test_case/scripts/logs/standard/hipblas_standard_20260703_181323.log
+[INFO] PID file: /tmp/therock_hipblas_standard.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-03 18:13:23] test running...
+Disk free: 767G available
+Memory: 12Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-03 18:13:23] Running with sudo: timeout 7200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^standard$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblas -V --tests-information 1,,1
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/test-dirs/hipblas/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblas
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 2
+    Start 2: hipblas-test_standard_suite
+
+2: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/BLAS/hipBLAS/build/clients/staging/hipblas-test "--gtest_filter=*quick*:*pre_checkin*-*known_bug*"
+2: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/BLAS/hipBLAS/build/clients/staging
+2: Environment variables: 
+2:  OPENBLAS_NUM_THREADS=48
+2:  OMP_NUM_THREADS=48
+2: Test timeout computed to be: 3600
+2: hipBLAS version 3.5.0.abd990e7d9f
+2: Query device success: there are 1 devices 
+2: Device ID 0 : AMD Radeon 8060S Graphics ------------------------------------------------------
+2: with 103.1 GB memory, clock rate 2900MHz @ computing capability 11.5 
+2: maxGridDimX 2147483647, sharedMemPerBlock 65.5 KB, maxThreadsPerBlock 1024, warpSize 32
+2: -------------------------------------------------------------------------
+2: info: parsing of test data may take a couple minutes before any test output appears...
+2: 
+2: Note: Google Test filter = *quick*:*pre_checkin*-*known_bug*
+2: [==========] Running 47357 tests from 209 test suites.
+2: [----------] Global test environment set-up.
+2: [----------] 1 test from _/set_get_pointer
+2: [----------] 1 test from _/set_get_pointer (0 ms total)
+2: 
+2: [----------] 2 tests from _/set_get_atomics
+2: [----------] 2 tests from _/set_get_atomics (0 ms total)
+2: 
+2: [----------] 2 tests from _/set_get_alpha_beta
+2: [----------] 2 tests from _/set_get_alpha_beta (0 ms total)
+2: 
+2: [----------] 16 tests from _/set_get_matrix
+2: [----------] 16 tests from _/set_get_matrix (78 ms total)
+2: 
+2: [----------] 16 tests from _/set_get_matrix_async
+2: [----------] 16 tests from _/set_get_matrix_async (4 ms total)
+2: 
+2: [----------] 32 tests from _/set_get_vector
+2: [----------] 32 tests from _/set_get_vector (4 ms total)
+2: 
+2: [----------] 32 tests from _/set_get_vector_async
+2: [----------] 32 tests from _/set_get_vector_async (4 ms total)
+2: 
+2: [----------] 112 tests from _/asum
+2: [----------] 112 tests from _/asum (85 ms total)
+2: 
+2: [----------] 304 tests from _/asum_batched
+2: [----------] 304 tests from _/asum_batched (194 ms total)
+2: 
+2: [----------] 304 tests from _/asum_strided_batched
+2: [----------] 304 tests from _/asum_strided_batched (205 ms total)
+2: 
+2: [----------] 140 tests from _/axpy
+2: [----------] 140 tests from _/axpy (136 ms total)
+2: 
+2: [----------] 380 tests from _/axpy_batched
+2: [----------] 380 tests from _/axpy_batched (354 ms total)
+2: 
+2: [----------] 380 tests from _/axpy_strided_batched
+2: [----------] 380 tests from _/axpy_strided_batched (342 ms total)
+2: 
+2: [----------] 104 tests from _/copy
+2: [----------] 104 tests from _/copy (109 ms total)
+2: 
+2: [----------] 296 tests from _/copy_batched
+2: [----------] 296 tests from _/copy_batched (243 ms total)
+2: 
+2: [----------] 296 tests from _/copy_strided_batched
+2: [----------] 296 tests from _/copy_strided_batched (246 ms total)
+2: 
+2: [----------] 140 tests from _/dot
+2: [----------] 140 tests from _/dot (133 ms total)
+2: 
+2: [----------] 380 tests from _/dot_batched
+2: [----------] 380 tests from _/dot_batched (381 ms total)
+2: 
+2: [----------] 380 tests from _/dot_strided_batched
+2: [----------] 380 tests from _/dot_strided_batched (681 ms total)
+2: 
+2: [----------] 56 tests from _/dotc
+2: [----------] 56 tests from _/dotc (86 ms total)
+2: 
+2: [----------] 152 tests from _/dotc_batched
+2: [----------] 152 tests from _/dotc_batched (424 ms total)
+2: 
+2: [----------] 152 tests from _/dotc_strided_batched
+2: [----------] 152 tests from _/dotc_strided_batched (240 ms total)
+2: 
+2: [----------] 112 tests from _/iamax
+2: [----------] 112 tests from _/iamax (76 ms total)
+2: 
+2: [----------] 304 tests from _/iamax_batched
+2: [----------] 304 tests from _/iamax_batched (188 ms total)
+2: 
+2: [----------] 304 tests from _/iamax_strided_batched
+2: [----------] 304 tests from _/iamax_strided_batched (194 ms total)
+2: 
+2: [----------] 112 tests from _/iamin
+2: [----------] 112 tests from _/iamin (70 ms total)
+2: 
+2: [----------] 304 tests from _/iamin_batched
+2: [----------] 304 tests from _/iamin_batched (179 ms total)
+2: 
+2: [----------] 304 tests from _/iamin_strided_batched
+2: [----------] 304 tests from _/iamin_strided_batched (348 ms total)
+2: 
+2: [----------] 112 tests from _/nrm2
+2: [----------] 112 tests from _/nrm2 (97 ms total)
+2: 
+2: [----------] 304 tests from _/nrm2_batched
+2: [----------] 304 tests from _/nrm2_batched (220 ms total)
+2: 
+2: [----------] 304 tests from _/nrm2_strided_batched
+2: [----------] 304 tests from _/nrm2_strided_batched (247 ms total)
+2: 
+2: [----------] 168 tests from _/rot
+2: [----------] 168 tests from _/rot (214 ms total)
+2: 
+2: [----------] 456 tests from _/rot_batched
+2: [----------] 456 tests from _/rot_batched (618 ms total)
+2: 
+2: [----------] 456 tests from _/rot_strided_batched
+2: [----------] 456 tests from _/rot_strided_batched (469 ms total)
+2: 
+2: [----------] 56 tests from _/rotm
+2: [----------] 56 tests from _/rotm (44 ms total)
+2: 
+2: [----------] 152 tests from _/rotm_batched
+2: [----------] 152 tests from _/rotm_batched (120 ms total)
+2: 
+2: [----------] 152 tests from _/rotm_strided_batched
+2: [----------] 152 tests from _/rotm_strided_batched (161 ms total)
+2: 
+2: [----------] 32 tests from _/rotg
+2: [----------] 32 tests from _/rotg (22 ms total)
+2: 
+2: [----------] 64 tests from _/rotg_batched
+2: [----------] 64 tests from _/rotg_batched (25 ms total)
+2: 
+2: [----------] 64 tests from _/rotg_strided_batched
+2: [----------] 64 tests from _/rotg_strided_batched (30 ms total)
+2: 
+2: [----------] 16 tests from _/rotmg
+2: [----------] 16 tests from _/rotmg (9 ms total)
+2: 
+2: [----------] 32 tests from _/rotmg_batched
+2: [----------] 32 tests from _/rotmg_batched (12 ms total)
+2: 
+2: [----------] 32 tests from _/rotmg_strided_batched
+2: [----------] 32 tests from _/rotmg_strided_batched (11 ms total)
+2: 
+2: [----------] 168 tests from _/scal
+2: [----------] 168 tests from _/scal (87 ms total)
+2: 
+2: [----------] 456 tests from _/scal_batched
+2: [----------] 456 tests from _/scal_batched (266 ms total)
+2: 
+2: [----------] 456 tests from _/scal_strided_batched
+2: [----------] 456 tests from _/scal_strided_batched (289 ms total)
+2: 
+2: [----------] 112 tests from _/swap
+2: [----------] 112 tests from _/swap (87 ms total)
+2: 
+2: [----------] 304 tests from _/swap_batched
+2: [----------] 304 tests from _/swap_batched (256 ms total)
+2: 
+2: [----------] 304 tests from _/swap_strided_batched
+2: [----------] 304 tests from _/swap_strided_batched (251 ms total)
+2: 
+2: [----------] 112 tests from _/gbmv
+2: [----------] 112 tests from _/gbmv (201 ms total)
+2: 
+2: [----------] 208 tests from _/gbmv_batched
+2: [----------] 208 tests from _/gbmv_batched (656 ms total)
+2: 
+2: [----------] 208 tests from _/gbmv_strided_batched
+2: [----------] 208 tests from _/gbmv_strided_batched (674 ms total)
+2: 
+2: [----------] 112 tests from _/gemv
+2: [----------] 112 tests from _/gemv (870 ms total)
+2: 
+2: [----------] 208 tests from _/gemv_batched
+2: [----------] 208 tests from _/gemv_batched (3321 ms total)
+2: 
+2: [----------] 208 tests from _/gemv_strided_batched
+2: [----------] 208 tests from _/gemv_strided_batched (3097 ms total)
+2: 
+2: [----------] 36 tests from _/ger
+2: [----------] 36 tests from _/ger (85 ms total)
+2: 
+2: [----------] 72 tests from _/ger_batched
+2: [----------] 72 tests from _/ger_batched (302 ms total)
+2: 
+2: [----------] 72 tests from _/ger_strided_batched
+2: [----------] 72 tests from _/ger_strided_batched (329 ms total)
+2: 
+2: [----------] 36 tests from _/geru
+2: [----------] 36 tests from _/geru (468 ms total)
+2: 
+2: [----------] 72 tests from _/geru_batched
+2: [----------] 72 tests from _/geru_batched (1905 ms total)
+2: 
+2: [----------] 72 tests from _/geru_strided_batched
+2: [----------] 72 tests from _/geru_strided_batched (1922 ms total)
+2: 
+2: [----------] 36 tests from _/gerc
+2: [----------] 36 tests from _/gerc (471 ms total)
+2: 
+2: [----------] 72 tests from _/gerc_batched
+2: [----------] 72 tests from _/gerc_batched (1997 ms total)
+2: 
+2: [----------] 72 tests from _/gerc_strided_batched
+2: [----------] 72 tests from _/gerc_strided_batched (1887 ms total)
+2: 
+2: [----------] 40 tests from _/hbmv
+2: [----------] 40 tests from _/hbmv (159 ms total)
+2: 
+2: [----------] 72 tests from _/hbmv_batched
+2: [----------] 72 tests from _/hbmv_batched (237 ms total)
+2: 
+2: [----------] 72 tests from _/hbmv_strided_batched
+2: [----------] 72 tests from _/hbmv_strided_batched (182 ms total)
+2: 
+2: [----------] 40 tests from _/hemv
+2: [----------] 40 tests from _/hemv (148 ms total)
+2: 
+2: [----------] 72 tests from _/hemv_batched
+2: [----------] 72 tests from _/hemv_batched (254 ms total)
+2: 
+2: [----------] 72 tests from _/hemv_strided_batched
+2: [----------] 72 tests from _/hemv_strided_batched (341 ms total)
+2: 
+2: [----------] 72 tests from _/her
+2: [----------] 72 tests from _/her (118 ms total)
+2: 
+2: [----------] 136 tests from _/her_batched
+2: [----------] 136 tests from _/her_batched (284 ms total)
+2: 
+2: [----------] 136 tests from _/her_strided_batched
+2: [----------] 136 tests from _/her_strided_batched (299 ms total)
+2: 
+2: [----------] 40 tests from _/her2
+2: [----------] 40 tests from _/her2 (62 ms total)
+2: 
+2: [----------] 72 tests from _/her2_batched
+2: [----------] 72 tests from _/her2_batched (183 ms total)
+2: 
+2: [----------] 72 tests from _/her2_strided_batched
+2: [----------] 72 tests from _/her2_strided_batched (216 ms total)
+2: 
+2: [----------] 40 tests from _/hpmv
+2: [----------] 40 tests from _/hpmv (259 ms total)
+2: 
+2: [----------] 72 tests from _/hpmv_batched
+2: [----------] 72 tests from _/hpmv_batched (468 ms total)
+2: 
+2: [----------] 72 tests from _/hpmv_strided_batched
+2: [----------] 72 tests from _/hpmv_strided_batched (467 ms total)
+2: 
+2: [----------] 40 tests from _/hpr
+2: [----------] 40 tests from _/hpr (122 ms total)
+2: 
+2: [----------] 72 tests from _/hpr_batched
+2: [----------] 72 tests from _/hpr_batched (179 ms total)
+2: 
+2: [----------] 72 tests from _/hpr_strided_batched
+2: [----------] 72 tests from _/hpr_strided_batched (251 ms total)
+2: 
+2: [----------] 40 tests from _/hpr2
+2: [----------] 40 tests from _/hpr2 (69 ms total)
+2: 
+2: [----------] 72 tests from _/hpr2_batched
+2: [----------] 72 tests from _/hpr2_batched (414 ms total)
+2: 
+2: [----------] 72 tests from _/hpr2_strided_batched
+2: [----------] 72 tests from _/hpr2_strided_batched (172 ms total)
+2: 
+2: [----------] 40 tests from _/sbmv
+2: [----------] 40 tests from _/sbmv (54 ms total)
+2: 
+2: [----------] 72 tests from _/sbmv_batched
+2: [----------] 72 tests from _/sbmv_batched (155 ms total)
+2: 
+2: [----------] 72 tests from _/sbmv_strided_batched
+2: [----------] 72 tests from _/sbmv_strided_batched (165 ms total)
+2: 
+2: [----------] 40 tests from _/spmv
+2: [----------] 40 tests from _/spmv (70 ms total)
+2: 
+2: [----------] 72 tests from _/spmv_batched
+2: [----------] 72 tests from _/spmv_batched (191 ms total)
+2: 
+2: [----------] 72 tests from _/spmv_strided_batched
+2: [----------] 72 tests from _/spmv_strided_batched (183 ms total)
+2: 
+2: [----------] 80 tests from _/spr
+2: [----------] 80 tests from _/spr (276 ms total)
+2: 
+2: [----------] 144 tests from _/spr_batched
+2: [----------] 144 tests from _/spr_batched (478 ms total)
+2: 
+2: [----------] 144 tests from _/spr_strided_batched
+2: [----------] 144 tests from _/spr_strided_batched (696 ms total)
+2: 
+2: [----------] 40 tests from _/spr2
+2: [----------] 40 tests from _/spr2 (292 ms total)
+2: 
+2: [----------] 72 tests from _/spr2_batched
+2: [----------] 72 tests from _/spr2_batched (213 ms total)
+2: 
+2: [----------] 72 tests from _/spr2_strided_batched
+2: [----------] 72 tests from _/spr2_strided_batched (915 ms total)
+2: 
+2: [----------] 80 tests from _/symv
+2: [----------] 80 tests from _/symv (218 ms total)
+2: 
+2: [----------] 144 tests from _/symv_batched
+2: [----------] 144 tests from _/symv_batched (348 ms total)
+2: 
+2: [----------] 144 tests from _/symv_strided_batched
+2: [----------] 144 tests from _/symv_strided_batched (254 ms total)
+2: 
+2: [----------] 80 tests from _/syr
+2: [----------] 80 tests from _/syr (256 ms total)
+2: 
+2: [----------] 144 tests from _/syr_batched
+2: [----------] 144 tests from _/syr_batched (716 ms total)
+2: 
+2: [----------] 144 tests from _/syr_strided_batched
+2: [----------] 144 tests from _/syr_strided_batched (860 ms total)
+2: 
+2: [----------] 80 tests from _/syr2
+2: [----------] 80 tests from _/syr2 (312 ms total)
+2: 
+2: [----------] 144 tests from _/syr2_batched
+2: [----------] 144 tests from _/syr2_batched (1037 ms total)
+2: 
+2: [----------] 144 tests from _/syr2_strided_batched
+2: [----------] 144 tests from _/syr2_strided_batched (703 ms total)
+2: 
+2: [----------] 400 tests from _/tbmv
+2: [----------] 400 tests from _/tbmv (895 ms total)
+2: 
+2: [----------] 784 tests from _/tbmv_batched
+2: [----------] 784 tests from _/tbmv_batched (4054 ms total)
+2: 
+2: [----------] 784 tests from _/tbmv_strided_batched
+2: [----------] 784 tests from _/tbmv_strided_batched (3120 ms total)
+2: 
+2: [----------] 400 tests from _/tbsv
+2: [----------] 400 tests from _/tbsv (170 ms total)
+2: 
+2: [----------] 784 tests from _/tbsv_batched
+2: [----------] 784 tests from _/tbsv_batched (310 ms total)
+2: 
+2: [----------] 784 tests from _/tbsv_strided_batched
+2: [----------] 784 tests from _/tbsv_strided_batched (308 ms total)
+2: 
+2: [----------] 400 tests from _/tpmv
+2: [----------] 400 tests from _/tpmv (647 ms total)
+2: 
+2: [----------] 784 tests from _/tpmv_batched
+2: [----------] 784 tests from _/tpmv_batched (2697 ms total)
+2: 
+2: [----------] 784 tests from _/tpmv_strided_batched
+2: [----------] 784 tests from _/tpmv_strided_batched (4420 ms total)
+2: 
+2: [----------] 400 tests from _/tpsv
+2: [----------] 400 tests from _/tpsv (1073 ms total)
+2: 
+2: [----------] 784 tests from _/tpsv_batched
+[HEARTBEAT 2026-07-03 18:14:23] test running...
+2: [----------] 784 tests from _/tpsv_batched (4595 ms total)
+2: 
+2: [----------] 784 tests from _/tpsv_strided_batched
+2: [----------] 784 tests from _/tpsv_strided_batched (3270 ms total)
+2: 
+2: [----------] 400 tests from _/trmv
+2: [----------] 400 tests from _/trmv (527 ms total)
+2: 
+2: [----------] 784 tests from _/trmv_batched
+2: [----------] 784 tests from _/trmv_batched (2465 ms total)
+2: 
+2: [----------] 784 tests from _/trmv_strided_batched
+2: [----------] 784 tests from _/trmv_strided_batched (2841 ms total)
+2: 
+2: [----------] 400 tests from _/trsv
+2: [----------] 400 tests from _/trsv (1268 ms total)
+2: 
+2: [----------] 784 tests from _/trsv_batched
+2: [----------] 784 tests from _/trsv_batched (3643 ms total)
+2: 
+2: [----------] 784 tests from _/trsv_strided_batched
+2: [----------] 784 tests from _/trsv_strided_batched (4213 ms total)
+2: 
+2: [----------] 80 tests from _/dgmm
+2: [----------] 80 tests from _/dgmm (261 ms total)
+2: 
+2: [----------] 144 tests from _/dgmm_batched
+2: [----------] 144 tests from _/dgmm_batched (998 ms total)
+2: 
+2: [----------] 144 tests from _/dgmm_strided_batched
+2: [----------] 144 tests from _/dgmm_strided_batched (1039 ms total)
+2: 
+2: [----------] 380 tests from _/gemm
+2: [----------] 380 tests from _/gemm (185 ms total)
+2: 
+2: [----------] 380 tests from _/gemm_batched
+2: [----------] 380 tests from _/gemm_batched (152 ms total)
+2: 
+2: [----------] 380 tests from _/gemm_strided_batched
+2: [----------] 380 tests from _/gemm_strided_batched (150 ms total)
+2: 
+2: [----------] 72 tests from _/hemm
+2: [----------] 72 tests from _/hemm (36 ms total)
+2: 
+2: [----------] 136 tests from _/hemm_batched
+2: [----------] 136 tests from _/hemm_batched (55 ms total)
+2: 
+2: [----------] 136 tests from _/hemm_strided_batched
+2: [----------] 136 tests from _/hemm_strided_batched (55 ms total)
+2: 
+2: [----------] 152 tests from _/geam
+2: [----------] 152 tests from _/geam (370 ms total)
+2: 
+2: [----------] 296 tests from _/geam_batched
+2: [----------] 296 tests from _/geam_batched (1356 ms total)
+2: 
+2: [----------] 296 tests from _/geam_strided_batched
+2: [----------] 296 tests from _/geam_strided_batched (1660 ms total)
+2: 
+2: [----------] 72 tests from _/herk
+2: [----------] 72 tests from _/herk (364 ms total)
+2: 
+2: [----------] 136 tests from _/herk_batched
+2: [----------] 136 tests from _/herk_batched (486 ms total)
+2: 
+2: [----------] 136 tests from _/herk_strided_batched
+2: [----------] 136 tests from _/herk_strided_batched (636 ms total)
+2: 
+2: [----------] 104 tests from _/her2k
+2: [----------] 104 tests from _/her2k (46 ms total)
+2: 
+2: [----------] 200 tests from _/her2k_batched
+2: [----------] 200 tests from _/her2k_batched (88 ms total)
+2: 
+2: [----------] 200 tests from _/her2k_strided_batched
+2: [----------] 200 tests from _/her2k_strided_batched (83 ms total)
+2: 
+2: [----------] 72 tests from _/herkx
+2: [----------] 72 tests from _/herkx (31 ms total)
+2: 
+2: [----------] 136 tests from _/herkx_batched
+2: [----------] 136 tests from _/herkx_batched (56 ms total)
+2: 
+2: [----------] 136 tests from _/herkx_strided_batched
+2: [----------] 136 tests from _/herkx_strided_batched (55 ms total)
+2: 
+2: [----------] 144 tests from _/symm
+2: [----------] 144 tests from _/symm (59 ms total)
+2: 
+2: [----------] 272 tests from _/symm_batched
+2: [----------] 272 tests from _/symm_batched (108 ms total)
+2: 
+2: [----------] 272 tests from _/symm_strided_batched
+2: [----------] 272 tests from _/symm_strided_batched (108 ms total)
+2: 
+2: [----------] 144 tests from _/syrk
+2: [----------] 144 tests from _/syrk (59 ms total)
+2: 
+2: [----------] 400 tests from _/syrk_batched
+2: [----------] 400 tests from _/syrk_batched (156 ms total)
+2: 
+2: [----------] 400 tests from _/syrk_strided_batched
+2: [----------] 400 tests from _/syrk_strided_batched (156 ms total)
+2: 
+2: [----------] 144 tests from _/syr2k
+2: [----------] 144 tests from _/syr2k (65 ms total)
+2: 
+2: [----------] 400 tests from _/syr2k_batched
+2: [----------] 400 tests from _/syr2k_batched (158 ms total)
+2: 
+2: [----------] 400 tests from _/syr2k_strided_batched
+2: [----------] 400 tests from _/syr2k_strided_batched (158 ms total)
+2: 
+2: [----------] 144 tests from _/syrkx
+2: [----------] 144 tests from _/syrkx (60 ms total)
+2: 
+2: [----------] 400 tests from _/syrkx_batched
+2: [----------] 400 tests from _/syrkx_batched (158 ms total)
+2: 
+2: [----------] 400 tests from _/syrkx_strided_batched
+2: [----------] 400 tests from _/syrkx_strided_batched (163 ms total)
+2: 
+2: [----------] 784 tests from _/trsm
+[HEARTBEAT 2026-07-03 18:15:23] test running...
+2: [----------] 784 tests from _/trsm (33664 ms total)
+2: 
+2: [----------] 1168 tests from _/trsm_batched
+[HEARTBEAT 2026-07-03 18:16:23] test running...
+2: [----------] 1168 tests from _/trsm_batched (73149 ms total)
+2: 
+2: [----------] 1168 tests from _/trsm_strided_batched
+[HEARTBEAT 2026-07-03 18:17:23] test running...
+2: [----------] 1168 tests from _/trsm_strided_batched (73299 ms total)
+2: 
+2: [----------] 400 tests from _/trmm
+2: [----------] 400 tests from _/trmm (15564 ms total)
+2: 
+2: [----------] 1168 tests from _/trmm_batched
+[HEARTBEAT 2026-07-03 18:18:24] test running...
+2: [----------] 1168 tests from _/trmm_batched (58881 ms total)
+2: 
+2: [----------] 1168 tests from _/trmm_strided_batched
+[HEARTBEAT 2026-07-03 18:19:24] test running...
+2: [----------] 1168 tests from _/trmm_strided_batched (59017 ms total)
+2: 
+2: [----------] 72 tests from _/trtri
+2: [----------] 72 tests from _/trtri (721 ms total)
+2: 
+2: [----------] 200 tests from _/trtri_batched
+2: [----------] 200 tests from _/trtri_batched (3190 ms total)
+2: 
+2: [----------] 200 tests from _/trtri_strided_batched
+2: [----------] 200 tests from _/trtri_strided_batched (3496 ms total)
+2: 
+2: [----------] 128 tests from _/axpy_ex
+2: [----------] 128 tests from _/axpy_ex (195 ms total)
+2: 
+2: [----------] 236 tests from _/axpy_batched_ex
+2: [----------] 236 tests from _/axpy_batched_ex (296 ms total)
+2: 
+2: [----------] 236 tests from _/axpy_strided_batched_ex
+2: [----------] 236 tests from _/axpy_strided_batched_ex (306 ms total)
+2: 
+2: [----------] 92 tests from _/dot_ex
+2: [----------] 92 tests from _/dot_ex (75 ms total)
+2: 
+2: [----------] 164 tests from _/dot_batched_ex
+2: [----------] 164 tests from _/dot_batched_ex (408 ms total)
+2: 
+2: [----------] 164 tests from _/dot_strided_batched_ex
+2: [----------] 164 tests from _/dot_strided_batched_ex (220 ms total)
+2: 
+2: [----------] 92 tests from _/dotc_ex
+2: [----------] 92 tests from _/dotc_ex (74 ms total)
+2: 
+2: [----------] 164 tests from _/dotc_batched_ex
+2: [----------] 164 tests from _/dotc_batched_ex (246 ms total)
+2: 
+2: [----------] 164 tests from _/dotc_strided_batched_ex
+2: [----------] 164 tests from _/dotc_strided_batched_ex (438 ms total)
+2: 
+2: [----------] 80 tests from _/nrm2_ex
+2: [----------] 80 tests from _/nrm2_ex (54 ms total)
+2: 
+2: [----------] 152 tests from _/nrm2_batched_ex
+2: [----------] 152 tests from _/nrm2_batched_ex (143 ms total)
+2: 
+2: [----------] 152 tests from _/nrm2_strided_batched_ex
+2: [----------] 152 tests from _/nrm2_strided_batched_ex (112 ms total)
+2: 
+2: [----------] 112 tests from _/rot_ex
+2: [----------] 112 tests from _/rot_ex (101 ms total)
+2: 
+2: [----------] 208 tests from _/rot_batched_ex
+2: [----------] 208 tests from _/rot_batched_ex (257 ms total)
+2: 
+2: [----------] 208 tests from _/rot_strided_batched_ex
+2: [----------] 208 tests from _/rot_strided_batched_ex (387 ms total)
+2: 
+2: [----------] 152 tests from _/scal_ex
+2: [----------] 152 tests from _/scal_ex (81 ms total)
+2: 
+2: [----------] 284 tests from _/scal_batched_ex
+2: [----------] 284 tests from _/scal_batched_ex (225 ms total)
+2: 
+2: [----------] 284 tests from _/scal_strided_batched_ex
+2: [----------] 284 tests from _/scal_strided_batched_ex (218 ms total)
+2: 
+2: [----------] 392 tests from _/trsm_ex
+[HEARTBEAT 2026-07-03 18:20:24] test running...
+2: [----------] 392 tests from _/trsm_ex (8574 ms total)
+2: 
+2: [----------] 776 tests from _/trsm_batched_ex
+2: [----------] 776 tests from _/trsm_batched_ex (41882 ms total)
+2: 
+2: [----------] 776 tests from _/trsm_strided_batched_ex
+[HEARTBEAT 2026-07-03 18:21:24] test running...
+2: [----------] 776 tests from _/trsm_strided_batched_ex (41139 ms total)
+2: 
+2: [----------] 452 tests from _/gemm_ex
+2: [----------] 452 tests from _/gemm_ex (520 ms total)
+2: 
+2: [----------] 452 tests from _/gemm_batched_ex
+2: [----------] 452 tests from _/gemm_batched_ex (532 ms total)
+2: 
+2: [----------] 452 tests from _/gemm_strided_batched_ex
+2: [----------] 452 tests from _/gemm_strided_batched_ex (538 ms total)
+2: 
+2: [----------] 104 tests from _/syrk_ex
+2: [----------] 104 tests from _/syrk_ex (295 ms total)
+2: 
+2: [----------] 36 tests from _/herk_ex
+2: [----------] 36 tests from _/herk_ex (236 ms total)
+2: 
+2: [----------] 24 tests from _/getrf
+2: [----------] 24 tests from _/getrf (4054 ms total)
+2: 
+2: [----------] 56 tests from _/getrf_batched
+2: [----------] 56 tests from _/getrf_batched (13107 ms total)
+2: 
+2: [----------] 56 tests from _/getrf_strided_batched
+2: [----------] 56 tests from _/getrf_strided_batched (12835 ms total)
+2: 
+2: [----------] 24 tests from _/getrf_npvt
+[HEARTBEAT 2026-07-03 18:22:24] test running...
+2: [----------] 24 tests from _/getrf_npvt (4160 ms total)
+2: 
+2: [----------] 56 tests from _/getrf_npvt_batched
+2: [----------] 56 tests from _/getrf_npvt_batched (10527 ms total)
+2: 
+2: [----------] 56 tests from _/getrf_npvt_strided_batched
+2: [----------] 56 tests from _/getrf_npvt_strided_batched (13517 ms total)
+2: 
+2: [----------] 24 tests from _/getrs
+2: [----------] 24 tests from _/getrs (4875 ms total)
+2: 
+2: [----------] 56 tests from _/getrs_batched
+2: [----------] 56 tests from _/getrs_batched (16213 ms total)
+2: 
+2: [----------] 56 tests from _/getrs_strided_batched
+2: [----------] 56 tests from _/getrs_strided_batched (8385 ms total)
+2: 
+2: [----------] 56 tests from _/getri_batched
+[HEARTBEAT 2026-07-03 18:23:24] test running...
+2: [----------] 56 tests from _/getri_batched (23513 ms total)
+2: 
+2: [----------] 56 tests from _/getri_npvt_batched
+2: [----------] 56 tests from _/getri_npvt_batched (11640 ms total)
+2: 
+2: [----------] 24 tests from _/geqrf
+2: [----------] 24 tests from _/geqrf (3578 ms total)
+2: 
+2: [----------] 56 tests from _/geqrf_batched
+[HEARTBEAT 2026-07-03 18:24:24] test running...
+2: [----------] 56 tests from _/geqrf_batched (25187 ms total)
+2: 
+2: [----------] 56 tests from _/geqrf_strided_batched
+2: [----------] 56 tests from _/geqrf_strided_batched (31656 ms total)
+2: 
+2: [----------] 56 tests from _/gels
+[HEARTBEAT 2026-07-03 18:25:24] test running...
+2: [----------] 56 tests from _/gels (60444 ms total)
+2: 
+2: [----------] 152 tests from _/gels_batched
+[HEARTBEAT 2026-07-03 18:26:24] test running...
+[HEARTBEAT 2026-07-03 18:27:24] test running...
+2: [----------] 152 tests from _/gels_batched (131118 ms total)
+2: 
+2: [----------] 152 tests from _/gels_strided_batched
+[HEARTBEAT 2026-07-03 18:28:24] test running...
+[HEARTBEAT 2026-07-03 18:29:24] test running...
+2: [----------] 152 tests from _/gels_strided_batched (126146 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 47357 tests from 209 test suites ran. (1009688 ms total)
+2: [  PASSED  ] 47357 tests.
+2: hipBLAS version 3.5.0.abd990e7d9f
+2: command line: /home/zs/TheRock/output-linux-portable/build/math-libs/BLAS/hipBLAS/build/clients/staging/hipblas-test --gtest_filter=*quick*:*pre_checkin*-*known_bug* 
+1/1 Test #2: hipblas-test_standard_suite ......   Passed  1011.04 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+pr            = 1011.04 sec*proc (1 test)
+precheckin    = 1011.04 sec*proc (1 test)
+standard      = 1011.04 sec*proc (1 test)
+
+Total Test time (real) = 1011.04 sec
+# TEST_COMPONENT: hipblas -> Test Directory: /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblas
+# TEST_TYPE: standard -> Category: standard
+# AMDGPU_FAMILIES: None -> GPU Architecture: 
+
+# Discovering available test labels...
+# Warning: No GPU specific test suites available
+
+# Running: ctest -L ^standard$ -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblas -V --tests-information 1,,1
+
+[2026-07-03 18:30:15] ===== hipblas standard: PASS (1012s, rc=0) =====

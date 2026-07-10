@@ -109,8 +109,7 @@ sandbox/
 tmp/
 
 # 日志文件
-logs/
-*.log
+
 debug-*.md
 
 # 记忆/向量库（可重建）

@@ -1,0 +1,1322 @@
+half epsilon: 0.000977	single epsilon: 3.75e-05	double epsilon: 1e-15
+Random seed: 2936590632
+rocFFT version: 1.0.38.abd990e7d9f
+Refraining from using more than 29 GiB 488 MiB of system memory.
+Refraining from using more than 96 GiB of device memory.
+[==========] Running 374 tests from 45 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from manual
+[ RUN      ] manual.vs_fftw
+Manual test:
+	length: 8
+	istride: 1
+	idist: 8
+	ostride: 1
+	odist: 8
+	batch: 1
+	isize: 8
+	osize: 8
+	ioffset: 0 0
+	ooffset: 0 0
+	in-place
+	transform_type: fft_transform_type_complex_forward
+	fft_array_type_complex_interleaved -> fft_array_type_complex_interleaved
+	single-precision
+	ilength: 8
+	olength: 8
+	ibuffer_size: 64
+	obuffer_size: 64
+	
+Token: complex_forward_len_8_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_8_odist_8_ioffset_0_0_ooffset_0_0
+[       OK ] manual.vs_fftw (101 ms)
+[ RUN      ] manual.bitwise_reproducibility
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/gtest_main.cpp:860: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] manual.bitwise_reproducibility (0 ms)
+[----------] 2 tests from manual (101 ms total)
+
+[----------] 3 tests from bitwise_repro_test
+[ RUN      ] bitwise_repro_test.compare_precisions
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:38: Skipped
+
+
+[  SKIPPED ] bitwise_repro_test.compare_precisions (0 ms)
+[ RUN      ] bitwise_repro_test.compare_lengths
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:75: Skipped
+
+
+[  SKIPPED ] bitwise_repro_test.compare_lengths (0 ms)
+[ RUN      ] bitwise_repro_test.compare_transform_types
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:112: Skipped
+
+
+[  SKIPPED ] bitwise_repro_test.compare_transform_types (0 ms)
+[----------] 3 tests from bitwise_repro_test (0 ms total)
+
+[----------] 25 tests from rocfft_UnitTest
+[ RUN      ] rocfft_UnitTest.buffer_hashing_half
+[       OK ] rocfft_UnitTest.buffer_hashing_half (26 ms)
+[ RUN      ] rocfft_UnitTest.buffer_hashing_single
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/buffer_hash_test.cpp:389: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.buffer_hashing_single (0 ms)
+[ RUN      ] rocfft_UnitTest.buffer_hashing_double
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/buffer_hash_test.cpp:415: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.buffer_hashing_double (0 ms)
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_complex_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_load_callback_real_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_complex_double
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_single
+[ DISABLED ] rocfft_UnitTest.DISABLED_default_store_callback_real_double
+[ RUN      ] rocfft_UnitTest.1D_hermitian_single_small
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/hermitian_test.cpp:179: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.1D_hermitian_single_small (0 ms)
+[ RUN      ] rocfft_UnitTest.1D_hermitian_single_large
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/hermitian_test.cpp:195: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.1D_hermitian_single_large (0 ms)
+[ RUN      ] rocfft_UnitTest.gpu_symmetrizer
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/hermitian_test.cpp:226: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.gpu_symmetrizer (0 ms)
+[ RUN      ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/hermitian_test.cpp:382: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers (0 ms)
+[ RUN      ] rocfft_UnitTest.hipGraph_execution
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/hipGraph_test.cpp:278: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.hipGraph_execution (0 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_1D
+[       OK ] rocfft_UnitTest.simple_multistream_1D (569 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_2D
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/multithread_test.cpp:373: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.simple_multistream_2D (0 ms)
+[ RUN      ] rocfft_UnitTest.simple_multistream_3D
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/multithread_test.cpp:384: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.simple_multistream_3D (0 ms)
+[ RUN      ] rocfft_UnitTest.plan_description
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:73: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.plan_description (0 ms)
+[ RUN      ] rocfft_UnitTest.plan_description_reuse
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:131: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.plan_description_reuse (0 ms)
+[ RUN      ] rocfft_UnitTest.nonzero_offsets
+[       OK ] rocfft_UnitTest.nonzero_offsets (0 ms)
+[ RUN      ] rocfft_UnitTest.log_levels
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:292: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.log_levels (0 ms)
+[ RUN      ] rocfft_UnitTest.log_multithreading
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:377: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.log_multithreading (0 ms)
+[ RUN      ] rocfft_UnitTest.workmem_missing
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:513: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.workmem_missing (0 ms)
+[ RUN      ] rocfft_UnitTest.workmem_small
+[       OK ] rocfft_UnitTest.workmem_small (160 ms)
+[ RUN      ] rocfft_UnitTest.workmem_big
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:546: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.workmem_big (0 ms)
+[ RUN      ] rocfft_UnitTest.workmem_null
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:564: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.workmem_null (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_iter_1
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:581: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_iter_1 (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_iter_2
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:581: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_iter_2 (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_cache_null
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:755: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_null (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_helper_crash
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/unit_test.cpp:777: Skipped
+
+
+[  SKIPPED ] rocfft_UnitTest.rtc_helper_crash (0 ms)
+[ RUN      ] rocfft_UnitTest.rtc_test_harness
+[       OK ] rocfft_UnitTest.rtc_test_harness (6436 ms)
+[----------] 25 tests from rocfft_UnitTest (7194 ms total)
+
+[----------] 1 test from multi_gpu_validate
+[ RUN      ] multi_gpu_validate.catch_validation_errors
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/multi_device_test.cpp:321: Skipped
+
+
+[  SKIPPED ] multi_gpu_validate.catch_validation_errors (0 ms)
+[----------] 1 test from multi_gpu_validate (0 ms total)
+
+[----------] 1 test from rocfft
+[ RUN      ] rocfft.cApi
+[       OK ] rocfft.cApi (0 ms)
+[----------] 1 test from rocfft (0 ms total)
+
+[----------] 1 test from prime_1D/accuracy_test
+[ RUN      ] prime_1D/accuracy_test.vs_fftw/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0
+[       OK ] prime_1D/accuracy_test.vs_fftw/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0 (1758 ms)
+[----------] 1 test from prime_1D/accuracy_test (1758 ms total)
+
+[----------] 1 test from mix_1D/accuracy_test
+[ RUN      ] mix_1D/accuracy_test.vs_fftw/real_forward_len_1500_double_op_batch_1_istride_1_R_ostride_1_HI_idist_1500_odist_751_ioffset_0_0_ooffset_0_0
+[       OK ] mix_1D/accuracy_test.vs_fftw/real_forward_len_1500_double_op_batch_1_istride_1_R_ostride_1_HI_idist_1500_odist_751_ioffset_0_0_ooffset_0_0 (333 ms)
+[----------] 1 test from mix_1D/accuracy_test (333 ms total)
+
+[----------] 9 tests from small_1D/accuracy_test
+[ RUN      ] small_1D/accuracy_test.vs_fftw/complex_forward_len_1627_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_1627_odist_1627_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/complex_forward_len_1627_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_1627_odist_1627_ioffset_0_0_ooffset_0_0 (585 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/complex_forward_len_2327_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_2327_odist_2327_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/complex_forward_len_2327_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_2327_odist_2327_ioffset_0_0_ooffset_0_0 (642 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/complex_forward_len_3705_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_3705_odist_3705_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/complex_forward_len_3705_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_3705_odist_3705_ioffset_0_0_ooffset_0_0 (1061 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/complex_forward_len_4104_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_4104_odist_4104_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/complex_forward_len_4104_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_4104_odist_4104_ioffset_0_0_ooffset_0_0 (283 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/real_forward_len_574_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_576_odist_288_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/real_forward_len_574_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_576_odist_288_ioffset_0_0_ooffset_0_0 (884 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/real_forward_len_2639_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_2640_odist_1320_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/real_forward_len_2639_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_2640_odist_1320_ioffset_0_0_ooffset_0_0 (600 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/real_forward_len_6835_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_6836_odist_3418_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/real_forward_len_6835_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_6836_odist_3418_ioffset_0_0_ooffset_0_0 (179 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/real_forward_len_6868_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_6870_odist_3435_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/real_forward_len_6868_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_6870_odist_3435_ioffset_0_0_ooffset_0_0 (2029 ms)
+[ RUN      ] small_1D/accuracy_test.vs_fftw/real_forward_len_7346_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_7348_odist_3674_ioffset_0_0_ooffset_0_0
+[       OK ] small_1D/accuracy_test.vs_fftw/real_forward_len_7346_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_7348_odist_3674_ioffset_0_0_ooffset_0_0 (1673 ms)
+[----------] 9 tests from small_1D/accuracy_test (7940 ms total)
+
+[----------] 2 tests from pow2_2D/accuracy_test
+[ RUN      ] pow2_2D/accuracy_test.vs_fftw/real_forward_len_4_64_double_op_batch_2_istride_64_1_R_ostride_33_1_HI_idist_256_odist_132_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_2D/accuracy_test.vs_fftw/real_forward_len_4_64_double_op_batch_2_istride_64_1_R_ostride_33_1_HI_idist_256_odist_132_ioffset_0_0_ooffset_0_0 (719 ms)
+[ RUN      ] pow2_2D/accuracy_test.vs_fftw/real_forward_len_8_4_double_op_batch_2_istride_4_1_R_ostride_3_1_HI_idist_32_odist_24_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_2D/accuracy_test.vs_fftw/real_forward_len_8_4_double_op_batch_2_istride_4_1_R_ostride_3_1_HI_idist_32_odist_24_ioffset_0_0_ooffset_0_0 (122 ms)
+[----------] 2 tests from pow2_2D/accuracy_test (842 ms total)
+
+[----------] 1 test from pow2_2D_half/accuracy_test
+[ RUN      ] pow2_2D_half/accuracy_test.vs_fftw/real_forward_len_2_2_half_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_8_odist_4_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_2D_half/accuracy_test.vs_fftw/real_forward_len_2_2_half_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_8_odist_4_ioffset_0_0_ooffset_0_0 (658 ms)
+[----------] 1 test from pow2_2D_half/accuracy_test (658 ms total)
+
+[----------] 1 test from pow5_2D/accuracy_test
+[ RUN      ] pow5_2D/accuracy_test.vs_fftw/complex_forward_len_25_3125_single_op_batch_1_istride_3125_1_CI_ostride_3125_1_CP_idist_78125_odist_78125_ioffset_0_0_ooffset_0_0
+[       OK ] pow5_2D/accuracy_test.vs_fftw/complex_forward_len_25_3125_single_op_batch_1_istride_3125_1_CI_ostride_3125_1_CP_idist_78125_odist_78125_ioffset_0_0_ooffset_0_0 (964 ms)
+[----------] 1 test from pow5_2D/accuracy_test (964 ms total)
+
+[----------] 2 tests from prime_2D/accuracy_test
+[ RUN      ] prime_2D/accuracy_test.vs_fftw/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0
+[       OK ] prime_2D/accuracy_test.vs_fftw/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0 (230 ms)
+[ RUN      ] prime_2D/accuracy_test.vs_fftw/real_forward_len_271_11_single_op_batch_1_istride_11_1_R_ostride_6_1_HI_idist_2981_odist_1626_ioffset_0_0_ooffset_0_0
+[       OK ] prime_2D/accuracy_test.vs_fftw/real_forward_len_271_11_single_op_batch_1_istride_11_1_R_ostride_6_1_HI_idist_2981_odist_1626_ioffset_0_0_ooffset_0_0 (227 ms)
+[----------] 2 tests from prime_2D/accuracy_test (457 ms total)
+
+[----------] 2 tests from pow2_3D/accuracy_test
+[ RUN      ] pow2_3D/accuracy_test.vs_fftw/real_forward_len_8_32_256_double_op_batch_1_istride_8192_256_1_R_ostride_4128_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_3D/accuracy_test.vs_fftw/real_forward_len_8_32_256_double_op_batch_1_istride_8192_256_1_R_ostride_4128_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0 (166 ms)
+[ RUN      ] pow2_3D/accuracy_test.vs_fftw/real_forward_len_128_32_8_single_ip_batch_2_istride_320_10_1_R_ostride_160_5_1_HI_idist_40960_odist_20480_ioffset_0_0_ooffset_0_0
+[       OK ] pow2_3D/accuracy_test.vs_fftw/real_forward_len_128_32_8_single_ip_batch_2_istride_320_10_1_R_ostride_160_5_1_HI_idist_40960_odist_20480_ioffset_0_0_ooffset_0_0 (196 ms)
+[----------] 2 tests from pow2_3D/accuracy_test (362 ms total)
+
+[----------] 3 tests from pow3_3D/accuracy_test
+[ RUN      ] pow3_3D/accuracy_test.vs_fftw/complex_forward_len_27_27_81_single_op_batch_2_istride_2187_81_1_CI_ostride_2187_81_1_CI_idist_59049_odist_59049_ioffset_0_0_ooffset_0_0
+[       OK ] pow3_3D/accuracy_test.vs_fftw/complex_forward_len_27_27_81_single_op_batch_2_istride_2187_81_1_CI_ostride_2187_81_1_CI_idist_59049_odist_59049_ioffset_0_0_ooffset_0_0 (885 ms)
+[ RUN      ] pow3_3D/accuracy_test.vs_fftw/complex_forward_len_81_9_243_single_op_batch_1_istride_2187_243_1_CI_ostride_2187_243_1_CI_idist_177147_odist_177147_ioffset_0_0_ooffset_0_0
+[       OK ] pow3_3D/accuracy_test.vs_fftw/complex_forward_len_81_9_243_single_op_batch_1_istride_2187_243_1_CI_ostride_2187_243_1_CI_idist_177147_odist_177147_ioffset_0_0_ooffset_0_0 (572 ms)
+[ RUN      ] pow3_3D/accuracy_test.vs_fftw/real_forward_len_243_27_243_single_op_batch_1_istride_6561_243_1_R_ostride_3294_122_1_HI_idist_1594323_odist_800442_ioffset_0_0_ooffset_0_0
+[       OK ] pow3_3D/accuracy_test.vs_fftw/real_forward_len_243_27_243_single_op_batch_1_istride_6561_243_1_R_ostride_3294_122_1_HI_idist_1594323_odist_800442_ioffset_0_0_ooffset_0_0 (160 ms)
+[----------] 3 tests from pow3_3D/accuracy_test (1618 ms total)
+
+[----------] 1 test from pow5_3D/accuracy_test
+[ RUN      ] pow5_3D/accuracy_test.vs_fftw/real_forward_len_5_25_25_double_ip_batch_1_istride_650_26_1_R_ostride_325_13_1_HI_idist_3250_odist_1625_ioffset_0_0_ooffset_0_0
+[       OK ] pow5_3D/accuracy_test.vs_fftw/real_forward_len_5_25_25_double_ip_batch_1_istride_650_26_1_R_ostride_325_13_1_HI_idist_3250_odist_1625_ioffset_0_0_ooffset_0_0 (511 ms)
+[----------] 1 test from pow5_3D/accuracy_test (511 ms total)
+
+[----------] 2 tests from prime_3D/accuracy_test
+[ RUN      ] prime_3D/accuracy_test.vs_fftw/complex_forward_len_13_7_19_single_ip_batch_1_istride_133_19_1_CI_ostride_133_19_1_CI_idist_1729_odist_1729_ioffset_0_0_ooffset_0_0
+[       OK ] prime_3D/accuracy_test.vs_fftw/complex_forward_len_13_7_19_single_ip_batch_1_istride_133_19_1_CI_ostride_133_19_1_CI_idist_1729_odist_1729_ioffset_0_0_ooffset_0_0 (93 ms)
+[ RUN      ] prime_3D/accuracy_test.vs_fftw/real_forward_len_17_11_7_double_op_batch_1_istride_77_7_1_R_ostride_44_4_1_HI_idist_1309_odist_748_ioffset_0_0_ooffset_0_0
+[       OK ] prime_3D/accuracy_test.vs_fftw/real_forward_len_17_11_7_double_op_batch_1_istride_77_7_1_R_ostride_44_4_1_HI_idist_1309_odist_748_ioffset_0_0_ooffset_0_0 (96 ms)
+[----------] 2 tests from prime_3D/accuracy_test (190 ms total)
+
+[----------] 3 tests from mix_3D/accuracy_test
+[ RUN      ] mix_3D/accuracy_test.vs_fftw/complex_forward_len_4_243_29_double_op_batch_2_istride_7047_29_1_CI_ostride_7047_29_1_CI_idist_28188_odist_28188_ioffset_0_0_ooffset_0_0
+[       OK ] mix_3D/accuracy_test.vs_fftw/complex_forward_len_4_243_29_double_op_batch_2_istride_7047_29_1_CI_ostride_7047_29_1_CI_idist_28188_odist_28188_ioffset_0_0_ooffset_0_0 (129 ms)
+[ RUN      ] mix_3D/accuracy_test.vs_fftw/real_forward_len_8_3_7_single_ip_batch_1_istride_24_8_1_R_ostride_12_4_1_HI_idist_192_odist_96_ioffset_0_0_ooffset_0_0
+[       OK ] mix_3D/accuracy_test.vs_fftw/real_forward_len_8_3_7_single_ip_batch_1_istride_24_8_1_R_ostride_12_4_1_HI_idist_192_odist_96_ioffset_0_0_ooffset_0_0 (121 ms)
+[ RUN      ] mix_3D/accuracy_test.vs_fftw/real_forward_len_16_243_29_double_ip_batch_1_istride_7290_30_1_R_ostride_3645_15_1_HI_idist_116640_odist_58320_ioffset_0_0_ooffset_0_0
+[       OK ] mix_3D/accuracy_test.vs_fftw/real_forward_len_16_243_29_double_ip_batch_1_istride_7290_30_1_R_ostride_3645_15_1_HI_idist_116640_odist_58320_ioffset_0_0_ooffset_0_0 (136 ms)
+[----------] 3 tests from mix_3D/accuracy_test (386 ms total)
+
+[----------] 3 tests from sbrc_3D/accuracy_test
+[ RUN      ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_10_256_50_double_op_batch_2_istride_12800_50_1_CI_ostride_12800_50_1_CI_idist_128000_odist_128000_ioffset_0_0_ooffset_0_0
+[       OK ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_10_256_50_double_op_batch_2_istride_12800_50_1_CI_ostride_12800_50_1_CI_idist_128000_odist_128000_ioffset_0_0_ooffset_0_0 (120 ms)
+[ RUN      ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_50_256_81_double_op_batch_1_istride_20736_81_1_CI_ostride_20736_81_1_CI_idist_1036800_odist_1036800_ioffset_0_0_ooffset_0_0
+[       OK ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_50_256_81_double_op_batch_1_istride_20736_81_1_CI_ostride_20736_81_1_CI_idist_1036800_odist_1036800_ioffset_0_0_ooffset_0_0 (184 ms)
+[ RUN      ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_81_100_64_double_op_batch_2_istride_6400_64_1_CI_ostride_6400_64_1_CI_idist_518400_odist_518400_ioffset_0_0_ooffset_0_0
+[       OK ] sbrc_3D/accuracy_test.vs_fftw/complex_forward_len_81_100_64_double_op_batch_2_istride_6400_64_1_CI_ostride_6400_64_1_CI_idist_518400_odist_518400_ioffset_0_0_ooffset_0_0 (159 ms)
+[----------] 3 tests from sbrc_3D/accuracy_test (464 ms total)
+
+[----------] 11 tests from inner_batch_3D/accuracy_test
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_8_24_20_double_ip_batch_1_istride_480_20_1_CI_ostride_480_20_1_CI_idist_3840_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_8_24_20_double_ip_batch_1_istride_480_20_1_CI_ostride_480_20_1_CI_idist_3840_odist_1_ioffset_0_0_ooffset_0_0 (121 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_20_8_8_single_op_batch_2_istride_64_8_1_CI_ostride_128_16_2_CI_idist_1280_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_20_8_8_single_op_batch_2_istride_64_8_1_CI_ostride_128_16_2_CI_idist_1280_odist_1_ioffset_0_0_ooffset_0_0 (104 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_20_32_64_single_ip_batch_1_istride_2048_64_1_CI_ostride_2048_64_1_CI_idist_40960_odist_40960_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_20_32_64_single_ip_batch_1_istride_2048_64_1_CI_ostride_2048_64_1_CI_idist_40960_odist_40960_ioffset_0_0_ooffset_0_0 (105 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_24_20_16_double_op_batch_2_istride_640_32_2_CI_ostride_640_32_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_24_20_16_double_op_batch_2_istride_640_32_2_CI_ostride_640_32_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (125 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_64_20_64_single_op_batch_1_istride_1280_64_1_CI_ostride_1280_64_1_CI_idist_81920_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_64_20_64_single_op_batch_1_istride_1280_64_1_CI_ostride_1280_64_1_CI_idist_81920_odist_1_ioffset_0_0_ooffset_0_0 (127 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_32_single_ip_batch_1_istride_2048_32_1_CI_ostride_2048_32_1_CI_idist_1_odist_131072_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_32_single_ip_batch_1_istride_2048_32_1_CI_ostride_2048_32_1_CI_idist_1_odist_131072_ioffset_0_0_ooffset_0_0 (123 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_16_20_64_double_op_batch_3_istride_1280_64_1_R_ostride_660_33_1_HP_idist_20480_odist_10560_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_16_20_64_double_op_batch_3_istride_1280_64_1_R_ostride_660_33_1_HP_idist_20480_odist_10560_ioffset_0_0_ooffset_0_0 (494 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_16_32_24_single_op_batch_2_istride_1536_48_2_R_ostride_416_13_1_HI_idist_1_odist_6656_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_16_32_24_single_op_batch_2_istride_1536_48_2_R_ostride_416_13_1_HI_idist_1_odist_6656_ioffset_0_0_ooffset_0_0 (115 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_20_20_4_double_op_batch_1_istride_80_4_1_R_ostride_80_4_1_HI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_20_20_4_double_op_batch_1_istride_80_4_1_R_ostride_80_4_1_HI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (44 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_24_16_16_double_op_batch_2_istride_256_16_1_R_ostride_512_32_2_HP_idist_6144_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_24_16_16_double_op_batch_2_istride_256_16_1_R_ostride_512_32_2_HP_idist_6144_odist_1_ioffset_0_0_ooffset_0_0 (119 ms)
+[ RUN      ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_32_64_8_double_op_batch_3_istride_512_8_1_R_ostride_1536_24_3_HI_idist_16384_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D/accuracy_test.vs_fftw/real_forward_len_32_64_8_double_op_batch_3_istride_512_8_1_R_ostride_1536_24_3_HI_idist_16384_odist_1_ioffset_0_0_ooffset_0_0 (52 ms)
+[----------] 11 tests from inner_batch_3D/accuracy_test (1544 ms total)
+
+[----------] 6 tests from inner_batch_3D_half/accuracy_test
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_4_20_16_half_ip_batch_1_istride_320_16_1_CP_ostride_320_16_1_CP_idist_1_odist_1280_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_4_20_16_half_ip_batch_1_istride_320_16_1_CP_ostride_320_16_1_CP_idist_1_odist_1280_ioffset_0_0_ooffset_0_0 (327 ms)
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_20_4_32_half_ip_batch_2_istride_256_64_2_CI_ostride_256_64_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_20_4_32_half_ip_batch_2_istride_256_64_2_CI_ostride_256_64_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (495 ms)
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_20_16_8_half_ip_batch_1_istride_128_8_1_CI_ostride_128_8_1_CI_idist_2560_odist_2560_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/complex_forward_len_20_16_8_half_ip_batch_1_istride_128_8_1_CI_ostride_128_8_1_CI_idist_2560_odist_2560_ioffset_0_0_ooffset_0_0 (468 ms)
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_20_32_8_half_op_batch_3_istride_256_8_1_R_ostride_160_5_1_HI_idist_5120_odist_3200_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_20_32_8_half_op_batch_3_istride_256_8_1_R_ostride_160_5_1_HI_idist_5120_odist_3200_ioffset_0_0_ooffset_0_0 (538 ms)
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_24_20_4_half_ip_batch_2_istride_120_6_1_R_ostride_60_3_1_HI_idist_2880_odist_1440_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_24_20_4_half_ip_batch_2_istride_120_6_1_R_ostride_60_3_1_HI_idist_2880_odist_1440_ioffset_0_0_ooffset_0_0 (511 ms)
+[ RUN      ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_32_16_8_half_op_batch_3_istride_384_24_3_R_ostride_80_5_1_HI_idist_1_odist_2560_ioffset_0_0_ooffset_0_0
+[       OK ] inner_batch_3D_half/accuracy_test.vs_fftw/real_forward_len_32_16_8_half_op_batch_3_istride_384_24_3_R_ostride_80_5_1_HI_idist_1_odist_2560_ioffset_0_0_ooffset_0_0 (97 ms)
+[----------] 6 tests from inner_batch_3D_half/accuracy_test (2439 ms total)
+
+[----------] 20 tests from emulation_2D/accuracy_test
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_2_150_double_op_batch_2_istride_150_1_CI_ostride_150_1_CI_idist_300_odist_300_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_2_150_double_op_batch_2_istride_150_1_CI_ostride_150_1_CI_idist_300_odist_300_ioffset_0_0_ooffset_0_0 (112 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_16_76_double_op_batch_4_istride_76_1_CI_ostride_76_1_CI_idist_1216_odist_1216_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_16_76_double_op_batch_4_istride_76_1_CI_ostride_76_1_CI_idist_1216_odist_1216_ioffset_0_0_ooffset_0_0 (307 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_29_128_single_ip_batch_1_istride_128_1_CI_ostride_128_1_CI_idist_3712_odist_3712_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_29_128_single_ip_batch_1_istride_128_1_CI_ostride_128_1_CI_idist_3712_odist_3712_ioffset_0_0_ooffset_0_0 (95 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_17_double_op_batch_4_istride_17_1_CI_ostride_17_1_CI_idist_1292_odist_1292_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_17_double_op_batch_4_istride_17_1_CI_ostride_17_1_CI_idist_1292_odist_1292_ioffset_0_0_ooffset_0_0 (97 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_76_double_op_batch_4_istride_76_1_CI_ostride_76_1_CI_idist_5776_odist_5776_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_76_double_op_batch_4_istride_76_1_CI_ostride_76_1_CI_idist_5776_odist_5776_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_76_single_op_batch_2_istride_76_1_CI_ostride_76_1_CI_idist_5776_odist_5776_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_76_76_single_op_batch_2_istride_76_1_CI_ostride_76_1_CI_idist_5776_odist_5776_ioffset_0_0_ooffset_0_0 (118 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_96_2_double_op_batch_1_istride_2_1_CI_ostride_2_1_CI_idist_192_odist_192_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_96_2_double_op_batch_1_istride_2_1_CI_ostride_2_1_CI_idist_192_odist_192_ioffset_0_0_ooffset_0_0 (110 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_96_315_double_op_batch_4_istride_315_1_CI_ostride_315_1_CP_idist_30240_odist_30240_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_96_315_double_op_batch_4_istride_315_1_CI_ostride_315_1_CP_idist_30240_odist_30240_ioffset_0_0_ooffset_0_0 (531 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_128_315_single_ip_batch_2_istride_315_1_CI_ostride_315_1_CI_idist_40320_odist_40320_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_128_315_single_ip_batch_2_istride_315_1_CI_ostride_315_1_CI_idist_40320_odist_40320_ioffset_0_0_ooffset_0_0 (106 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_150_128_double_ip_batch_4_istride_128_1_CI_ostride_128_1_CI_idist_19200_odist_19200_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_150_128_double_ip_batch_4_istride_128_1_CI_ostride_128_1_CI_idist_19200_odist_19200_ioffset_0_0_ooffset_0_0 (122 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_315_112_double_op_batch_2_istride_112_1_CI_ostride_112_1_CI_idist_35280_odist_35280_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_315_112_double_op_batch_2_istride_112_1_CI_ostride_112_1_CI_idist_35280_odist_35280_ioffset_0_0_ooffset_0_0 (118 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_315_150_double_op_batch_2_istride_150_1_CI_ostride_150_1_CP_idist_47250_odist_47250_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/complex_forward_len_315_150_double_op_batch_2_istride_150_1_CI_ostride_150_1_CP_idist_47250_odist_47250_ioffset_0_0_ooffset_0_0 (763 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_3_150_single_op_batch_4_istride_150_1_R_ostride_76_1_HP_idist_450_odist_228_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_3_150_single_op_batch_4_istride_150_1_R_ostride_76_1_HP_idist_450_odist_228_ioffset_0_0_ooffset_0_0 (489 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_16_64_double_ip_batch_1_istride_66_1_R_ostride_33_1_HI_idist_1056_odist_528_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_16_64_double_ip_batch_1_istride_66_1_R_ostride_33_1_HI_idist_1056_odist_528_ioffset_0_0_ooffset_0_0 (526 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_29_96_double_ip_batch_2_istride_98_1_R_ostride_49_1_HI_idist_2842_odist_1421_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_29_96_double_ip_batch_2_istride_98_1_R_ostride_49_1_HI_idist_2842_odist_1421_ioffset_0_0_ooffset_0_0 (489 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_64_2_double_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_256_odist_128_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_64_2_double_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_256_odist_128_ioffset_0_0_ooffset_0_0 (90 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_76_5_single_op_batch_4_istride_5_1_R_ostride_3_1_HI_idist_380_odist_228_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_76_5_single_op_batch_4_istride_5_1_R_ostride_3_1_HI_idist_380_odist_228_ioffset_0_0_ooffset_0_0 (45 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_112_315_single_ip_batch_2_istride_316_1_R_ostride_158_1_HI_idist_35392_odist_17696_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_112_315_single_ip_batch_2_istride_316_1_R_ostride_158_1_HI_idist_35392_odist_17696_ioffset_0_0_ooffset_0_0 (98 ms)
+[ RUN      ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_315_128_single_ip_batch_1_istride_130_1_R_ostride_65_1_HI_idist_40950_odist_20475_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_2D/accuracy_test.vs_fftw/real_forward_len_315_128_single_ip_batch_1_istride_130_1_R_ostride_65_1_HI_idist_40950_odist_20475_ioffset_0_0_ooffset_0_0 (123 ms)
+[----------] 20 tests from emulation_2D/accuracy_test (4365 ms total)
+
+[----------] 154 tests from emulation_3D/accuracy_test
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_16_single_op_batch_1_istride_256_16_1_CI_ostride_256_16_1_CI_idist_512_odist_512_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_16_single_op_batch_1_istride_256_16_1_CI_ostride_256_16_1_CI_idist_512_odist_512_ioffset_0_0_ooffset_0_0 (137 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_32_single_op_batch_4_istride_512_32_1_CI_ostride_512_32_1_CI_idist_1024_odist_1024_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_32_single_op_batch_4_istride_512_32_1_CI_ostride_512_32_1_CI_idist_1024_odist_1024_ioffset_0_0_ooffset_0_0 (106 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_64_double_ip_batch_2_istride_1024_64_1_CI_ostride_1024_64_1_CI_idist_2048_odist_2048_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_16_64_double_ip_batch_2_istride_1024_64_1_CI_ostride_1024_64_1_CI_idist_2048_odist_2048_ioffset_0_0_ooffset_0_0 (92 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_17_5_single_op_batch_4_istride_85_5_1_CP_ostride_85_5_1_CP_idist_170_odist_170_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_17_5_single_op_batch_4_istride_85_5_1_CP_ostride_85_5_1_CP_idist_170_odist_170_ioffset_0_0_ooffset_0_0 (90 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_17_17_double_op_batch_4_istride_289_17_1_CI_ostride_289_17_1_CI_idist_578_odist_578_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_17_17_double_op_batch_4_istride_289_17_1_CI_ostride_289_17_1_CI_idist_578_odist_578_ioffset_0_0_ooffset_0_0 (103 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_29_5_single_op_batch_4_istride_145_5_1_CI_ostride_145_5_1_CI_idist_290_odist_290_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_29_5_single_op_batch_4_istride_145_5_1_CI_ostride_145_5_1_CI_idist_290_odist_290_ioffset_0_0_ooffset_0_0 (98 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_32_2_double_ip_batch_1_istride_64_2_1_CI_ostride_64_2_1_CI_idist_128_odist_128_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_32_2_double_ip_batch_1_istride_64_2_1_CI_ostride_64_2_1_CI_idist_128_odist_128_ioffset_0_0_ooffset_0_0 (92 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_64_17_double_op_batch_2_istride_1088_17_1_CI_ostride_1088_17_1_CI_idist_2176_odist_2176_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_2_64_17_double_op_batch_2_istride_1088_17_1_CI_ostride_1088_17_1_CI_idist_2176_odist_2176_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_5_16_single_op_batch_4_istride_80_16_1_CI_ostride_80_16_1_CI_idist_240_odist_240_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_5_16_single_op_batch_4_istride_80_16_1_CI_ostride_80_16_1_CI_idist_240_odist_240_ioffset_0_0_ooffset_0_0 (100 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_5_17_double_ip_batch_1_istride_85_17_1_CI_ostride_85_17_1_CI_idist_255_odist_255_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_5_17_double_ip_batch_1_istride_85_17_1_CI_ostride_85_17_1_CI_idist_255_odist_255_ioffset_0_0_ooffset_0_0 (165 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_29_17_double_ip_batch_2_istride_493_17_1_CI_ostride_493_17_1_CI_idist_1479_odist_1479_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_29_17_double_ip_batch_2_istride_493_17_1_CI_ostride_493_17_1_CI_idist_1479_odist_1479_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_32_128_single_ip_batch_4_istride_4096_128_1_CI_ostride_4096_128_1_CI_idist_12288_odist_12288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_32_128_single_ip_batch_4_istride_4096_128_1_CI_ostride_4096_128_1_CI_idist_12288_odist_12288_ioffset_0_0_ooffset_0_0 (339 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_64_29_single_ip_batch_2_istride_1856_29_1_CI_ostride_1856_29_1_CI_idist_5568_odist_5568_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_64_29_single_ip_batch_2_istride_1856_29_1_CI_ostride_1856_29_1_CI_idist_5568_odist_5568_ioffset_0_0_ooffset_0_0 (45 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_256_5_double_op_batch_2_istride_1280_5_1_CI_ostride_1280_5_1_CI_idist_3840_odist_3840_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_3_256_5_double_op_batch_2_istride_1280_5_1_CI_ostride_1280_5_1_CI_idist_3840_odist_3840_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_2_64_single_ip_batch_2_istride_128_64_1_CI_ostride_128_64_1_CI_idist_640_odist_640_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_2_64_single_ip_batch_2_istride_128_64_1_CI_ostride_128_64_1_CI_idist_640_odist_640_ioffset_0_0_ooffset_0_0 (6 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_3_2_single_ip_batch_4_istride_6_2_1_CI_ostride_6_2_1_CI_idist_30_odist_30_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_3_2_single_ip_batch_4_istride_6_2_1_CI_ostride_6_2_1_CI_idist_30_odist_30_ioffset_0_0_ooffset_0_0 (111 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_16_16_single_ip_batch_4_istride_256_16_1_CI_ostride_256_16_1_CI_idist_1280_odist_1280_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_16_16_single_ip_batch_4_istride_256_16_1_CI_ostride_256_16_1_CI_idist_1280_odist_1280_ioffset_0_0_ooffset_0_0 (108 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_17_29_single_op_batch_2_istride_493_29_1_CI_ostride_493_29_1_CI_idist_2465_odist_2465_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_17_29_single_op_batch_2_istride_493_29_1_CI_ostride_493_29_1_CI_idist_2465_odist_2465_ioffset_0_0_ooffset_0_0 (101 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_17_256_double_ip_batch_2_istride_4352_256_1_CI_ostride_4352_256_1_CI_idist_21760_odist_21760_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_17_256_double_ip_batch_2_istride_4352_256_1_CI_ostride_4352_256_1_CI_idist_21760_odist_21760_ioffset_0_0_ooffset_0_0 (42 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_32_5_single_op_batch_4_istride_160_5_1_CP_ostride_160_5_1_CP_idist_800_odist_800_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_32_5_single_op_batch_4_istride_160_5_1_CP_ostride_160_5_1_CP_idist_800_odist_800_ioffset_0_0_ooffset_0_0 (50 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_128_3_double_ip_batch_4_istride_384_3_1_CI_ostride_384_3_1_CI_idist_1920_odist_1920_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_128_3_double_ip_batch_4_istride_384_3_1_CI_ostride_384_3_1_CI_idist_1920_odist_1920_ioffset_0_0_ooffset_0_0 (112 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_128_3_single_op_batch_2_istride_384_3_1_CI_ostride_384_3_1_CI_idist_1920_odist_1920_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_128_3_single_op_batch_2_istride_384_3_1_CI_ostride_384_3_1_CI_idist_1920_odist_1920_ioffset_0_0_ooffset_0_0 (47 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_256_29_double_ip_batch_2_istride_7424_29_1_CI_ostride_7424_29_1_CI_idist_37120_odist_37120_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_5_256_29_double_ip_batch_2_istride_7424_29_1_CI_ostride_7424_29_1_CI_idist_37120_odist_37120_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_2_29_single_ip_batch_4_istride_58_29_1_CI_ostride_58_29_1_CI_idist_928_odist_928_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_2_29_single_ip_batch_4_istride_58_29_1_CI_ostride_58_29_1_CI_idist_928_odist_928_ioffset_0_0_ooffset_0_0 (10 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_2_32_double_op_batch_1_istride_64_32_1_CI_ostride_64_32_1_CI_idist_1024_odist_1024_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_2_32_double_op_batch_1_istride_64_32_1_CI_ostride_64_32_1_CI_idist_1024_odist_1024_ioffset_0_0_ooffset_0_0 (163 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_3_2_double_op_batch_2_istride_6_2_1_CI_ostride_6_2_1_CI_idist_96_odist_96_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_3_2_double_op_batch_2_istride_6_2_1_CI_ostride_6_2_1_CI_idist_96_odist_96_ioffset_0_0_ooffset_0_0 (47 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_16_17_double_op_batch_1_istride_272_17_1_CP_ostride_272_17_1_CI_idist_4352_odist_4352_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_16_17_double_op_batch_1_istride_272_17_1_CP_ostride_272_17_1_CI_idist_4352_odist_4352_ioffset_0_0_ooffset_0_0 (80 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_17_16_single_ip_batch_2_istride_272_16_1_CI_ostride_272_16_1_CI_idist_4352_odist_4352_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_17_16_single_ip_batch_2_istride_272_16_1_CI_ostride_272_16_1_CI_idist_4352_odist_4352_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_32_3_single_ip_batch_4_istride_96_3_1_CI_ostride_96_3_1_CI_idist_1536_odist_1536_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_32_3_single_ip_batch_4_istride_96_3_1_CI_ostride_96_3_1_CI_idist_1536_odist_1536_ioffset_0_0_ooffset_0_0 (49 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_256_17_single_op_batch_2_istride_4352_17_1_CI_ostride_4352_17_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_16_256_17_single_op_batch_2_istride_4352_17_1_CI_ostride_4352_17_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0 (52 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_2_3_double_ip_batch_2_istride_6_3_1_CI_ostride_6_3_1_CI_idist_102_odist_102_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_2_3_double_ip_batch_2_istride_6_3_1_CI_ostride_6_3_1_CI_idist_102_odist_102_ioffset_0_0_ooffset_0_0 (5 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_2_5_single_op_batch_2_istride_10_5_1_CI_ostride_10_5_1_CI_idist_170_odist_170_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_2_5_single_op_batch_2_istride_10_5_1_CI_ostride_10_5_1_CI_idist_170_odist_170_ioffset_0_0_ooffset_0_0 (5 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_16_5_single_ip_batch_2_istride_80_5_1_CI_ostride_80_5_1_CI_idist_1360_odist_1360_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_16_5_single_ip_batch_2_istride_80_5_1_CI_ostride_80_5_1_CI_idist_1360_odist_1360_ioffset_0_0_ooffset_0_0 (6 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_29_32_single_op_batch_4_istride_928_32_1_CI_ostride_928_32_1_CI_idist_15776_odist_15776_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_29_32_single_op_batch_4_istride_928_32_1_CI_ostride_928_32_1_CI_idist_15776_odist_15776_ioffset_0_0_ooffset_0_0 (127 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_29_128_double_op_batch_2_istride_3712_128_1_CI_ostride_3712_128_1_CI_idist_63104_odist_63104_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_29_128_double_op_batch_2_istride_3712_128_1_CI_ostride_3712_128_1_CI_idist_63104_odist_63104_ioffset_0_0_ooffset_0_0 (75 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_32_2_double_ip_batch_4_istride_64_2_1_CI_ostride_64_2_1_CI_idist_1088_odist_1088_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_32_2_double_ip_batch_4_istride_64_2_1_CI_ostride_64_2_1_CI_idist_1088_odist_1088_ioffset_0_0_ooffset_0_0 (63 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_128_3_double_ip_batch_4_istride_384_3_1_CI_ostride_384_3_1_CI_idist_6528_odist_6528_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_128_3_double_ip_batch_4_istride_384_3_1_CI_ostride_384_3_1_CI_idist_6528_odist_6528_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_128_64_single_op_batch_4_istride_8192_64_1_CI_ostride_8192_64_1_CI_idist_139264_odist_139264_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_128_64_single_op_batch_4_istride_8192_64_1_CI_ostride_8192_64_1_CI_idist_139264_odist_139264_ioffset_0_0_ooffset_0_0 (67 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_256_64_double_ip_batch_1_istride_16384_64_1_CI_ostride_16384_64_1_CI_idist_278528_odist_278528_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_256_64_double_ip_batch_1_istride_16384_64_1_CI_ostride_16384_64_1_CI_idist_278528_odist_278528_ioffset_0_0_ooffset_0_0 (54 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_256_128_single_ip_batch_4_istride_32768_128_1_CI_ostride_32768_128_1_CI_idist_557056_odist_557056_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_17_256_128_single_ip_batch_4_istride_32768_128_1_CI_ostride_32768_128_1_CI_idist_557056_odist_557056_ioffset_0_0_ooffset_0_0 (159 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_16_128_single_op_batch_2_istride_2048_128_1_CI_ostride_2048_128_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_16_128_single_op_batch_2_istride_2048_128_1_CI_ostride_2048_128_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0 (129 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_17_2_single_op_batch_4_istride_34_2_1_CI_ostride_34_2_1_CI_idist_986_odist_986_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_17_2_single_op_batch_4_istride_34_2_1_CI_ostride_34_2_1_CI_idist_986_odist_986_ioffset_0_0_ooffset_0_0 (13 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_29_256_single_ip_batch_4_istride_7424_256_1_CI_ostride_7424_256_1_CI_idist_215296_odist_215296_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_29_256_single_ip_batch_4_istride_7424_256_1_CI_ostride_7424_256_1_CI_idist_215296_odist_215296_ioffset_0_0_ooffset_0_0 (145 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_32_256_single_op_batch_2_istride_8192_256_1_CI_ostride_8192_256_1_CP_idist_237568_odist_237568_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_32_256_single_op_batch_2_istride_8192_256_1_CI_ostride_8192_256_1_CP_idist_237568_odist_237568_ioffset_0_0_ooffset_0_0 (318 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_256_16_single_ip_batch_1_istride_4096_16_1_CP_ostride_4096_16_1_CP_idist_118784_odist_118784_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_256_16_single_ip_batch_1_istride_4096_16_1_CP_ostride_4096_16_1_CP_idist_118784_odist_118784_ioffset_0_0_ooffset_0_0 (375 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_256_29_single_ip_batch_4_istride_7424_29_1_CI_ostride_7424_29_1_CI_idist_215296_odist_215296_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_29_256_29_single_ip_batch_4_istride_7424_29_1_CI_ostride_7424_29_1_CI_idist_215296_odist_215296_ioffset_0_0_ooffset_0_0 (32 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_2_single_op_batch_2_istride_10_2_1_CI_ostride_10_2_1_CI_idist_320_odist_320_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_2_single_op_batch_2_istride_10_2_1_CI_ostride_10_2_1_CI_idist_320_odist_320_ioffset_0_0_ooffset_0_0 (17 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_3_single_op_batch_4_istride_15_3_1_CI_ostride_15_3_1_CI_idist_480_odist_480_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_3_single_op_batch_4_istride_15_3_1_CI_ostride_15_3_1_CI_idist_480_odist_480_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_64_single_ip_batch_4_istride_320_64_1_CI_ostride_320_64_1_CI_idist_10240_odist_10240_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_5_64_single_ip_batch_4_istride_320_64_1_CI_ostride_320_64_1_CI_idist_10240_odist_10240_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_3_double_op_batch_2_istride_48_3_1_CI_ostride_48_3_1_CI_idist_1536_odist_1536_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_3_double_op_batch_2_istride_48_3_1_CI_ostride_48_3_1_CI_idist_1536_odist_1536_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_16_single_op_batch_4_istride_256_16_1_CI_ostride_256_16_1_CP_idist_8192_odist_8192_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_16_single_op_batch_4_istride_256_16_1_CI_ostride_256_16_1_CP_idist_8192_odist_8192_ioffset_0_0_ooffset_0_0 (504 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_64_single_ip_batch_4_istride_1024_64_1_CI_ostride_1024_64_1_CI_idist_32768_odist_32768_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_16_64_single_ip_batch_4_istride_1024_64_1_CI_ostride_1024_64_1_CI_idist_32768_odist_32768_ioffset_0_0_ooffset_0_0 (110 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_29_2_double_op_batch_4_istride_58_2_1_CI_ostride_58_2_1_CI_idist_1856_odist_1856_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_29_2_double_op_batch_4_istride_58_2_1_CI_ostride_58_2_1_CI_idist_1856_odist_1856_ioffset_0_0_ooffset_0_0 (10 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_17_double_op_batch_1_istride_2176_17_1_CI_ostride_2176_17_1_CP_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_17_double_op_batch_1_istride_2176_17_1_CI_ostride_2176_17_1_CP_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0 (102 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_128_single_op_batch_1_istride_16384_128_1_CI_ostride_16384_128_1_CI_idist_524288_odist_524288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_128_single_op_batch_1_istride_16384_128_1_CI_ostride_16384_128_1_CI_idist_524288_odist_524288_ioffset_0_0_ooffset_0_0 (128 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_256_double_op_batch_1_istride_32768_256_1_CI_ostride_32768_256_1_CI_idist_1048576_odist_1048576_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_32_128_256_double_op_batch_1_istride_32768_256_1_CI_ostride_32768_256_1_CI_idist_1048576_odist_1048576_ioffset_0_0_ooffset_0_0 (204 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_2_17_single_op_batch_4_istride_34_17_1_CI_ostride_34_17_1_CI_idist_2176_odist_2176_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_2_17_single_op_batch_4_istride_34_17_1_CI_ostride_34_17_1_CI_idist_2176_odist_2176_ioffset_0_0_ooffset_0_0 (13 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_3_16_single_ip_batch_4_istride_48_16_1_CI_ostride_48_16_1_CI_idist_3072_odist_3072_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_3_16_single_ip_batch_4_istride_48_16_1_CI_ostride_48_16_1_CI_idist_3072_odist_3072_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_3_256_double_ip_batch_1_istride_768_256_1_CI_ostride_768_256_1_CI_idist_49152_odist_49152_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_3_256_double_ip_batch_1_istride_768_256_1_CI_ostride_768_256_1_CI_idist_49152_odist_49152_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_5_3_double_ip_batch_4_istride_15_3_1_CI_ostride_15_3_1_CI_idist_960_odist_960_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_5_3_double_ip_batch_4_istride_15_3_1_CI_ostride_15_3_1_CI_idist_960_odist_960_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_29_32_double_op_batch_4_istride_928_32_1_CI_ostride_928_32_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_29_32_double_op_batch_4_istride_928_32_1_CI_ostride_928_32_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0 (71 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_29_128_double_op_batch_1_istride_3712_128_1_CP_ostride_3712_128_1_CI_idist_237568_odist_237568_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_29_128_double_op_batch_1_istride_3712_128_1_CP_ostride_3712_128_1_CI_idist_237568_odist_237568_ioffset_0_0_ooffset_0_0 (106 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_16_double_op_batch_2_istride_1024_16_1_CI_ostride_1024_16_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_16_double_op_batch_2_istride_1024_16_1_CI_ostride_1024_16_1_CI_idist_65536_odist_65536_ioffset_0_0_ooffset_0_0 (110 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_17_single_ip_batch_4_istride_1088_17_1_CI_ostride_1088_17_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_64_17_single_ip_batch_4_istride_1088_17_1_CI_ostride_1088_17_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0 (123 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_256_128_double_op_batch_2_istride_32768_128_1_CP_ostride_32768_128_1_CI_idist_2097152_odist_2097152_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_64_256_128_double_op_batch_2_istride_32768_128_1_CP_ostride_32768_128_1_CI_idist_2097152_odist_2097152_ioffset_0_0_ooffset_0_0 (715 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_3_3_double_op_batch_2_istride_9_3_1_CI_ostride_9_3_1_CI_idist_1152_odist_1152_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_3_3_double_op_batch_2_istride_9_3_1_CI_ostride_9_3_1_CI_idist_1152_odist_1152_ioffset_0_0_ooffset_0_0 (46 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_5_128_single_ip_batch_4_istride_640_128_1_CI_ostride_640_128_1_CI_idist_81920_odist_81920_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_5_128_single_ip_batch_4_istride_640_128_1_CI_ostride_640_128_1_CI_idist_81920_odist_81920_ioffset_0_0_ooffset_0_0 (92 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_16_2_double_ip_batch_1_istride_32_2_1_CI_ostride_32_2_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_16_2_double_ip_batch_1_istride_32_2_1_CI_ostride_32_2_1_CI_idist_4096_odist_4096_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_16_128_double_op_batch_4_istride_2048_128_1_CI_ostride_2048_128_1_CI_idist_262144_odist_262144_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_16_128_double_op_batch_4_istride_2048_128_1_CI_ostride_2048_128_1_CI_idist_262144_odist_262144_ioffset_0_0_ooffset_0_0 (188 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_29_3_double_op_batch_1_istride_87_3_1_CI_ostride_87_3_1_CI_idist_11136_odist_11136_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_29_3_double_op_batch_1_istride_87_3_1_CI_ostride_87_3_1_CI_idist_11136_odist_11136_ioffset_0_0_ooffset_0_0 (23 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_29_16_double_ip_batch_2_istride_464_16_1_CI_ostride_464_16_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_29_16_double_ip_batch_2_istride_464_16_1_CI_ostride_464_16_1_CI_idist_59392_odist_59392_ioffset_0_0_ooffset_0_0 (106 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_32_5_double_ip_batch_4_istride_160_5_1_CI_ostride_160_5_1_CI_idist_20480_odist_20480_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_32_5_double_ip_batch_4_istride_160_5_1_CI_ostride_160_5_1_CI_idist_20480_odist_20480_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_256_16_single_op_batch_1_istride_4096_16_1_CP_ostride_4096_16_1_CI_idist_524288_odist_524288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_128_256_16_single_op_batch_1_istride_4096_16_1_CP_ostride_4096_16_1_CI_idist_524288_odist_524288_ioffset_0_0_ooffset_0_0 (348 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_3_5_double_op_batch_1_istride_15_5_1_CP_ostride_15_5_1_CI_idist_3840_odist_3840_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_3_5_double_op_batch_1_istride_15_5_1_CP_ostride_15_5_1_CI_idist_3840_odist_3840_ioffset_0_0_ooffset_0_0 (81 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_16_3_single_op_batch_1_istride_48_3_1_CP_ostride_48_3_1_CI_idist_12288_odist_12288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_16_3_single_op_batch_1_istride_48_3_1_CP_ostride_48_3_1_CI_idist_12288_odist_12288_ioffset_0_0_ooffset_0_0 (113 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_17_16_double_op_batch_4_istride_272_16_1_CI_ostride_272_16_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_17_16_double_op_batch_4_istride_272_16_1_CI_ostride_272_16_1_CI_idist_69632_odist_69632_ioffset_0_0_ooffset_0_0 (60 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_17_32_double_ip_batch_2_istride_544_32_1_CI_ostride_544_32_1_CI_idist_139264_odist_139264_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_17_32_double_ip_batch_2_istride_544_32_1_CI_ostride_544_32_1_CI_idist_139264_odist_139264_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_64_256_double_ip_batch_4_istride_16384_256_1_CI_ostride_16384_256_1_CI_idist_4194304_odist_4194304_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_64_256_double_ip_batch_4_istride_16384_256_1_CI_ostride_16384_256_1_CI_idist_4194304_odist_4194304_ioffset_0_0_ooffset_0_0 (951 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_128_32_single_ip_batch_1_istride_4096_32_1_CI_ostride_4096_32_1_CI_idist_1048576_odist_1048576_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/complex_forward_len_256_128_32_single_ip_batch_1_istride_4096_32_1_CI_ostride_4096_32_1_CI_idist_1048576_odist_1048576_ioffset_0_0_ooffset_0_0 (187 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_2_16_single_ip_batch_2_istride_36_18_1_R_ostride_18_9_1_HI_idist_72_odist_36_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_2_16_single_ip_batch_2_istride_36_18_1_R_ostride_18_9_1_HI_idist_72_odist_36_ioffset_0_0_ooffset_0_0 (116 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_3_64_double_op_batch_2_istride_192_64_1_R_ostride_99_33_1_HI_idist_384_odist_198_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_3_64_double_op_batch_2_istride_192_64_1_R_ostride_99_33_1_HI_idist_384_odist_198_ioffset_0_0_ooffset_0_0 (105 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_16_128_single_op_batch_2_istride_2048_128_1_R_ostride_1040_65_1_HI_idist_4096_odist_2080_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_16_128_single_op_batch_2_istride_2048_128_1_R_ostride_1040_65_1_HI_idist_4096_odist_2080_ioffset_0_0_ooffset_0_0 (92 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_17_64_single_op_batch_4_istride_1088_64_1_R_ostride_561_33_1_HI_idist_2176_odist_1122_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_17_64_single_op_batch_4_istride_1088_64_1_R_ostride_561_33_1_HI_idist_2176_odist_1122_ioffset_0_0_ooffset_0_0 (96 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_5_double_op_batch_4_istride_160_5_1_R_ostride_96_3_1_HI_idist_320_odist_192_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_5_double_op_batch_4_istride_160_5_1_R_ostride_96_3_1_HI_idist_320_odist_192_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_16_double_ip_batch_4_istride_576_18_1_R_ostride_288_9_1_HI_idist_1152_odist_576_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_16_double_ip_batch_4_istride_576_18_1_R_ostride_288_9_1_HI_idist_1152_odist_576_ioffset_0_0_ooffset_0_0 (92 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_17_double_ip_batch_1_istride_576_18_1_R_ostride_288_9_1_HI_idist_1152_odist_576_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_17_double_ip_batch_1_istride_576_18_1_R_ostride_288_9_1_HI_idist_1152_odist_576_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_29_single_op_batch_1_istride_928_29_1_R_ostride_480_15_1_HI_idist_1856_odist_960_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_32_29_single_op_batch_1_istride_928_29_1_R_ostride_480_15_1_HI_idist_1856_odist_960_ioffset_0_0_ooffset_0_0 (13 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_64_29_double_ip_batch_1_istride_1920_30_1_R_ostride_960_15_1_HI_idist_3840_odist_1920_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_64_29_double_ip_batch_1_istride_1920_30_1_R_ostride_960_15_1_HI_idist_3840_odist_1920_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_128_5_single_op_batch_1_istride_640_5_1_R_ostride_384_3_1_HI_idist_1280_odist_768_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_128_5_single_op_batch_1_istride_640_5_1_R_ostride_384_3_1_HI_idist_1280_odist_768_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_128_64_double_ip_batch_1_istride_8448_66_1_R_ostride_4224_33_1_HI_idist_16896_odist_8448_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_2_128_64_double_ip_batch_1_istride_8448_66_1_R_ostride_4224_33_1_HI_idist_16896_odist_8448_ioffset_0_0_ooffset_0_0 (93 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_2_5_single_op_batch_1_istride_10_5_1_R_ostride_6_3_1_HI_idist_30_odist_18_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_2_5_single_op_batch_1_istride_10_5_1_R_ostride_6_3_1_HI_idist_30_odist_18_ioffset_0_0_ooffset_0_0 (6 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_3_32_double_op_batch_2_istride_96_32_1_R_ostride_51_17_1_HI_idist_288_odist_153_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_3_32_double_op_batch_2_istride_96_32_1_R_ostride_51_17_1_HI_idist_288_odist_153_ioffset_0_0_ooffset_0_0 (91 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_5_3_double_op_batch_2_istride_15_3_1_R_ostride_10_2_1_HP_idist_45_odist_30_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_5_3_double_op_batch_2_istride_15_3_1_R_ostride_10_2_1_HP_idist_45_odist_30_ioffset_0_0_ooffset_0_0 (4 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_16_29_double_ip_batch_2_istride_480_30_1_R_ostride_240_15_1_HI_idist_1440_odist_720_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_16_29_double_ip_batch_2_istride_480_30_1_R_ostride_240_15_1_HI_idist_1440_odist_720_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_128_3_double_op_batch_4_istride_384_3_1_R_ostride_256_2_1_HI_idist_1152_odist_768_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_128_3_double_op_batch_4_istride_384_3_1_R_ostride_256_2_1_HI_idist_1152_odist_768_ioffset_0_0_ooffset_0_0 (6 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_256_29_double_op_batch_4_istride_7424_29_1_R_ostride_3840_15_1_HI_idist_22272_odist_11520_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_3_256_29_double_op_batch_4_istride_7424_29_1_R_ostride_3840_15_1_HI_idist_22272_odist_11520_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_2_16_double_op_batch_2_istride_32_16_1_R_ostride_18_9_1_HI_idist_160_odist_90_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_2_16_double_op_batch_2_istride_32_16_1_R_ostride_18_9_1_HI_idist_160_odist_90_ioffset_0_0_ooffset_0_0 (112 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_2_128_single_op_batch_1_istride_256_128_1_R_ostride_130_65_1_HI_idist_1280_odist_650_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_2_128_single_op_batch_1_istride_256_128_1_R_ostride_130_65_1_HI_idist_1280_odist_650_ioffset_0_0_ooffset_0_0 (100 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_3_3_double_ip_batch_4_istride_12_4_1_R_ostride_6_2_1_HI_idist_60_odist_30_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_3_3_double_ip_batch_4_istride_12_4_1_R_ostride_6_2_1_HI_idist_60_odist_30_ioffset_0_0_ooffset_0_0 (5 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_3_32_single_op_batch_4_istride_96_32_1_R_ostride_51_17_1_HI_idist_480_odist_255_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_3_32_single_op_batch_4_istride_96_32_1_R_ostride_51_17_1_HI_idist_480_odist_255_ioffset_0_0_ooffset_0_0 (89 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_5_single_ip_batch_4_istride_30_6_1_R_ostride_15_3_1_HI_idist_150_odist_75_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_5_single_ip_batch_4_istride_30_6_1_R_ostride_15_3_1_HI_idist_150_odist_75_ioffset_0_0_ooffset_0_0 (6 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_16_double_ip_batch_4_istride_90_18_1_R_ostride_45_9_1_HI_idist_450_odist_225_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_16_double_ip_batch_4_istride_90_18_1_R_ostride_45_9_1_HI_idist_450_odist_225_ioffset_0_0_ooffset_0_0 (107 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_17_single_op_batch_2_istride_85_17_1_R_ostride_45_9_1_HI_idist_425_odist_225_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_17_single_op_batch_2_istride_85_17_1_R_ostride_45_9_1_HI_idist_425_odist_225_ioffset_0_0_ooffset_0_0 (5 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_64_single_op_batch_2_istride_320_64_1_R_ostride_165_33_1_HI_idist_1600_odist_825_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_5_64_single_op_batch_2_istride_320_64_1_R_ostride_165_33_1_HI_idist_1600_odist_825_ioffset_0_0_ooffset_0_0 (64 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_16_2_single_ip_batch_4_istride_64_4_1_R_ostride_32_2_1_HI_idist_320_odist_160_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_16_2_single_ip_batch_4_istride_64_4_1_R_ostride_32_2_1_HI_idist_320_odist_160_ioffset_0_0_ooffset_0_0 (93 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_64_32_double_op_batch_1_istride_2048_32_1_R_ostride_1088_17_1_HI_idist_10240_odist_5440_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_64_32_double_op_batch_1_istride_2048_32_1_R_ostride_1088_17_1_HI_idist_10240_odist_5440_ioffset_0_0_ooffset_0_0 (228 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_256_256_single_op_batch_4_istride_65536_256_1_R_ostride_33024_129_1_HI_idist_327680_odist_165120_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_5_256_256_single_op_batch_4_istride_65536_256_1_R_ostride_33024_129_1_HI_idist_327680_odist_165120_ioffset_0_0_ooffset_0_0 (106 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_2_16_single_ip_batch_1_istride_36_18_1_R_ostride_18_9_1_HI_idist_576_odist_288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_2_16_single_ip_batch_1_istride_36_18_1_R_ostride_18_9_1_HI_idist_576_odist_288_ioffset_0_0_ooffset_0_0 (75 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_2_32_double_op_batch_4_istride_64_32_1_R_ostride_34_17_1_HI_idist_1024_odist_544_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_2_32_double_op_batch_4_istride_64_32_1_R_ostride_34_17_1_HI_idist_1024_odist_544_ioffset_0_0_ooffset_0_0 (73 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_3_29_single_op_batch_1_istride_87_29_1_R_ostride_45_15_1_HI_idist_1392_odist_720_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_3_29_single_op_batch_1_istride_87_29_1_R_ostride_45_15_1_HI_idist_1392_odist_720_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_5_3_single_ip_batch_4_istride_20_4_1_R_ostride_10_2_1_HI_idist_320_odist_160_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_5_3_single_ip_batch_4_istride_20_4_1_R_ostride_10_2_1_HI_idist_320_odist_160_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_5_32_single_op_batch_4_istride_160_32_1_R_ostride_85_17_1_HP_idist_2560_odist_1360_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_16_5_32_single_op_batch_4_istride_160_32_1_R_ostride_85_17_1_HP_idist_2560_odist_1360_ioffset_0_0_ooffset_0_0 (465 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_3_29_double_ip_batch_1_istride_90_30_1_R_ostride_45_15_1_HI_idist_1530_odist_765_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_3_29_double_ip_batch_1_istride_90_30_1_R_ostride_45_15_1_HI_idist_1530_odist_765_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_5_single_ip_batch_4_istride_174_6_1_R_ostride_87_3_1_HI_idist_2958_odist_1479_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_5_single_ip_batch_4_istride_174_6_1_R_ostride_87_3_1_HI_idist_2958_odist_1479_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_29_single_ip_batch_2_istride_870_30_1_R_ostride_435_15_1_HI_idist_14790_odist_7395_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_29_single_ip_batch_2_istride_870_30_1_R_ostride_435_15_1_HI_idist_14790_odist_7395_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_64_double_op_batch_4_istride_1856_64_1_R_ostride_957_33_1_HI_idist_31552_odist_16269_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_29_64_double_op_batch_4_istride_1856_64_1_R_ostride_957_33_1_HI_idist_31552_odist_16269_ioffset_0_0_ooffset_0_0 (330 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_64_2_single_ip_batch_2_istride_256_4_1_R_ostride_128_2_1_HI_idist_4352_odist_2176_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_17_64_2_single_ip_batch_2_istride_256_4_1_R_ostride_128_2_1_HI_idist_4352_odist_2176_ioffset_0_0_ooffset_0_0 (103 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_2_5_double_op_batch_2_istride_10_5_1_R_ostride_6_3_1_HI_idist_290_odist_174_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_2_5_double_op_batch_2_istride_10_5_1_R_ostride_6_3_1_HI_idist_290_odist_174_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_5_29_single_ip_batch_1_istride_150_30_1_R_ostride_75_15_1_HI_idist_4350_odist_2175_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_5_29_single_ip_batch_1_istride_150_30_1_R_ostride_75_15_1_HI_idist_4350_odist_2175_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_5_32_single_op_batch_1_istride_160_32_1_R_ostride_85_17_1_HI_idist_4640_odist_2465_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_5_32_single_op_batch_1_istride_160_32_1_R_ostride_85_17_1_HI_idist_4640_odist_2465_ioffset_0_0_ooffset_0_0 (98 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_17_2_double_ip_batch_2_istride_68_4_1_R_ostride_34_2_1_HI_idist_1972_odist_986_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_17_2_double_ip_batch_2_istride_68_4_1_R_ostride_34_2_1_HI_idist_1972_odist_986_ioffset_0_0_ooffset_0_0 (259 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_17_256_single_op_batch_4_istride_4352_256_1_R_ostride_2193_129_1_HI_idist_126208_odist_63597_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_17_256_single_op_batch_4_istride_4352_256_1_R_ostride_2193_129_1_HI_idist_126208_odist_63597_ioffset_0_0_ooffset_0_0 (105 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_32_17_double_ip_batch_4_istride_576_18_1_R_ostride_288_9_1_HI_idist_16704_odist_8352_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_32_17_double_ip_batch_4_istride_576_18_1_R_ostride_288_9_1_HI_idist_16704_odist_8352_ioffset_0_0_ooffset_0_0 (12 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_64_2_single_ip_batch_2_istride_256_4_1_R_ostride_128_2_1_HI_idist_7424_odist_3712_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_64_2_single_ip_batch_2_istride_256_4_1_R_ostride_128_2_1_HI_idist_7424_odist_3712_ioffset_0_0_ooffset_0_0 (485 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_128_128_single_op_batch_2_istride_16384_128_1_R_ostride_8320_65_1_HI_idist_475136_odist_241280_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_29_128_128_single_op_batch_2_istride_16384_128_1_R_ostride_8320_65_1_HI_idist_475136_odist_241280_ioffset_0_0_ooffset_0_0 (52 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_2_2_single_ip_batch_4_istride_8_4_1_R_ostride_4_2_1_HI_idist_256_odist_128_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_2_2_single_ip_batch_4_istride_8_4_1_R_ostride_4_2_1_HI_idist_256_odist_128_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_29_5_single_op_batch_4_istride_145_5_1_R_ostride_87_3_1_HI_idist_4640_odist_2784_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_29_5_single_op_batch_4_istride_145_5_1_R_ostride_87_3_1_HI_idist_4640_odist_2784_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_64_3_double_op_batch_1_istride_192_3_1_R_ostride_128_2_1_HI_idist_6144_odist_4096_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_64_3_double_op_batch_1_istride_192_3_1_R_ostride_128_2_1_HI_idist_6144_odist_4096_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_128_256_single_ip_batch_4_istride_33024_258_1_R_ostride_16512_129_1_HI_idist_1056768_odist_528384_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_128_256_single_ip_batch_4_istride_33024_258_1_R_ostride_16512_129_1_HI_idist_1056768_odist_528384_ioffset_0_0_ooffset_0_0 (150 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_5_single_op_batch_4_istride_1280_5_1_R_ostride_768_3_1_HI_idist_40960_odist_24576_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_5_single_op_batch_4_istride_1280_5_1_R_ostride_768_3_1_HI_idist_40960_odist_24576_ioffset_0_0_ooffset_0_0 (10 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_17_single_op_batch_1_istride_4352_17_1_R_ostride_2304_9_1_HI_idist_139264_odist_73728_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_17_single_op_batch_1_istride_4352_17_1_R_ostride_2304_9_1_HI_idist_139264_odist_73728_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_64_single_ip_batch_4_istride_16896_66_1_R_ostride_8448_33_1_HI_idist_540672_odist_270336_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_32_256_64_single_ip_batch_4_istride_16896_66_1_R_ostride_8448_33_1_HI_idist_540672_odist_270336_ioffset_0_0_ooffset_0_0 (127 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_2_3_single_op_batch_4_istride_6_3_1_R_ostride_4_2_1_HI_idist_384_odist_256_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_2_3_single_op_batch_4_istride_6_3_1_R_ostride_4_2_1_HI_idist_384_odist_256_ioffset_0_0_ooffset_0_0 (14 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_16_5_double_op_batch_2_istride_80_5_1_R_ostride_48_3_1_HI_idist_5120_odist_3072_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_16_5_double_op_batch_2_istride_80_5_1_R_ostride_48_3_1_HI_idist_5120_odist_3072_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_17_16_double_ip_batch_4_istride_306_18_1_R_ostride_153_9_1_HI_idist_19584_odist_9792_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_17_16_double_ip_batch_4_istride_306_18_1_R_ostride_153_9_1_HI_idist_19584_odist_9792_ioffset_0_0_ooffset_0_0 (81 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_64_3_single_op_batch_4_istride_192_3_1_R_ostride_128_2_1_HI_idist_12288_odist_8192_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_64_64_3_single_op_batch_4_istride_192_3_1_R_ostride_128_2_1_HI_idist_12288_odist_8192_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_17_double_ip_batch_1_istride_36_18_1_R_ostride_18_9_1_HI_idist_4608_odist_2304_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_17_double_ip_batch_1_istride_36_18_1_R_ostride_18_9_1_HI_idist_4608_odist_2304_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_17_single_op_batch_1_istride_34_17_1_R_ostride_18_9_1_HP_idist_4352_odist_2304_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_17_single_op_batch_1_istride_34_17_1_R_ostride_18_9_1_HP_idist_4352_odist_2304_ioffset_0_0_ooffset_0_0 (42 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_256_double_op_batch_1_istride_512_256_1_R_ostride_258_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_2_256_double_op_batch_1_istride_512_256_1_R_ostride_258_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_16_double_ip_batch_1_istride_54_18_1_R_ostride_27_9_1_HI_idist_6912_odist_3456_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_16_double_ip_batch_1_istride_54_18_1_R_ostride_27_9_1_HI_idist_6912_odist_3456_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_17_double_op_batch_1_istride_51_17_1_R_ostride_27_9_1_HI_idist_6528_odist_3456_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_17_double_op_batch_1_istride_51_17_1_R_ostride_27_9_1_HI_idist_6528_odist_3456_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_256_double_op_batch_1_istride_768_256_1_R_ostride_387_129_1_HI_idist_98304_odist_49536_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_3_256_double_op_batch_1_istride_768_256_1_R_ostride_387_129_1_HI_idist_98304_odist_49536_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_16_3_double_op_batch_1_istride_48_3_1_R_ostride_32_2_1_HI_idist_6144_odist_4096_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_16_3_double_op_batch_1_istride_48_3_1_R_ostride_32_2_1_HI_idist_6144_odist_4096_ioffset_0_0_ooffset_0_0 (8 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_17_64_single_op_batch_4_istride_1088_64_1_R_ostride_561_33_1_HI_idist_139264_odist_71808_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_17_64_single_op_batch_4_istride_1088_64_1_R_ostride_561_33_1_HI_idist_139264_odist_71808_ioffset_0_0_ooffset_0_0 (11 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_17_64_single_ip_batch_2_istride_1122_66_1_R_ostride_561_33_1_HI_idist_143616_odist_71808_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_17_64_single_ip_batch_2_istride_1122_66_1_R_ostride_561_33_1_HI_idist_143616_odist_71808_ioffset_0_0_ooffset_0_0 (7 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_29_64_single_ip_batch_1_istride_1914_66_1_R_ostride_957_33_1_HI_idist_244992_odist_122496_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_128_29_64_single_ip_batch_1_istride_1914_66_1_R_ostride_957_33_1_HI_idist_244992_odist_122496_ioffset_0_0_ooffset_0_0 (67 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_2_64_double_op_batch_1_istride_128_64_1_R_ostride_66_33_1_HI_idist_32768_odist_16896_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_2_64_double_op_batch_1_istride_128_64_1_R_ostride_66_33_1_HI_idist_32768_odist_16896_ioffset_0_0_ooffset_0_0 (40 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_3_16_single_op_batch_1_istride_48_16_1_R_ostride_27_9_1_HP_idist_12288_odist_6912_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_3_16_single_op_batch_1_istride_48_16_1_R_ostride_27_9_1_HP_idist_12288_odist_6912_ioffset_0_0_ooffset_0_0 (449 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_16_5_single_op_batch_4_istride_80_5_1_R_ostride_48_3_1_HI_idist_20480_odist_12288_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_16_5_single_op_batch_4_istride_80_5_1_R_ostride_48_3_1_HI_idist_20480_odist_12288_ioffset_0_0_ooffset_0_0 (9 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_17_32_double_op_batch_2_istride_544_32_1_R_ostride_289_17_1_HI_idist_139264_odist_73984_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_17_32_double_op_batch_2_istride_544_32_1_R_ostride_289_17_1_HI_idist_139264_odist_73984_ioffset_0_0_ooffset_0_0 (31 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_29_64_double_op_batch_1_istride_1856_64_1_R_ostride_957_33_1_HI_idist_475136_odist_244992_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_29_64_double_op_batch_1_istride_1856_64_1_R_ostride_957_33_1_HI_idist_475136_odist_244992_ioffset_0_0_ooffset_0_0 (16 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_32_128_double_ip_batch_4_istride_4160_130_1_R_ostride_2080_65_1_HI_idist_1064960_odist_532480_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_32_128_double_ip_batch_4_istride_4160_130_1_R_ostride_2080_65_1_HI_idist_1064960_odist_532480_ioffset_0_0_ooffset_0_0 (175 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_32_256_double_ip_batch_1_istride_8256_258_1_R_ostride_4128_129_1_HI_idist_2113536_odist_1056768_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_32_256_double_ip_batch_1_istride_8256_258_1_R_ostride_4128_129_1_HI_idist_2113536_odist_1056768_ioffset_0_0_ooffset_0_0 (151 ms)
+[ RUN      ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_128_128_single_ip_batch_2_istride_16640_130_1_R_ostride_8320_65_1_HI_idist_4259840_odist_2129920_ioffset_0_0_ooffset_0_0
+[       OK ] emulation_3D/accuracy_test.vs_fftw/real_forward_len_256_128_128_single_ip_batch_2_istride_16640_130_1_R_ostride_8320_65_1_HI_idist_4259840_odist_2129920_ioffset_0_0_ooffset_0_0 (219 ms)
+[----------] 154 tests from emulation_3D/accuracy_test (14047 ms total)
+
+[----------] 1 test from scaling/accuracy_test
+[ RUN      ] scaling/accuracy_test.vs_fftw/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0_scale
+[       OK ] scaling/accuracy_test.vs_fftw/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0_scale (455 ms)
+[----------] 1 test from scaling/accuracy_test (455 ms total)
+
+[----------] 10 tests from random_complex_1d/accuracy_test
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_2942_double_ip_batch_1_istride_1_CI_ostride_1_CI_idist_2942_odist_2942_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_2942_double_ip_batch_1_istride_1_CI_ostride_1_CI_idist_2942_odist_2942_ioffset_0_0_ooffset_0_0 (610 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_20532_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_20532_odist_20532_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_20532_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_20532_odist_20532_ioffset_0_0_ooffset_0_0 (144 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_9271_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_9271_odist_9271_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_9271_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_9271_odist_9271_ioffset_0_0_ooffset_0_0 (148 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_1344_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_1344_odist_1344_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_1344_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_1344_odist_1344_ioffset_0_0_ooffset_0_0 (568 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_28542_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_28542_odist_28542_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_28542_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_28542_odist_28542_ioffset_0_0_ooffset_0_0 (134 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_32313_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_32313_odist_32313_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_32313_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_32313_odist_32313_ioffset_0_0_ooffset_0_0 (164 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_10232_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_10232_odist_10232_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_10232_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_10232_odist_10232_ioffset_0_0_ooffset_0_0 (153 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_11707_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_11707_odist_11707_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_11707_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_11707_odist_11707_ioffset_0_0_ooffset_0_0 (135 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_26510_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_26510_odist_26510_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_26510_single_ip_batch_1_istride_1_CI_ostride_1_CI_idist_26510_odist_26510_ioffset_0_0_ooffset_0_0 (156 ms)
+[ RUN      ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_36723_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_36723_odist_36723_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_1d/accuracy_test.vs_fftw/complex_forward_len_36723_double_op_batch_1_istride_1_CI_ostride_1_CI_idist_36723_odist_36723_ioffset_0_0_ooffset_0_0 (146 ms)
+[----------] 10 tests from random_complex_1d/accuracy_test (2363 ms total)
+
+[----------] 10 tests from random_complex_2d/accuracy_test
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_92_370_double_ip_batch_1_istride_370_1_CI_ostride_370_1_CI_idist_34040_odist_34040_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_92_370_double_ip_batch_1_istride_370_1_CI_ostride_370_1_CI_idist_34040_odist_34040_ioffset_0_0_ooffset_0_0 (600 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_1089_290_double_ip_batch_1_istride_290_1_CI_ostride_290_1_CI_idist_315810_odist_315810_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_1089_290_double_ip_batch_1_istride_290_1_CI_ostride_290_1_CI_idist_315810_odist_315810_ioffset_0_0_ooffset_0_0 (623 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_42_112_single_op_batch_1_istride_112_1_CI_ostride_112_1_CI_idist_4704_odist_4704_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_42_112_single_op_batch_1_istride_112_1_CI_ostride_112_1_CI_idist_4704_odist_4704_ioffset_0_0_ooffset_0_0 (108 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_2581_1010_double_op_batch_1_istride_1010_1_CI_ostride_1010_1_CI_idist_2606810_odist_2606810_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_2581_1010_double_op_batch_1_istride_1010_1_CI_ostride_1010_1_CI_idist_2606810_odist_2606810_ioffset_0_0_ooffset_0_0 (758 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_320_1134_single_ip_batch_1_istride_1134_1_CI_ostride_1134_1_CI_idist_362880_odist_362880_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_320_1134_single_ip_batch_1_istride_1134_1_CI_ostride_1134_1_CI_idist_362880_odist_362880_ioffset_0_0_ooffset_0_0 (372 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_596_829_single_ip_batch_1_istride_829_1_CI_ostride_829_1_CI_idist_494084_odist_494084_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_596_829_single_ip_batch_1_istride_829_1_CI_ostride_829_1_CI_idist_494084_odist_494084_ioffset_0_0_ooffset_0_0 (615 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_1148_2856_double_op_batch_1_istride_2856_1_CI_ostride_2856_1_CI_idist_3278688_odist_3278688_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_1148_2856_double_op_batch_1_istride_2856_1_CI_ostride_2856_1_CI_idist_3278688_odist_3278688_ioffset_0_0_ooffset_0_0 (871 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_547_1321_single_op_batch_1_istride_1321_1_CI_ostride_1321_1_CI_idist_722587_odist_722587_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_547_1321_single_op_batch_1_istride_1321_1_CI_ostride_1321_1_CI_idist_722587_odist_722587_ioffset_0_0_ooffset_0_0 (825 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_865_2586_single_ip_batch_1_istride_2586_1_CI_ostride_2586_1_CI_idist_2236890_odist_2236890_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_865_2586_single_ip_batch_1_istride_2586_1_CI_ostride_2586_1_CI_idist_2236890_odist_2236890_ioffset_0_0_ooffset_0_0 (958 ms)
+[ RUN      ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_55_721_double_op_batch_1_istride_721_1_CI_ostride_721_1_CI_idist_39655_odist_39655_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_2d/accuracy_test.vs_fftw/complex_forward_len_55_721_double_op_batch_1_istride_721_1_CI_ostride_721_1_CI_idist_39655_odist_39655_ioffset_0_0_ooffset_0_0 (755 ms)
+[----------] 10 tests from random_complex_2d/accuracy_test (6489 ms total)
+
+[----------] 10 tests from random_complex_3d/accuracy_test
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_6_24_41_double_ip_batch_1_istride_984_41_1_CI_ostride_984_41_1_CI_idist_5904_odist_5904_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_6_24_41_double_ip_batch_1_istride_984_41_1_CI_ostride_984_41_1_CI_idist_5904_odist_5904_ioffset_0_0_ooffset_0_0 (660 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_19_89_3_single_op_batch_1_istride_267_3_1_CI_ostride_267_3_1_CI_idist_5073_odist_5073_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_19_89_3_single_op_batch_1_istride_267_3_1_CI_ostride_267_3_1_CI_idist_5073_odist_5073_ioffset_0_0_ooffset_0_0 (101 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_56_162_64_single_ip_batch_1_istride_10368_64_1_CI_ostride_10368_64_1_CI_idist_580608_odist_580608_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_56_162_64_single_ip_batch_1_istride_10368_64_1_CI_ostride_10368_64_1_CI_idist_580608_odist_580608_ioffset_0_0_ooffset_0_0 (110 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_20_71_23_single_ip_batch_1_istride_1633_23_1_CI_ostride_1633_23_1_CI_idist_32660_odist_32660_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_20_71_23_single_ip_batch_1_istride_1633_23_1_CI_ostride_1633_23_1_CI_idist_32660_odist_32660_ioffset_0_0_ooffset_0_0 (452 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_52_153_72_single_ip_batch_1_istride_11016_72_1_CI_ostride_11016_72_1_CI_idist_572832_odist_572832_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_52_153_72_single_ip_batch_1_istride_11016_72_1_CI_ostride_11016_72_1_CI_idist_572832_odist_572832_ioffset_0_0_ooffset_0_0 (545 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_81_35_83_single_op_batch_1_istride_2905_83_1_CI_ostride_2905_83_1_CI_idist_235305_odist_235305_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_81_35_83_single_op_batch_1_istride_2905_83_1_CI_ostride_2905_83_1_CI_idist_235305_odist_235305_ioffset_0_0_ooffset_0_0 (123 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_55_162_109_single_ip_batch_1_istride_17658_109_1_CI_ostride_17658_109_1_CI_idist_971190_odist_971190_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_55_162_109_single_ip_batch_1_istride_17658_109_1_CI_ostride_17658_109_1_CI_idist_971190_odist_971190_ioffset_0_0_ooffset_0_0 (146 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_46_119_136_single_ip_batch_1_istride_16184_136_1_CI_ostride_16184_136_1_CI_idist_744464_odist_744464_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_46_119_136_single_ip_batch_1_istride_16184_136_1_CI_ostride_16184_136_1_CI_idist_744464_odist_744464_ioffset_0_0_ooffset_0_0 (670 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_215_8_141_single_op_batch_1_istride_1128_141_1_CI_ostride_1128_141_1_CI_idist_242520_odist_242520_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_215_8_141_single_op_batch_1_istride_1128_141_1_CI_ostride_1128_141_1_CI_idist_242520_odist_242520_ioffset_0_0_ooffset_0_0 (614 ms)
+[ RUN      ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_239_158_53_single_ip_batch_1_istride_8374_53_1_CI_ostride_8374_53_1_CI_idist_2001386_odist_2001386_ioffset_0_0_ooffset_0_0
+[       OK ] random_complex_3d/accuracy_test.vs_fftw/complex_forward_len_239_158_53_single_ip_batch_1_istride_8374_53_1_CI_ostride_8374_53_1_CI_idist_2001386_odist_2001386_ioffset_0_0_ooffset_0_0 (800 ms)
+[----------] 10 tests from random_complex_3d/accuracy_test (4227 ms total)
+
+[----------] 10 tests from random_real_1d/accuracy_test
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_2942_double_ip_batch_1_istride_1_R_ostride_1_HI_idist_2944_odist_1472_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_2942_double_ip_batch_1_istride_1_R_ostride_1_HI_idist_2944_odist_1472_ioffset_0_0_ooffset_0_0 (1073 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_20532_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_20534_odist_10267_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_20532_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_20534_odist_10267_ioffset_0_0_ooffset_0_0 (688 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_9271_single_op_batch_1_istride_1_R_ostride_1_HI_idist_9271_odist_4636_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_9271_single_op_batch_1_istride_1_R_ostride_1_HI_idist_9271_odist_4636_ioffset_0_0_ooffset_0_0 (648 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_1344_single_op_batch_1_istride_1_R_ostride_1_HI_idist_1344_odist_673_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_1344_single_op_batch_1_istride_1_R_ostride_1_HI_idist_1344_odist_673_ioffset_0_0_ooffset_0_0 (1333 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_28542_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_28544_odist_14272_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_28542_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_28544_odist_14272_ioffset_0_0_ooffset_0_0 (270 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_32313_double_op_batch_1_istride_1_R_ostride_1_HI_idist_32313_odist_16157_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_32313_double_op_batch_1_istride_1_R_ostride_1_HI_idist_32313_odist_16157_ioffset_0_0_ooffset_0_0 (417 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_10232_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_10234_odist_5117_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_10232_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_10234_odist_5117_ioffset_0_0_ooffset_0_0 (348 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_11707_double_op_batch_1_istride_1_R_ostride_1_HI_idist_11707_odist_5854_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_11707_double_op_batch_1_istride_1_R_ostride_1_HI_idist_11707_odist_5854_ioffset_0_0_ooffset_0_0 (409 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_26510_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_26512_odist_13256_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_26510_single_ip_batch_1_istride_1_R_ostride_1_HI_idist_26512_odist_13256_ioffset_0_0_ooffset_0_0 (401 ms)
+[ RUN      ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_36723_double_op_batch_1_istride_1_R_ostride_1_HI_idist_36723_odist_18362_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_1d/accuracy_test.vs_fftw/real_forward_len_36723_double_op_batch_1_istride_1_R_ostride_1_HI_idist_36723_odist_18362_ioffset_0_0_ooffset_0_0 (822 ms)
+[----------] 10 tests from random_real_1d/accuracy_test (6414 ms total)
+
+[----------] 10 tests from random_real_2d/accuracy_test
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_92_370_double_ip_batch_1_istride_372_1_R_ostride_186_1_HI_idist_34224_odist_17112_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_92_370_double_ip_batch_1_istride_372_1_R_ostride_186_1_HI_idist_34224_odist_17112_ioffset_0_0_ooffset_0_0 (1328 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_1089_290_double_ip_batch_1_istride_292_1_R_ostride_146_1_HI_idist_317988_odist_158994_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_1089_290_double_ip_batch_1_istride_292_1_R_ostride_146_1_HI_idist_317988_odist_158994_ioffset_0_0_ooffset_0_0 (961 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_42_112_single_op_batch_1_istride_112_1_R_ostride_57_1_HI_idist_4704_odist_2394_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_42_112_single_op_batch_1_istride_112_1_R_ostride_57_1_HI_idist_4704_odist_2394_ioffset_0_0_ooffset_0_0 (518 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_2581_1010_double_op_batch_1_istride_1010_1_R_ostride_506_1_HI_idist_2606810_odist_1305986_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_2581_1010_double_op_batch_1_istride_1010_1_R_ostride_506_1_HI_idist_2606810_odist_1305986_ioffset_0_0_ooffset_0_0 (921 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_320_1134_single_ip_batch_1_istride_1136_1_R_ostride_568_1_HI_idist_363520_odist_181760_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_320_1134_single_ip_batch_1_istride_1136_1_R_ostride_568_1_HI_idist_363520_odist_181760_ioffset_0_0_ooffset_0_0 (1095 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_596_829_single_ip_batch_1_istride_830_1_R_ostride_415_1_HI_idist_494680_odist_247340_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_596_829_single_ip_batch_1_istride_830_1_R_ostride_415_1_HI_idist_494680_odist_247340_ioffset_0_0_ooffset_0_0 (55 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_1148_2856_double_op_batch_1_istride_2856_1_R_ostride_1429_1_HI_idist_3278688_odist_1640492_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_1148_2856_double_op_batch_1_istride_2856_1_R_ostride_1429_1_HI_idist_3278688_odist_1640492_ioffset_0_0_ooffset_0_0 (736 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_547_1321_single_op_batch_1_istride_1321_1_R_ostride_661_1_HI_idist_722587_odist_361567_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_547_1321_single_op_batch_1_istride_1321_1_R_ostride_661_1_HI_idist_722587_odist_361567_ioffset_0_0_ooffset_0_0 (647 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_865_2586_single_ip_batch_1_istride_2588_1_R_ostride_1294_1_HI_idist_2238620_odist_1119310_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_865_2586_single_ip_batch_1_istride_2588_1_R_ostride_1294_1_HI_idist_2238620_odist_1119310_ioffset_0_0_ooffset_0_0 (853 ms)
+[ RUN      ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_55_721_double_op_batch_1_istride_721_1_R_ostride_361_1_HI_idist_39655_odist_19855_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_2d/accuracy_test.vs_fftw/real_forward_len_55_721_double_op_batch_1_istride_721_1_R_ostride_361_1_HI_idist_39655_odist_19855_ioffset_0_0_ooffset_0_0 (554 ms)
+[----------] 10 tests from random_real_2d/accuracy_test (7674 ms total)
+
+[----------] 10 tests from random_real_3d/accuracy_test
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_6_24_41_double_ip_batch_1_istride_1008_42_1_R_ostride_504_21_1_HI_idist_6048_odist_3024_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_6_24_41_double_ip_batch_1_istride_1008_42_1_R_ostride_504_21_1_HI_idist_6048_odist_3024_ioffset_0_0_ooffset_0_0 (59 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_19_89_3_single_op_batch_1_istride_267_3_1_R_ostride_178_2_1_HI_idist_5073_odist_3382_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_19_89_3_single_op_batch_1_istride_267_3_1_R_ostride_178_2_1_HI_idist_5073_odist_3382_ioffset_0_0_ooffset_0_0 (59 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_56_162_64_single_ip_batch_1_istride_10692_66_1_R_ostride_5346_33_1_HI_idist_598752_odist_299376_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_56_162_64_single_ip_batch_1_istride_10692_66_1_R_ostride_5346_33_1_HI_idist_598752_odist_299376_ioffset_0_0_ooffset_0_0 (554 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_20_71_23_single_ip_batch_1_istride_1704_24_1_R_ostride_852_12_1_HI_idist_34080_odist_17040_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_20_71_23_single_ip_batch_1_istride_1704_24_1_R_ostride_852_12_1_HI_idist_34080_odist_17040_ioffset_0_0_ooffset_0_0 (53 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_52_153_72_single_ip_batch_1_istride_11322_74_1_R_ostride_5661_37_1_HI_idist_588744_odist_294372_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_52_153_72_single_ip_batch_1_istride_11322_74_1_R_ostride_5661_37_1_HI_idist_588744_odist_294372_ioffset_0_0_ooffset_0_0 (574 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_81_35_83_single_op_batch_1_istride_2905_83_1_R_ostride_1470_42_1_HI_idist_235305_odist_119070_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_81_35_83_single_op_batch_1_istride_2905_83_1_R_ostride_1470_42_1_HI_idist_235305_odist_119070_ioffset_0_0_ooffset_0_0 (140 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_55_162_109_single_ip_batch_1_istride_17820_110_1_R_ostride_8910_55_1_HI_idist_980100_odist_490050_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_55_162_109_single_ip_batch_1_istride_17820_110_1_R_ostride_8910_55_1_HI_idist_980100_odist_490050_ioffset_0_0_ooffset_0_0 (77 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_46_119_136_single_ip_batch_1_istride_16422_138_1_R_ostride_8211_69_1_HI_idist_755412_odist_377706_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_46_119_136_single_ip_batch_1_istride_16422_138_1_R_ostride_8211_69_1_HI_idist_755412_odist_377706_ioffset_0_0_ooffset_0_0 (648 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_215_8_141_single_op_batch_1_istride_1128_141_1_R_ostride_568_71_1_HI_idist_242520_odist_122120_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_215_8_141_single_op_batch_1_istride_1128_141_1_R_ostride_568_71_1_HI_idist_242520_odist_122120_ioffset_0_0_ooffset_0_0 (571 ms)
+[ RUN      ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_239_158_53_single_ip_batch_1_istride_8532_54_1_R_ostride_4266_27_1_HI_idist_2039148_odist_1019574_ioffset_0_0_ooffset_0_0
+[       OK ] random_real_3d/accuracy_test.vs_fftw/real_forward_len_239_158_53_single_ip_batch_1_istride_8532_54_1_R_ostride_4266_27_1_HI_idist_2039148_odist_1019574_ioffset_0_0_ooffset_0_0 (640 ms)
+[----------] 10 tests from random_real_3d/accuracy_test (3380 ms total)
+
+[----------] 1 test from prime_1D/bitwise_repro_test
+[ RUN      ] prime_1D/bitwise_repro_test.compare_to_reference/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] prime_1D/bitwise_repro_test.compare_to_reference/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 1 test from prime_1D/bitwise_repro_test (0 ms total)
+
+[----------] 1 test from mix_1D/bitwise_repro_test
+[ RUN      ] mix_1D/bitwise_repro_test.compare_to_reference/real_forward_len_1500_double_op_batch_1_istride_1_R_ostride_1_HI_idist_1500_odist_751_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] mix_1D/bitwise_repro_test.compare_to_reference/real_forward_len_1500_double_op_batch_1_istride_1_R_ostride_1_HI_idist_1500_odist_751_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 1 test from mix_1D/bitwise_repro_test (0 ms total)
+
+[----------] 7 tests from small_1D/bitwise_repro_test
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_325_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_325_odist_325_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_325_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_325_odist_325_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_5862_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_5862_odist_5862_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_5862_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_5862_odist_5862_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6211_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6211_odist_6211_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6211_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6211_odist_6211_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6758_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6758_odist_6758_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6758_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6758_odist_6758_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7266_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7266_odist_7266_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7266_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7266_odist_7266_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7769_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7769_odist_7769_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7769_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7769_odist_7769_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7888_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7888_odist_7888_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7888_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7888_odist_7888_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 7 tests from small_1D/bitwise_repro_test (0 ms total)
+
+[----------] 2 tests from pow2_2D/bitwise_repro_test
+[ RUN      ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_4_64_double_op_batch_2_istride_64_1_R_ostride_33_1_HI_idist_256_odist_132_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_4_64_double_op_batch_2_istride_64_1_R_ostride_33_1_HI_idist_256_odist_132_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_8_4_double_op_batch_2_istride_4_1_R_ostride_3_1_HI_idist_32_odist_24_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_8_4_double_op_batch_2_istride_4_1_R_ostride_3_1_HI_idist_32_odist_24_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 2 tests from pow2_2D/bitwise_repro_test (0 ms total)
+
+[----------] 1 test from pow2_2D_half/bitwise_repro_test
+[ RUN      ] pow2_2D_half/bitwise_repro_test.compare_to_reference/real_forward_len_2_2_half_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_8_odist_4_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow2_2D_half/bitwise_repro_test.compare_to_reference/real_forward_len_2_2_half_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_8_odist_4_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 1 test from pow2_2D_half/bitwise_repro_test (0 ms total)
+
+[----------] 1 test from pow5_2D/bitwise_repro_test
+[ RUN      ] pow5_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_25_3125_single_op_batch_1_istride_3125_1_CI_ostride_3125_1_CP_idist_78125_odist_78125_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow5_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_25_3125_single_op_batch_1_istride_3125_1_CI_ostride_3125_1_CP_idist_78125_odist_78125_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 1 test from pow5_2D/bitwise_repro_test (0 ms total)
+
+[----------] 2 tests from prime_2D/bitwise_repro_test
+[ RUN      ] prime_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] prime_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] prime_2D/bitwise_repro_test.compare_to_reference/real_forward_len_271_11_single_op_batch_1_istride_11_1_R_ostride_6_1_HI_idist_2981_odist_1626_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] prime_2D/bitwise_repro_test.compare_to_reference/real_forward_len_271_11_single_op_batch_1_istride_11_1_R_ostride_6_1_HI_idist_2981_odist_1626_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 2 tests from prime_2D/bitwise_repro_test (0 ms total)
+
+[----------] 2 tests from pow2_3D/bitwise_repro_test
+[ RUN      ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_32_256_double_op_batch_1_istride_8192_256_1_R_ostride_4128_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_32_256_double_op_batch_1_istride_8192_256_1_R_ostride_4128_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_128_32_8_single_ip_batch_2_istride_320_10_1_R_ostride_160_5_1_HI_idist_40960_odist_20480_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_128_32_8_single_ip_batch_2_istride_320_10_1_R_ostride_160_5_1_HI_idist_40960_odist_20480_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 2 tests from pow2_3D/bitwise_repro_test (0 ms total)
+
+[----------] 3 tests from pow3_3D/bitwise_repro_test
+[ RUN      ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_27_27_81_single_op_batch_2_istride_2187_81_1_CI_ostride_2187_81_1_CI_idist_59049_odist_59049_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_27_27_81_single_op_batch_2_istride_2187_81_1_CI_ostride_2187_81_1_CI_idist_59049_odist_59049_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_9_243_single_op_batch_1_istride_2187_243_1_CI_ostride_2187_243_1_CI_idist_177147_odist_177147_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_9_243_single_op_batch_1_istride_2187_243_1_CI_ostride_2187_243_1_CI_idist_177147_odist_177147_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] pow3_3D/bitwise_repro_test.compare_to_reference/real_forward_len_243_27_243_single_op_batch_1_istride_6561_243_1_R_ostride_3294_122_1_HI_idist_1594323_odist_800442_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/real_forward_len_243_27_243_single_op_batch_1_istride_6561_243_1_R_ostride_3294_122_1_HI_idist_1594323_odist_800442_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 3 tests from pow3_3D/bitwise_repro_test (0 ms total)
+
+[----------] 1 test from pow5_3D/bitwise_repro_test
+[ RUN      ] pow5_3D/bitwise_repro_test.compare_to_reference/real_forward_len_5_25_25_double_ip_batch_1_istride_650_26_1_R_ostride_325_13_1_HI_idist_3250_odist_1625_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] pow5_3D/bitwise_repro_test.compare_to_reference/real_forward_len_5_25_25_double_ip_batch_1_istride_650_26_1_R_ostride_325_13_1_HI_idist_3250_odist_1625_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 1 test from pow5_3D/bitwise_repro_test (0 ms total)
+
+[----------] 2 tests from prime_3D/bitwise_repro_test
+[ RUN      ] prime_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_13_7_19_single_ip_batch_1_istride_133_19_1_CI_ostride_133_19_1_CI_idist_1729_odist_1729_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] prime_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_13_7_19_single_ip_batch_1_istride_133_19_1_CI_ostride_133_19_1_CI_idist_1729_odist_1729_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] prime_3D/bitwise_repro_test.compare_to_reference/real_forward_len_17_11_7_double_op_batch_1_istride_77_7_1_R_ostride_44_4_1_HI_idist_1309_odist_748_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] prime_3D/bitwise_repro_test.compare_to_reference/real_forward_len_17_11_7_double_op_batch_1_istride_77_7_1_R_ostride_44_4_1_HI_idist_1309_odist_748_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 2 tests from prime_3D/bitwise_repro_test (0 ms total)
+
+[----------] 3 tests from mix_3D/bitwise_repro_test
+[ RUN      ] mix_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_4_243_29_double_op_batch_2_istride_7047_29_1_CI_ostride_7047_29_1_CI_idist_28188_odist_28188_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_4_243_29_double_op_batch_2_istride_7047_29_1_CI_ostride_7047_29_1_CI_idist_28188_odist_28188_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_3_7_single_ip_batch_1_istride_24_8_1_R_ostride_12_4_1_HI_idist_192_odist_96_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_3_7_single_ip_batch_1_istride_24_8_1_R_ostride_12_4_1_HI_idist_192_odist_96_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_243_29_double_ip_batch_1_istride_7290_30_1_R_ostride_3645_15_1_HI_idist_116640_odist_58320_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_243_29_double_ip_batch_1_istride_7290_30_1_R_ostride_3645_15_1_HI_idist_116640_odist_58320_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 3 tests from mix_3D/bitwise_repro_test (0 ms total)
+
+[----------] 3 tests from sbrc_3D/bitwise_repro_test
+[ RUN      ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_10_256_50_double_op_batch_2_istride_12800_50_1_CI_ostride_12800_50_1_CI_idist_128000_odist_128000_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_10_256_50_double_op_batch_2_istride_12800_50_1_CI_ostride_12800_50_1_CI_idist_128000_odist_128000_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_50_256_81_double_op_batch_1_istride_20736_81_1_CI_ostride_20736_81_1_CI_idist_1036800_odist_1036800_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_50_256_81_double_op_batch_1_istride_20736_81_1_CI_ostride_20736_81_1_CI_idist_1036800_odist_1036800_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_100_64_double_op_batch_2_istride_6400_64_1_CI_ostride_6400_64_1_CI_idist_518400_odist_518400_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_100_64_double_op_batch_2_istride_6400_64_1_CI_ostride_6400_64_1_CI_idist_518400_odist_518400_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 3 tests from sbrc_3D/bitwise_repro_test (0 ms total)
+
+[----------] 11 tests from inner_batch_3D/bitwise_repro_test
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_8_24_20_double_ip_batch_1_istride_480_20_1_CI_ostride_480_20_1_CI_idist_3840_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_8_24_20_double_ip_batch_1_istride_480_20_1_CI_ostride_480_20_1_CI_idist_3840_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_8_8_single_op_batch_2_istride_64_8_1_CI_ostride_128_16_2_CI_idist_1280_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_8_8_single_op_batch_2_istride_64_8_1_CI_ostride_128_16_2_CI_idist_1280_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_32_64_single_ip_batch_1_istride_2048_64_1_CI_ostride_2048_64_1_CI_idist_40960_odist_40960_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_32_64_single_ip_batch_1_istride_2048_64_1_CI_ostride_2048_64_1_CI_idist_40960_odist_40960_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_24_20_16_double_op_batch_2_istride_640_32_2_CI_ostride_640_32_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_24_20_16_double_op_batch_2_istride_640_32_2_CI_ostride_640_32_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_20_64_single_op_batch_1_istride_1280_64_1_CI_ostride_1280_64_1_CI_idist_81920_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_20_64_single_op_batch_1_istride_1280_64_1_CI_ostride_1280_64_1_CI_idist_81920_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_64_32_single_ip_batch_1_istride_2048_32_1_CI_ostride_2048_32_1_CI_idist_1_odist_131072_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_64_32_single_ip_batch_1_istride_2048_32_1_CI_ostride_2048_32_1_CI_idist_1_odist_131072_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_20_64_double_op_batch_3_istride_1280_64_1_R_ostride_660_33_1_HP_idist_20480_odist_10560_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_20_64_double_op_batch_3_istride_1280_64_1_R_ostride_660_33_1_HP_idist_20480_odist_10560_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_32_24_single_op_batch_2_istride_1536_48_2_R_ostride_416_13_1_HI_idist_1_odist_6656_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_32_24_single_op_batch_2_istride_1536_48_2_R_ostride_416_13_1_HI_idist_1_odist_6656_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_20_20_4_double_op_batch_1_istride_80_4_1_R_ostride_80_4_1_HI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_20_20_4_double_op_batch_1_istride_80_4_1_R_ostride_80_4_1_HI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_24_16_16_double_op_batch_2_istride_256_16_1_R_ostride_512_32_2_HP_idist_6144_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_24_16_16_double_op_batch_2_istride_256_16_1_R_ostride_512_32_2_HP_idist_6144_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_32_64_8_double_op_batch_3_istride_512_8_1_R_ostride_1536_24_3_HI_idist_16384_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_32_64_8_double_op_batch_3_istride_512_8_1_R_ostride_1536_24_3_HI_idist_16384_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 11 tests from inner_batch_3D/bitwise_repro_test (0 ms total)
+
+[----------] 6 tests from inner_batch_3D_half/bitwise_repro_test
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_4_20_16_half_ip_batch_1_istride_320_16_1_CP_ostride_320_16_1_CP_idist_1_odist_1280_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_4_20_16_half_ip_batch_1_istride_320_16_1_CP_ostride_320_16_1_CP_idist_1_odist_1280_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_4_32_half_ip_batch_2_istride_256_64_2_CI_ostride_256_64_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_4_32_half_ip_batch_2_istride_256_64_2_CI_ostride_256_64_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_16_8_half_ip_batch_1_istride_128_8_1_CI_ostride_128_8_1_CI_idist_2560_odist_2560_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_16_8_half_ip_batch_1_istride_128_8_1_CI_ostride_128_8_1_CI_idist_2560_odist_2560_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_20_32_8_half_op_batch_3_istride_256_8_1_R_ostride_160_5_1_HI_idist_5120_odist_3200_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_20_32_8_half_op_batch_3_istride_256_8_1_R_ostride_160_5_1_HI_idist_5120_odist_3200_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_24_20_4_half_ip_batch_2_istride_120_6_1_R_ostride_60_3_1_HI_idist_2880_odist_1440_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_24_20_4_half_ip_batch_2_istride_120_6_1_R_ostride_60_3_1_HI_idist_2880_odist_1440_ioffset_0_0_ooffset_0_0 (0 ms)
+[ RUN      ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_32_16_8_half_op_batch_3_istride_384_24_3_R_ostride_80_5_1_HI_idist_1_odist_2560_ioffset_0_0_ooffset_0_0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/bitwise_repro/bitwise_repro_test.cpp:147: Skipped
+A database file is required for this test.
+
+
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_32_16_8_half_op_batch_3_istride_384_24_3_R_ostride_80_5_1_HI_idist_1_odist_2560_ioffset_0_0_ooffset_0_0 (0 ms)
+[----------] 6 tests from inner_batch_3D_half/bitwise_repro_test (0 ms total)
+
+[----------] 13 tests from reference_test/valid_length_stride
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/0
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/0 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/1
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/1 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/2
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/2 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/3
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/3 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/4
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/4 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/5
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/5 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/6
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/6 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/7
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/7 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/8
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/8 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/9
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/9 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/10
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/10 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/11
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/11 (0 ms)
+[ RUN      ] reference_test/valid_length_stride.direct_comparison/12
+/therock/src/rocm-libraries/projects/rocfft/clients/tests/validate_length_stride.cpp:97: Skipped
+
+
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/12 (0 ms)
+[----------] 13 tests from reference_test/valid_length_stride (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 374 tests from 45 test suites ran. (77188 ms total)
+[  PASSED  ] 290 tests.
+[  SKIPPED ] 84 tests, listed below:
+[  SKIPPED ] manual.bitwise_reproducibility
+[  SKIPPED ] bitwise_repro_test.compare_precisions
+[  SKIPPED ] bitwise_repro_test.compare_lengths
+[  SKIPPED ] bitwise_repro_test.compare_transform_types
+[  SKIPPED ] rocfft_UnitTest.buffer_hashing_single
+[  SKIPPED ] rocfft_UnitTest.buffer_hashing_double
+[  SKIPPED ] rocfft_UnitTest.1D_hermitian_single_small
+[  SKIPPED ] rocfft_UnitTest.1D_hermitian_single_large
+[  SKIPPED ] rocfft_UnitTest.gpu_symmetrizer
+[  SKIPPED ] rocfft_UnitTest.compare_cpu_gpu_symmetrizers
+[  SKIPPED ] rocfft_UnitTest.hipGraph_execution
+[  SKIPPED ] rocfft_UnitTest.simple_multistream_2D
+[  SKIPPED ] rocfft_UnitTest.simple_multistream_3D
+[  SKIPPED ] rocfft_UnitTest.plan_description
+[  SKIPPED ] rocfft_UnitTest.plan_description_reuse
+[  SKIPPED ] rocfft_UnitTest.log_levels
+[  SKIPPED ] rocfft_UnitTest.log_multithreading
+[  SKIPPED ] rocfft_UnitTest.workmem_missing
+[  SKIPPED ] rocfft_UnitTest.workmem_big
+[  SKIPPED ] rocfft_UnitTest.workmem_null
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_iter_1
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_iter_2
+[  SKIPPED ] rocfft_UnitTest.rtc_cache_null
+[  SKIPPED ] rocfft_UnitTest.rtc_helper_crash
+[  SKIPPED ] multi_gpu_validate.catch_validation_errors
+[  SKIPPED ] prime_1D/bitwise_repro_test.compare_to_reference/real_forward_len_23_single_op_batch_1_istride_1_R_ostride_1_HI_idist_23_odist_12_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] mix_1D/bitwise_repro_test.compare_to_reference/real_forward_len_1500_double_op_batch_1_istride_1_R_ostride_1_HI_idist_1500_odist_751_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_325_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_325_odist_325_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_5862_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_5862_odist_5862_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6211_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6211_odist_6211_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_6758_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_6758_odist_6758_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7266_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7266_odist_7266_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7769_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7769_odist_7769_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] small_1D/bitwise_repro_test.compare_to_reference/complex_forward_len_7888_single_op_batch_1_istride_1_CI_ostride_1_CI_idist_7888_odist_7888_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_4_64_double_op_batch_2_istride_64_1_R_ostride_33_1_HI_idist_256_odist_132_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow2_2D/bitwise_repro_test.compare_to_reference/real_forward_len_8_4_double_op_batch_2_istride_4_1_R_ostride_3_1_HI_idist_32_odist_24_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow2_2D_half/bitwise_repro_test.compare_to_reference/real_forward_len_2_2_half_ip_batch_2_istride_4_1_R_ostride_2_1_HI_idist_8_odist_4_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow5_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_25_3125_single_op_batch_1_istride_3125_1_CI_ostride_3125_1_CP_idist_78125_odist_78125_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] prime_2D/bitwise_repro_test.compare_to_reference/complex_forward_len_17_29_double_op_batch_2_istride_29_1_CI_ostride_29_1_CI_idist_493_odist_493_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] prime_2D/bitwise_repro_test.compare_to_reference/real_forward_len_271_11_single_op_batch_1_istride_11_1_R_ostride_6_1_HI_idist_2981_odist_1626_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_32_256_double_op_batch_1_istride_8192_256_1_R_ostride_4128_129_1_HI_idist_65536_odist_33024_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow2_3D/bitwise_repro_test.compare_to_reference/real_forward_len_128_32_8_single_ip_batch_2_istride_320_10_1_R_ostride_160_5_1_HI_idist_40960_odist_20480_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_27_27_81_single_op_batch_2_istride_2187_81_1_CI_ostride_2187_81_1_CI_idist_59049_odist_59049_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_9_243_single_op_batch_1_istride_2187_243_1_CI_ostride_2187_243_1_CI_idist_177147_odist_177147_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow3_3D/bitwise_repro_test.compare_to_reference/real_forward_len_243_27_243_single_op_batch_1_istride_6561_243_1_R_ostride_3294_122_1_HI_idist_1594323_odist_800442_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] pow5_3D/bitwise_repro_test.compare_to_reference/real_forward_len_5_25_25_double_ip_batch_1_istride_650_26_1_R_ostride_325_13_1_HI_idist_3250_odist_1625_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] prime_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_13_7_19_single_ip_batch_1_istride_133_19_1_CI_ostride_133_19_1_CI_idist_1729_odist_1729_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] prime_3D/bitwise_repro_test.compare_to_reference/real_forward_len_17_11_7_double_op_batch_1_istride_77_7_1_R_ostride_44_4_1_HI_idist_1309_odist_748_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_4_243_29_double_op_batch_2_istride_7047_29_1_CI_ostride_7047_29_1_CI_idist_28188_odist_28188_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_8_3_7_single_ip_batch_1_istride_24_8_1_R_ostride_12_4_1_HI_idist_192_odist_96_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] mix_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_243_29_double_ip_batch_1_istride_7290_30_1_R_ostride_3645_15_1_HI_idist_116640_odist_58320_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_10_256_50_double_op_batch_2_istride_12800_50_1_CI_ostride_12800_50_1_CI_idist_128000_odist_128000_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_50_256_81_double_op_batch_1_istride_20736_81_1_CI_ostride_20736_81_1_CI_idist_1036800_odist_1036800_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] sbrc_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_81_100_64_double_op_batch_2_istride_6400_64_1_CI_ostride_6400_64_1_CI_idist_518400_odist_518400_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_8_24_20_double_ip_batch_1_istride_480_20_1_CI_ostride_480_20_1_CI_idist_3840_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_8_8_single_op_batch_2_istride_64_8_1_CI_ostride_128_16_2_CI_idist_1280_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_20_32_64_single_ip_batch_1_istride_2048_64_1_CI_ostride_2048_64_1_CI_idist_40960_odist_40960_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_24_20_16_double_op_batch_2_istride_640_32_2_CI_ostride_640_32_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_20_64_single_op_batch_1_istride_1280_64_1_CI_ostride_1280_64_1_CI_idist_81920_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/complex_forward_len_64_64_32_single_ip_batch_1_istride_2048_32_1_CI_ostride_2048_32_1_CI_idist_1_odist_131072_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_20_64_double_op_batch_3_istride_1280_64_1_R_ostride_660_33_1_HP_idist_20480_odist_10560_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_16_32_24_single_op_batch_2_istride_1536_48_2_R_ostride_416_13_1_HI_idist_1_odist_6656_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_20_20_4_double_op_batch_1_istride_80_4_1_R_ostride_80_4_1_HI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_24_16_16_double_op_batch_2_istride_256_16_1_R_ostride_512_32_2_HP_idist_6144_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D/bitwise_repro_test.compare_to_reference/real_forward_len_32_64_8_double_op_batch_3_istride_512_8_1_R_ostride_1536_24_3_HI_idist_16384_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_4_20_16_half_ip_batch_1_istride_320_16_1_CP_ostride_320_16_1_CP_idist_1_odist_1280_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_4_32_half_ip_batch_2_istride_256_64_2_CI_ostride_256_64_2_CI_idist_1_odist_1_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/complex_forward_len_20_16_8_half_ip_batch_1_istride_128_8_1_CI_ostride_128_8_1_CI_idist_2560_odist_2560_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_20_32_8_half_op_batch_3_istride_256_8_1_R_ostride_160_5_1_HI_idist_5120_odist_3200_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_24_20_4_half_ip_batch_2_istride_120_6_1_R_ostride_60_3_1_HI_idist_2880_odist_1440_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] inner_batch_3D_half/bitwise_repro_test.compare_to_reference/real_forward_len_32_16_8_half_op_batch_3_istride_384_24_3_R_ostride_80_5_1_HI_idist_1_odist_2560_ioffset_0_0_ooffset_0_0
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/0
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/1
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/2
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/3
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/4
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/5
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/6
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/7
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/8
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/9
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/10
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/11
+[  SKIPPED ] reference_test/valid_length_stride.direct_comparison/12
+
+  YOU HAVE 57 DISABLED TESTS
+
+Test suite took 0 hours 1 minutes
+
+half precision max l-inf epsilon: 0.000597637
+half precision max l2 epsilon:     0.00571418
+single precision max l-inf epsilon: 1.25018e-07
+single precision max l2 epsilon:     2.82924e-06
+double precision max l-inf epsilon: 3.9081e-16
+double precision max l2 epsilon:     7.48843e-15
+Number of runtime issues: 0
+Number of successful tests: 290
+Number of skipped tests: 84
+
+Random seed: 2936590632

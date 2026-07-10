@@ -1,0 +1,30 @@
+[2026-07-03 18:07:59] ===== Starting aqlprofile standard test =====
+PID=2741563  TIMEOUT=7200s  LOG=/home/zs/test_case/scripts/logs/standard/aqlprofile_standard_20260703_180759.log
+[INFO] PID file: /tmp/therock_aqlprofile_standard.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-03 18:07:59] test running...
+Disk free: 767G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-03 18:07:59] Running with sudo: timeout 7200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_aqlprofile.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+Traceback (most recent call last):
+  File "/home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_aqlprofile.py", line 14, in <module>
+    THEROCK_DIR = Path(os.getenv("OUTPUT_ARTIFACTS_DIR")).resolve()
+                  ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 149, in __init__
+    raise TypeError(
+    ...<2 lines>...
+        f"not {type(path).__name__!r}")
+TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+[2026-07-03 18:07:59] ===== aqlprofile standard: FAIL (0s, rc=1) =====

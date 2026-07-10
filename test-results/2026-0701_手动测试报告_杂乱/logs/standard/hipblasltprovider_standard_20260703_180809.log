@@ -1,0 +1,40 @@
+[2026-07-03 18:08:09] ===== Starting hipblasltprovider standard test =====
+PID=2742203  TIMEOUT=7200s  LOG=/home/zs/test_case/scripts/logs/standard/hipblasltprovider_standard_20260703_180809.log
+[INFO] PID file: /tmp/therock_hipblasltprovider_standard.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-03 18:08:09] test running...
+Disk free: 767G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-03 18:08:09] Running with sudo: timeout 7200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^standard$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblaslt_plugin -V --tests-information 1,,1
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/test-dirs/hipblaslt_plugin/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblaslt_plugin
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+No tests were found!!!
+# TEST_COMPONENT: hipblasltprovider -> Test Directory: /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblaslt_plugin
+# TEST_TYPE: standard -> Category: standard
+# AMDGPU_FAMILIES: None -> GPU Architecture: 
+
+# Discovering available test labels...
+# Warning: No GPU specific test suites available
+
+# Running: ctest -L ^standard$ -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hipblaslt_plugin -V --tests-information 1,,1
+
+[2026-07-03 18:08:10] ===== hipblasltprovider standard: PASS (1s, rc=0) =====

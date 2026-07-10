@@ -1,0 +1,52 @@
+[2026-07-08 10:15:03] ===== Starting hipdnn full test =====
+PID=1777252  TIMEOUT=43200s  LOG=/home/zs/test_case/scripts/logs/full/hipdnn_full_20260708_101503.log
+[INFO] PID file: /tmp/therock_hipdnn_full.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-08 10:15:03] test running...
+Disk free: 797G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-08 10:15:03] Running with sudo: timeout 43200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_hipdnn.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/hipdnn --output-on-failure
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/hipdnn
+      Start  1: hipdnn_test_name_validation
+ 1/10 Test  #1: hipdnn_test_name_validation .............   Passed    0.47 sec
+      Start  2: hipdnn_data_sdk_tests
+ 2/10 Test  #2: hipdnn_data_sdk_tests ...................   Passed    0.08 sec
+      Start  3: hipdnn_flatbuffers_sdk_tests
+ 3/10 Test  #3: hipdnn_flatbuffers_sdk_tests ............   Passed    0.02 sec
+      Start  4: hipdnn_backend_tests
+ 4/10 Test  #4: hipdnn_backend_tests ....................   Passed    2.49 sec
+      Start  5: hipdnn_frontend_tests
+ 5/10 Test  #5: hipdnn_frontend_tests ...................   Passed    0.08 sec
+      Start  6: hipdnn_test_sdk_tests
+ 6/10 Test  #6: hipdnn_test_sdk_tests ...................   Passed    1.44 sec
+      Start  7: hipdnn_plugin_sdk_tests
+ 7/10 Test  #7: hipdnn_plugin_sdk_tests .................   Passed    0.02 sec
+      Start  8: hipdnn_public_backend_tests
+ 8/10 Test  #8: hipdnn_public_backend_tests .............   Passed    0.14 sec
+      Start  9: hipdnn_backend_logging_shutdown_tests
+ 9/10 Test  #9: hipdnn_backend_logging_shutdown_tests ...   Passed    0.17 sec
+      Start 10: hipdnn_public_frontend_tests
+10/10 Test #10: hipdnn_public_frontend_tests ............   Passed    0.60 sec
+
+100% tests passed, 0 tests failed out of 10
+
+Label Time Summary:
+integration_test    =   1.38 sec*proc (4 tests)
+quick               =   0.47 sec*proc (1 test)
+unit_test           =   4.60 sec*proc (7 tests)
+
+Total Test time (real) =   5.52 sec
+[2026-07-08 10:15:09] ===== hipdnn full: PASS (6s, rc=0) =====

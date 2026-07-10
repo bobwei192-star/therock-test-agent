@@ -1,0 +1,34 @@
+[2026-07-03 20:10:07] ===== Starting libhipcxx_hiprtc standard test =====
+PID=3722431  TIMEOUT=7200s  LOG=/home/zs/test_case/scripts/logs/standard/libhipcxx_hiprtc_standard_20260703_201007.log
+[INFO] PID file: /tmp/therock_libhipcxx_hiprtc_standard.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-03 20:10:07] test running...
+Disk free: 767G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-03 20:10:07] Running with sudo: timeout 7200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_libhipcxx_hiprtc.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+Error: offload-arch command not found
+INFO: ++ Detected GPU architecture: None
+INFO: Loading ROCm version from: /home/zs/TheRock/version.json
+INFO: ROCm version: 7.15.0
+Traceback (most recent call last):
+  File "/home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_libhipcxx_hiprtc.py", line 45, in <module>
+    OUTPUT_ARTIFACTS_PATH = Path(OUTPUT_ARTIFACTS_DIR).resolve()
+                            ~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 149, in __init__
+    raise TypeError(
+    ...<2 lines>...
+        f"not {type(path).__name__!r}")
+TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+[2026-07-03 20:10:08] ===== libhipcxx_hiprtc standard: FAIL (1s, rc=1) =====

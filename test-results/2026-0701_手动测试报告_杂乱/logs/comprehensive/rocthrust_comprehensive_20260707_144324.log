@@ -1,0 +1,975 @@
+[2026-07-07 14:43:24] ===== Starting rocthrust comprehensive test =====
+PID=2074309  TIMEOUT=21600s  LOG=/home/zs/test_case/scripts/logs/comprehensive/rocthrust_comprehensive_20260707_144324.log
+[INFO] PID file: /tmp/therock_rocthrust_comprehensive.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-07 14:43:24] test running...
+Disk free: 764G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-07 14:43:24] Running with sudo: timeout 21600 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/generate_resource_spec /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/resources.json
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^comprehensive$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/rocthrust -V --tests-information 1,,1 --resource-spec-file resources.json
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/test-dirs/rocthrust/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/rocthrust
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 351
+        Start 351: address_stability.hip_gpus_standard_suite
+
+351: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/address_stability.hip "--gtest_filter=*"
+351: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+351: Test timeout computed to be: 14400
+351: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+351: [==========] Running 4 tests from 1 test suite.
+351: [----------] Global test environment set-up.
+351: [----------] 4 tests from AddressStabilityTests
+351: [ RUN      ] AddressStabilityTests.TestAddressStabilityLibcuxx
+351: [       OK ] AddressStabilityTests.TestAddressStabilityLibcuxx (22 ms)
+351: [ RUN      ] AddressStabilityTests.TestAddressStabilityThrust
+351: [       OK ] AddressStabilityTests.TestAddressStabilityThrust (0 ms)
+351: [ RUN      ] AddressStabilityTests.TestAddressStabilityUserDefinedFunctionObject
+351: [       OK ] AddressStabilityTests.TestAddressStabilityUserDefinedFunctionObject (0 ms)
+351: [ RUN      ] AddressStabilityTests.TestAddressStabilityLambda
+351: [       OK ] AddressStabilityTests.TestAddressStabilityLambda (0 ms)
+351: [----------] 4 tests from AddressStabilityTests (23 ms total)
+351: 
+351: [----------] Global test environment tear-down
+351: [==========] 4 tests from 1 test suite ran. (23 ms total)
+351: [  PASSED  ] 4 tests.
+  1/168 Test #351: address_stability.hip_gpus_standard_suite .............................   Passed    0.06 sec
+test 354
+        Start 354: adjacent_difference.hip_gpus_standard_suite
+
+354: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/adjacent_difference.hip "--gtest_filter=*"
+354: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+354: Test timeout computed to be: 14400
+354: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+354: [==========] Running 46 tests from 28 test suites.
+354: [----------] Global test environment set-up.
+354: [----------] 1 test from AdjacentDifferenceTests/0, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<short,std::allocator<short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/0.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/0.TestAdjacentDifferenceSimple (19 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/0 (19 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/1, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<int,std::allocator<int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/1.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/1.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/1 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/2, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<long long,std::allocator<long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/2.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/2.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/2 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/3, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<unsigned short,std::allocator<unsigned short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/3.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/3.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/3 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/4, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<unsigned int,std::allocator<unsigned int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/4.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/4.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/4 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/5, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<unsigned long long,std::allocator<unsigned long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/5.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/5.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/5 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/6, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<float,std::allocator<float> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/6.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/6.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/6 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/7, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<double,std::allocator<double> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/7.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/7.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/7 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/8, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<short,thrust::THRUST_200805_400500_NS::device_allocator<short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/8.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/8.TestAdjacentDifferenceSimple (37 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/8 (37 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/9, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<int,thrust::THRUST_200805_400500_NS::device_allocator<int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/9.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/9.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/9 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/10, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<int,thrust::THRUST_200805_400500_NS::device_allocator<int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_nosync_t>
+354: [ RUN      ] AdjacentDifferenceTests/10.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/10.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/10 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/11, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<long long,thrust::THRUST_200805_400500_NS::device_allocator<long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/11.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/11.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/11 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/12, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<unsigned short,thrust::THRUST_200805_400500_NS::device_allocator<unsigned short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/12.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/12.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/12 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/13, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<unsigned int,thrust::THRUST_200805_400500_NS::device_allocator<unsigned int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/13.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/13.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/13 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/14, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<unsigned long long,thrust::THRUST_200805_400500_NS::device_allocator<unsigned long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/14.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/14.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/14 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/15, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<float,thrust::THRUST_200805_400500_NS::device_allocator<float> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/15.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/15.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/15 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/16, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<float,thrust::THRUST_200805_400500_NS::device_allocator<float> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_det_t>
+354: [ RUN      ] AdjacentDifferenceTests/16.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/16.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/16 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/17, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<float,thrust::THRUST_200805_400500_NS::device_allocator<float> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_det_nosync_t>
+354: [ RUN      ] AdjacentDifferenceTests/17.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/17.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/17 (0 ms total)
+354: 
+354: [----------] 1 test from AdjacentDifferenceTests/18, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<double,thrust::THRUST_200805_400500_NS::device_allocator<double> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceTests/18.TestAdjacentDifferenceSimple
+354: [       OK ] AdjacentDifferenceTests/18.TestAdjacentDifferenceSimple (0 ms)
+354: [----------] 1 test from AdjacentDifferenceTests/18 (0 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/0, where TypeParam = Params<short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/0.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/0.TestAdjacentDifference (18 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/0.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/0.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (10 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/0.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/0.TestAdjacentDifferenceDiscardIterator (10 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/0 (39 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/1, where TypeParam = Params<int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/1.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/1.TestAdjacentDifference (45 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/1.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/1.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (37 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/1.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/1.TestAdjacentDifferenceDiscardIterator (38 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/1 (121 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/2, where TypeParam = Params<long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/2.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/2.TestAdjacentDifference (51 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/2.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/2.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (40 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/2.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/2.TestAdjacentDifferenceDiscardIterator (35 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/2 (127 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/3, where TypeParam = Params<unsigned short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/3.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/3.TestAdjacentDifference (13 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/3.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/3.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (10 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/3.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/3.TestAdjacentDifferenceDiscardIterator (8 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/3 (32 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/4, where TypeParam = Params<unsigned int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/4.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/4.TestAdjacentDifference (39 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/4.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/4.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (38 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/4.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/4.TestAdjacentDifferenceDiscardIterator (34 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/4 (112 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/5, where TypeParam = Params<unsigned long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/5.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/5.TestAdjacentDifference (49 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/5.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/5.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (39 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/5.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/5.TestAdjacentDifferenceDiscardIterator (36 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/5 (124 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/6, where TypeParam = Params<float,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/6.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/6.TestAdjacentDifference (14 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/6.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/6.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (10 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/6.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/6.TestAdjacentDifferenceDiscardIterator (7 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/6 (32 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/7, where TypeParam = Params<double,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+354: [ RUN      ] AdjacentDifferenceVariableTests/7.TestAdjacentDifference
+354: [       OK ] AdjacentDifferenceVariableTests/7.TestAdjacentDifference (27 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/7.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes
+354: [       OK ] AdjacentDifferenceVariableTests/7.TestAdjacentDifferenceInPlaceWithRelatedIteratorTypes (18 ms)
+354: [ RUN      ] AdjacentDifferenceVariableTests/7.TestAdjacentDifferenceDiscardIterator
+354: [       OK ] AdjacentDifferenceVariableTests/7.TestAdjacentDifferenceDiscardIterator (15 ms)
+354: [----------] 3 tests from AdjacentDifferenceVariableTests/7 (61 ms total)
+354: 
+354: [----------] 3 tests from AdjacentDifferenceTests
+354: [ RUN      ] AdjacentDifferenceTests.TestAdjacentDifferenceDispatchExplicit
+354: [       OK ] AdjacentDifferenceTests.TestAdjacentDifferenceDispatchExplicit (0 ms)
+354: [ RUN      ] AdjacentDifferenceTests.TestAdjacentDifferenceDispatchImplicit
+354: [       OK ] AdjacentDifferenceTests.TestAdjacentDifferenceDispatchImplicit (0 ms)
+354: [ RUN      ] AdjacentDifferenceTests.TestAdjacentDifferenceDevice
+354: [       OK ] AdjacentDifferenceTests.TestAdjacentDifferenceDevice (321 ms)
+354: [----------] 3 tests from AdjacentDifferenceTests (321 ms total)
+354: 
+354: [----------] Global test environment tear-down
+354: [==========] 46 tests from 28 test suites ran. (1032 ms total)
+354: [  PASSED  ] 46 tests.
+  2/168 Test #354: adjacent_difference.hip_gpus_standard_suite ...........................   Passed    1.08 sec
+test 357
+        Start 357: advance.hip_gpus_standard_suite
+
+357: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/advance.hip "--gtest_filter=*"
+357: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+357: Test timeout computed to be: 14400
+357: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+357: [==========] Running 18 tests from 6 test suites.
+357: [----------] Global test environment set-up.
+357: [----------] 3 tests from AdvanceVectorTests/0, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<short,std::allocator<short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/0.TestAdvance
+357: [       OK ] AdvanceVectorTests/0.TestAdvance (19 ms)
+357: [ RUN      ] AdvanceVectorTests/0.TestNext
+357: [       OK ] AdvanceVectorTests/0.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/0.TestPrev
+357: [       OK ] AdvanceVectorTests/0.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/0 (19 ms total)
+357: 
+357: [----------] 3 tests from AdvanceVectorTests/1, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<int,std::allocator<int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/1.TestAdvance
+357: [       OK ] AdvanceVectorTests/1.TestAdvance (0 ms)
+357: [ RUN      ] AdvanceVectorTests/1.TestNext
+357: [       OK ] AdvanceVectorTests/1.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/1.TestPrev
+357: [       OK ] AdvanceVectorTests/1.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/1 (0 ms total)
+357: 
+357: [----------] 3 tests from AdvanceVectorTests/2, where TypeParam = Params<thrust::THRUST_200805_400500_NS::host_vector<long long,std::allocator<long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/2.TestAdvance
+357: [       OK ] AdvanceVectorTests/2.TestAdvance (0 ms)
+357: [ RUN      ] AdvanceVectorTests/2.TestNext
+357: [       OK ] AdvanceVectorTests/2.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/2.TestPrev
+357: [       OK ] AdvanceVectorTests/2.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/2 (0 ms total)
+357: 
+357: [----------] 3 tests from AdvanceVectorTests/3, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<short,thrust::THRUST_200805_400500_NS::device_allocator<short> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/3.TestAdvance
+357: [       OK ] AdvanceVectorTests/3.TestAdvance (12 ms)
+357: [ RUN      ] AdvanceVectorTests/3.TestNext
+357: [       OK ] AdvanceVectorTests/3.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/3.TestPrev
+357: [       OK ] AdvanceVectorTests/3.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/3 (12 ms total)
+357: 
+357: [----------] 3 tests from AdvanceVectorTests/4, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<int,thrust::THRUST_200805_400500_NS::device_allocator<int> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/4.TestAdvance
+357: [       OK ] AdvanceVectorTests/4.TestAdvance (0 ms)
+357: [ RUN      ] AdvanceVectorTests/4.TestNext
+357: [       OK ] AdvanceVectorTests/4.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/4.TestPrev
+357: [       OK ] AdvanceVectorTests/4.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/4 (0 ms total)
+357: 
+357: [----------] 3 tests from AdvanceVectorTests/5, where TypeParam = Params<thrust::THRUST_200805_400500_NS::device_vector<long long,thrust::THRUST_200805_400500_NS::device_allocator<long long> >,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+357: [ RUN      ] AdvanceVectorTests/5.TestAdvance
+357: [       OK ] AdvanceVectorTests/5.TestAdvance (0 ms)
+357: [ RUN      ] AdvanceVectorTests/5.TestNext
+357: [       OK ] AdvanceVectorTests/5.TestNext (0 ms)
+357: [ RUN      ] AdvanceVectorTests/5.TestPrev
+357: [       OK ] AdvanceVectorTests/5.TestPrev (0 ms)
+357: [----------] 3 tests from AdvanceVectorTests/5 (0 ms total)
+357: 
+357: [----------] Global test environment tear-down
+357: [==========] 18 tests from 6 test suites ran. (32 ms total)
+357: [  PASSED  ] 18 tests.
+  3/168 Test #357: advance.hip_gpus_standard_suite .......................................   Passed    0.07 sec
+test 360
+        Start 360: alignment.hip_gpus_standard_suite
+
+360: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/alignment.hip "--gtest_filter=*"
+360: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+360: Test timeout computed to be: 14400
+360: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+360: [==========] Running 6 tests from 1 test suite.
+360: [----------] Global test environment set-up.
+360: [----------] 6 tests from AlignmentTests
+360: [ RUN      ] AlignmentTests.test_alignof_mocks_sizes
+360: [       OK ] AlignmentTests.test_alignof_mocks_sizes (16 ms)
+360: [ RUN      ] AlignmentTests.test_alignof
+360: [       OK ] AlignmentTests.test_alignof (0 ms)
+360: [ RUN      ] AlignmentTests.test_alignment_of
+360: [       OK ] AlignmentTests.test_alignment_of (0 ms)
+360: [ RUN      ] AlignmentTests.test_aligned_type
+360: [       OK ] AlignmentTests.test_aligned_type (0 ms)
+360: [ RUN      ] AlignmentTests.test_max_align_t
+360: [       OK ] AlignmentTests.test_max_align_t (0 ms)
+360: [ RUN      ] AlignmentTests.test_aligned_reinterpret_cast
+360: [       OK ] AlignmentTests.test_aligned_reinterpret_cast (0 ms)
+360: [----------] 6 tests from AlignmentTests (16 ms total)
+360: 
+360: [----------] Global test environment tear-down
+360: [==========] 6 tests from 1 test suite ran. (16 ms total)
+360: [  PASSED  ] 6 tests.
+  4/168 Test #360: alignment.hip_gpus_standard_suite .....................................   Passed    0.05 sec
+test 363
+        Start 363: allocator.hip_gpus_standard_suite
+
+363: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/allocator.hip "--gtest_filter=*"
+363: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+363: Test timeout computed to be: 14400
+363: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+363: [==========] Running 34 tests from 9 test suites.
+363: [----------] Global test environment set-up.
+363: [----------] 4 tests from AllocatorTests/0, where TypeParam = Params<signed char,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/0.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/0.TestAllocatorCustomDefaultConstruct (41 ms)
+363: [ RUN      ] AllocatorTests/0.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/0.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/0.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/0.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/0.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/0.TestAllocatorMinimal (4 ms)
+363: [----------] 4 tests from AllocatorTests/0 (47 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/1, where TypeParam = Params<unsigned char,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/1.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/1.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/1.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/1.TestAllocatorCustomCopyConstruct (0 ms)
+363: [ RUN      ] AllocatorTests/1.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/1.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/1.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/1.TestAllocatorMinimal (3 ms)
+363: [----------] 4 tests from AllocatorTests/1 (6 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/2, where TypeParam = Params<short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/2.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/2.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/2.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/2.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/2.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/2.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/2.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/2.TestAllocatorMinimal (3 ms)
+363: [----------] 4 tests from AllocatorTests/2 (6 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/3, where TypeParam = Params<unsigned short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/3.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/3.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/3.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/3.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/3.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/3.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/3.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/3.TestAllocatorMinimal (3 ms)
+363: [----------] 4 tests from AllocatorTests/3 (6 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/4, where TypeParam = Params<int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/4.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/4.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/4.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/4.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/4.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/4.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/4.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/4.TestAllocatorMinimal (3 ms)
+363: [----------] 4 tests from AllocatorTests/4 (6 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/5, where TypeParam = Params<unsigned int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/5.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/5.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/5.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/5.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/5.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/5.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/5.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/5.TestAllocatorMinimal (3 ms)
+363: [----------] 4 tests from AllocatorTests/5 (5 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/6, where TypeParam = Params<float,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/6.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/6.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/6.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/6.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/6.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/6.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/6.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/6.TestAllocatorMinimal (2 ms)
+363: [----------] 4 tests from AllocatorTests/6 (5 ms total)
+363: 
+363: [----------] 4 tests from AllocatorTests/7, where TypeParam = Params<double,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+363: [ RUN      ] AllocatorTests/7.TestAllocatorCustomDefaultConstruct
+363: [       OK ] AllocatorTests/7.TestAllocatorCustomDefaultConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/7.TestAllocatorCustomCopyConstruct
+363: [       OK ] AllocatorTests/7.TestAllocatorCustomCopyConstruct (1 ms)
+363: [ RUN      ] AllocatorTests/7.TestAllocatorCustomDestroy
+363: [       OK ] AllocatorTests/7.TestAllocatorCustomDestroy (0 ms)
+363: [ RUN      ] AllocatorTests/7.TestAllocatorMinimal
+363: [       OK ] AllocatorTests/7.TestAllocatorMinimal (2 ms)
+363: [----------] 4 tests from AllocatorTests/7 (6 ms total)
+363: 
+363: [----------] 2 tests from AllocatorTests
+363: [ RUN      ] AllocatorTests.TestAllocatorTraitsRebind
+363: [       OK ] AllocatorTests.TestAllocatorTraitsRebind (0 ms)
+363: [ RUN      ] AllocatorTests.TestAllocatorTraitsRebindCpp11
+363: [       OK ] AllocatorTests.TestAllocatorTraitsRebindCpp11 (0 ms)
+363: [----------] 2 tests from AllocatorTests (0 ms total)
+363: 
+363: [----------] Global test environment tear-down
+363: [==========] 34 tests from 9 test suites ran. (90 ms total)
+363: [  PASSED  ] 34 tests.
+  5/168 Test #363: allocator.hip_gpus_standard_suite .....................................   Passed    0.13 sec
+test 366
+        Start 366: allocator_aware_policies.hip_gpus_standard_suite
+
+366: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/allocator_aware_policies.hip "--gtest_filter=*"
+366: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+366: Test timeout computed to be: 14400
+366: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+366: [==========] Running 5 tests from 5 test suites.
+366: [----------] Global test environment set-up.
+366: [----------] 1 test from AllocatorAwarePoliciesTests/0, where TypeParam = Params<policy_info<thrust::THRUST_200805_400500_NS::detail::seq_t,thrust::THRUST_200805_400500_NS::system::detail::sequential::execution_policy>,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+366: [ RUN      ] AllocatorAwarePoliciesTests/0.TestAllocatorAttachment
+366: [       OK ] AllocatorAwarePoliciesTests/0.TestAllocatorAttachment (20 ms)
+366: [----------] 1 test from AllocatorAwarePoliciesTests/0 (20 ms total)
+366: 
+366: [----------] 1 test from AllocatorAwarePoliciesTests/1, where TypeParam = Params<policy_info<thrust::THRUST_200805_400500_NS::hip_rocprim::par_t,thrust::THRUST_200805_400500_NS::hip_rocprim::execute_on_stream_base>,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+366: [ RUN      ] AllocatorAwarePoliciesTests/1.TestAllocatorAttachment
+366: [       OK ] AllocatorAwarePoliciesTests/1.TestAllocatorAttachment (0 ms)
+366: [----------] 1 test from AllocatorAwarePoliciesTests/1 (0 ms total)
+366: 
+366: [----------] 1 test from AllocatorAwarePoliciesTests/2, where TypeParam = Params<policy_info<thrust::THRUST_200805_400500_NS::system::cpp::detail::par_t,thrust::THRUST_200805_400500_NS::system::cpp::detail::execution_policy>,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+366: [ RUN      ] AllocatorAwarePoliciesTests/2.TestAllocatorAttachment
+366: [       OK ] AllocatorAwarePoliciesTests/2.TestAllocatorAttachment (0 ms)
+366: [----------] 1 test from AllocatorAwarePoliciesTests/2 (0 ms total)
+366: 
+366: [----------] 1 test from AllocatorAwarePoliciesTests/3, where TypeParam = Params<policy_info<thrust::THRUST_200805_400500_NS::system::omp::detail::par_t,thrust::THRUST_200805_400500_NS::system::omp::detail::execution_policy>,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+366: [ RUN      ] AllocatorAwarePoliciesTests/3.TestAllocatorAttachment
+366: [       OK ] AllocatorAwarePoliciesTests/3.TestAllocatorAttachment (0 ms)
+366: [----------] 1 test from AllocatorAwarePoliciesTests/3 (0 ms total)
+366: 
+366: [----------] 1 test from AllocatorAwarePoliciesTests/4, where TypeParam = Params<policy_info<thrust::THRUST_200805_400500_NS::system::tbb::detail::par_t,thrust::THRUST_200805_400500_NS::system::tbb::detail::execution_policy>,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+366: [ RUN      ] AllocatorAwarePoliciesTests/4.TestAllocatorAttachment
+366: [       OK ] AllocatorAwarePoliciesTests/4.TestAllocatorAttachment (0 ms)
+366: [----------] 1 test from AllocatorAwarePoliciesTests/4 (0 ms total)
+366: 
+366: [----------] Global test environment tear-down
+366: [==========] 5 tests from 5 test suites ran. (20 ms total)
+366: [  PASSED  ] 5 tests.
+  6/168 Test #366: allocator_aware_policies.hip_gpus_standard_suite ......................   Passed    0.05 sec
+test 369
+        Start 369: async_copy.hip_gpus_standard_suite
+
+369: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/async_copy.hip "--gtest_filter=*"
+369: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+369: Test timeout computed to be: 14400
+369: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+369: [==========] Running 195 tests from 13 test suites.
+369: [----------] Global test environment set-up.
+369: [----------] 15 tests from AsyncCopyTests/0, where TypeParam = Params<char,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_host_to_device (75 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_host_to_device_policies (33 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_device_to_host (37 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_device_to_host_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/0.test_async_copy_device_to_device (29 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/0.test_async_copy_device_to_device_policy (28 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_device_to_device_policies (28 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (23 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (22 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_host_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (22 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/0.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/0.test_async_copy_trivially_relocatable_elements_roundtrip (26 ms)
+369: [ RUN      ] AsyncCopyTests/0.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/0.test_async_copy_after_test (73 ms)
+369: [----------] 15 tests from AsyncCopyTests/0 (501 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/1, where TypeParam = Params<signed char,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_host_to_device (30 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_host_to_device_policies (29 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_device_to_host (32 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_device_to_host_policies (31 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/1.test_async_copy_device_to_device (28 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/1.test_async_copy_device_to_device_policy (27 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_device_to_device_policies (27 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (21 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (21 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (21 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_host_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (21 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/1.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (21 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/1.test_async_copy_trivially_relocatable_elements_roundtrip (26 ms)
+369: [ RUN      ] AsyncCopyTests/1.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/1.test_async_copy_after_test (79 ms)
+369: [----------] 15 tests from AsyncCopyTests/1 (444 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/2, where TypeParam = Params<unsigned char,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_host_to_device (31 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_host_to_device_policies (30 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_device_to_host (33 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_device_to_host_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/2.test_async_copy_device_to_device (28 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/2.test_async_copy_device_to_device_policy (28 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_device_to_device_policies (28 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (22 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (21 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_host_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (21 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/2.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (21 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/2.test_async_copy_trivially_relocatable_elements_roundtrip (27 ms)
+369: [ RUN      ] AsyncCopyTests/2.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/2.test_async_copy_after_test (77 ms)
+369: [----------] 15 tests from AsyncCopyTests/2 (449 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/3, where TypeParam = Params<short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_host_to_device (31 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_host_to_device_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_device_to_host (36 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_device_to_host_policies (36 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/3.test_async_copy_device_to_device (31 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/3.test_async_copy_device_to_device_policy (33 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_device_to_device_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (24 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (23 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_host_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (22 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/3.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/3.test_async_copy_trivially_relocatable_elements_roundtrip (30 ms)
+369: [ RUN      ] AsyncCopyTests/3.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/3.test_async_copy_after_test (86 ms)
+369: [----------] 15 tests from AsyncCopyTests/3 (491 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/4, where TypeParam = Params<unsigned short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_host_to_device (33 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_host_to_device_policies (33 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_device_to_host (36 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_device_to_host_policies (37 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/4.test_async_copy_device_to_device (33 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/4.test_async_copy_device_to_device_policy (32 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_device_to_device_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (23 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (22 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_host_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (23 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/4.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/4.test_async_copy_trivially_relocatable_elements_roundtrip (31 ms)
+369: [ RUN      ] AsyncCopyTests/4.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/4.test_async_copy_after_test (90 ms)
+369: [----------] 15 tests from AsyncCopyTests/4 (499 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/5, where TypeParam = Params<int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_host_to_device (62 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_host_to_device_policies (60 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_device_to_host (68 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_device_to_host_policies (66 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/5.test_async_copy_device_to_device (34 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/5.test_async_copy_device_to_device_policy (35 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_device_to_device_policies (35 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (26 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (23 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_host_to_device_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (25 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/5.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/5.test_async_copy_trivially_relocatable_elements_roundtrip (34 ms)
+369: [ RUN      ] AsyncCopyTests/5.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/5.test_async_copy_after_test (92 ms)
+369: [----------] 15 tests from AsyncCopyTests/5 (641 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/6, where TypeParam = Params<unsigned int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_host_to_device (61 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_host_to_device_policies (60 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_device_to_host (67 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_device_to_host_policies (67 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/6.test_async_copy_device_to_device (36 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/6.test_async_copy_device_to_device_policy (36 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_device_to_device_policies (36 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (23 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (23 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_host_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (30 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/6.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/6.test_async_copy_trivially_relocatable_elements_roundtrip (38 ms)
+369: [ RUN      ] AsyncCopyTests/6.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/6.test_async_copy_after_test (92 ms)
+369: [----------] 15 tests from AsyncCopyTests/6 (647 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/7, where TypeParam = Params<long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_host_to_device (64 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_host_to_device_policies (61 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_device_to_host (87 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_device_to_host_policies (79 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/7.test_async_copy_device_to_device (45 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/7.test_async_copy_device_to_device_policy (44 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_device_to_device_policies (44 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (25 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (24 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_host_to_device_policies (28 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (29 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/7.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (29 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/7.test_async_copy_trivially_relocatable_elements_roundtrip (40 ms)
+369: [ RUN      ] AsyncCopyTests/7.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/7.test_async_copy_after_test (102 ms)
+369: [----------] 15 tests from AsyncCopyTests/7 (732 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/8, where TypeParam = Params<unsigned long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_host_to_device (61 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_host_to_device_policies (63 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_device_to_host (80 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_device_to_host_policies (72 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/8.test_async_copy_device_to_device (47 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/8.test_async_copy_device_to_device_policy (46 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_device_to_device_policies (48 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (25 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (22 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_host_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (28 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/8.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (29 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/8.test_async_copy_trivially_relocatable_elements_roundtrip (56 ms)
+369: [ RUN      ] AsyncCopyTests/8.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/8.test_async_copy_after_test (112 ms)
+369: [----------] 15 tests from AsyncCopyTests/8 (742 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/9, where TypeParam = Params<long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_host_to_device (61 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_host_to_device_policies (63 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_device_to_host (77 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_device_to_host_policies (89 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/9.test_async_copy_device_to_device (51 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/9.test_async_copy_device_to_device_policy (45 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_device_to_device_policies (46 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (25 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (22 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (22 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_host_to_device_policies (24 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (29 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/9.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (37 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/9.test_async_copy_trivially_relocatable_elements_roundtrip (41 ms)
+369: [ RUN      ] AsyncCopyTests/9.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/9.test_async_copy_after_test (101 ms)
+369: [----------] 15 tests from AsyncCopyTests/9 (742 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/10, where TypeParam = Params<unsigned long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_host_to_device (63 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_host_to_device_policies (61 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_device_to_host (72 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_device_to_host_policies (76 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/10.test_async_copy_device_to_device (46 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/10.test_async_copy_device_to_device_policy (48 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_device_to_device_policies (48 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (26 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (23 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_host_to_device_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (28 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/10.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (31 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/10.test_async_copy_trivially_relocatable_elements_roundtrip (45 ms)
+369: [ RUN      ] AsyncCopyTests/10.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/10.test_async_copy_after_test (102 ms)
+369: [----------] 15 tests from AsyncCopyTests/10 (725 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/11, where TypeParam = Params<float,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_host_to_device (37 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_host_to_device_policies (31 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_device_to_host (34 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_device_to_host_policies (34 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/11.test_async_copy_device_to_device (32 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/11.test_async_copy_device_to_device_policy (32 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_device_to_device_policies (32 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (23 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (24 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (27 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_host_to_device_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (25 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/11.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (24 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/11.test_async_copy_trivially_relocatable_elements_roundtrip (30 ms)
+369: [ RUN      ] AsyncCopyTests/11.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/11.test_async_copy_after_test (81 ms)
+369: [----------] 15 tests from AsyncCopyTests/11 (497 ms total)
+369: 
+369: [----------] 15 tests from AsyncCopyTests/12, where TypeParam = Params<double,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_host_to_device
+369: [       OK ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_host_to_device (38 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_host_to_device_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_host_to_device_policies (43 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_device_to_host (55 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_device_to_host_policies (54 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_device_to_device
+369: [       OK ] AsyncCopyTests/12.test_async_copy_device_to_device (45 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_device_to_device_policy
+369: [       OK ] AsyncCopyTests/12.test_async_copy_device_to_device_policy (44 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_device_to_device_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_device_to_device_policies (49 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device (26 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policy (23 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_device_policies (23 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_host_to_device_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_host_to_device_policies (25 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host (30 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies
+369: [       OK ] AsyncCopyTests/12.test_async_copy_counting_iterator_input_trivially_relocatable_elements_device_to_host_policies (31 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_roundtrip
+369: [       OK ] AsyncCopyTests/12.test_async_copy_trivially_relocatable_elements_roundtrip (42 ms)
+369: [ RUN      ] AsyncCopyTests/12.test_async_copy_after_test
+369: [       OK ] AsyncCopyTests/12.test_async_copy_after_test (101 ms)
+369: [----------] 15 tests from AsyncCopyTests/12 (637 ms total)
+369: 
+369: [----------] Global test environment tear-down
+369: [==========] 195 tests from 13 test suites ran. (7754 ms total)
+369: [  PASSED  ] 195 tests.
+  7/168 Test #369: async_copy.hip_gpus_standard_suite ....................................   Passed    7.81 sec
+test 372
+        Start 372: async_for_each.hip_gpus_standard_suite
+
+372: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/async_for_each.hip "--gtest_filter=*"
+372: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocThrust/build/test/
+372: Test timeout computed to be: 14400
+372: Running main() from /therock/output/build/third-party/googletest/source/googletest/src/gtest_main.cc
+372: [==========] Running 16 tests from 8 test suites.
+372: [----------] Global test environment set-up.
+372: [----------] 2 tests from AsyncForEachTests/0, where TypeParam = Params<short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/0.test_async_for_each
+372: [       OK ] AsyncForEachTests/0.test_async_for_each (169 ms)
+372: [ RUN      ] AsyncForEachTests/0.test_async_for_each_policy
+372: [       OK ] AsyncForEachTests/0.test_async_for_each_policy (29 ms)
+372: [----------] 2 tests from AsyncForEachTests/0 (199 ms total)
+372: 
+372: [----------] 2 tests from AsyncForEachTests/1, where TypeParam = Params<int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/1.test_async_for_each
+372: [       OK ] AsyncForEachTests/1.test_async_for_each (33 ms)
+372: [ RUN      ] AsyncForEachTests/1.test_async_for_each_policy
+372: [       OK ] AsyncForEachTests/1.test_async_for_each_policy (31 ms)
+372: [----------] 2 tests from AsyncForEachTests/1 (65 ms total)
+372: 
+372: [----------] 2 tests from AsyncForEachTests/2, where TypeParam = Params<long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/2.test_async_for_each
+372: [       OK ] AsyncForEachTests/2.test_async_for_each (43 ms)
+372: [ RUN      ] AsyncForEachTests/2.test_async_for_each_policy
+372: [       OK ] AsyncForEachTests/2.test_async_for_each_policy (40 ms)
+372: [----------] 2 tests from AsyncForEachTests/2 (84 ms total)
+372: 
+372: [----------] 2 tests from AsyncForEachTests/3, where TypeParam = Params<unsigned short,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/3.test_async_for_each
+372: [       OK ] AsyncForEachTests/3.test_async_for_each (30 ms)
+372: [ RUN      ] AsyncForEachTests/3.test_async_for_each_policy
+372: [       OK ] AsyncForEachTests/3.test_async_for_each_policy (28 ms)
+372: [----------] 2 tests from AsyncForEachTests/3 (59 ms total)
+372: 
+372: [----------] 2 tests from AsyncForEachTests/4, where TypeParam = Params<unsigned int,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/4.test_async_for_each
+372: [       OK ] AsyncForEachTests/4.test_async_for_each (32 ms)
+372: [ RUN      ] AsyncForEachTests/4.test_async_for_each_policy
+372: [       OK ] AsyncForEachTests/4.test_async_for_each_policy (30 ms)
+372: [----------] 2 tests from AsyncForEachTests/4 (62 ms total)
+372: 
+372: [----------] 2 tests from AsyncForEachTests/5, where TypeParam = Params<unsigned long long,thrust::THRUST_200805_400500_NS::hip_rocprim::par_t>
+372: [ RUN      ] AsyncForEachTests/5.test_async_for_each
+372: [       OK ] AsyncForEachTests/5.test_async_for_each (41 ms)
+372: [ RUN      ] AsyncForEachTests/5.test_async_for_each_policy
+[2026-07-07 14:43:34] WARN: Received signal, cleaning up...

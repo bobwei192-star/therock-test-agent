@@ -1,0 +1,2023 @@
+[2026-07-07 16:28:27] ===== Starting rocalution comprehensive test =====
+PID=41875  TIMEOUT=21600s  LOG=/home/zs/test_case/scripts/logs/comprehensive/rocalution_comprehensive_20260707_162827.log
+[INFO] PID file: /tmp/therock_rocalution_comprehensive.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-07 16:28:27] test running...
+Disk free: 764G available
+Memory: 16Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-07 16:28:27] Running with sudo: timeout 21600 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^comprehensive$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/rocalution -V --tests-information 1,,1
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/test-dirs/rocalution/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/test-dirs/rocalution
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 3
+    Start 3: rocalution-test_comprehensive_suite
+
+3: Test command: /home/zs/TheRock/output-linux-portable/build/math-libs/rocALUTION/build/clients/staging/rocalution-test "--gtest_filter=*"
+3: Working Directory: /home/zs/TheRock/output-linux-portable/build/math-libs/rocALUTION/build/clients/staging
+3: Environment variables: 
+3:  ROCALUTION_EMULATION_EXTENDED=1
+3: Test timeout computed to be: 14400
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: rocALUTION ver 4.1.0-abd990e7d9f
+3: rocALUTION platform is initialized
+3: Accelerator backend: HIP
+3: OpenMP threads: 32
+3: rocBLAS ver 5.5.0.abd990e7d9f
+3: rocSPARSE ver 4.7.0-abd990e7d9f
+3: ------------------------------------------------
+3: Selected HIP device: 0
+3: Device name: AMD Radeon 8060S Graphics
+3: totalGlobalMem: 98304 MByte
+3: clockRate: 2900000
+3: compute capability: 11.5
+3: ------------------------------------------------
+3: MPI is not initialized
+3: [==========] Running 6601 tests from 43 test suites.
+3: [----------] Global test environment set-up.
+3: [----------] 1 test from backend_init_order
+3: [ RUN      ] backend_init_order.backend
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_backend.cpp:76: Skipped
+3: 
+3: 
+3: [  SKIPPED ] backend_init_order.backend (0 ms)
+3: [----------] 1 test from backend_init_order (0 ms total)
+3: 
+3: [----------] 1 test from local_matrix_bad_args
+3: [ RUN      ] local_matrix_bad_args.local_matrix
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:101: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_bad_args.local_matrix (0 ms)
+3: [----------] 1 test from local_matrix_bad_args (0 ms total)
+3: 
+3: [----------] 68 tests from local_matrix_test
+3: [ RUN      ] local_matrix_test.allocate_matrix_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.allocate_matrix_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.allocate_matrix_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.allocate_matrix_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.allocate_matrix_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.allocate_matrix_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.allocate_matrix_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.allocate_matrix_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.check_with_empty_matrix_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.check_with_empty_matrix_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.check_with_empty_matrix_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.check_with_empty_matrix_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.check_with_empty_matrix_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.check_with_empty_matrix_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.check_with_empty_matrix_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.check_with_empty_matrix_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_pointer_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_pointer_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_pointer_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_pointer_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_pointer_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_pointer_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_pointer_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_pointer_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_pointer_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_pointer_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_pointer_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_pointer_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_pointer_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_pointer_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_pointer_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_pointer_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_ptr_dia_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_ptr_dia_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_ptr_dia_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_ptr_dia_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_ptr_dia_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_ptr_dia_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.set_data_ptr_dia_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.set_data_ptr_dia_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_ptr_dia_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_ptr_dia_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_ptr_dia_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_ptr_dia_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_ptr_dia_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_ptr_dia_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.leave_data_ptr_dia_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.leave_data_ptr_dia_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_coo_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_coo_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_coo_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_coo_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_coo_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_coo_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_coo_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_coo_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_to_coo_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_to_coo_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_to_coo_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_to_coo_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_to_coo_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_to_coo_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_to_coo_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_to_coo_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_host_csr_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_host_csr_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_host_csr_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_host_csr_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_host_csr_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_host_csr_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.copy_from_host_csr_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.copy_from_host_csr_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.read_file_mtx_to_csr_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.read_file_mtx_to_csr_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.read_file_mtx_to_csr_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.read_file_mtx_to_csr_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_mtx_to_csr_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_mtx_to_csr_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_mtx_to_csr_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_mtx_to_csr_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_RSIO_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_RSIO_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_RSIO_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_RSIO_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_RSIO_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_RSIO_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.write_file_RSIO_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.write_file_RSIO_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_copy_from_async_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_copy_from_async_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_copy_from_async_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_copy_from_async_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_update_values_csr_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_update_values_csr_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_update_values_csr_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_update_values_csr_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_update_values_csr_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_update_values_csr_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_update_values_csr_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_update_values_csr_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_accelerator_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_accelerator_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_accelerator_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_accelerator_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_accelerator_async_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_accelerator_async_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_accelerator_async_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_accelerator_async_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_host_async_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_host_async_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.local_move_to_host_async_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.local_move_to_host_async_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_host_double (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_device_float (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_device_double (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_host_float (0 ms)
+3: [ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_host_double (0 ms)
+3: [----------] 68 tests from local_matrix_test (0 ms total)
+3: 
+3: [----------] 1 test from local_stencil_bad_args
+3: [ RUN      ] local_stencil_bad_args.local_stencil
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_stencil.cpp:67: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_stencil_bad_args.local_stencil (0 ms)
+3: [----------] 1 test from local_stencil_bad_args (0 ms total)
+3: 
+3: [----------] 1 test from local_vector_bad_args
+3: [ RUN      ] local_vector_bad_args.local_vector
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:72: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_bad_args.local_vector (0 ms)
+3: [----------] 1 test from local_vector_bad_args (0 ms total)
+3: 
+3: [----------] 19 tests from local_vector_test
+3: [ RUN      ] local_vector_test.restriction_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.restriction_device_float (0 ms)
+3: [ RUN      ] local_vector_test.restriction_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.restriction_device_double (0 ms)
+3: [ RUN      ] local_vector_test.restriction_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.restriction_host_float (0 ms)
+3: [ RUN      ] local_vector_test.restriction_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.restriction_host_double (0 ms)
+3: [ RUN      ] local_vector_test.copy_from_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.copy_from_float (0 ms)
+3: [ RUN      ] local_vector_test.copy_from_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.copy_from_double (0 ms)
+3: [ RUN      ] local_vector_test.sort_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.sort_device_float (0 ms)
+3: [ RUN      ] local_vector_test.sort_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.sort_device_double (0 ms)
+3: [ RUN      ] local_vector_test.sort_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.sort_host_float (0 ms)
+3: [ RUN      ] local_vector_test.sort_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.sort_host_double (0 ms)
+3: [ RUN      ] local_vector_test.write_file_ascii_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.write_file_ascii_device_float (0 ms)
+3: [ RUN      ] local_vector_test.write_file_ascii_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.write_file_ascii_device_double (0 ms)
+3: [ RUN      ] local_vector_test.write_file_ascii_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.write_file_ascii_host_float (0 ms)
+3: [ RUN      ] local_vector_test.write_file_ascii_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.write_file_ascii_host_double (0 ms)
+3: [ RUN      ] local_vector_test.scale_add_scale_with_offsets_device_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_device_float (0 ms)
+3: [ RUN      ] local_vector_test.scale_add_scale_with_offsets_device_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_device_double (0 ms)
+3: [ RUN      ] local_vector_test.scale_add_scale_with_offsets_host_float
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_host_float (0 ms)
+3: [ RUN      ] local_vector_test.scale_add_scale_with_offsets_host_double
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_host_double (0 ms)
+3: [ RUN      ] local_vector_test.extract_coarse_mapping_int
+3: /therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+3: 
+3: 
+3: [  SKIPPED ] local_vector_test.extract_coarse_mapping_int (0 ms)
+3: [----------] 19 tests from local_vector_test (0 ms total)
+3: 
+3: [----------] 32 tests from qr/parameterized_qr
+3: [ RUN      ] qr/parameterized_qr.qr_float/0
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/0 (44 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/1
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/1 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/2
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/2 (5 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/3
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/3 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/4
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/4 (5 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/5
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/5 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/6
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/6 (5 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/7
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/7 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/8
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/8 (17 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/9
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/9 (15 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/10
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/10 (16 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/11
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/11 (15 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/12
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/12 (17 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/13
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/13 (15 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/14
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/14 (16 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_float/15
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_float/15 (15 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/0
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/0 (7 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/1
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/1 (4 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/2
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/2 (6 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/3
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/3 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/4
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/4 (5 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/5
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/5 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/6
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/6 (5 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/7
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/7 (3 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/8
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/8 (19 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/9
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/9 (17 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/10
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/10 (18 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/11
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/11 (17 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/12
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/12 (18 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/13
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/13 (17 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/14
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/14 (19 ms)
+3: [ RUN      ] qr/parameterized_qr.qr_double/15
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed in DENSE format
+3: *** warning: LocalMatrix::QRSolve() is performed on the host
+3: [       OK ] qr/parameterized_qr.qr_double/15 (17 ms)
+3: [----------] 32 tests from qr/parameterized_qr (390 ms total)
+3: 
+3: [----------] 30 tests from lu/parameterized_lu
+3: [ RUN      ] lu/parameterized_lu.lu_float/0
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/0 (34 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/1
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/1 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/2
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/2 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/3
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/3 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/4
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/4 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/5
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/5 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/6
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/6 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/7
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/7 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/8
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/8 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/9
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/9 (21 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/10
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/10 (15 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/11
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/11 (14 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/12
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/12 (14 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/13
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/13 (14 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_float/14
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_float/14 (14 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/0
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/0 (34 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/1
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/1 (34 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/2
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/2 (34 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/3
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/3 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/4
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/4 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/5
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/5 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/6
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/6 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/7
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/7 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/8
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/8 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/9
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/9 (33 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/10
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/10 (16 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/11
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/11 (15 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/12
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/12 (15 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/13
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/13 (16 ms)
+3: [ RUN      ] lu/parameterized_lu.lu_double/14
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+3: LU solver
+3: [       OK ] lu/parameterized_lu.lu_double/14 (15 ms)
+3: [----------] 30 tests from lu/parameterized_lu (720 ms total)
+3: 
+3: [----------] 16 tests from inversion/parameterized_inversion
+3: [ RUN      ] inversion/parameterized_inversion.inversion_float/0
+3: Number of CPU cores: 32
+3: Host thread affinity policy - thread mapping on every core
+3: Number of HIP devices in the system: 1
+3: *** warning: LocalMatrix::Invert() is performed in DENSE format
+3: VGPU=0x640b29dc3b40 SWq=0x74ea9475c000, HWq=0x74ea64200000, id=1
+3: 	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=3
+3: 	grid=[56576, 1, 1], workgroup=[256, 1, 1]
+3: 	private_seg_size=0, group_seg_size=4096
+3: 	kernel_obj=0x74e64de4a440, kernarg_address=0x0x74ea5fa00000
+3: 	completion_signal=0x0, correlation_id=0
+3: 	rptr=2174, wptr=2176
+3: :0:rocdevice.cpp            :3679: 0221737420 us:  Memory Fault Error [host: zs-NucBox-EVO-X2, GPU index: 0, faulting addr: 0x74e86d1f9000, kernel: void rocsparse::csrmvn_adaptive_kernel<int, int, float, float, float, float, float>(bool, int, int, int const*, unsigned int*, int const*, rocsparse::const_host_device_scalar<float>, int const*, int const*, float const*, float const*, rocsparse::const_host_device_scalar<float>, float*, int, float const*, float const* const*, rocsparse_index_base_, bool)]
+3: rocBLAS error 6
+3: rocblas_status_internal_error
+3: File: /therock/src/rocm-libraries/projects/rocalution/src/base/hip/hip_vector.cpp; line: 908
+1/1 Test #3: rocalution-test_comprehensive_suite ...***Failed    6.86 sec
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+rocALUTION ver 4.1.0-abd990e7d9f
+rocALUTION platform is initialized
+Accelerator backend: HIP
+OpenMP threads: 32
+rocBLAS ver 5.5.0.abd990e7d9f
+rocSPARSE ver 4.7.0-abd990e7d9f
+------------------------------------------------
+Selected HIP device: 0
+Device name: AMD Radeon 8060S Graphics
+totalGlobalMem: 98304 MByte
+clockRate: 2900000
+compute capability: 11.5
+------------------------------------------------
+MPI is not initialized
+[==========] Running 6601 tests from 43 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from backend_init_order
+[ RUN      ] backend_init_order.backend
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_backend.cpp:76: Skipped
+
+
+[  SKIPPED ] backend_init_order.backend (0 ms)
+[----------] 1 test from backend_init_order (0 ms total)
+
+[----------] 1 test from local_matrix_bad_args
+[ RUN      ] local_matrix_bad_args.local_matrix
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:101: Skipped
+
+
+[  SKIPPED ] local_matrix_bad_args.local_matrix (0 ms)
+[----------] 1 test from local_matrix_bad_args (0 ms total)
+
+[----------] 68 tests from local_matrix_test
+[ RUN      ] local_matrix_test.allocate_matrix_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.allocate_matrix_device_float (0 ms)
+[ RUN      ] local_matrix_test.allocate_matrix_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.allocate_matrix_device_double (0 ms)
+[ RUN      ] local_matrix_test.allocate_matrix_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.allocate_matrix_host_float (0 ms)
+[ RUN      ] local_matrix_test.allocate_matrix_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.allocate_matrix_host_double (0 ms)
+[ RUN      ] local_matrix_test.check_with_empty_matrix_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.check_with_empty_matrix_device_float (0 ms)
+[ RUN      ] local_matrix_test.check_with_empty_matrix_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.check_with_empty_matrix_device_double (0 ms)
+[ RUN      ] local_matrix_test.check_with_empty_matrix_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.check_with_empty_matrix_host_float (0 ms)
+[ RUN      ] local_matrix_test.check_with_empty_matrix_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.check_with_empty_matrix_host_double (0 ms)
+[ RUN      ] local_matrix_test.set_data_pointer_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_pointer_device_float (0 ms)
+[ RUN      ] local_matrix_test.set_data_pointer_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_pointer_device_double (0 ms)
+[ RUN      ] local_matrix_test.set_data_pointer_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_pointer_host_float (0 ms)
+[ RUN      ] local_matrix_test.set_data_pointer_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_pointer_host_double (0 ms)
+[ RUN      ] local_matrix_test.leave_data_pointer_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_pointer_device_float (0 ms)
+[ RUN      ] local_matrix_test.leave_data_pointer_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_pointer_device_double (0 ms)
+[ RUN      ] local_matrix_test.leave_data_pointer_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_pointer_host_float (0 ms)
+[ RUN      ] local_matrix_test.leave_data_pointer_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_pointer_host_double (0 ms)
+[ RUN      ] local_matrix_test.set_data_ptr_dia_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_ptr_dia_device_float (0 ms)
+[ RUN      ] local_matrix_test.set_data_ptr_dia_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_ptr_dia_device_double (0 ms)
+[ RUN      ] local_matrix_test.set_data_ptr_dia_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_ptr_dia_host_float (0 ms)
+[ RUN      ] local_matrix_test.set_data_ptr_dia_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.set_data_ptr_dia_host_double (0 ms)
+[ RUN      ] local_matrix_test.leave_data_ptr_dia_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_ptr_dia_device_float (0 ms)
+[ RUN      ] local_matrix_test.leave_data_ptr_dia_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_ptr_dia_device_double (0 ms)
+[ RUN      ] local_matrix_test.leave_data_ptr_dia_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_ptr_dia_host_float (0 ms)
+[ RUN      ] local_matrix_test.leave_data_ptr_dia_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.leave_data_ptr_dia_host_double (0 ms)
+[ RUN      ] local_matrix_test.copy_from_coo_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_coo_device_float (0 ms)
+[ RUN      ] local_matrix_test.copy_from_coo_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_coo_device_double (0 ms)
+[ RUN      ] local_matrix_test.copy_from_coo_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_coo_host_float (0 ms)
+[ RUN      ] local_matrix_test.copy_from_coo_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_coo_host_double (0 ms)
+[ RUN      ] local_matrix_test.copy_to_coo_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_to_coo_device_float (0 ms)
+[ RUN      ] local_matrix_test.copy_to_coo_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_to_coo_device_double (0 ms)
+[ RUN      ] local_matrix_test.copy_to_coo_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_to_coo_host_float (0 ms)
+[ RUN      ] local_matrix_test.copy_to_coo_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_to_coo_host_double (0 ms)
+[ RUN      ] local_matrix_test.copy_from_host_csr_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_host_csr_device_float (0 ms)
+[ RUN      ] local_matrix_test.copy_from_host_csr_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_host_csr_device_double (0 ms)
+[ RUN      ] local_matrix_test.copy_from_host_csr_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_host_csr_host_float (0 ms)
+[ RUN      ] local_matrix_test.copy_from_host_csr_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.copy_from_host_csr_host_double (0 ms)
+[ RUN      ] local_matrix_test.read_file_mtx_to_csr_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_device_float (0 ms)
+[ RUN      ] local_matrix_test.read_file_mtx_to_csr_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_device_double (0 ms)
+[ RUN      ] local_matrix_test.read_file_mtx_to_csr_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_host_float (0 ms)
+[ RUN      ] local_matrix_test.read_file_mtx_to_csr_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.read_file_mtx_to_csr_host_double (0 ms)
+[ RUN      ] local_matrix_test.write_file_mtx_to_csr_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_device_float (0 ms)
+[ RUN      ] local_matrix_test.write_file_mtx_to_csr_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_device_double (0 ms)
+[ RUN      ] local_matrix_test.write_file_mtx_to_csr_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_host_float (0 ms)
+[ RUN      ] local_matrix_test.write_file_mtx_to_csr_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_mtx_to_csr_host_double (0 ms)
+[ RUN      ] local_matrix_test.write_file_RSIO_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_RSIO_device_float (0 ms)
+[ RUN      ] local_matrix_test.write_file_RSIO_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_RSIO_device_double (0 ms)
+[ RUN      ] local_matrix_test.write_file_RSIO_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_RSIO_host_float (0 ms)
+[ RUN      ] local_matrix_test.write_file_RSIO_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.write_file_RSIO_host_double (0 ms)
+[ RUN      ] local_matrix_test.local_copy_from_async_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_copy_from_async_device_float (0 ms)
+[ RUN      ] local_matrix_test.local_copy_from_async_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_copy_from_async_device_double (0 ms)
+[ RUN      ] local_matrix_test.local_update_values_csr_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_update_values_csr_device_float (0 ms)
+[ RUN      ] local_matrix_test.local_update_values_csr_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_update_values_csr_device_double (0 ms)
+[ RUN      ] local_matrix_test.local_update_values_csr_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_update_values_csr_host_float (0 ms)
+[ RUN      ] local_matrix_test.local_update_values_csr_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_update_values_csr_host_double (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_accelerator_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_accelerator_device_float (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_accelerator_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_accelerator_device_double (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_accelerator_async_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_accelerator_async_device_float (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_accelerator_async_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_accelerator_async_device_double (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_host_async_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_host_async_device_float (0 ms)
+[ RUN      ] local_matrix_test.local_move_to_host_async_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.local_move_to_host_async_device_double (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_device_float (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_device_double (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_host_float (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_host_double (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_device_float (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_device_double (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_host_float (0 ms)
+[ RUN      ] local_matrix_test.initial_pairwise_aggregation_2_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_matrix.cpp:186: Skipped
+
+
+[  SKIPPED ] local_matrix_test.initial_pairwise_aggregation_2_host_double (0 ms)
+[----------] 68 tests from local_matrix_test (0 ms total)
+
+[----------] 1 test from local_stencil_bad_args
+[ RUN      ] local_stencil_bad_args.local_stencil
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_stencil.cpp:67: Skipped
+
+
+[  SKIPPED ] local_stencil_bad_args.local_stencil (0 ms)
+[----------] 1 test from local_stencil_bad_args (0 ms total)
+
+[----------] 1 test from local_vector_bad_args
+[ RUN      ] local_vector_bad_args.local_vector
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:72: Skipped
+
+
+[  SKIPPED ] local_vector_bad_args.local_vector (0 ms)
+[----------] 1 test from local_vector_bad_args (0 ms total)
+
+[----------] 19 tests from local_vector_test
+[ RUN      ] local_vector_test.restriction_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.restriction_device_float (0 ms)
+[ RUN      ] local_vector_test.restriction_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.restriction_device_double (0 ms)
+[ RUN      ] local_vector_test.restriction_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.restriction_host_float (0 ms)
+[ RUN      ] local_vector_test.restriction_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.restriction_host_double (0 ms)
+[ RUN      ] local_vector_test.copy_from_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.copy_from_float (0 ms)
+[ RUN      ] local_vector_test.copy_from_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.copy_from_double (0 ms)
+[ RUN      ] local_vector_test.sort_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.sort_device_float (0 ms)
+[ RUN      ] local_vector_test.sort_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.sort_device_double (0 ms)
+[ RUN      ] local_vector_test.sort_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.sort_host_float (0 ms)
+[ RUN      ] local_vector_test.sort_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.sort_host_double (0 ms)
+[ RUN      ] local_vector_test.write_file_ascii_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.write_file_ascii_device_float (0 ms)
+[ RUN      ] local_vector_test.write_file_ascii_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.write_file_ascii_device_double (0 ms)
+[ RUN      ] local_vector_test.write_file_ascii_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.write_file_ascii_host_float (0 ms)
+[ RUN      ] local_vector_test.write_file_ascii_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.write_file_ascii_host_double (0 ms)
+[ RUN      ] local_vector_test.scale_add_scale_with_offsets_device_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_device_float (0 ms)
+[ RUN      ] local_vector_test.scale_add_scale_with_offsets_device_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_device_double (0 ms)
+[ RUN      ] local_vector_test.scale_add_scale_with_offsets_host_float
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_host_float (0 ms)
+[ RUN      ] local_vector_test.scale_add_scale_with_offsets_host_double
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.scale_add_scale_with_offsets_host_double (0 ms)
+[ RUN      ] local_vector_test.extract_coarse_mapping_int
+/therock/src/rocm-libraries/projects/rocalution/clients/tests/test_local_vector.cpp:105: Skipped
+
+
+[  SKIPPED ] local_vector_test.extract_coarse_mapping_int (0 ms)
+[----------] 19 tests from local_vector_test (0 ms total)
+
+[----------] 32 tests from qr/parameterized_qr
+[ RUN      ] qr/parameterized_qr.qr_float/0
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/0 (44 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/1
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/1 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/2
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/2 (5 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/3
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/3 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/4
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/4 (5 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/5
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/5 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/6
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/6 (5 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/7
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/7 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/8
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/8 (17 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/9
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/9 (15 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/10
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/10 (16 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/11
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/11 (15 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/12
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/12 (17 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/13
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/13 (15 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/14
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/14 (16 ms)
+[ RUN      ] qr/parameterized_qr.qr_float/15
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_float/15 (15 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/0
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/0 (7 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/1
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/1 (4 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/2
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/2 (6 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/3
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/3 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/4
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/4 (5 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/5
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/5 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/6
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/6 (5 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/7
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/7 (3 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/8
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/8 (19 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/9
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/9 (17 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/10
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/10 (18 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/11
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/11 (17 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/12
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/12 (18 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/13
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/13 (17 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/14
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/14 (19 ms)
+[ RUN      ] qr/parameterized_qr.qr_double/15
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::QRDecompose() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed in DENSE format
+*** warning: LocalMatrix::QRSolve() is performed on the host
+[       OK ] qr/parameterized_qr.qr_double/15 (17 ms)
+[----------] 32 tests from qr/parameterized_qr (390 ms total)
+
+[----------] 30 tests from lu/parameterized_lu
+[ RUN      ] lu/parameterized_lu.lu_float/0
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/0 (34 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/1
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/1 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/2
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/2 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/3
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/3 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/4
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/4 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/5
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/5 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/6
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/6 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/7
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/7 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/8
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/8 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/9
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/9 (21 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/10
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/10 (15 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/11
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/11 (14 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/12
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/12 (14 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/13
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/13 (14 ms)
+[ RUN      ] lu/parameterized_lu.lu_float/14
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_float/14 (14 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/0
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/0 (34 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/1
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/1 (34 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/2
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/2 (34 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/3
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/3 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/4
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/4 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/5
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/5 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/6
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/6 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/7
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/7 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/8
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/8 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/9
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/9 (33 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/10
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/10 (16 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/11
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/11 (15 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/12
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/12 (15 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/13
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/13 (16 ms)
+[ RUN      ] lu/parameterized_lu.lu_double/14
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::LUFactorize() is performed in DENSE format
+LU solver
+[       OK ] lu/parameterized_lu.lu_double/14 (15 ms)
+[----------] 30 tests from lu/parameterized_lu (720 ms total)
+
+[----------] 16 tests from inversion/parameterized_inversion
+[ RUN      ] inversion/parameterized_inversion.inversion_float/0
+Number of CPU cores: 32
+Host thread affinity policy - thread mapping on every core
+Number of HIP devices in the system: 1
+*** warning: LocalMatrix::Invert() is performed in DENSE format
+VGPU=0x640b29dc3b40 SWq=0x74ea9475c000, HWq=0x74ea64200000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=3
+	grid=[56576, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=4096
+	kernel_obj=0x74e64de4a440, kernarg_address=0x0x74ea5fa00000
+	completion_signal=0x0, correlation_id=0
+	rptr=2174, wptr=2176
+:0:rocdevice.cpp            :3679: 0221737420 us:  Memory Fault Error [host: zs-NucBox-EVO-X2, GPU index: 0, faulting addr: 0x74e86d1f9000, kernel: void rocsparse::csrmvn_adaptive_kernel<int, int, float, float, float, float, float>(bool, int, int, int const*, unsigned int*, int const*, rocsparse::const_host_device_scalar<float>, int const*, int const*, float const*, float const*, rocsparse::const_host_device_scalar<float>, float*, int, float const*, float const* const*, rocsparse_index_base_, bool)]
+rocBLAS error 6
+rocblas_status_internal_error
+File: /therock/src/rocm-libraries/projects/rocalution/src/base/hip/hip_vector.cpp; line: 908
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+comprehensive    =   6.86 sec*proc (1 test)
+nightly          =   6.86 sec*proc (1 test)
+
+Total Test time (real) =   6.87 sec
+
+The following tests FAILED:
+	  3 - rocalution-test_comprehensive_suite (Failed)      comprehensive nightly
+Errors while running CTest
+# TEST_COMPONENT: rocalution -> Test Directory: /home/zs/TheRock/output-linux-portable/build/test-dirs/rocalution
+# TEST_TYPE: comprehensive -> Category: comprehensive
+# AMDGPU_FAMILIES: None -> GPU Architecture: 
+
+# Discovering available test labels...
+# Warning: No GPU specific test suites available
+
+# Running: ctest -L ^comprehensive$ -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/test-dirs/rocalution -V --tests-information 1,,1
+
+[2026-07-07 16:28:34] ===== rocalution comprehensive: FAIL (7s, rc=8) =====

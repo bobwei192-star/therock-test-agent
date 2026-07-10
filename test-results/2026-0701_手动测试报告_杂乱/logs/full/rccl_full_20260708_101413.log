@@ -1,0 +1,21 @@
+[2026-07-08 10:14:13] ===== Starting rccl full test =====
+PID=1770660  TIMEOUT=43200s  LOG=/home/zs/test_case/scripts/logs/full/rccl_full_20260708_101413.log
+[INFO] PID file: /tmp/therock_rccl_full.pid
+===== Resource Check =====
+THEROCK_DIR=/home/zs/TheRock
+GPU devices:
+/dev/kfd
+
+/dev/dri/:
+by-path
+card1
+renderD128
+[HEARTBEAT 2026-07-08 10:14:13] test running...
+Disk free: 797G available
+Memory: 15Gi used / 30Gi total
+==========================
+[INFO] Virtualenv activated: /home/zs/test_case/.venv
+[2026-07-08 10:14:13] Running with sudo: timeout 43200 python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_rccl.py
+sudo: preserving the entire environment is not supported, '-E' is ignored
+[sudo: authenticate] Password: 
+[2026-07-08 10:14:13] ===== rccl full: PASS (0s, rc=0) =====
