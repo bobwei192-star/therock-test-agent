@@ -1,0 +1,557 @@
+{
+  "version": "0.1",
+  "description": "TheRock 组件到测试脚本、环境变量、风险策略的索引。component_sort_order.json 负责排序，本文件负责如何运行。",
+  "generated_from": [
+    "test-results/2026-0701_手动测试报告_杂乱/results/手动汇总测试报告.md",
+    "/home/zx/TheRock_CI测试流程/TheRock/build_tools/github_actions/test_executable_scripts",
+    "docs_this_project/改进文档.md"
+  ],
+  "last_updated": "2026-07-09",
+  "path_variables": {
+    "therock_repo": "TheRock 仓库根目录",
+    "build_root": "用户传入 artifacts build 目录，例如 output-linux-portable/build",
+    "rocm_dist": "<build_root>/dist/rocm 或用户直接传入的 dist/rocm",
+    "therock_bin_dir": "<rocm_dist>/bin"
+  },
+  "env_profiles": {
+    "base": {
+      "required": {
+        "AMDGPU_FAMILIES": "{amdgpu_families}",
+        "THEROCK_AMDGPU_FAMILIES": "{amdgpu_families}",
+        "THEROCK_AMDGPU_TARGETS": "{amdgpu_targets}",
+        "TEST_TYPE": "{test_type}",
+        "THEROCK_BIN_DIR": "{rocm_dist}/bin",
+        "OUTPUT_ARTIFACTS_DIR": "{rocm_dist}",
+        "ROCM_PATH": "{rocm_dist}",
+        "HIP_PATH": "{rocm_dist}",
+        "SHARD_INDEX": "1",
+        "TOTAL_SHARDS": "1"
+      },
+      "prepend": {
+        "PATH": [
+          "{rocm_dist}/bin"
+        ],
+        "LD_LIBRARY_PATH": [
+          "{rocm_dist}/lib",
+          "{rocm_dist}/lib64"
+        ]
+      }
+    },
+    "test_runner": {
+      "inherits": [
+        "base"
+      ],
+      "required": {
+        "TEST_COMPONENT": "{test_component}"
+      },
+      "command": "python3 build_tools/github_actions/test_executable_scripts/test_runner.py"
+    },
+    "dedicated_python": {
+      "inherits": [
+        "base"
+      ],
+      "command": "python3 build_tools/github_actions/test_executable_scripts/{script}"
+    },
+    "pytest_dependency_sensitive": {
+      "inherits": [
+        "base"
+      ],
+      "preflight_python_modules": [
+        "pytest",
+        "joblib"
+      ]
+    },
+    "libhipcxx": {
+      "inherits": [
+        "base"
+      ],
+      "preflight_python_modules": [
+        "lit"
+      ],
+      "required": {
+        "OUTPUT_ARTIFACTS_DIR": "{rocm_dist}"
+      }
+    },
+    "sudo_sensitive": {
+      "inherits": [
+        "base"
+      ],
+      "requires_sudo_policy": "cache_or_askpass"
+    },
+    "gpu_reset_sensitive": {
+      "inherits": [
+        "base"
+      ],
+      "default_gpu_risk_policy": "skip",
+      "allowed_when": [
+        "gpu-risk=include",
+        "gpu-risk=quarantine"
+      ]
+    }
+  },
+  "defaults": {
+    "entrypoint_type": "test_runner",
+    "env_profile": "test_runner",
+    "retry_policy": "retry_failed_until_stable",
+    "missing_entrypoint_status": "blocked"
+  },
+  "components": {
+    "aqlprofile": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_aqlprofile.py",
+      "env_profiles": [
+        "base"
+      ],
+      "requires": [
+        "OUTPUT_ARTIFACTS_DIR"
+      ],
+      "known_notes": [
+        "手动报告中曾因 OUTPUT_ARTIFACTS_DIR 缺失失败，补齐后 standard 4/4 通过。"
+      ]
+    },
+    "amdsmi": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_amdsmi.py",
+      "env_profiles": [
+        "base",
+        "sudo_sensitive"
+      ],
+      "sudo": "recommended_for_full_coverage",
+      "known_notes": [
+        "Fan/Power/Overdrive 等读写测试 root 权限下通过。无 sudo 时应 blocked 或降级。"
+      ]
+    },
+    "hipblas": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipblas",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_notes": [
+        "quick 曾通过直接运行原生 hipblas-test 绕过 CTest 超时；后续可增加 native fallback。"
+      ],
+      "timeout_hint_seconds": 7200
+    },
+    "hipblaslt": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipblaslt",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipblasltprovider": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipblasltprovider",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipcub": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipcub",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipdnn": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipdnn.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_notes": [
+        "曾因 CTestTestfile.cmake 硬编码路径和动态库路径失败，必须设置 ROCM_PATH/HIP_PATH/LD_LIBRARY_PATH。"
+      ]
+    },
+    "hipdnn_integration": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipdnn_integration_tests.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_notes": [
+        "路径和 Python 解释器硬编码风险较高，失败时优先归类为 path_hardcode。"
+      ],
+      "timeout_hint_seconds": 2400
+    },
+    "hipfile": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipfile.py",
+      "env_profiles": [
+        "base"
+      ]
+    },
+    "hipfft": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipfft.py",
+      "env_profiles": [
+        "base"
+      ]
+    },
+    "hipkernelprovider": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipkernelprovider.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_notes": [
+        "曾因 libhipdnn_backend.so 路径缺失失败，必须设置 LD_LIBRARY_PATH。"
+      ]
+    },
+    "hiprand": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hiprand",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipsolver": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipsolver",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipsparse": {
+      "entrypoint_type": "test_runner",
+      "test_component": "hipsparse",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "hipsparselt": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hipsparselt.py",
+      "env_profiles": [
+        "base"
+      ],
+      "default_status": "skip",
+      "known_issue_category": "gfx1151_exclude_family",
+      "known_notes": [
+        "手动报告和 TheRock 矩阵均显示 gfx1151 官方 exclude_family，不应默认执行。"
+      ]
+    },
+    "hiptests": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_hiptests.py",
+      "env_profiles": [
+        "base",
+        "gpu_reset_sensitive"
+      ],
+      "gpu_hang_risk": true,
+      "known_issue_category": "hip_graph_hang",
+      "known_notes": [
+        "standard/comprehensive/full 中 HIP Graph 测试存在 timeout/deadlock，建议 quarantine。"
+      ],
+      "timeout_hint_seconds": 3600
+    },
+    "libhipcxx_hipcc": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_libhipcxx_hipcc.py",
+      "env_profiles": [
+        "base",
+        "libhipcxx"
+      ],
+      "requires": [
+        "OUTPUT_ARTIFACTS_DIR",
+        "lit"
+      ],
+      "known_notes": [
+        "缺 OUTPUT_ARTIFACTS_DIR 或 lit 会在配置阶段失败。"
+      ]
+    },
+    "libhipcxx_hiprtc": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_libhipcxx_hiprtc.py",
+      "env_profiles": [
+        "base",
+        "libhipcxx"
+      ],
+      "requires": [
+        "OUTPUT_ARTIFACTS_DIR",
+        "lit"
+      ],
+      "known_notes": [
+        "缺 OUTPUT_ARTIFACTS_DIR 或 lit 会在配置阶段失败。"
+      ]
+    },
+    "miopen": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_miopen.py",
+      "env_profiles": [
+        "base"
+      ],
+      "cli_args": [
+        "--test-type",
+        "{test_type}"
+      ]
+    },
+    "miopenprovider": {
+      "entrypoint_type": "test_runner",
+      "test_component": "miopenprovider",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_notes": [
+        "部分模式无对应标签，0 tests 应按 pass/skip 处理，不应误判失败。"
+      ]
+    },
+    "rccl": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rccl.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_notes": [
+        "单 GPU 环境下走单卡回退，需检查可见 GPU 数。"
+      ]
+    },
+    "rocalution": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocalution",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_issue_category": "stable_numeric_failure_gfx1151",
+      "retry_policy": "do_not_retry_many_times",
+      "known_notes": [
+        "CG/IDR/BiCGSTAB/FGMRES 在 gfx1151 上有稳定数值失败，不改源码不可修复。"
+      ]
+    },
+    "rocblas": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocblas",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_notes": [
+        "comprehensive 中 nightly f16 dot batched kernel 曾 SIGABRT/SIGFPE，full 反而通过。"
+      ],
+      "timeout_hint_seconds": 10800
+    },
+    "rocdecode": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocdecode.py",
+      "env_profiles": [
+        "base"
+      ]
+    },
+    "rocfft": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocfft.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_issue_category": "flaky_retry_ok",
+      "known_notes": [
+        "twiddle half 非法指令曾 flaky，重跑通过。"
+      ]
+    },
+    "rocjpeg": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocjpeg.py",
+      "env_profiles": [
+        "base"
+      ]
+    },
+    "rocprim": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocprim",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_notes": [
+        "comprehensive 曾 1/85 FAIL 且耗时 4.3h；full 通过。"
+      ],
+      "timeout_hint_seconds": 18000
+    },
+    "rocprofiler_compute": {
+      "entrypoint_type": "none",
+      "env_profiles": [
+        "base"
+      ],
+      "default_status": "skip",
+      "known_issue_category": "no_independent_entrypoint",
+      "known_notes": [
+        "手动报告标记无独立测试入口；默认 skip 或 blocked。"
+      ]
+    },
+    "rocprofiler_sdk": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocprofiler_sdk.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_issue_category": "profiler_integration_failures",
+      "known_notes": [
+        "quick unit tests 可通过；standard/comprehensive/full 因 rocpd 缺失或硬件限制有大量失败。"
+      ],
+      "timeout_hint_seconds": 1200
+    },
+    "rocprofiler_systems": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocprofiler_systems.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_issue_category": "python_314_incompat",
+      "retry_policy": "known_blocked_on_python_314",
+      "known_notes": [
+        "Python 3.14 下 pytest collection 可能因 system_version=None 阻塞；CTest 子集可单独考虑。"
+      ]
+    },
+    "rocroller": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocroller.py",
+      "env_profiles": [
+        "base"
+      ],
+      "default_status": "skip",
+      "known_issue_category": "gfx1151_exclude_family",
+      "known_notes": [
+        "官方 exclude_family / gfx1151 架构枚举不识别，不应默认执行。"
+      ]
+    },
+    "rocrand": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocrand",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "rocrtst": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocrtst.py",
+      "env_profiles": [
+        "base",
+        "gpu_reset_sensitive"
+      ],
+      "gpu_hang_risk": true,
+      "known_issue_category": "sigkill_or_gpu_exclusive",
+      "known_notes": [
+        "quick 加完整 ROCm/HIP/LD 环境后通过；comprehensive/full 曾 SIGKILL，建议 quarantine。"
+      ],
+      "timeout_hint_seconds": 900
+    },
+    "rocsolver": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocsolver.py",
+      "env_profiles": [
+        "base"
+      ],
+      "requires": [
+        "OUTPUT_ARTIFACTS_DIR"
+      ],
+      "known_notes": [
+        "comprehensive 曾 subprocess aborted；full 通过。"
+      ]
+    },
+    "rocsparse": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_rocsparse.py",
+      "env_profiles": [
+        "base",
+        "gpu_reset_sensitive"
+      ],
+      "requires": [
+        "OUTPUT_ARTIFACTS_DIR"
+      ],
+      "gpu_hang_risk": true,
+      "known_issue_category": "gpu_ring_timeout_full",
+      "known_notes": [
+        "quick/comprehensive 可通过或低负载；full 曾触发 ring gfx timeout / MODE2 reset，默认 skip 或 quarantine。"
+      ]
+    },
+    "rocthrust": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocthrust",
+      "env_profiles": [
+        "test_runner"
+      ]
+    },
+    "rocwmma": {
+      "entrypoint_type": "test_runner",
+      "test_component": "rocwmma",
+      "env_profiles": [
+        "test_runner"
+      ],
+      "known_notes": [
+        "quick 映射到 regression fragment，按 test_runner override 处理。"
+      ]
+    },
+    "sanity": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_sanity.py",
+      "env_profiles": [
+        "base"
+      ],
+      "known_notes": [
+        "用于环境健康检查，应优先执行。"
+      ]
+    },
+    "tensilelite": {
+      "entrypoint_type": "dedicated_python",
+      "script": "test_tensilelite.py",
+      "env_profiles": [
+        "base",
+        "pytest_dependency_sensitive"
+      ],
+      "requires": [
+        "joblib",
+        "pytest",
+        "pytest-xdist"
+      ],
+      "known_issue_category": "python_314_path_bug_full",
+      "known_notes": [
+        "quick/comprehensive 可通过；full 在 Python 3.14 下可能触发 pathlib 路径分隔符兼容 bug。"
+      ]
+    }
+  },
+  "mode_overrides": {
+    "full": {
+      "rocsparse": {
+        "gpu_hang_risk": true,
+        "default_policy": "skip_or_quarantine"
+      },
+      "tensilelite": {
+        "known_issue_category": "python_314_path_bug_full"
+      },
+      "hiptests": {
+        "known_issue_category": "hip_graph_hang"
+      },
+      "rocrtst": {
+        "known_issue_category": "sigkill_or_gpu_exclusive"
+      }
+    },
+    "comprehensive": {
+      "rocprim": {
+        "known_issue_category": "long_running_deep_failure"
+      },
+      "rocblas": {
+        "known_issue_category": "nightly_f16_signal_abort"
+      },
+      "rocsolver": {
+        "known_issue_category": "subprocess_aborted"
+      },
+      "libhipcxx_hipcc": {
+        "known_issue_category": "cmake_configure_file_missing"
+      },
+      "libhipcxx_hiprtc": {
+        "known_issue_category": "cmake_configure_file_missing"
+      }
+    }
+  },
+  "runner_rules": {
+    "test_runner_call": "Do not pass --component or --test-type. Use TEST_COMPONENT and TEST_TYPE environment variables.",
+    "artifact_preflight": [
+      "{rocm_dist}/bin exists",
+      "{rocm_dist}/lib or {rocm_dist}/lib64 exists"
+    ],
+    "dependency_preflight": [
+      "pytest",
+      "joblib for tensilelite",
+      "lit for libhipcxx_*"
+    ],
+    "gpu_reset_handling": "If logs contain ring gfx, MODE2 reset, GPU reset, stop loop and mark resume blocked."
+  }
+}

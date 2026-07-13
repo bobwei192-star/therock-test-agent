@@ -1,0 +1,51 @@
+# How do I install ROCm for fedora 40? Where are the repositories?
+
+- **Issue #:** 3446
+- **State:** closed
+- **Created:** 2024-07-21T00:24:52Z
+- **Updated:** 2024-07-24T13:31:33Z
+- **URL:** https://github.com/ROCm/ROCm/issues/3446
+
+Question: How do I install ROCm for fedora 40? Where are the repositories?
+
+CUDA: My ROCm is not not linking my GPU to my CPU. Hey, ...ROCm is not even installed!
+I can't find how to install it.
+Please help:
+- How do I install ROCm for fedora 40? 
+- Where are the repositories? Or, usable repositories?
+- Where is some form of documentation?
+
+Look forward to your replies
+Regards
+Graham
+
+**My computer:**
+Fedora 6.9.8-200.fc40.x86_64 #1 SMP PREEMPT_DYNAMIC Fri Jul  5 16:20:11 UTC 2024 x86_64 GNU/Linux. 
+**CPU** is 12th Gen Intel(R) Core(TM) i9-12900K with 64 cores. 
+**GPU** is Navi 33 Radeon 7600 Advanced Micro Devices, Inc. 
+After install of fc40 and first upgrade, from dmesg
+ Firmware is amdgpu 0000:03:00.0: amdgpu: Will use PSP to load VCN firmware.
+And, From dmesg
+ amdgpu: Will use PSP to load VCN firmware
+ amdgpu: reserve 0x1300000 from 0x81fc000000 for PSP TMR
+  amdgpu: RAS: optional ras ta ucode is not available
+ amdgpu: RAP: optional rap ta ucode is not available
+ amdgpu: SECUREDISPLAY: securedisplay ta ucode is not available
+ amdgpu: smu driver if version = 0x00000035, smu fw if version = 0x00000040, smu fw program = 0, smu fw version =  0x00525b00 (82.91.0)
+ amdgpu: SMU driver if version not matched
+ amdgpu: SMU is initialized successfully!
+**Python** 3.12.4. 
+**CUDA** I use torch to test if I have parallel processing: 
+$ python ./test_for_GPU_torch.py
+Code:
+```
+import torch
+query = torch.cuda.is_available()
+print("If ROCm is installed, torch.cuda.is_available() will return True.")
+print(f"Question: torch.cuda.is_available: {query}")
+
+```
+Reply:
+If ROCm is installed, torch.cuda.is_available() will return True.
+Question: torch.cuda.is_available: False
+

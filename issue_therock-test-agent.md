@@ -1,1 +1,0 @@
-找到根本原因了。test_runner.py 需要 TEST_COMPONENT 环境变量（第 90 行 os.getenv("TEST_COMPONENT")），但 agent 脚本错误地传了 --component CLI 参数。让我修复并重新运行。

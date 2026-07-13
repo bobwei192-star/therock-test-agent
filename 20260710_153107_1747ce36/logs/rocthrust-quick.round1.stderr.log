@@ -1,2 +1,0 @@
-INFO:root:++ Exec [/home/zs/TheRock]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/rocthrust/generate_resource_spec /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/rocthrust/resources.json
-INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^quick$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/rocthrust -V --tests-information 1,,1 --resource-spec-file resources.json
