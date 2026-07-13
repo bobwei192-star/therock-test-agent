@@ -1,5 +1,0 @@
-INFO:root:Running standard amdsmitst test suite (include + exclude filter)
-INFO:root:AMDGPU_FAMILIES=gfx1151
-INFO:root:platform_key=linux
-INFO:root:Final exclude_tests=['amdsmitstReadOnly.TempRead', 'amdsmitstReadOnly.TestFrequenciesRead', 'amdsmitstReadWrite.TestPowerReadWrite']
-INFO:root:++ Exec [/home/zs/TheRock]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/share/amd_smi/tests/amdsmitst '--gtest_filter=amdsmitstReadOnly.*:amdsmitstReadWrite.FanReadWrite:amdsmitstReadWrite.TestOverdriveReadWrite:amdsmitstReadWrite.TestPciReadWrite:amdsmitstReadWrite.TestPowerReadWrite:amdsmitstReadWrite.TestPerfCntrReadWrite:amdsmitstReadWrite.TestEvtNotifReadWrite:AmdSmiDynamicMetricTest.*:-amdsmitstReadOnly.TempRead:amdsmitstReadOnly.TestFrequenciesRead:amdsmitstReadWrite.TestPowerReadWrite'

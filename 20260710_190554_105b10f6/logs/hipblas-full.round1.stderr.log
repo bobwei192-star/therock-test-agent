@@ -1,1 +1,0 @@
-INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^full$' -LE ex_gpu --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hipblas -V --tests-information 1,,1

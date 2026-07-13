@@ -1,1 +1,0 @@
-INFO:root:++ Exec [/home/zs/TheRock]$ /usr/bin/python3 -m pytest tests/ --log-cli-level=info --timeout=300
