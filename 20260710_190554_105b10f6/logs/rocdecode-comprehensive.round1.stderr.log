@@ -1,0 +1,30 @@
+INFO:root:++ INFO: rocdecode tests found in /home/zs/TheRock/output-linux-portable/build/dist/rocm/share/rocdecode/test
+INFO:root:++ rocdecode setting ROCM_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm
+INFO:root:++ rocdecode setting LD_LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib
+INFO:root:++ rocdecode setting LD_PRELOAD=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib/librocm_sysdeps_va.so.2:/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib/librocm_sysdeps_va-drm.so.2
+INFO:root:++ rocdecode setting LIBVA_DRIVERS_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ cmake -GNinja -DENABLE_EXTENDED_TESTS=ON /home/zs/TheRock/output-linux-portable/build/dist/rocm/share/rocdecode/test
+-- [37mrocdecode-test: rocdecode found with find_package(rocdecode QUIET)[m
+-- 	[37mrocdecode_INCLUDE_DIR -- /home/zs/TheRock/output-linux-portable/build/include[m
+-- 	[37mrocdecode_LIB_DIR -- /home/zs/TheRock/output-linux-portable/build/lib[m
+-- 	[37mrocdecode_LIBRARY -- /home/zs/TheRock/output-linux-portable/build/lib/librocdecode.so[m
+-- 	[37mrocdecode_FOUND -- 1[m
+-- 	[37mrocdecode_VERSION -- 1.8.0[m
+-- 	[37mrocdecode_VERSION_MAJOR -- 1[m
+-- 	[37mrocdecode_VERSION_MINOR -- 8[m
+-- 	[37mrocdecode_VERSION_PATCH -- 0[m
+-- [33mrocdecode-test rocdecode-host is optional. Install rocdecode-host to run additional tests before running CTests
+-- [33mNOTE: FindFFmpeg failed to find -- FFMPEG[m
+-- [33mrocdecode-test FFmpeg NOT found. rocdecode tests requiring FFmpeg excluded
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ ctest -N
+INFO:root:Test project /home/zs/TheRock/output-linux-portable/build/rocdecode-test
+  Test #1: video_decodeRaw-HEVC
+  Test #2: video_decodeRaw-AVC
+  Test #3: video_decodeRaw-AV1
+  Test #4: video_decodeRaw-VP9
+  Test #5: rocdec_Decode-HEVC
+  Test #6: rocDecode_Negative_API_Tests
+
+Total Tests: 6
+
+INFO:root:++ Exec [/home/zs/TheRock/build/rocdecode-test]$ ctest --extra-verbose --output-on-failure

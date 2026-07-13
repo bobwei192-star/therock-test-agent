@@ -1,0 +1,5 @@
+# TEST_COMPONENT: hipblaslt -> Test Directory: /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hipblaslt
+# TEST_TYPE: standard -> Category: standard
+# AMDGPU_FAMILIES: gfx1151 -> GPU Architecture: gfx1151
+
+# Discovering available test labels...

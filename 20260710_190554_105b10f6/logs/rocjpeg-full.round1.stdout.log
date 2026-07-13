@@ -1,0 +1,979 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+UpdateCTestConfiguration  from :/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/DartConfiguration.tcl
+Parse Config file:/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/DartConfiguration.tcl
+Test project /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+      Start  1: jpeg-decode-fmt-native
+
+1: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+1: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+1: Test timeout computed to be: 1500
+1: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+1: ======== CMake output     ======
+1: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+1: Configuring done (0.0s)
+1: Generating done (0.0s)
+1: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+1: ======== End CMake output ======
+1: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+1: 
+1: Run Clean Command: /usr/bin/ninja clean
+1: [1/1] Cleaning all built files...
+1: Cleaning... 2 files.
+1: 
+1: Run Build Command(s): /usr/bin/ninja
+1: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+1: [2/2] Linking CXX executable jpegdecode
+1: 
+1: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+1: Reading images from disk, please wait!
+1: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+1: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+1: Input image resolution: 3840x2160
+1: Chroma subsampling: YUV 4:2:2
+1: Decoding started, please wait! ... 
+1: Average processing time per image (ms): 31.1043
+1: Average images per sec: 32.1499
+1: 
+1: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+1: Input image resolution: 3840x2160
+1: Chroma subsampling: YUV 4:0:0
+1: Decoding started, please wait! ... 
+1: Average processing time per image (ms): 18.2186
+1: Average images per sec: 54.8888
+1: 
+1: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+1: Input image resolution: 3840x2160
+1: Chroma subsampling: YUV 4:2:0
+1: Decoding started, please wait! ... 
+1: Average processing time per image (ms): 24.2791
+1: Average images per sec: 41.1877
+1: 
+1: Total decoded images: 3
+1: Average processing time per image (ms): 24.534
+1: Average decoded images per sec (Images/Sec): 40.7598
+1: Average decoded images size (Mpixels/Sec): 338.078
+1: 
+1: Decoding completed!
+ 1/22 Test  #1: jpeg-decode-fmt-native ..................   Passed    0.85 sec
+test 2
+      Start  2: jpeg-decode-fmt-yuv-planar
+
+2: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar"
+2: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+2: Test timeout computed to be: 1500
+2: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+2: ======== CMake output     ======
+2: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+2: Configuring done (0.0s)
+2: Generating done (0.0s)
+2: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+2: ======== End CMake output ======
+2: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+2: 
+2: Run Clean Command: /usr/bin/ninja clean
+2: [1/1] Cleaning all built files...
+2: Cleaning... 2 files.
+2: 
+2: Run Build Command(s): /usr/bin/ninja
+2: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+2: [2/2] Linking CXX executable jpegdecode
+2: 
+2: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar"
+2: Reading images from disk, please wait!
+2: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+2: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+2: Input image resolution: 3840x2160
+2: Chroma subsampling: YUV 4:2:2
+2: Decoding started, please wait! ... 
+2: Average processing time per image (ms): 27.5038
+2: Average images per sec: 36.3586
+2: 
+2: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+2: Input image resolution: 3840x2160
+2: Chroma subsampling: YUV 4:0:0
+2: Decoding started, please wait! ... 
+2: Average processing time per image (ms): 18.2664
+2: Average images per sec: 54.7454
+2: 
+2: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+2: Input image resolution: 3840x2160
+2: Chroma subsampling: YUV 4:2:0
+2: Decoding started, please wait! ... 
+2: Average processing time per image (ms): 23.919
+2: Average images per sec: 41.8077
+2: 
+2: Total decoded images: 3
+2: Average processing time per image (ms): 23.2297
+2: Average decoded images per sec (Images/Sec): 43.0483
+2: Average decoded images size (Mpixels/Sec): 357.059
+2: 
+2: Decoding completed!
+ 2/22 Test  #2: jpeg-decode-fmt-yuv-planar ..............   Passed    0.72 sec
+test 3
+      Start  3: jpeg-decode-fmt-y
+
+3: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y"
+3: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+3: Test timeout computed to be: 1500
+3: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+3: ======== CMake output     ======
+3: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+3: Configuring done (0.0s)
+3: Generating done (0.0s)
+3: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+3: ======== End CMake output ======
+3: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+3: 
+3: Run Clean Command: /usr/bin/ninja clean
+3: [1/1] Cleaning all built files...
+3: Cleaning... 2 files.
+3: 
+3: Run Build Command(s): /usr/bin/ninja
+3: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+3: [2/2] Linking CXX executable jpegdecode
+3: 
+3: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y"
+3: Reading images from disk, please wait!
+3: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+3: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+3: Input image resolution: 3840x2160
+3: Chroma subsampling: YUV 4:2:2
+3: Decoding started, please wait! ... 
+3: Average processing time per image (ms): 27.1282
+3: Average images per sec: 36.862
+3: 
+3: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+3: Input image resolution: 3840x2160
+3: Chroma subsampling: YUV 4:0:0
+3: Decoding started, please wait! ... 
+3: Average processing time per image (ms): 19.0697
+3: Average images per sec: 52.4393
+3: 
+3: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+3: Input image resolution: 3840x2160
+3: Chroma subsampling: YUV 4:2:0
+3: Decoding started, please wait! ... 
+3: Average processing time per image (ms): 24.8721
+3: Average images per sec: 40.2058
+3: 
+3: Total decoded images: 3
+3: Average processing time per image (ms): 23.69
+3: Average decoded images per sec (Images/Sec): 42.2119
+3: Average decoded images size (Mpixels/Sec): 350.123
+3: 
+3: Decoding completed!
+ 3/22 Test  #3: jpeg-decode-fmt-y .......................   Passed    0.73 sec
+test 4
+      Start  4: jpeg-decode-fmt-rgb
+
+4: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb"
+4: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+4: Test timeout computed to be: 1500
+4: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+4: ======== CMake output     ======
+4: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+4: Configuring done (0.0s)
+4: Generating done (0.0s)
+4: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+4: ======== End CMake output ======
+4: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+4: 
+4: Run Clean Command: /usr/bin/ninja clean
+4: [1/1] Cleaning all built files...
+4: Cleaning... 2 files.
+4: 
+4: Run Build Command(s): /usr/bin/ninja
+4: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+4: [2/2] Linking CXX executable jpegdecode
+4: 
+4: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb"
+4: Reading images from disk, please wait!
+4: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+4: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+4: Input image resolution: 3840x2160
+4: Chroma subsampling: YUV 4:2:2
+4: Decoding started, please wait! ... 
+4: Average processing time per image (ms): 26.7558
+4: Average images per sec: 37.3751
+4: 
+4: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+4: Input image resolution: 3840x2160
+4: Chroma subsampling: YUV 4:0:0
+4: Decoding started, please wait! ... 
+4: Average processing time per image (ms): 17.6718
+4: Average images per sec: 56.5874
+4: 
+4: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+4: Input image resolution: 3840x2160
+4: Chroma subsampling: YUV 4:2:0
+4: Decoding started, please wait! ... 
+4: Average processing time per image (ms): 23.5146
+4: Average images per sec: 42.5268
+4: 
+4: Total decoded images: 3
+4: Average processing time per image (ms): 22.6474
+4: Average decoded images per sec (Images/Sec): 44.1552
+4: Average decoded images size (Mpixels/Sec): 366.241
+4: 
+4: Decoding completed!
+ 4/22 Test  #4: jpeg-decode-fmt-rgb .....................   Passed    0.70 sec
+test 5
+      Start  5: jpeg-decode-fmt-rgb-planar
+
+5: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar"
+5: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+5: Test timeout computed to be: 1500
+5: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+5: ======== CMake output     ======
+5: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+5: Configuring done (0.0s)
+5: Generating done (0.0s)
+5: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+5: ======== End CMake output ======
+5: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+5: 
+5: Run Clean Command: /usr/bin/ninja clean
+5: [1/1] Cleaning all built files...
+5: Cleaning... 2 files.
+5: 
+5: Run Build Command(s): /usr/bin/ninja
+5: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+5: [2/2] Linking CXX executable jpegdecode
+5: 
+5: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar"
+5: Reading images from disk, please wait!
+5: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+5: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+5: Input image resolution: 3840x2160
+5: Chroma subsampling: YUV 4:2:2
+5: Decoding started, please wait! ... 
+5: Average processing time per image (ms): 27.4943
+5: Average images per sec: 36.3712
+5: 
+5: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+5: Input image resolution: 3840x2160
+5: Chroma subsampling: YUV 4:0:0
+5: Decoding started, please wait! ... 
+5: Average processing time per image (ms): 18.1555
+5: Average images per sec: 55.0797
+5: 
+5: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+5: Input image resolution: 3840x2160
+5: Chroma subsampling: YUV 4:2:0
+5: Decoding started, please wait! ... 
+5: Average processing time per image (ms): 24.0354
+5: Average images per sec: 41.6054
+5: 
+5: Total decoded images: 3
+5: Average processing time per image (ms): 23.2284
+5: Average decoded images per sec (Images/Sec): 43.0508
+5: Average decoded images size (Mpixels/Sec): 357.08
+5: 
+5: Decoding completed!
+ 5/22 Test  #5: jpeg-decode-fmt-rgb-planar ..............   Passed    0.72 sec
+test 6
+      Start  6: jpeg-decode-crop-fmt-native
+
+6: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-crop" "960,540,2880,1620"
+6: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+6: Test timeout computed to be: 1500
+6: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+6: ======== CMake output     ======
+6: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+6: Configuring done (0.0s)
+6: Generating done (0.0s)
+6: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+6: ======== End CMake output ======
+6: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+6: 
+6: Run Clean Command: /usr/bin/ninja clean
+6: [1/1] Cleaning all built files...
+6: Cleaning... 2 files.
+6: 
+6: Run Build Command(s): /usr/bin/ninja
+6: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+6: [2/2] Linking CXX executable jpegdecode
+6: 
+6: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-crop" "960,540,2880,1620"
+6: Reading images from disk, please wait!
+6: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+6: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+6: Input image resolution: 3840x2160
+6: Chroma subsampling: YUV 4:2:2
+6: Cropped image resolution: 1920x1080
+6: Decoding started, please wait! ... 
+6: Average processing time per image (ms): 30.3348
+6: Average images per sec: 32.9655
+6: 
+6: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+6: Input image resolution: 3840x2160
+6: Chroma subsampling: YUV 4:0:0
+6: Cropped image resolution: 1920x1080
+6: Decoding started, please wait! ... 
+6: Average processing time per image (ms): 18.1734
+6: Average images per sec: 55.0256
+6: 
+6: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+6: Input image resolution: 3840x2160
+6: Chroma subsampling: YUV 4:2:0
+6: Cropped image resolution: 1920x1080
+6: Decoding started, please wait! ... 
+6: Average processing time per image (ms): 23.8696
+6: Average images per sec: 41.8943
+6: 
+6: Total decoded images: 3
+6: Average processing time per image (ms): 24.1259
+6: Average decoded images per sec (Images/Sec): 41.4492
+6: Average decoded images size (Mpixels/Sec): 343.796
+6: 
+6: Decoding completed!
+ 6/22 Test  #6: jpeg-decode-crop-fmt-native .............   Passed    0.72 sec
+test 7
+      Start  7: jpeg-decode-crop-fmt-yuv-planar
+
+7: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar" "-crop" "960,540,2880,1620"
+7: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+7: Test timeout computed to be: 1500
+7: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+7: ======== CMake output     ======
+7: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+7: Configuring done (0.0s)
+7: Generating done (0.0s)
+7: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+7: ======== End CMake output ======
+7: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+7: 
+7: Run Clean Command: /usr/bin/ninja clean
+7: [1/1] Cleaning all built files...
+7: Cleaning... 2 files.
+7: 
+7: Run Build Command(s): /usr/bin/ninja
+7: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+7: [2/2] Linking CXX executable jpegdecode
+7: 
+7: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar" "-crop" "960,540,2880,1620"
+7: Reading images from disk, please wait!
+7: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+7: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+7: Input image resolution: 3840x2160
+7: Chroma subsampling: YUV 4:2:2
+7: Cropped image resolution: 1920x1080
+7: Decoding started, please wait! ... 
+7: Average processing time per image (ms): 27.1191
+7: Average images per sec: 36.8744
+7: 
+7: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+7: Input image resolution: 3840x2160
+7: Chroma subsampling: YUV 4:0:0
+7: Cropped image resolution: 1920x1080
+7: Decoding started, please wait! ... 
+7: Average processing time per image (ms): 17.5541
+7: Average images per sec: 56.9667
+7: 
+7: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+7: Input image resolution: 3840x2160
+7: Chroma subsampling: YUV 4:2:0
+7: Cropped image resolution: 1920x1080
+7: Decoding started, please wait! ... 
+7: Average processing time per image (ms): 24.0275
+7: Average images per sec: 41.6189
+7: 
+7: Total decoded images: 3
+7: Average processing time per image (ms): 22.9002
+7: Average decoded images per sec (Images/Sec): 43.6677
+7: Average decoded images size (Mpixels/Sec): 362.197
+7: 
+7: Decoding completed!
+ 7/22 Test  #7: jpeg-decode-crop-fmt-yuv-planar .........   Passed    0.70 sec
+test 8
+      Start  8: jpeg-decode-crop-fmt-y
+
+8: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y" "-crop" "960,540,2880,1620"
+8: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+8: Test timeout computed to be: 1500
+8: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+8: ======== CMake output     ======
+8: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+8: Configuring done (0.0s)
+8: Generating done (0.0s)
+8: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+8: ======== End CMake output ======
+8: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+8: 
+8: Run Clean Command: /usr/bin/ninja clean
+8: [1/1] Cleaning all built files...
+8: Cleaning... 2 files.
+8: 
+8: Run Build Command(s): /usr/bin/ninja
+8: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+8: [2/2] Linking CXX executable jpegdecode
+8: 
+8: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y" "-crop" "960,540,2880,1620"
+8: Reading images from disk, please wait!
+8: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+8: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+8: Input image resolution: 3840x2160
+8: Chroma subsampling: YUV 4:2:2
+8: Cropped image resolution: 1920x1080
+8: Decoding started, please wait! ... 
+8: Average processing time per image (ms): 27.1285
+8: Average images per sec: 36.8616
+8: 
+8: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+8: Input image resolution: 3840x2160
+8: Chroma subsampling: YUV 4:0:0
+8: Cropped image resolution: 1920x1080
+8: Decoding started, please wait! ... 
+8: Average processing time per image (ms): 17.8909
+8: Average images per sec: 55.8944
+8: 
+8: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+8: Input image resolution: 3840x2160
+8: Chroma subsampling: YUV 4:2:0
+8: Cropped image resolution: 1920x1080
+8: Decoding started, please wait! ... 
+8: Average processing time per image (ms): 24.2008
+8: Average images per sec: 41.3209
+8: 
+8: Total decoded images: 3
+8: Average processing time per image (ms): 23.0734
+8: Average decoded images per sec (Images/Sec): 43.3399
+8: Average decoded images size (Mpixels/Sec): 359.479
+8: 
+8: Decoding completed!
+ 8/22 Test  #8: jpeg-decode-crop-fmt-y ..................   Passed    0.71 sec
+test 9
+      Start  9: jpeg-decode-crop-fmt-rgb
+
+9: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb" "-crop" "960,540,2880,1620"
+9: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+9: Test timeout computed to be: 1500
+9: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+9: ======== CMake output     ======
+9: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+9: Configuring done (0.0s)
+9: Generating done (0.0s)
+9: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+9: ======== End CMake output ======
+9: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+9: 
+9: Run Clean Command: /usr/bin/ninja clean
+9: [1/1] Cleaning all built files...
+9: Cleaning... 2 files.
+9: 
+9: Run Build Command(s): /usr/bin/ninja
+9: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+9: [2/2] Linking CXX executable jpegdecode
+9: 
+9: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb" "-crop" "960,540,2880,1620"
+9: Reading images from disk, please wait!
+9: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+9: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+9: Input image resolution: 3840x2160
+9: Chroma subsampling: YUV 4:2:2
+9: Cropped image resolution: 1920x1080
+9: Decoding started, please wait! ... 
+9: Average processing time per image (ms): 27.7247
+9: Average images per sec: 36.069
+9: 
+9: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+9: Input image resolution: 3840x2160
+9: Chroma subsampling: YUV 4:0:0
+9: Cropped image resolution: 1920x1080
+9: Decoding started, please wait! ... 
+9: Average processing time per image (ms): 19.0157
+9: Average images per sec: 52.5882
+9: 
+9: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+9: Input image resolution: 3840x2160
+9: Chroma subsampling: YUV 4:2:0
+9: Cropped image resolution: 1920x1080
+9: Decoding started, please wait! ... 
+9: Average processing time per image (ms): 24.2107
+9: Average images per sec: 41.304
+9: 
+9: Total decoded images: 3
+9: Average processing time per image (ms): 23.6503
+9: Average decoded images per sec (Images/Sec): 42.2827
+9: Average decoded images size (Mpixels/Sec): 350.709
+9: 
+9: Decoding completed!
+ 9/22 Test  #9: jpeg-decode-crop-fmt-rgb ................   Passed    0.72 sec
+test 10
+      Start 10: jpeg-decode-crop-fmt-rgb-planar
+
+10: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecode" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode" "--build-generator" "Ninja" "--test-command" "jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar" "-crop" "960,540,2880,1620"
+10: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+10: Test timeout computed to be: 1500
+10: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+10: ======== CMake output     ======
+10: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+10: Configuring done (0.0s)
+10: Generating done (0.0s)
+10: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode
+10: ======== End CMake output ======
+10: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode'
+10: 
+10: Run Clean Command: /usr/bin/ninja clean
+10: [1/1] Cleaning all built files...
+10: Cleaning... 2 files.
+10: 
+10: Run Build Command(s): /usr/bin/ninja
+10: [1/2] Building CXX object CMakeFiles/jpegdecode.dir/jpegdecode.cpp.o
+10: [2/2] Linking CXX executable jpegdecode
+10: 
+10: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecode/jpegdecode" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar" "-crop" "960,540,2880,1620"
+10: Reading images from disk, please wait!
+10: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+10: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_422.jpg
+10: Input image resolution: 3840x2160
+10: Chroma subsampling: YUV 4:2:2
+10: Cropped image resolution: 1920x1080
+10: Decoding started, please wait! ... 
+10: Average processing time per image (ms): 27.6038
+10: Average images per sec: 36.2269
+10: 
+10: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_400.jpg
+10: Input image resolution: 3840x2160
+10: Chroma subsampling: YUV 4:0:0
+10: Cropped image resolution: 1920x1080
+10: Decoding started, please wait! ... 
+10: Average processing time per image (ms): 17.8989
+10: Average images per sec: 55.8694
+10: 
+10: Input file name: /home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/mug_420.jpg
+10: Input image resolution: 3840x2160
+10: Chroma subsampling: YUV 4:2:0
+10: Cropped image resolution: 1920x1080
+10: Decoding started, please wait! ... 
+10: Average processing time per image (ms): 23.8308
+10: Average images per sec: 41.9625
+10: 
+10: Total decoded images: 3
+10: Average processing time per image (ms): 23.1111
+10: Average decoded images per sec (Images/Sec): 43.2692
+10: Average decoded images size (Mpixels/Sec): 358.892
+10: 
+10: Decoding completed!
+10/22 Test #10: jpeg-decode-crop-fmt-rgb-planar .........   Passed    0.71 sec
+test 11
+      Start 11: jpeg-decode-batch-fmt-native
+
+11: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+11: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+11: Test timeout computed to be: 1500
+11: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+11: ======== CMake output     ======
+11: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+11: Configuring done (0.0s)
+11: Generating done (0.0s)
+11: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+11: ======== End CMake output ======
+11: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+11: 
+11: Run Clean Command: /usr/bin/ninja clean
+11: [1/1] Cleaning all built files...
+11: Cleaning... 2 files.
+11: 
+11: Run Build Command(s): /usr/bin/ninja
+11: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+11: [2/2] Linking CXX executable jpegdecodebatched
+11: 
+11: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+11: Reading images from disk, please wait!
+11: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+11: Decoding started, please wait! ... 
+11: Total decoded images: 3
+11: Average processing time per image (ms): 16.8872
+11: Average decoded images per sec (Images/Sec): 59.2166
+11: Average decoded images size (Mpixels/Sec): 491.166
+11: Decoding completed!
+11/22 Test #11: jpeg-decode-batch-fmt-native ............   Passed    0.76 sec
+test 12
+      Start 12: jpeg-decode-batch-fmt-yuv-planar
+
+12: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar"
+12: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+12: Test timeout computed to be: 1500
+12: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+12: ======== CMake output     ======
+12: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+12: Configuring done (0.0s)
+12: Generating done (0.0s)
+12: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+12: ======== End CMake output ======
+12: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+12: 
+12: Run Clean Command: /usr/bin/ninja clean
+12: [1/1] Cleaning all built files...
+12: Cleaning... 2 files.
+12: 
+12: Run Build Command(s): /usr/bin/ninja
+12: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+12: [2/2] Linking CXX executable jpegdecodebatched
+12: 
+12: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar"
+12: Reading images from disk, please wait!
+12: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+12: Decoding started, please wait! ... 
+12: Total decoded images: 3
+12: Average processing time per image (ms): 17.6411
+12: Average decoded images per sec (Images/Sec): 56.6857
+12: Average decoded images size (Mpixels/Sec): 470.174
+12: Decoding completed!
+12/22 Test #12: jpeg-decode-batch-fmt-yuv-planar ........   Passed    0.75 sec
+test 13
+      Start 13: jpeg-decode-batch-fmt-y
+
+13: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y"
+13: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+13: Test timeout computed to be: 1500
+13: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+13: ======== CMake output     ======
+13: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+13: Configuring done (0.0s)
+13: Generating done (0.0s)
+13: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+13: ======== End CMake output ======
+13: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+13: 
+13: Run Clean Command: /usr/bin/ninja clean
+13: [1/1] Cleaning all built files...
+13: Cleaning... 2 files.
+13: 
+13: Run Build Command(s): /usr/bin/ninja
+13: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+13: [2/2] Linking CXX executable jpegdecodebatched
+13: 
+13: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y"
+13: Reading images from disk, please wait!
+13: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+13: Decoding started, please wait! ... 
+13: Total decoded images: 3
+13: Average processing time per image (ms): 18.0125
+13: Average decoded images per sec (Images/Sec): 55.5169
+13: Average decoded images size (Mpixels/Sec): 460.479
+13: Decoding completed!
+13/22 Test #13: jpeg-decode-batch-fmt-y .................   Passed    0.77 sec
+test 14
+      Start 14: jpeg-decode-batch-fmt-rgb
+
+14: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb"
+14: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+14: Test timeout computed to be: 1500
+14: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+14: ======== CMake output     ======
+14: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+14: Configuring done (0.0s)
+14: Generating done (0.0s)
+14: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+14: ======== End CMake output ======
+14: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+14: 
+14: Run Clean Command: /usr/bin/ninja clean
+14: [1/1] Cleaning all built files...
+14: Cleaning... 2 files.
+14: 
+14: Run Build Command(s): /usr/bin/ninja
+14: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+14: [2/2] Linking CXX executable jpegdecodebatched
+14: 
+14: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb"
+14: Reading images from disk, please wait!
+14: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+14: Decoding started, please wait! ... 
+14: Total decoded images: 3
+14: Average processing time per image (ms): 17.591
+14: Average decoded images per sec (Images/Sec): 56.8471
+14: Average decoded images size (Mpixels/Sec): 471.513
+14: Decoding completed!
+14/22 Test #14: jpeg-decode-batch-fmt-rgb ...............   Passed    0.74 sec
+test 15
+      Start 15: jpeg-decode-batch-fmt-rgb-planar
+
+15: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar"
+15: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+15: Test timeout computed to be: 1500
+15: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+15: ======== CMake output     ======
+15: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+15: Configuring done (0.0s)
+15: Generating done (0.0s)
+15: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+15: ======== End CMake output ======
+15: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+15: 
+15: Run Clean Command: /usr/bin/ninja clean
+15: [1/1] Cleaning all built files...
+15: Cleaning... 2 files.
+15: 
+15: Run Build Command(s): /usr/bin/ninja
+15: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+15: [2/2] Linking CXX executable jpegdecodebatched
+15: 
+15: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar"
+15: Reading images from disk, please wait!
+15: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+15: Decoding started, please wait! ... 
+15: Total decoded images: 3
+15: Average processing time per image (ms): 17.7881
+15: Average decoded images per sec (Images/Sec): 56.2174
+15: Average decoded images size (Mpixels/Sec): 466.29
+15: Decoding completed!
+15/22 Test #15: jpeg-decode-batch-fmt-rgb-planar ........   Passed    0.76 sec
+test 16
+      Start 16: jpeg-decode-batch-crop-fmt-native
+
+16: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-crop" "960,540,2880,1620"
+16: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+16: Test timeout computed to be: 1500
+16: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+16: ======== CMake output     ======
+16: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+16: Configuring done (0.0s)
+16: Generating done (0.0s)
+16: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+16: ======== End CMake output ======
+16: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+16: 
+16: Run Clean Command: /usr/bin/ninja clean
+16: [1/1] Cleaning all built files...
+16: Cleaning... 2 files.
+16: 
+16: Run Build Command(s): /usr/bin/ninja
+16: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+16: [2/2] Linking CXX executable jpegdecodebatched
+16: 
+16: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-crop" "960,540,2880,1620"
+16: Reading images from disk, please wait!
+16: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+16: Decoding started, please wait! ... 
+16: Total decoded images: 3
+16: Average processing time per image (ms): 16.8897
+16: Average decoded images per sec (Images/Sec): 59.2078
+16: Average decoded images size (Mpixels/Sec): 491.093
+16: Decoding completed!
+16/22 Test #16: jpeg-decode-batch-crop-fmt-native .......   Passed    0.75 sec
+test 17
+      Start 17: jpeg-decode-batch-crop-fmt-yuv-planar
+
+17: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar" "-crop" "960,540,2880,1620"
+17: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+17: Test timeout computed to be: 1500
+17: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+17: ======== CMake output     ======
+17: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+17: Configuring done (0.0s)
+17: Generating done (0.0s)
+17: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+17: ======== End CMake output ======
+17: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+17: 
+17: Run Clean Command: /usr/bin/ninja clean
+17: [1/1] Cleaning all built files...
+17: Cleaning... 2 files.
+17: 
+17: Run Build Command(s): /usr/bin/ninja
+17: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+17: [2/2] Linking CXX executable jpegdecodebatched
+17: 
+17: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "yuv_planar" "-crop" "960,540,2880,1620"
+17: Reading images from disk, please wait!
+17: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+17: Decoding started, please wait! ... 
+17: Total decoded images: 3
+17: Average processing time per image (ms): 17.4499
+17: Average decoded images per sec (Images/Sec): 57.3071
+17: Average decoded images size (Mpixels/Sec): 475.328
+17: Decoding completed!
+17/22 Test #17: jpeg-decode-batch-crop-fmt-yuv-planar ...   Passed    0.76 sec
+test 18
+      Start 18: jpeg-decode-batch-crop-fmt-y
+
+18: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y" "-crop" "960,540,2880,1620"
+18: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+18: Test timeout computed to be: 1500
+18: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+18: ======== CMake output     ======
+18: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+18: Configuring done (0.0s)
+18: Generating done (0.0s)
+18: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+18: ======== End CMake output ======
+18: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+18: 
+18: Run Clean Command: /usr/bin/ninja clean
+18: [1/1] Cleaning all built files...
+18: Cleaning... 2 files.
+18: 
+18: Run Build Command(s): /usr/bin/ninja
+18: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+18: [2/2] Linking CXX executable jpegdecodebatched
+18: 
+18: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "y" "-crop" "960,540,2880,1620"
+18: Reading images from disk, please wait!
+18: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+18: Decoding started, please wait! ... 
+18: Total decoded images: 3
+18: Average processing time per image (ms): 17.3726
+18: Average decoded images per sec (Images/Sec): 57.5618
+18: Average decoded images size (Mpixels/Sec): 477.441
+18: Decoding completed!
+18/22 Test #18: jpeg-decode-batch-crop-fmt-y ............   Passed    0.77 sec
+test 19
+      Start 19: jpeg-decode-batch-crop-fmt-rgb
+
+19: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb" "-crop" "960,540,2880,1620"
+19: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+19: Test timeout computed to be: 1500
+19: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+19: ======== CMake output     ======
+19: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+19: Configuring done (0.0s)
+19: Generating done (0.0s)
+19: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+19: ======== End CMake output ======
+19: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+19: 
+19: Run Clean Command: /usr/bin/ninja clean
+19: [1/1] Cleaning all built files...
+19: Cleaning... 2 files.
+19: 
+19: Run Build Command(s): /usr/bin/ninja
+19: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+19: [2/2] Linking CXX executable jpegdecodebatched
+19: 
+19: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb" "-crop" "960,540,2880,1620"
+19: Reading images from disk, please wait!
+19: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+19: Decoding started, please wait! ... 
+19: Total decoded images: 3
+19: Average processing time per image (ms): 17.7461
+19: Average decoded images per sec (Images/Sec): 56.3504
+19: Average decoded images size (Mpixels/Sec): 467.393
+19: Decoding completed!
+19/22 Test #19: jpeg-decode-batch-crop-fmt-rgb ..........   Passed    0.74 sec
+test 20
+      Start 20: jpeg-decode-batch-crop-fmt-rgb-planar
+
+20: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodeBatched" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched" "--build-generator" "Ninja" "--test-command" "jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar" "-crop" "960,540,2880,1620"
+20: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+20: Test timeout computed to be: 1500
+20: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+20: ======== CMake output     ======
+20: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+20: Configuring done (0.0s)
+20: Generating done (0.0s)
+20: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched
+20: ======== End CMake output ======
+20: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched'
+20: 
+20: Run Clean Command: /usr/bin/ninja clean
+20: [1/1] Cleaning all built files...
+20: Cleaning... 2 files.
+20: 
+20: Run Build Command(s): /usr/bin/ninja
+20: [1/2] Building CXX object CMakeFiles/jpegdecodebatched.dir/jpegdecodebatched.cpp.o
+20: [2/2] Linking CXX executable jpegdecodebatched
+20: 
+20: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodeBatched/jpegdecodebatched" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/" "-fmt" "rgb_planar" "-crop" "960,540,2880,1620"
+20: Reading images from disk, please wait!
+20: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+20: Decoding started, please wait! ... 
+20: Total decoded images: 3
+20: Average processing time per image (ms): 17.4833
+20: Average decoded images per sec (Images/Sec): 57.1976
+20: Average decoded images size (Mpixels/Sec): 474.419
+20: Decoding completed!
+20/22 Test #20: jpeg-decode-batch-crop-fmt-rgb-planar ...   Passed    0.76 sec
+test 21
+      Start 21: jpeg-decode-perf-fmt-native
+
+21: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/samples/jpegDecodePerf" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodePerf" "--build-generator" "Ninja" "--test-command" "jpegdecodeperf" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+21: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+21: Test timeout computed to be: 1500
+21: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodePerf
+21: ======== CMake output     ======
+21: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+21: Configuring done (0.0s)
+21: Generating done (0.0s)
+21: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodePerf
+21: ======== End CMake output ======
+21: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodePerf'
+21: 
+21: Run Clean Command: /usr/bin/ninja clean
+21: [1/1] Cleaning all built files...
+21: Cleaning... 2 files.
+21: 
+21: Run Build Command(s): /usr/bin/ninja
+21: [1/2] Building CXX object CMakeFiles/jpegdecodeperf.dir/jpegdecodeperf.cpp.o
+21: [2/2] Linking CXX executable jpegdecodeperf
+21: 
+21: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/jpegDecodePerf/jpegdecodeperf" "-i" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/images/"
+21: Reading images from disk, please wait!
+21: Using GPU device 0: AMD Radeon 8060S Graphics[gfx1151] on PCI bus c5:00.0
+21: Decoding started with 1 threads, please wait!
+21: Total decoded images: 3
+21: Average processing time per image (ms): 22.9296
+21: Average decoded images per sec (Images/Sec): 43.6117
+21: Average decoded images size (Mpixels/Sec): 361.733
+21: Total wall time (sec): 0.0735667
+21: Decoding completed!
+21/22 Test #21: jpeg-decode-perf-fmt-native .............   Passed    0.82 sec
+test 22
+      Start 22: jpeg-negative-api-tests
+
+22: Test command: /usr/bin/ctest "--build-and-test" "/home/zs/TheRock/output-linux-portable/build/share/rocjpeg/test/rocjpeg_negative_api_tests" "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/rocjpeg_negative_api_tests" "--build-generator" "Ninja" "--test-command" "rocjpegnegativetest"
+22: Working Directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test
+22: Test timeout computed to be: 1500
+22: Internal cmake changing into directory: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/rocjpeg_negative_api_tests
+22: ======== CMake output     ======
+22: HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/bin/hipcc
+22: Configuring done (0.0s)
+22: Generating done (0.0s)
+22: Build files have been written to: /home/zs/TheRock/output-linux-portable/build/rocjpeg-test/rocjpeg_negative_api_tests
+22: ======== End CMake output ======
+22: Change Dir: '/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/rocjpeg_negative_api_tests'
+22: 
+22: Run Clean Command: /usr/bin/ninja clean
+22: [1/1] Cleaning all built files...
+22: Cleaning... 3 files.
+22: 
+22: Run Build Command(s): /usr/bin/ninja
+22: [1/3] Building CXX object CMakeFiles/rocjpegnegativetest.dir/rocjpegnegativetest.cpp.o
+22: [2/3] Building CXX object CMakeFiles/rocjpegnegativetest.dir/rocjpeg_api_negative_tests.cpp.o
+22: [3/3] Linking CXX executable rocjpegnegativetest
+22: 
+22: Running test command: "/home/zs/TheRock/output-linux-portable/build/rocjpeg-test/rocjpeg_negative_api_tests/rocjpegnegativetest"
+22: info: Executing negative test cases for the rocJpegStreamCreate API
+22: [0, Critical] rocjpeg_api.cpp:42: 67803620758 us: [pid:1749111 tid:1749111 hashid:0x0741f] rocJpegStreamCreate(): Null pointer
+22: info: Executing negative test cases for the rocJpegStreamParse API
+22: [0, Critical] rocjpeg_api.cpp:77: 67803620774 us: [pid:1749111 tid:1749111 hashid:0x0741f] rocJpegStreamParse(): Null pointer
+22: [0, Critical] rocjpeg_api.cpp:77: 67803620778 us: [pid:1749111 tid:1749111 hashid:0x0741f] rocJpegStreamParse(): Null pointer
+22: info: Executing negative test cases for the rocJpegStreamDestroy API
+22: info: Executing negative test cases for the rocJpegCreate API
+22: [0, Critical] rocjpeg_api.cpp:125: 67803620814 us: [pid:1749111 tid:1749111 hashid:0x0741f] rocJpegCreate(): Null pointer
+22: HIP failure: 'status: hipErrorInvalidDevice' at /therock/src/rocm-systems/projects/rocjpeg/src/rocjpeg_decoder.cpp:62
+22: [0, Critical] rocjpeg_decoder.cpp:85: 67803643017 us: [pid:1749111 tid:1749111 hashid:0x0741f] InitializeDecoder(): Failed to initialize the HIP!
+22: [0, Critical] rocjpeg_decoder.cpp:58: 67803643039 us: [pid:1749111 tid:1749111 hashid:0x0741f] InitHIP(): The requested device_id is not found!
+22: [0, Critical] rocjpeg_decoder.cpp:85: 67803643042 us: [pid:1749111 tid:1749111 hashid:0x0741f] InitializeDecoder(): Failed to initialize the HIP!
+22: info: Executing negative test cases for the rocJpegDestroy API
+22: info: Executing negative test cases for the rocJpegGetImageInfo API
+22: info: Executing negative test cases for the rocJpegDecode API
+22: info: Executing negative test cases for the rocJpegDecodeBatched API
+22: info: Executing negative test cases for the rocJpegGetErrorName API
+22: Test Passed!
+22/22 Test #22: jpeg-negative-api-tests .................   Passed    0.49 sec
+
+100% tests passed, 0 tests failed out of 22
+
+Total Test time (real) =  16.13 sec

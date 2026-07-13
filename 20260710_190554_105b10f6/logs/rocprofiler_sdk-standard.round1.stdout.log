@@ -1,0 +1,144 @@
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- [rocprofiler-sdk-tests] System architectures: gfx1151, gfx11
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- [rocprofiler-sdk-tests-thread-trace] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-samples-pc-sampling-integration-test] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-tests-pc-sampling-host-trap-exec-mask-manipulation] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-tests-pc-sampling-host-trap-transpose-multiple-agents] System architectures: gfx1151, gfx11
+-- [rocprofiler-tests-pc-sampling] System architectures: gfx1151, gfx11
+-- [rocprofiler-tests-pc-sampling] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-tests-rocprofv3-att] System architectures: gfx1151, gfx11
+-- Checking for module 'mpi-c'
+--   Package 'mpi-c' not found
+-- Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS) 
+-- Checking for module 'mpi-cxx'
+--   Package 'mpi-cxx' not found
+-- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS) 
+-- Could NOT find MPI (missing: MPI_C_FOUND MPI_CXX_FOUND) 
+-- [rocprofiler-sdk-tests-rocprofv3-roctx-pause-resume] System architectures: gfx1151, gfx11
+-- Checking for module 'mpi-c'
+--   Package 'mpi-c' not found
+-- Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS) 
+-- Checking for module 'mpi-cxx'
+--   Package 'mpi-cxx' not found
+-- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS) 
+-- Could NOT find MPI (missing: MPI_C_FOUND MPI_CXX_FOUND) 
+-- Configuring done (15.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build
+[1/80] Linking C shared library lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so.0.0.0; Stripping rocprofiler-sdk-c-tool...
+[2/80] Linking HIP shared library lib/libvector-ops.so
+[3/80] Linking CXX static library lib/librocprofiler-sdk-tests-perfetto.a
+[4/80] Creating library symlink lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so.0 lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so
+[5/80] Linking CXX executable bin/hip-in-libraries/hip-in-libraries
+[6/80] Linking CXX shared library lib/rocprofiler-sdk/librocprofiler-sdk-json-tool.so.0.0.0
+[7/80] Creating library symlink lib/rocprofiler-sdk/librocprofiler-sdk-json-tool.so.0 lib/rocprofiler-sdk/librocprofiler-sdk-json-tool.so
+[8/80] Generating tests.integration.validate.rocprofv3-test-hsa-multiqueue_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[9/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-pmc-selected-regions_tests.cmake
+[10/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1 -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;OFF;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-json-pmc1" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_json_counter_collection.csv;--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_json_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.08s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[11/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1 -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;OFF;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-yaml-pmc1" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_yaml_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_yaml_counter_collection.csv;--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_yaml_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_yaml_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.08s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[12/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-multiple-yaml_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiple-yaml_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiple-yaml_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-multiple-yaml -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;ON;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-multiple-yaml" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiple-yaml_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_yaml_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_yaml_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.09s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[13/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-cli-multipass_tests.cmake
+[14/80] Generating tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-multiplex -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;ON;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-multiplex" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_json_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.09s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[15/80] Generating tests.integration.validate.rocprofv3-test-kernel-rename-cmd-line_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[16/80] Generating tests.integration.validate.rocprofv3-test-kernel-rename-inp-yaml_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[17/80] Linking CXX executable bin/openmp/target/openmp-target
+ninja: build stopped: subcommand failed.

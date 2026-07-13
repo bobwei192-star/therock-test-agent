@@ -1,0 +1,1 @@
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest --test-dir /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hipdnn --output-on-failure

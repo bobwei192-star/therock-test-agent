@@ -1,0 +1,20 @@
+INFO:root:++ Exec [/home/zs/TheRock/output-linux-portable/build/dist/rocm/share/rocprofiler-sdk/tests]$ cmake -B build -G Ninja '-DCMAKE_PREFIX_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps' -DCMAKE_HIP_COMPILER=/home/zs/TheRock/output-linux-portable/build/dist/rocm/llvm/bin/amdclang++ -DCMAKE_C_COMPILER=/home/zs/TheRock/output-linux-portable/build/dist/rocm/llvm/bin/amdclang -DCMAKE_CXX_COMPILER=/home/zs/TheRock/output-linux-portable/build/dist/rocm/llvm/bin/amdclang++ -DPython3_EXECUTABLE=/usr/bin/python3
+INFO:root:++ Exec [/home/zs/TheRock/output-linux-portable/build/dist/rocm/share/rocprofiler-sdk/tests]$ cmake --build build --parallel 8
+Traceback (most recent call last):
+  File "/home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_rocprofiler_sdk.py", line 197, in <module>
+    cmake_build()
+    ~~~~~~~~~~~^^
+  File "/home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_rocprofiler_sdk.py", line 163, in cmake_build
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        cmake_build_cmd,
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        env=environ_vars,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['cmake', '--build', 'build', '--parallel', '8']' returned non-zero exit status 1.

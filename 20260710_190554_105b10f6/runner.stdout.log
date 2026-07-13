@@ -1,0 +1,216 @@
+[therock-agent] Round 1: executing 112 task(s)
+[therock-agent] task_start round=1 index=1/112 task=hiprand-quick
+[therock-agent] task_end task=hiprand-quick status=pass rc=0 duration=5.363s pass=1 fail=0 blocked=0
+[therock-agent] task_start round=1 index=2/112 task=rccl-quick
+[therock-agent] task_end task=rccl-quick status=pass rc=0 duration=0.105s pass=2 fail=0 blocked=0
+[therock-agent] task_start round=1 index=3/112 task=rocfft-quick
+[therock-agent] task_end task=rocfft-quick status=pass rc=0 duration=50.143s pass=3 fail=0 blocked=0
+[therock-agent] task_start round=1 index=4/112 task=rocthrust-quick
+[therock-agent] task_end task=rocthrust-quick status=pass rc=0 duration=200.769s pass=4 fail=0 blocked=0
+[therock-agent] task_start round=1 index=5/112 task=rocprim-quick
+[therock-agent] task_end task=rocprim-quick status=fail rc=8 duration=638.382s pass=4 fail=1 blocked=0
+[therock-agent] task_start round=1 index=6/112 task=miopen-quick
+[therock-agent] task_end task=miopen-quick status=pass rc=0 duration=0.585s pass=5 fail=1 blocked=0
+[therock-agent] task_start round=1 index=7/112 task=miopenprovider-quick
+[therock-agent] task_end task=miopenprovider-quick status=pass rc=0 duration=0.06s pass=6 fail=1 blocked=0
+[therock-agent] task_start round=1 index=8/112 task=libhipcxx_hiprtc-quick
+[therock-agent] task_end task=libhipcxx_hiprtc-quick status=blocked rc=125 duration=0.024s pass=6 fail=1 blocked=1
+[therock-agent] task_start round=1 index=9/112 task=sanity-quick
+[therock-agent] task_end task=sanity-quick status=pass rc=0 duration=2.036s pass=7 fail=1 blocked=1
+[therock-agent] task_start round=1 index=10/112 task=hipdnn_integration-quick
+[therock-agent] task_end task=hipdnn_integration-quick status=pass rc=0 duration=1.758s pass=8 fail=1 blocked=1
+[therock-agent] task_start round=1 index=11/112 task=libhipcxx_hipcc-quick
+[therock-agent] task_end task=libhipcxx_hipcc-quick status=blocked rc=125 duration=0.025s pass=8 fail=1 blocked=2
+[therock-agent] task_start round=1 index=12/112 task=rocalution-quick
+[therock-agent] task_end task=rocalution-quick status=fail rc=8 duration=4.461s pass=8 fail=2 blocked=2
+[therock-agent] task_start round=1 index=13/112 task=hipdnn-quick
+[therock-agent] task_end task=hipdnn-quick status=pass rc=0 duration=4.887s pass=9 fail=2 blocked=2
+[therock-agent] task_start round=1 index=14/112 task=tensilelite-quick
+[therock-agent] task_end task=tensilelite-quick status=blocked rc=125 duration=0.05s pass=9 fail=2 blocked=3
+[therock-agent] task_start round=1 index=15/112 task=hipkernelprovider-quick
+[therock-agent] task_end task=hipkernelprovider-quick status=pass rc=0 duration=17.252s pass=10 fail=2 blocked=3
+[therock-agent] task_start round=1 index=16/112 task=rocprofiler_sdk-quick
+[therock-agent] task_end task=rocprofiler_sdk-quick status=fail rc=1 duration=42.113s pass=10 fail=3 blocked=3
+[therock-agent] task_start round=1 index=17/112 task=hipblas-quick
+[therock-agent] task_end task=hipblas-quick status=pass rc=0 duration=631.993s pass=11 fail=3 blocked=3
+[therock-agent] task_start round=1 index=18/112 task=hiprand-standard
+[therock-agent] task_end task=hiprand-standard status=pass rc=0 duration=5.491s pass=12 fail=3 blocked=3
+[therock-agent] task_start round=1 index=19/112 task=rccl-standard
+[therock-agent] task_end task=rccl-standard status=pass rc=0 duration=0.125s pass=13 fail=3 blocked=3
+[therock-agent] task_start round=1 index=20/112 task=rocwmma-standard
+[therock-agent] task_end task=rocwmma-standard status=pass rc=0 duration=164.137s pass=14 fail=3 blocked=3
+[therock-agent] task_start round=1 index=21/112 task=tensilelite-standard
+[therock-agent] task_end task=tensilelite-standard status=blocked rc=125 duration=0.047s pass=14 fail=3 blocked=4
+[therock-agent] task_start round=1 index=22/112 task=rocthrust-standard
+[therock-agent] task_end task=rocthrust-standard status=pass rc=0 duration=302.103s pass=15 fail=3 blocked=4
+[therock-agent] task_start round=1 index=23/112 task=rocsolver-standard
+[therock-agent] task_end task=rocsolver-standard status=pass rc=0 duration=1978.7s pass=16 fail=3 blocked=4
+[therock-agent] task_start round=1 index=24/112 task=sanity-standard
+[therock-agent] task_end task=sanity-standard status=pass rc=0 duration=2.643s pass=17 fail=3 blocked=4
+[therock-agent] task_start round=1 index=25/112 task=libhipcxx_hiprtc-standard
+[therock-agent] task_end task=libhipcxx_hiprtc-standard status=blocked rc=125 duration=0.02s pass=17 fail=3 blocked=5
+[therock-agent] task_start round=1 index=26/112 task=hipblasltprovider-standard
+[therock-agent] task_end task=hipblasltprovider-standard status=pass rc=0 duration=0.101s pass=18 fail=3 blocked=5
+[therock-agent] task_start round=1 index=27/112 task=aqlprofile-standard
+[therock-agent] task_end task=aqlprofile-standard status=pass rc=0 duration=1.609s pass=19 fail=3 blocked=5
+[therock-agent] task_start round=1 index=28/112 task=hipdnn-standard
+[therock-agent] task_end task=hipdnn-standard status=pass rc=0 duration=5.011s pass=20 fail=3 blocked=5
+[therock-agent] task_start round=1 index=29/112 task=libhipcxx_hipcc-standard
+[therock-agent] task_end task=libhipcxx_hipcc-standard status=blocked rc=125 duration=0.025s pass=20 fail=3 blocked=6
+[therock-agent] task_start round=1 index=30/112 task=rocdecode-standard
+[therock-agent] task_end task=rocdecode-standard status=pass rc=0 duration=7.519s pass=21 fail=3 blocked=6
+[therock-agent] task_start round=1 index=31/112 task=hipsolver-standard
+[therock-agent] task_end task=hipsolver-standard status=pass rc=0 duration=11.832s pass=22 fail=3 blocked=6
+[therock-agent] task_start round=1 index=32/112 task=hipfile-standard
+[therock-agent] task_end task=hipfile-standard status=pass rc=0 duration=14.084s pass=23 fail=3 blocked=6
+[therock-agent] task_start round=1 index=33/112 task=rocjpeg-standard
+[therock-agent] task_end task=rocjpeg-standard status=pass rc=0 duration=16.428s pass=24 fail=3 blocked=6
+[therock-agent] task_start round=1 index=34/112 task=amdsmi-standard
+[therock-agent] task_end task=amdsmi-standard status=pass rc=0 duration=9.37s pass=25 fail=3 blocked=6
+[therock-agent] task_start round=1 index=35/112 task=hipsparse-standard
+[therock-agent] task_end task=hipsparse-standard status=pass rc=0 duration=63.124s pass=26 fail=3 blocked=6
+[therock-agent] task_start round=1 index=36/112 task=hipkernelprovider-standard
+[therock-agent] task_end task=hipkernelprovider-standard status=pass rc=0 duration=69.515s pass=27 fail=3 blocked=6
+[therock-agent] task_start round=1 index=37/112 task=hipcub-standard
+[therock-agent] task_end task=hipcub-standard status=pass rc=0 duration=217.011s pass=28 fail=3 blocked=6
+[therock-agent] task_start round=1 index=38/112 task=rocrand-standard
+[therock-agent] task_end task=rocrand-standard status=pass rc=0 duration=219.646s pass=29 fail=3 blocked=6
+[therock-agent] task_start round=1 index=39/112 task=hipblaslt-standard
+[therock-agent] task_end task=hipblaslt-standard status=fail rc=1 duration=0.039s pass=29 fail=4 blocked=6
+[therock-agent] task_start round=1 index=40/112 task=rocprofiler_sdk-standard
+[therock-agent] task_end task=rocprofiler_sdk-standard status=fail rc=1 duration=17.02s pass=29 fail=5 blocked=6
+[therock-agent] task_start round=1 index=41/112 task=rocprofiler_systems-standard
+[therock-agent] task_end task=rocprofiler_systems-standard status=fail rc=1 duration=931.25s pass=29 fail=6 blocked=6
+[therock-agent] task_start round=1 index=42/112 task=hipfft-standard
+[therock-agent] task_end task=hipfft-standard status=pass rc=0 duration=215.523s pass=30 fail=6 blocked=6
+[therock-agent] task_start round=1 index=43/112 task=hipblas-standard
+[therock-agent] task_end task=hipblas-standard status=pass rc=0 duration=679.978s pass=31 fail=6 blocked=6
+[therock-agent] task_start round=1 index=44/112 task=rocfft-standard
+[therock-agent] task_end task=rocfft-standard status=pass rc=0 duration=1033.235s pass=32 fail=6 blocked=6
+[therock-agent] task_start round=1 index=45/112 task=rocprim-standard
+[therock-agent] task_end task=rocprim-standard status=pass rc=0 duration=3799.185s pass=33 fail=6 blocked=6
+[therock-agent] task_start round=1 index=46/112 task=hipdnn_integration-standard
+[therock-agent] task_end task=hipdnn_integration-standard status=pass rc=0 duration=1.78s pass=34 fail=6 blocked=6
+[therock-agent] task_start round=1 index=47/112 task=miopen-standard
+[therock-agent] task_end task=miopen-standard status=pass rc=0 duration=1423.729s pass=35 fail=6 blocked=6
+[therock-agent] task_start round=1 index=48/112 task=miopenprovider-standard
+[therock-agent] task_end task=miopenprovider-standard status=pass rc=0 duration=0.071s pass=36 fail=6 blocked=6
+[therock-agent] task_start round=1 index=49/112 task=rocblas-standard
+[therock-agent] task_end task=rocblas-standard status=pass rc=0 duration=4441.765s pass=37 fail=6 blocked=6
+[therock-agent] task_start round=1 index=50/112 task=hipblasltprovider-comprehensive
+[therock-agent] task_end task=hipblasltprovider-comprehensive status=pass rc=0 duration=0.074s pass=38 fail=6 blocked=6
+[therock-agent] task_start round=1 index=51/112 task=rocwmma-comprehensive
+[therock-agent] task_end task=rocwmma-comprehensive status=pass rc=0 duration=174.51s pass=39 fail=6 blocked=6
+[therock-agent] task_start round=1 index=52/112 task=tensilelite-comprehensive
+[therock-agent] task_end task=tensilelite-comprehensive status=blocked rc=125 duration=0.068s pass=39 fail=6 blocked=7
+[therock-agent] task_start round=1 index=53/112 task=rocthrust-comprehensive
+[therock-agent] task_end task=rocthrust-comprehensive status=pass rc=0 duration=321.589s pass=40 fail=6 blocked=7
+[therock-agent] task_start round=1 index=54/112 task=hiprand-comprehensive
+[therock-agent] task_end task=hiprand-comprehensive status=pass rc=0 duration=5.271s pass=41 fail=6 blocked=7
+[therock-agent] task_start round=1 index=55/112 task=rccl-comprehensive
+[therock-agent] task_end task=rccl-comprehensive status=pass rc=0 duration=0.139s pass=42 fail=6 blocked=7
+[therock-agent] task_start round=1 index=56/112 task=sanity-comprehensive
+[therock-agent] task_end task=sanity-comprehensive status=pass rc=0 duration=1.823s pass=43 fail=6 blocked=7
+[therock-agent] task_start round=1 index=57/112 task=libhipcxx_hiprtc-comprehensive
+[therock-agent] task_end task=libhipcxx_hiprtc-comprehensive status=blocked rc=125 duration=0.024s pass=43 fail=6 blocked=8
+[therock-agent] task_start round=1 index=58/112 task=libhipcxx_hipcc-comprehensive
+[therock-agent] task_end task=libhipcxx_hipcc-comprehensive status=blocked rc=125 duration=0.027s pass=43 fail=6 blocked=9
+[therock-agent] task_start round=1 index=59/112 task=aqlprofile-comprehensive
+[therock-agent] task_end task=aqlprofile-comprehensive status=pass rc=0 duration=1.62s pass=44 fail=6 blocked=9
+[therock-agent] task_start round=1 index=60/112 task=hipdnn-comprehensive
+[therock-agent] task_end task=hipdnn-comprehensive status=pass rc=0 duration=4.881s pass=45 fail=6 blocked=9
+[therock-agent] task_start round=1 index=61/112 task=rocdecode-comprehensive
+[therock-agent] task_end task=rocdecode-comprehensive status=pass rc=0 duration=7.401s pass=46 fail=6 blocked=9
+[therock-agent] task_start round=1 index=62/112 task=hipsolver-comprehensive
+[therock-agent] task_end task=hipsolver-comprehensive status=pass rc=0 duration=11.86s pass=47 fail=6 blocked=9
+[therock-agent] task_start round=1 index=63/112 task=hipfile-comprehensive
+[therock-agent] task_end task=hipfile-comprehensive status=pass rc=0 duration=13.763s pass=48 fail=6 blocked=9
+[therock-agent] task_start round=1 index=64/112 task=amdsmi-comprehensive
+[therock-agent] task_end task=amdsmi-comprehensive status=pass rc=0 duration=9.407s pass=49 fail=6 blocked=9
+[therock-agent] task_start round=1 index=65/112 task=rocjpeg-comprehensive
+[therock-agent] task_end task=rocjpeg-comprehensive status=pass rc=0 duration=16.597s pass=50 fail=6 blocked=9
+[therock-agent] task_start round=1 index=66/112 task=hipkernelprovider-comprehensive
+[therock-agent] task_end task=hipkernelprovider-comprehensive status=pass rc=0 duration=67.543s pass=51 fail=6 blocked=9
+[therock-agent] task_start round=1 index=67/112 task=hipcub-comprehensive
+[therock-agent] task_end task=hipcub-comprehensive status=pass rc=0 duration=217.726s pass=52 fail=6 blocked=9
+[therock-agent] task_start round=1 index=68/112 task=hipfft-comprehensive
+[therock-agent] task_end task=hipfft-comprehensive status=pass rc=0 duration=171.797s pass=53 fail=6 blocked=9
+[therock-agent] task_start round=1 index=69/112 task=rocrand-comprehensive
+[therock-agent] task_end task=rocrand-comprehensive status=pass rc=0 duration=219.368s pass=54 fail=6 blocked=9
+[therock-agent] task_start round=1 index=70/112 task=rocprofiler_sdk-comprehensive
+[therock-agent] task_end task=rocprofiler_sdk-comprehensive status=fail rc=1 duration=16.269s pass=54 fail=7 blocked=9
+[therock-agent] task_start round=1 index=71/112 task=hipblaslt-comprehensive
+[therock-agent] task_end task=hipblaslt-comprehensive status=fail rc=1 duration=0.047s pass=54 fail=8 blocked=9
+[therock-agent] task_start round=1 index=72/112 task=hipblas-comprehensive
+[therock-agent] task_end task=hipblas-comprehensive status=pass rc=0 duration=639.382s pass=55 fail=8 blocked=9
+[therock-agent] task_start round=1 index=73/112 task=rocblas-comprehensive
+[therock-agent] task_end task=rocblas-comprehensive status=pass rc=0 duration=4736.849s pass=56 fail=8 blocked=9
+[therock-agent] task_start round=1 index=74/112 task=hipsparse-comprehensive
+[therock-agent] task_end task=hipsparse-comprehensive status=pass rc=0 duration=150.454s pass=57 fail=8 blocked=9
+[therock-agent] task_start round=1 index=75/112 task=rocfft-comprehensive
+[therock-agent] task_end task=rocfft-comprehensive status=pass rc=0 duration=904.76s pass=58 fail=8 blocked=9
+[therock-agent] task_start round=1 index=76/112 task=rocsolver-comprehensive
+[therock-agent] task_end task=rocsolver-comprehensive status=pass rc=0 duration=2396.907s pass=59 fail=8 blocked=9
+[therock-agent] task_start round=1 index=77/112 task=hipdnn_integration-comprehensive
+[therock-agent] task_end task=hipdnn_integration-comprehensive status=pass rc=0 duration=1.951s pass=60 fail=8 blocked=9
+[therock-agent] task_start round=1 index=78/112 task=miopen-comprehensive
+[therock-agent] task_end task=miopen-comprehensive status=pass rc=0 duration=2182.057s pass=61 fail=8 blocked=9
+[therock-agent] task_start round=1 index=79/112 task=miopenprovider-comprehensive
+[therock-agent] task_end task=miopenprovider-comprehensive status=pass rc=0 duration=0.078s pass=62 fail=8 blocked=9
+[therock-agent] task_start round=1 index=80/112 task=rocprofiler_systems-comprehensive
+[therock-agent] task_end task=rocprofiler_systems-comprehensive status=fail rc=1 duration=893.181s pass=62 fail=9 blocked=9
+[therock-agent] task_start round=1 index=81/112 task=rocprim-comprehensive
+[therock-agent] task_end task=rocprim-comprehensive status=pass rc=0 duration=1375.895s pass=63 fail=9 blocked=9
+[therock-agent] task_start round=1 index=82/112 task=hiprand-full
+[therock-agent] task_end task=hiprand-full status=pass rc=0 duration=5.53s pass=64 fail=9 blocked=9
+[therock-agent] task_start round=1 index=83/112 task=rccl-full
+[therock-agent] task_end task=rccl-full status=pass rc=0 duration=0.133s pass=65 fail=9 blocked=9
+[therock-agent] task_start round=1 index=84/112 task=hipblasltprovider-full
+[therock-agent] task_end task=hipblasltprovider-full status=pass rc=0 duration=0.078s pass=66 fail=9 blocked=9
+[therock-agent] task_start round=1 index=85/112 task=rocwmma-full
+[therock-agent] task_end task=rocwmma-full status=pass rc=0 duration=652.088s pass=67 fail=9 blocked=9
+[therock-agent] task_start round=1 index=86/112 task=libhipcxx_hiprtc-full
+[therock-agent] task_end task=libhipcxx_hiprtc-full status=blocked rc=125 duration=0.026s pass=67 fail=9 blocked=10
+[therock-agent] task_start round=1 index=87/112 task=aqlprofile-full
+[therock-agent] task_end task=aqlprofile-full status=pass rc=0 duration=1.634s pass=68 fail=9 blocked=10
+[therock-agent] task_start round=1 index=88/112 task=sanity-full
+[therock-agent] task_end task=sanity-full status=pass rc=0 duration=1.782s pass=69 fail=9 blocked=10
+[therock-agent] task_start round=1 index=89/112 task=libhipcxx_hipcc-full
+[therock-agent] task_end task=libhipcxx_hipcc-full status=blocked rc=125 duration=0.023s pass=69 fail=9 blocked=11
+[therock-agent] task_start round=1 index=90/112 task=hipdnn-full
+[therock-agent] task_end task=hipdnn-full status=pass rc=0 duration=4.926s pass=70 fail=9 blocked=11
+[therock-agent] task_start round=1 index=91/112 task=rocdecode-full
+[therock-agent] task_end task=rocdecode-full status=pass rc=0 duration=7.573s pass=71 fail=9 blocked=11
+[therock-agent] task_start round=1 index=92/112 task=hipsolver-full
+[therock-agent] task_end task=hipsolver-full status=pass rc=0 duration=11.934s pass=72 fail=9 blocked=11
+[therock-agent] task_start round=1 index=93/112 task=hipfile-full
+[therock-agent] task_end task=hipfile-full status=pass rc=0 duration=13.845s pass=73 fail=9 blocked=11
+[therock-agent] task_start round=1 index=94/112 task=rocjpeg-full
+[therock-agent] task_end task=rocjpeg-full status=pass rc=0 duration=16.225s pass=74 fail=9 blocked=11
+[therock-agent] task_start round=1 index=95/112 task=amdsmi-full
+[therock-agent] task_end task=amdsmi-full status=pass rc=0 duration=9.372s pass=75 fail=9 blocked=11
+[therock-agent] task_start round=1 index=96/112 task=hipkernelprovider-full
+[therock-agent] task_end task=hipkernelprovider-full status=pass rc=0 duration=68.252s pass=76 fail=9 blocked=11
+[therock-agent] task_start round=1 index=97/112 task=tensilelite-full
+[therock-agent] task_end task=tensilelite-full status=blocked rc=125 duration=0.064s pass=76 fail=9 blocked=12
+[therock-agent] task_start round=1 index=98/112 task=rocrand-full
+[therock-agent] task_end task=rocrand-full status=pass rc=0 duration=219.794s pass=77 fail=9 blocked=12
+[therock-agent] task_start round=1 index=99/112 task=hipcub-full
+[therock-agent] task_end task=hipcub-full status=pass rc=0 duration=216.657s pass=78 fail=9 blocked=12
+[therock-agent] task_start round=1 index=100/112 task=rocthrust-full
+[therock-agent] task_end task=rocthrust-full status=pass rc=0 duration=303.359s pass=79 fail=9 blocked=12
+[therock-agent] task_start round=1 index=101/112 task=hipfft-full
+[therock-agent] task_end task=hipfft-full status=pass rc=0 duration=185.604s pass=80 fail=9 blocked=12
+[therock-agent] task_start round=1 index=102/112 task=rocprofiler_sdk-full
+[therock-agent] task_end task=rocprofiler_sdk-full status=fail rc=1 duration=16.466s pass=80 fail=10 blocked=12
+[therock-agent] task_start round=1 index=103/112 task=rocprofiler_systems-full
+[therock-agent] task_end task=rocprofiler_systems-full status=fail rc=1 duration=886.218s pass=80 fail=11 blocked=12
+[therock-agent] task_start round=1 index=104/112 task=hipblaslt-full
+[therock-agent] task_end task=hipblaslt-full status=fail rc=1 duration=0.05s pass=80 fail=12 blocked=12
+[therock-agent] task_start round=1 index=105/112 task=hipblas-full
+[therock-agent] task_end task=hipblas-full status=pass rc=0 duration=637.171s pass=81 fail=12 blocked=12
+[therock-agent] task_start round=1 index=106/112 task=hipsparse-full
+[therock-agent] task_end task=hipsparse-full status=fail rc=8 duration=143.782s pass=81 fail=13 blocked=12
+[therock-agent] task_start round=1 index=107/112 task=rocalution-full
+[therock-agent] task_end task=rocalution-full status=pass rc=0 duration=752.997s pass=82 fail=13 blocked=12
+[therock-agent] task_start round=1 index=108/112 task=rocfft-full

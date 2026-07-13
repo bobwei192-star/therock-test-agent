@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2",
+  "generated_at": "2026-07-10T19:20:54+08:00",
+  "run_id": "20260710_190554_105b10f6",
+  "task": {
+    "task_id": "libhipcxx_hipcc-quick",
+    "component": "libhipcxx_hipcc",
+    "test_type": "quick",
+    "status": "blocked",
+    "return_code": 125,
+    "duration_seconds": 0.025,
+    "stdout_log": "/home/zs/TheRock/runs/20260710_190554_105b10f6/logs/libhipcxx_hipcc-quick.round1.stdout.log",
+    "stderr_log": "/home/zs/TheRock/runs/20260710_190554_105b10f6/logs/libhipcxx_hipcc-quick.round1.stderr.log",
+    "failure_summary": "missing_dependency: lit",
+    "gpu_hang_risk": false,
+    "entrypoint_type": "dedicated_python",
+    "script": "test_libhipcxx_hipcc.py",
+    "test_component": null,
+    "env_profiles": [
+      "base",
+      "libhipcxx"
+    ],
+    "known_issue_category": null,
+    "official_exclude": null,
+    "wrapper_path": "",
+    "wrapper_env_change_keys": [],
+    "path_hardcode_detection": {
+      "detected": false,
+      "categories": [],
+      "matches": []
+    },
+    "failure_evidence": {
+      "kind": "runner_evidence",
+      "summary": "evidence: missing dependency lit",
+      "missing_python_modules": [],
+      "missing_dependencies": [
+        "lit"
+      ],
+      "signals": [
+        {
+          "needle": "missing_dependency:",
+          "line": "missing_dependency: lit"
+        }
+      ],
+      "excerpts": {
+        "stderr": [
+          "missing_dependency: lit",
+          "..."
+        ],
+        "stdout": []
+      },
+      "classification_policy": "opencode_therock_debugger"
+    },
+    "finished_at": "2026-07-10T19:20:54+08:00"
+  },
+  "runtime_summary": {
+    "python_executable": "/usr/bin/python3",
+    "python_version": "3.14.4",
+    "git_branch": "main",
+    "git_commit": "14a39bd62b7f2f53e993370b10b44cbd909c7977",
+    "git_dirty": true,
+    "dependency_probe": {
+      "lit": "installed",
+      "prettytable": "installed"
+    }
+  },
+  "failure_template": "/home/zs/TheRock/docs_this_project/问题模板.md",
+  "markdown_policy": "opencode_therock_reporter"
+}

@@ -1,0 +1,3 @@
+INFO:root:MIOpen test category (TEST_TYPE): standard
+INFO:root:++ Exec $ /usr/bin/python3 /home/zs/TheRock/build_tools/github_actions/test_executable_scripts/test_runner.py
+INFO:root:++ Exec [/home/zs/TheRock]$ ctest -L '^standard$' -L '^ex_gpu_gfx115X$' --output-on-failure --parallel 1 --timeout 7200 --test-dir /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/MIOpen -V --tests-information 1,,1

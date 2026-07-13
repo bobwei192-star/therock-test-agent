@@ -1,0 +1,331 @@
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- Checking for module 'libdw'
+--   Found libdw, version 0.195
+-- Found libdw: /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib/libdw.so
+-- [rocprofiler-sdk-tests] System architectures: gfx1151, gfx11
+-- Found rocprofiler-sdk-tests: /home/zs/TheRock/output-linux-portable/build/dist/rocm/share/rocprofiler-sdk/tests (found version "1.3.2")
+-- The HIP compiler identification is Clang 23.0.0
+-- Detecting HIP compiler ABI info
+-- Detecting HIP compiler ABI info - done
+-- Check for working HIP compiler: /home/zs/TheRock/output-linux-portable/build/dist/rocm/llvm/bin/amdclang++ - skipped
+-- Detecting HIP compile features
+-- Detecting HIP compile features - done
+-- Found rocprofiler-sdk-roctx: /home/zs/TheRock/output-linux-portable/build/dist/rocm (found version "1.3.2")
+-- Found rocdecode: /home/zs/TheRock/output-linux-portable/build/dist/rocm/include (found version "1.8.0")
+-- Found rocjpeg: /home/zs/TheRock/output-linux-portable/build/dist/rocm/include (found version "1.6.0")
+-- Found roctracer-roctx: /home/zs/TheRock/output-linux-portable/build/dist/rocm
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- Found rocprofiler-sdk-rocpd: /home/zs/TheRock/output-linux-portable/build/dist/rocm (found version "1.3.2")
+-- HIP: Using hipcc from relative path: /home/zs/TheRock/output-linux-portable/build/core/clr/dist/bin/hipcc
+-- [rocprofiler-sdk-tests-thread-trace] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-samples-pc-sampling-integration-test] System architectures: gfx1151, gfx11
+-- Found rocprofiler-sdk-rocattach: /home/zs/TheRock/output-linux-portable/build/dist/rocm (found version "1.3.2")
+-- [rocprofiler-sdk-tests-pc-sampling-host-trap-exec-mask-manipulation] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-tests-pc-sampling-host-trap-transpose-multiple-agents] System architectures: gfx1151, gfx11
+-- [rocprofiler-tests-pc-sampling] System architectures: gfx1151, gfx11
+-- [rocprofiler-tests-pc-sampling] System architectures: gfx1151, gfx11
+-- [rocprofiler-sdk-tests-rocprofv3-att] Found attdecoder: /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib
+-- [rocprofiler-sdk-tests-rocprofv3-att] System architectures: gfx1151, gfx11
+-- Checking for module 'mpi-c'
+--   Package 'mpi-c' not found
+-- Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS) 
+-- Checking for module 'mpi-cxx'
+--   Package 'mpi-cxx' not found
+-- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS) 
+-- Could NOT find MPI (missing: MPI_C_FOUND MPI_CXX_FOUND) 
+-- [rocprofiler-sdk-tests-rocprofv3-roctx-pause-resume] System architectures: gfx1151, gfx11
+-- Checking for module 'mpi-c'
+--   Package 'mpi-c' not found
+-- Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS) 
+-- Checking for module 'mpi-cxx'
+--   Package 'mpi-cxx' not found
+-- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS) 
+-- Could NOT find MPI (missing: MPI_C_FOUND MPI_CXX_FOUND) 
+-- Configuring done (15.5s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build
+[1/210] Building C object tools/CMakeFiles/rocprofiler-sdk-c-tool.dir/c-tool.c.o
+[2/210] Building gfx1151_copy.hsaco...
+[3/210] Building gfx1151_copy.hsaco...
+[4/210] Building gfx1151_copy_memory.hsaco...
+[5/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/cid_retirement.cpp.o
+[6/210] Building HIP object lib/vector-operations/CMakeFiles/vector-ops-shared-library.dir/vector-ops.cpp.o
+[7/210] Building HIP object lib/transpose/CMakeFiles/transpose-shared-library.dir/transpose.cpp.o
+[8/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/client.cpp.o
+/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/pc_sampling/client.cpp:68:31: warning: variable 'client_fini_func' set but not used [-Wunused-but-set-global]
+   68 | rocprofiler_client_finalize_t client_fini_func = nullptr;
+      |                               ^
+1 warning generated.
+[9/210] Building CXX object tools/CMakeFiles/rocprofiler-sdk-late-start-tool.dir/late-start-tool.cpp.o
+[10/210] Linking CXX shared library lib/rocprofiler-sdk/librocprofiler-sdk-late-start-tool.so.0.0.0
+[11/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/utils.cpp.o
+[12/210] Linking C shared library lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so.0.0.0; Stripping rocprofiler-sdk-c-tool...
+[13/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/external_cid.cpp.o
+[14/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/kernel_tracing.cpp.o
+[15/210] Building CXX object tools/CMakeFiles/thread-trace-single-tool.dir/thread-trace-single-tool.cpp.o
+/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/tools/thread-trace-single-tool.cpp:88:82: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+   88 |     parameters.push_back({ROCPROFILER_THREAD_TRACE_PARAMETER_SHADER_ENGINE_MASK, 0x3});
+      |                                                                                  ^~~
+      |                                                                                  {  }
+1 warning generated.
+[16/210] Building CXX object tools/CMakeFiles/thread-trace-single-tool.dir/thread-trace-callbacks.cpp.o
+[17/210] Building CXX object tools/CMakeFiles/thread-trace-multi-tool.dir/thread-trace-multi-tool.cpp.o
+[18/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/address_translation.cpp.o
+[19/210] Building CXX object tools/CMakeFiles/thread-trace-multi-tool.dir/thread-trace-callbacks.cpp.o
+[20/210] Creating library symlink lib/rocprofiler-sdk/librocprofiler-sdk-late-start-tool.so.0 lib/rocprofiler-sdk/librocprofiler-sdk-late-start-tool.so
+[21/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/pcs.cpp.o
+[22/210] Linking HIP shared library lib/libvector-ops.so
+[23/210] Linking HIP shared library lib/libtranspose.so
+[24/210] Building CXX object tools/CMakeFiles/thread-trace-agent-tool.dir/thread-trace-agent-tool.cpp.o
+[25/210] Building CXX object tools/CMakeFiles/thread-trace-agent-tool.dir/thread-trace-callbacks.cpp.o
+[26/210] Building CXX object tools/CMakeFiles/thread-trace-triple-buffer-tool.dir/thread-trace-triple-buffer-tool.cpp.o
+/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/tools/thread-trace-triple-buffer-tool.cpp:162:27: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+  162 |                           ROCPROFILER_THREAD_TRACE_PARAMETER_BUFFERING_MODE_TRIPLE_BUFFER});
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                           {                                                              }
+1 warning generated.
+[27/210] Building CXX object pc_sampling/CMakeFiles/pc-sampling-integration-test-client.dir/codeobj.cpp.o
+[28/210] Building HIP object bin/reproducible-runtime/CMakeFiles/reproducible-runtime.dir/reproducible-runtime.cpp.o
+[29/210] Building HIP object bin/reproducible-dispatch-count/CMakeFiles/reproducible-dispatch-count.dir/reproducible-dispatch-count.cpp.o
+[30/210] Building HIP object bin/transpose/CMakeFiles/transpose.dir/transpose.cpp.o
+[31/210] Building HIP object bin/transpose/CMakeFiles/transpose-roctracer-roctx.dir/transpose.cpp.o
+[32/210] Building CXX object bin/hip-in-libraries/CMakeFiles/hip-in-libraries.dir/hip-in-libraries.cpp.o
+[33/210] Building HIP object bin/simple-transpose/CMakeFiles/simple-transpose.dir/simple-transpose.cpp.o
+[34/210] Building HIP object bin/multistream/CMakeFiles/multistream.dir/multistream_app.cpp.o
+[35/210] Building CXX object bin/hsa-queue-dependency/CMakeFiles/multiqueue_testapp.dir/multiqueue_app.cpp.o
+[36/210] Building HIP object bin/vector-operations/CMakeFiles/vector-ops.dir/vector-ops.cpp.o
+[37/210] Building HIP object bin/scratch-memory/CMakeFiles/scratch-memory.dir/scratch-memory.cpp.o
+[38/210] Building CXX object bin/openmp/target/CMakeFiles/openmp-target.dir/openmp-target.cpp.o
+[39/210] Building HIP object bin/roctx-pause-resume/CMakeFiles/roctx-pause-resume.dir/roctx-pause-resume.cpp.o
+[40/210] Building HIP object bin/att-marker-trace/CMakeFiles/att-marker-trace.dir/att-marker-trace.cpp.o
+[41/210] Building HIP object bin/hsa-memory-allocation/CMakeFiles/hsa-memory-allocation.dir/hsa-memory-allocation.cpp.o
+[42/210] Building HIP object bin/pc-sampling/exec-mask-manipulation/CMakeFiles/exec-mask-manipulation.dir/exec_mask_manipulation.cpp.o
+[43/210] Building HIP object bin/rocdecode/CMakeFiles/rocdecode-demo.dir/rocdecode.cpp.o
+[44/210] Building CXX object bin/hsa-code-object/CMakeFiles/hsa_code_object_testapp.dir/hsa_code_object_app.cpp.o
+[45/210] Building HIP object bin/hip-graph/CMakeFiles/hip-graph.dir/hip-graph.cpp.o
+[46/210] Building CXX object bin/hip-host/CMakeFiles/hip-host.dir/hip_host.cpp.o
+[47/210] Building HIP object bin/hip-streams/CMakeFiles/hip-streams.dir/compute_comm_overlap.cpp.o
+[48/210] Building HIP object bin/hip-stream-reuse/CMakeFiles/hip-stream-reuse.dir/hip-stream-reuse.cpp.o
+[49/210] Building HIP object bin/hip-streams-per-thread/CMakeFiles/hip-streams-per-thread.dir/hip-streams-per-thread.cpp.o
+[50/210] Building HIP object bin/rocjpeg/CMakeFiles/rocjpeg-demo.dir/rocjpeg.cpp.o
+[51/210] Building HIP object bin/attachment-test/CMakeFiles/attachment-test.dir/attachment_test.cpp.o
+[52/210] Building HIP object bin/late-start-tracing/CMakeFiles/late-start-tracing.dir/late-start-tracing.cpp.o
+[53/210] Building HIP object bin/thread-trace/CMakeFiles/thread-trace-test-app.dir/main.cpp.o
+[54/210] Linking CXX shared library lib/libpc-sampling-integration-test-client.so
+[55/210] Building HIP object bin/module-loading-test/CMakeFiles/code-object-multithread-testapp.dir/main.cpp.o
+[56/210] Building HIP object bin/thread-trace/CMakeFiles/thread-trace-test-app.dir/kernel_branch.cpp.o
+[57/210] Building HIP object bin/thread-trace/CMakeFiles/thread-trace-test-app.dir/kernel_lds.cpp.o
+[58/210] Building CXX object bin/rocpd-api-test/CMakeFiles/rocpd-api-test.dir/rocpd-api-test.cpp.o
+[59/210] Building CXX object rocattach/CMakeFiles/rocattach-parallel-attach-test.dir/main.cpp.o
+[60/210] Creating library symlink lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so.0 lib/rocprofiler-sdk/librocprofiler-sdk-c-tool.so
+[61/210] Building CXX object code-object-multi-threaded/CMakeFiles/code-object-multithread-client.dir/client.cpp.o
+[62/210] Linking CXX shared library lib/rocprofiler-sdk/libthread-trace-single-tool.so
+[63/210] Linking CXX shared library lib/rocprofiler-sdk/libthread-trace-multi-tool.so
+[64/210] Building CXX object rocattach/CMakeFiles/rocattach-without-env-test.dir/attach_without_env.cpp.o
+[65/210] Linking CXX shared library lib/rocprofiler-sdk/libthread-trace-agent-tool.so
+[66/210] Linking CXX shared library lib/rocprofiler-sdk/libthread-trace-triple-buffer-tool.so
+[67/210] Linking HIP executable bin/reproducible-runtime/reproducible-runtime
+[68/210] Linking HIP executable bin/reproducible-dispatch-count/reproducible-dispatch-count
+[69/210] Building HIP object bin/hip-graph-bubbles/CMakeFiles/hip-graph-bubbles.dir/hip-graph-bubbles.cpp.o
+[70/210] Linking HIP executable bin/transpose/transpose
+[71/210] Linking HIP executable bin/transpose/transpose-roctracer-roctx
+[72/210] Linking HIP executable bin/simple-transpose/simple-transpose
+[73/210] Building CXX object rocattach/CMakeFiles/rocattach-attach-tree-test.dir/attach_tree.cpp.o
+[74/210] Linking HIP executable bin/multistream/multistream
+[75/210] Linking HIP executable bin/vector-operations/vector-ops
+[76/210] Linking CXX executable bin/hip-in-libraries/hip-in-libraries
+[77/210] Linking HIP executable bin/scratch-memory/scratch-memory
+[78/210] Linking CXX executable bin/hsa-queue-dependency/multiqueue_testapp
+[79/210] Linking HIP executable bin/hip-graph/hip-graph
+[80/210] Linking HIP executable bin/roctx-pause-resume/roctx-pause-resume
+[81/210] Linking HIP executable bin/att-marker-trace/att-marker-trace
+[82/210] Linking HIP executable bin/hsa-memory-allocation/hsa-memory-allocation
+[83/210] Linking HIP executable bin/rocdecode/rocdecode-demo
+[84/210] Linking HIP executable bin/pc-sampling/exec-mask-manipulation/exec-mask-manipulation
+[85/210] Linking HIP executable bin/rocjpeg/rocjpeg-demo
+[86/210] Linking CXX executable bin/hsa-code-object/hsa_code_object_testapp
+[87/210] Linking HIP executable bin/hip-stream-reuse/hip-stream-reuse
+[88/210] Linking HIP executable bin/hip-streams/hip-streams
+[89/210] Linking HIP executable bin/hip-streams-per-thread/hip-streams-per-thread
+[90/210] Linking HIP executable bin/attachment-test/attachment-test
+[91/210] Linking HIP executable bin/late-start-tracing/late-start-tracing
+[92/210] Linking CXX executable bin/hip-host/hip-host
+[93/210] Linking HIP executable bin/module-loading-test/code-object-multithread-testapp
+[94/210] Linking HIP executable bin/hip-graph-bubbles/hip-graph-bubbles
+[95/210] Linking CXX executable bin/rocpd-api-test/rocpd-api-test
+[96/210] Linking HIP executable bin/thread-trace/thread-trace-test-app
+[97/210] Building HIP object pc_sampling/CMakeFiles/pc-sampling-integration-test.dir/main.cpp.o
+[98/210] Generating tests.integration.validate.memory-allocation-tracing_tests.cmake
+[99/210] Linking HIP executable pc_sampling/pc-sampling-integration-test
+[100/210] Generating tests.integration.validate.kernel-tracing-total-runtime_tests.cmake
+[101/210] Generating tests.integration.validate.kernel-tracing_tests.cmake
+[102/210] Generating tests.integration.validate.async-copy-tracing_tests.cmake
+[103/210] Generating tests.integration.validate.test-scratch-memory-tracing_tests.cmake
+[104/210] Linking CXX executable bin/openmp/target/openmp-target
+[105/210] Generating tests.integration.validate.graph-tracing_tests.cmake
+[106/210] Linking CXX shared library lib/libcode-object-multithread-client.so
+[107/210] Generating tests.integration.validate.counter-collection_tests.cmake
+[108/210] Generating tests.integration.validate.openmp-tools_tests.cmake
+[109/210] Linking CXX executable rocattach/rocattach-parallel-attach-test
+[110/210] Linking CXX executable rocattach/rocattach-attach-tree-test
+[111/210] Linking CXX executable rocattach/rocattach-without-env-test
+[112/210] Generating tests.integration.validate.rocdecode-tracing_tests.cmake
+[113/210] Generating tests.integration.validate.rocjpeg-tracing_tests.cmake
+[114/210] Generating tests.integration.validate.rocprofv3-test-trace-input-json_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[115/210] Generating tests.integration.validate.hip-host-tracing_tests.cmake
+[116/210] Generating tests.integration.validate.rocprofv3-test-trace_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[117/210] Generating tests.integration.validate.rocprofv3-test-systrace_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[118/210] Generating tests.integration.validate.rocpd-api-python-interface-test_tests.cmake
+[119/210] Generating tests.integration.validate.rocprofv3-test-systrace-input-json_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[120/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-pmc_2_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[121/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-pmc_1_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[122/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-pmc_3_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[123/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-pmc_4_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[124/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-cmdl-single_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[125/210] Generating tests.integration.validate.rocprofv3-test-tracing-plus-counter-collection-cmdl-multiple_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[126/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-pmc1_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[127/210] Generating tests.integration.validate.rocprofv3-test-trace-hip-in-libraries_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[128/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-kernel-filtering-input-json_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[129/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-txt-pmc2_tests.cmake
+[130/210] Building CXX object tools/CMakeFiles/rocprofiler-sdk-json-tool.dir/json-tool.cpp.o
+[131/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1 -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;OFF;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-json-pmc1" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-json-pmc1_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_json_counter_collection.csv;--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_json_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.09s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[132/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1 -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3 -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;OFF;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-yaml-pmc1" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/tests.integration.validate.rocprofv3-test-counter-collection-yaml-pmc1_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_yaml_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_1/out_yaml_counter_collection.csv;--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_yaml_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/simple-transpose-cc/pass_2/out_yaml_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/input3/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.07s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[133/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-kernel-filtering-input-cmd_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[134/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-kernel-filtering-input-yaml_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[135/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-kernel-filtering-range-filter_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[136/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-pmc1-extra-counters_tests.cmake
+CMake Warning at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:169 (message):
+  No Python tests have been discovered.
+
+
+[137/210] Generating tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake
+FAILED: [code=1] rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake 
+cd /home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex && /usr/bin/cmake -D PYTEST_EXECUTABLE=/usr/bin/pytest -D PYTEST_PYTHON_EXECUTABLE=/usr/bin/python3 -D TEST_PATHS=validate.py -D TEST_GROUP_NAME=tests.integration.validate.rocprofv3-test-counter-collection-multiplex -D BUNDLE_TESTS=FALSE -D LIBRARY_ENV_NAME=LD_LIBRARY_PATH -D "LIBRARY_PATH=/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/rocm_sysdeps/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib;/home/zs/TheRock/output-linux-portable/build/dist/rocm/lib64" -D "PYTHON_PATH=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/pytest-packages;/home/zs/TheRock/.opencode/tools;/home/zs/TheRock/.opencode/tools" -D TRIM_FROM_NAME= -D TRIM_FROM_FULL_NAME= -D STRIP_PARAM_BRACKETS=FALSE -D INCLUDE_FILE_PATH=FALSE -D WORKING_DIRECTORY=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex -D ENVIRONMENT= -D "TEST_PROPERTIES=DISABLED;ON;TIMEOUT;45;LABELS;integration-tests\\;validation;FAIL_REGULAR_EXPRESSION;threw an exception|Permission denied|Could not create logging file|failed with error code|Subprocess aborted;FIXTURES_REQUIRED;rocprofv3-test-counter-collection-multiplex" -D CTEST_FILE=/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/tests.integration.validate.rocprofv3-test-counter-collection-multiplex_tests.cmake -D "EXTRA_ARGS=--agent-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_json_agent_info.csv;--counter-input;/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/simple-transpose-cc/out_json_counter_collection.csv;--durations=20;-rA;-s;-vv" -D DISCOVERY_EXTRA_ARGS= -P /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake
+==================================== ERRORS ====================================
+_________________________ ERROR collecting validate.py _________________________
+ImportError while importing test module '/home/zs/TheRock/output-linux-portable/build/profiler/rocprofiler-sdk/dist/share/rocprofiler-sdk/tests/build/rocprofv3/counter-collection/multiplex/validate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+validate.py:25: in <module>
+    import pandas as pd
+E   ModuleNotFoundError: No module named 'pandas'
+=========================== short test summary info ============================
+ERROR validate.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 1 error in 0.08s
+CMake Error at /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/cmake/rocprofiler-sdk/Modules/rocprofiler_sdk_PytestAddTests.cmake:104 (message):
+  An error occurred during the collection of Python tests.
+
+
+[138/210] Building CXX object common/CMakeFiles/rocprofiler-sdk-tests-perfetto.dir/__/external/perfetto/sdk/perfetto.cc.o
+ninja: build stopped: subcommand failed.

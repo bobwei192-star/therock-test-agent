@@ -1,0 +1,29 @@
+Test project /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hipdnn
+    Start 1: hipdnn_data_sdk_tests
+1/9 Test #1: hipdnn_data_sdk_tests ...................   Passed    0.10 sec
+    Start 2: hipdnn_flatbuffers_sdk_tests
+2/9 Test #2: hipdnn_flatbuffers_sdk_tests ............   Passed    0.03 sec
+    Start 3: hipdnn_backend_tests
+3/9 Test #3: hipdnn_backend_tests ....................   Passed    2.29 sec
+    Start 4: hipdnn_frontend_tests
+4/9 Test #4: hipdnn_frontend_tests ...................   Passed    0.09 sec
+    Start 5: hipdnn_test_sdk_tests
+5/9 Test #5: hipdnn_test_sdk_tests ...................   Passed    1.42 sec
+    Start 6: hipdnn_plugin_sdk_tests
+6/9 Test #6: hipdnn_plugin_sdk_tests .................   Passed    0.03 sec
+    Start 7: hipdnn_public_backend_tests
+7/9 Test #7: hipdnn_public_backend_tests .............   Passed    0.12 sec
+    Start 8: hipdnn_backend_logging_shutdown_tests
+8/9 Test #8: hipdnn_backend_logging_shutdown_tests ...   Passed    0.14 sec
+    Start 9: hipdnn_public_frontend_tests
+9/9 Test #9: hipdnn_public_frontend_tests ............   Passed    0.61 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Label Time Summary:
+comprehensive    =   4.82 sec*proc (9 tests)
+full             =   4.82 sec*proc (9 tests)
+quick            =   4.82 sec*proc (9 tests)
+standard         =   4.82 sec*proc (9 tests)
+
+Total Test time (real) =   4.83 sec

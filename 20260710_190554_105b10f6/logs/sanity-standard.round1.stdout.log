@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.0.2, pluggy-1.6.0
+rootdir: /home/zs/TheRock
+plugins: timeout-2.4.0, langsmith-0.9.3, asyncio-1.4.0, anyio-4.14.1, check-2.8.0, typeguard-4.4.4
+timeout: 300.0s
+timeout method: signal
+timeout func_only: False
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 7 items
+
+tests/test_artifact_structure.py::TestArtifactStructure::test_no_cross_artifact_overlaps SKIPPED [ 14%]
+tests/test_artifact_structure.py::TestArtifactStructure::test_no_within_artifact_component_overlaps SKIPPED [ 28%]
+tests/test_rocm_sanity.py::TestROCmSanity::test_rocm_output[rocminfo - GPU Device Type Search] 
+-------------------------------- live log setup --------------------------------
+INFO     test_rocm_sanity:test_rocm_sanity.py:33 ++ Run [None]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/rocminfo
+PASSED                                                                   [ 42%]
+tests/test_rocm_sanity.py::TestROCmSanity::test_rocm_output[rocminfo - GFX Name Search] PASSED [ 57%]
+tests/test_rocm_sanity.py::TestROCmSanity::test_rocm_output[rocminfo - AMD Vendor Name Search] PASSED [ 71%]
+tests/test_rocm_sanity.py::TestROCmSanity::test_hip_printf 
+-------------------------------- live log call ---------------------------------
+INFO     test_rocm_sanity:test_rocm_sanity.py:33 ++ Run [None]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/lib/llvm/bin/offload-arch
+INFO     test_rocm_sanity:test_rocm_sanity.py:33 ++ Run [/home/zs/TheRock/output-linux-portable/build/dist/rocm/bin]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hipcc /home/zs/TheRock/tests/hipcc_check.cpp -Xlinker -rpath=/home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/../lib/ --offload-arch=gfx1151 -o hipcc_check
+INFO     test_rocm_sanity:test_rocm_sanity.py:33 ++ Run [/home/zs/TheRock/output-linux-portable/build/dist/rocm/bin]$ ./hipcc_check
+PASSED                                                                   [ 85%]
+tests/test_rocm_sanity.py::TestROCmSanity::test_rocm_agent_enumerator 
+-------------------------------- live log call ---------------------------------
+INFO     test_rocm_sanity:test_rocm_sanity.py:33 ++ Run [None]$ /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/rocm_agent_enumerator
+PASSED                                                                   [100%]
+
+=============================== warnings summary ===============================
+tests/extended_tests/utils/exceptions.py:39
+  /home/zs/TheRock/tests/extended_tests/utils/exceptions.py:39: PytestCollectionWarning: cannot collect test class 'TestExecutionError' because it has a __init__ constructor (from: tests/extended_tests/functional/scripts/test_miopendriver_conv.py)
+    class TestExecutionError(FrameworkException):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=================== 5 passed, 2 skipped, 1 warning in 1.93s ====================

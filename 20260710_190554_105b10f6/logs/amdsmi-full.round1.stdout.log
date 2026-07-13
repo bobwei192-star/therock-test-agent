@@ -1,0 +1,1751 @@
+Note: Google Test filter = amdsmitstReadOnly.*:amdsmitstReadWrite.FanReadWrite:amdsmitstReadWrite.TestOverdriveReadWrite:amdsmitstReadWrite.TestPciReadWrite:amdsmitstReadWrite.TestPowerReadWrite:amdsmitstReadWrite.TestPerfCntrReadWrite:amdsmitstReadWrite.TestEvtNotifReadWrite:AmdSmiDynamicMetricTest.*:-amdsmitstReadOnly.TempRead:amdsmitstReadOnly.TestFrequenciesRead:amdsmitstReadWrite.TestPowerReadWrite
+[==========] Running 48 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 41 tests from amdsmitstReadOnly
+[ RUN      ] amdsmitstReadOnly.CperReadZeroSizeFile
+[       OK ] amdsmitstReadOnly.CperReadZeroSizeFile (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperNonZeroFileRealReadHasNoRecords
+[       OK ] amdsmitstReadOnly.CperNonZeroFileRealReadHasNoRecords (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperReadMissingFile
+[       OK ] amdsmitstReadOnly.CperReadMissingFile (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperParsesSingleRecord
+[       OK ] amdsmitstReadOnly.CperParsesSingleRecord (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperEmptyRingAdvertisedCapacityShortRead
+[       OK ] amdsmitstReadOnly.CperEmptyRingAdvertisedCapacityShortRead (1 ms)
+[ RUN      ] amdsmitstReadOnly.CperPartialReadNoRecords
+[       OK ] amdsmitstReadOnly.CperPartialReadNoRecords (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperReadErrorIsFileError
+[       OK ] amdsmitstReadOnly.CperReadErrorIsFileError (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperFirstRecordExceedsBufferOutOfResources
+[       OK ] amdsmitstReadOnly.CperFirstRecordExceedsBufferOutOfResources (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperSecondRecordOverflowsBufferMoreData
+[       OK ] amdsmitstReadOnly.CperSecondRecordOverflowsBufferMoreData (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperSlotExhaustionMoreData
+[       OK ] amdsmitstReadOnly.CperSlotExhaustionMoreData (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperByPathRejectsInvalidArgs
+[       OK ] amdsmitstReadOnly.CperByPathRejectsInvalidArgs (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockCorrectedRecords
+[       OK ] amdsmitstReadOnly.CperMockCorrectedRecords (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockUncorrectedRecord
+[       OK ] amdsmitstReadOnly.CperMockUncorrectedRecord (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockFatalRecord
+[       OK ] amdsmitstReadOnly.CperMockFatalRecord (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockMixedFullMask
+[       OK ] amdsmitstReadOnly.CperMockMixedFullMask (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockSeverityMaskFilter
+[       OK ] amdsmitstReadOnly.CperMockSeverityMaskFilter (0 ms)
+[ RUN      ] amdsmitstReadOnly.CperMockSeverityMaskRejectAll
+[       OK ] amdsmitstReadOnly.CperMockSeverityMaskRejectAll (0 ms)
+[ RUN      ] amdsmitstReadOnly.TestVersionRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Version Read Test
+
+	#### TEST DESCRIPTION ####
+The Version Read tests verifies that the AMDSMI library version can be read
+properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	### amdsmi_get_lib_version()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**AMD SMI Library version: 26.5.0 (26.5.0)
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestVersionRead (3 ms)
+[ RUN      ] amdsmitstReadOnly.FanRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Fan Read Test
+
+	#### TEST DESCRIPTION ####
+The Fan Read tests verifies that the fan monitors can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_fan_speed(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_fan_speed(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.FanRead (11 ms)
+[ RUN      ] amdsmitstReadOnly.VoltRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Volt Read Test
+
+	#### TEST DESCRIPTION ####
+The Voltage Read tests verifies that the voltage monitors can be read
+properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	** **********Vddgfx Voltage **********
+	### amdsmi_get_gpu_volt_metric(label: Current Voltage)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Current Voltage)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	**Current Voltage: 0mV
+	### amdsmi_get_gpu_volt_metric(label: Voltage max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage min value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage min value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage min value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical min value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical min value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical min value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Historical minimum temperature)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Historical minimum temperature: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Historical minimum temperature)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Historical maximum temperature)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Historical maximum temperature: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Historical maximum temperature)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	** **********Vddboard Voltage **********
+	### amdsmi_get_gpu_volt_metric(label: Current Voltage)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Current Voltage)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	**Current Voltage: 0mV
+	### amdsmi_get_gpu_volt_metric(label: Voltage max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage min value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage min value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage min value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical min value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical min value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical min value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Voltage critical max value)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Voltage critical max value: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Voltage critical max value)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Historical minimum temperature)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Historical minimum temperature: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Historical minimum temperature)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_volt_metric(label: Historical maximum temperature)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	**Historical maximum temperature: Not supported on this machine
+	### amdsmi_get_gpu_volt_metric(nullptr check)(gpu=0, label: Historical maximum temperature)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.VoltRead (2 ms)
+[ RUN      ] amdsmitstReadOnly.TestVoltCurvRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Voltage-Frequency Curve Read Test
+
+	#### TEST DESCRIPTION ####
+The Voltage-Frequency Read tests verifies that the voltage frequency curve
+information can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_od_volt_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_od_volt_info(nullptr)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestVoltCurvRead (3 ms)
+[ RUN      ] amdsmitstReadOnly.TestPerfLevelRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Performance Level Read Test
+
+	#### TEST DESCRIPTION ####
+The Performance Level Read tests verifies that the performance level
+monitors can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_perf_level(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Performance Level:0
+	### amdsmi_get_gpu_perf_level(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestPerfLevelRead (1 ms)
+[ RUN      ] amdsmitstReadOnly.TestOverdriveRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Overdrive Read Test
+
+	#### TEST DESCRIPTION ####
+The Overdrive Read tests verifies that the current overdrive level can be
+read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_overdrive_level(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestOverdriveRead (5 ms)
+[ RUN      ] amdsmitstReadOnly.TestSysInfoRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI System Info Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that system information such as the BDFID, AMDSMI
+version, VBIOS version, vendor_id, unique_id, target_gfx_version, kfd_id,
+node_id, etc. can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_vbios_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**VBIOS Version: 00107962
+	### amdsmi_get_gpu_bdf_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**PCI ID (BDFID): 0xc500 (50432)
+	### amdsmi_get_gpu_bdf_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_topo_numa_affinity(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**NUMA NODE: 0xffffffff (-1)
+	### amdsmi_get_gpu_topo_numa_affinity(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_asic_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**GPU PCIe Vendor : Advanced Micro Devices, Inc. [AMD/ATI]
+	**Target GFX version: 4433
+	### amdsmi_get_gpu_asic_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_kfd_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**KFD ID: 15162
+	**Node ID: 1
+	**Current Partition ID: 0
+	### amdsmi_get_gpu_kfd_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_lib_version()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**AMD SMI Library version: 26.5.0 (26.5.0)
+	### amdsmi_get_fw_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestSysInfoRead (3 ms)
+[ RUN      ] amdsmitstReadOnly.TestGPUBusyRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI GPU Busy Read Test
+
+	#### TEST DESCRIPTION ####
+The GPU Busy Read tests verifies that the gpu busy percentage can be read
+properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_busy_percent(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**GPU Busy Percent (Percent Idle):1 (99)
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestGPUBusyRead (4 ms)
+[ RUN      ] amdsmitstReadOnly.TestPowerRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Power Read Test
+
+	#### TEST DESCRIPTION ####
+The Power Read tests verifies that power related values can be read
+properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_power_cap_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestPowerRead (2 ms)
+[ RUN      ] amdsmitstReadOnly.TestErrCntRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Error Count Read Test
+
+	#### TEST DESCRIPTION ####
+The Error Count Read tests verifies that error counts can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_ecc_enabled(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_ecc_enabled(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestErrCntRead (2 ms)
+[ RUN      ] amdsmitstReadOnly.TestMemUtilRead
+###############################################################################
+
+	#### TEST NAME ####
+Memory Utilization Read Test
+
+	#### TEST DESCRIPTION ####
+The Memory Utilization Read tests verifies that memory busy percent, size
+and amount used can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3770
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_memory_total(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_total(VRAM memory): AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_memory_usage(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_usage(VRAM memory): AMDSMI_STATUS_SUCCESS
+	**VRAM memory Calculated Utilization: 2.19289% (2260410368/103079215104)
+	### amdsmi_get_gpu_memory_total(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_total(Visible VRAM memory): AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_memory_usage(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_usage(Visible VRAM memory): AMDSMI_STATUS_SUCCESS
+	**Visible VRAM memory Calculated Utilization: 2.19289% (2260410368/103079215104)
+	### amdsmi_get_gpu_memory_total(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_total(GTT memory): AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_memory_usage(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** amdsmi_get_gpu_memory_usage(GTT memory): AMDSMI_STATUS_SUCCESS
+	**GTT memory Calculated Utilization: 0.852879% (139546624/16361836544)
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestMemUtilRead (1 ms)
+[ RUN      ] amdsmitstReadOnly.TestKfdAtforkRead
+###############################################################################
+
+	#### TEST NAME ####
+KFD atfork Bypass Test
+
+	#### TEST DESCRIPTION ####
+Verifies the KFD VRAM helper spawns its short-lived child with clone()
+rather than fork(), so a caller's pthread_atfork handlers are not triggered
+(ROCM-24163). The helper is invoked directly because the public getter only
+reaches it as a sysfs fallback.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff3920
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestKfdAtforkRead (25 ms)
+[ RUN      ] amdsmitstReadOnly.TestIdInfoRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI ID Info Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that ID information such as the device, subsystem and
+vendor IDs can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	*************************
+	**Device index: 0
+	### amdsmi_get_gpu_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Device ID: 0x1586
+	### amdsmi_get_gpu_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_asic_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_board_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_vram_vendor(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Device Vram Vendor name: UNKNOWN
+	### amdsmi_get_gpu_vram_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Device Vram type id: 1f
+	**Device Vram vendor id: UNKNOWN
+	**Device Vram size: 0x18000 (98304)
+	**Device Bit Width: 0x100 (256)
+	**Device Vram Max Bandwidth: 18446744073709551615 GB/s
+	### amdsmi_get_gpu_vendor_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Device Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	### amdsmi_get_gpu_vendor_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_subsystem_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Subsystem ID: 0x801d
+	### amdsmi_get_gpu_subsystem_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_subsystem_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Subsystem name: 0x801d
+	### amdsmi_get_gpu_subsystem_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	**Sub-system Vendor ID: 0x2014
+	### amdsmi_get_gpu_vendor_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Subsystem Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	### amdsmi_get_gpu_vendor_name(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_bdf_id(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**PCI ID (BDFID): 0xc500 (50432)
+	### amdsmi_get_gpu_virtualization_mode(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+	### amdsmi_get_gpu_virtualization_mode(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	**Virtualization Mode: BAREMETAL
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestIdInfoRead (12 ms)
+[ RUN      ] amdsmitstReadOnly.TestProcInfoRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Process Info Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that process information such as the process ID, etc. can
+be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	### amdsmi_get_gpu_compute_process_info()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	** 0 GPU processes found
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestProcInfoRead (2 ms)
+[ RUN      ] amdsmitstReadOnly.TestHWTopologyRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Hardware Topology Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that Hardware Topology can be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	### amdsmi_topo_get_numa_node_number(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+**NUMA node number of GPUs**
+GPU#00000000NUMA node number
+0000000000000
+
+
+**Type between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**Hops between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**Weight between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**Access between two GPUs**
+      GPU000000000
+GPU000true00000000
+
+**Cache coherency between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**Atomics between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**DMA between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+**BI-Directional between two GPUs**
+      GPU000000000
+GPU000X00000000000
+
+** Nearest GPUs for GPU0 **
+	### amdsmi_get_link_topology_nearest()
+	### amdsmi_get_link_topology_nearest()
+Nearest GPUs found for Link Type: AMDSMI_LINK_TYPE_INTERNAL
+	Not found
+	### amdsmi_get_link_topology_nearest()
+	### amdsmi_get_link_topology_nearest()
+Nearest GPUs found for Link Type: AMDSMI_LINK_TYPE_XGMI
+	Not found
+	### amdsmi_get_link_topology_nearest()
+	### amdsmi_get_link_topology_nearest()
+Nearest GPUs found for Link Type: AMDSMI_LINK_TYPE_PCIE
+	Not found
+	### amdsmi_get_link_topology_nearest()
+	### amdsmi_get_link_topology_nearest()
+Nearest GPUs found for Link Type: AMDSMI_LINK_TYPE_NOT_APPLICABLE
+	Not found
+	### amdsmi_get_link_topology_nearest()
+	### amdsmi_get_link_topology_nearest()
+Nearest GPUs found for Link Type: AMDSMI_LINK_TYPE_UNKNOWN
+	Not found
+
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestHWTopologyRead (1 ms)
+[ RUN      ] amdsmitstReadOnly.TestGpuMetricsRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI GPU Metrics Read Test
+
+	#### TEST DESCRIPTION ####
+The GPU Metrics tests verifies that the gpu metrics info can be read
+properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff35c0
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+Device #0
+
+
+	**GPU METRICS: Using static struct (Backwards Compatibility):
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### amdsmi_get_gpu_xcd_counter(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		** amdsmi_get_gpu_xcd_counter(): AMDSMI_STATUS_SUCCESS
+		** XCD Counter Value: 0
+METRIC TABLE HEADER:
+structure_size=264
+format_revision=3
+content_revision=0
+
+TIME STAMPS (ns):
+system_clock_counter=67803921987366
+firmware_timestamp (10ns resolution)=18446744073709551615
+
+TEMPERATURES (C):
+temperature_edge= 65535
+temperature_hotspot= 65535
+temperature_mem= 65535
+temperature_vrgfx= 65535
+temperature_vrsoc= 65535
+temperature_vrmem= 65535
+temperature_hbm = [65535, 65535, 65535, 65535]
+
+UTILIZATION (%):
+average_gfx_activity=2
+average_umc_activity=65535
+average_mm_activity=65535
+vcn_activity= [65535, 65535, 65535, 65535]
+
+jpeg_activity= [65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535]
+
+POWER (W)/ENERGY (15.259uJ per 1ns):
+average_socket_power=35
+current_socket_power=65535
+energy_accumulator=18446744073709551615
+
+AVG CLOCKS (MHz):
+average_gfxclk_frequency=762
+average_gfxclk_frequency=762
+average_uclk_frequency=1000
+average_vclk0_frequency=800
+average_dclk0_frequency=65535
+average_vclk1_frequency=65535
+average_dclk1_frequency=65535
+
+CURRENT CLOCKS (MHz):
+current_gfxclk=65535
+current_gfxclks= [65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535]
+current_socclk=65535
+current_socclks= [65535, 65535, 65535, 65535]
+current_uclk=65535
+current_vclk0=65535
+current_vclk0s= [65535, 65535, 65535, 65535]
+current_dclk0=65535
+current_dclk0s= [65535, 65535, 65535, 65535]
+current_vclk1=65535
+current_dclk1=65535
+
+THROTTLE STATUS:
+throttle_status=4294967295
+
+FAN SPEED:
+current_fan_speed=65535
+
+LINK WIDTH (number of lanes) /SPEED (0.1 GT/s):
+pcie_link_width=65535
+pcie_link_speed=65535
+xgmi_link_width=65535
+xgmi_link_speed=65535
+
+Utilization Accumulated(%):
+gfx_activity_acc=4294967295
+mem_activity_acc=4294967295
+
+XGMI ACCUMULATED DATA TRANSFER SIZE (KB):
+xgmi_read_data_acc= [18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615]
+xgmi_write_data_acc= [18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615]
+xgmi_link_status= [65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535]
+voltage_soc = 65535
+voltage_gfx = 65535
+voltage_mem = 65535
+indep_throttle_status = 18446744073709551615
+gfxclk_lock_status (in hex) = ffffffff
+pcie_bandwidth_acc=18446744073709551615
+pcie_bandwidth_inst=18446744073709551615
+vram_max_bandwidth=18446744073709551615
+pcie_l0_to_recov_count_acc= 18446744073709551615
+pcie_replay_count_acc= 18446744073709551615
+pcie_replay_rover_count_acc= 18446744073709551615
+pcie_nak_sent_count_acc= 4294967295
+pcie_nak_rcvd_count_acc= 4294967295
+
+RESIDENCY ACCUMULATION / COUNTER:
+accumulation_counter = 18446744073709551615
+prochot_residency_acc = 18446744073709551615
+ppt_residency_acc = 18446744073709551615
+socket_thm_residency_acc = 18446744073709551615
+vr_thm_residency_acc = 18446744073709551615
+hbm_thm_residency_acc = 18446744073709551615
+num_partition = 65535
+pcie_lc_perf_other_end_recovery = 4294967295
+xcp_stats.gfx_busy_inst = 
+XCP[0] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[1] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[2] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[3] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[4] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[5] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[6] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+XCP[7] = [ 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295 ]
+xcp_stats.jpeg_busy = 
+XCP[0] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[1] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[2] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[3] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[4] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[5] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[6] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+XCP[7] = [ 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 65535, 
+65535, 65535, 65535, 65535, 65535 ]
+xcp_stats.vcn_busy = 
+XCP[0] = [ 65535, 65535, 65535, 65535 ]
+XCP[1] = [ 65535, 65535, 65535, 65535 ]
+XCP[2] = [ 65535, 65535, 65535, 65535 ]
+XCP[3] = [ 65535, 65535, 65535, 65535 ]
+XCP[4] = [ 65535, 65535, 65535, 65535 ]
+XCP[5] = [ 65535, 65535, 65535, 65535 ]
+XCP[6] = [ 65535, 65535, 65535, 65535 ]
+XCP[7] = [ 65535, 65535, 65535, 65535 ]
+xcp_stats.gfx_busy_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+xcp_stats.gfx_below_host_limit_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+xcp_stats.gfx_below_host_limit_ppt_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+xcp_stats.gfx_below_host_limit_thm_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+xcp_stats.gfx_low_utilization_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+xcp_stats.gfx_below_host_limit_total_acc = 
+XCP[0] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[1] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[2] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[3] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[4] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[5] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[6] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+XCP[7] = [ 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615, 18446744073709551615 ]
+
+APU METRICS AUXILIARY DATA:
+temperature_gfx = 4850
+temperature_soc = 4850
+temperature_core = [0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0]
+temperature_skin = 0
+
+APU UTILIZATION:
+average_gfx_activity = 2
+average_vcn_activity = 0
+average_ipu_activity = [0, 0, 0, 0, 0, 0, 0, 0]
+average_core_c0_activity = [9, 44, 7, 9, 11, 5, 8, 39, 
+6, 5, 2, 10, 3, 3, 1, 2]
+average_dram_reads = 1960
+average_dram_writes = 889
+average_ipu_reads = 0
+average_ipu_writes = 0
+
+APU POWER (mW):
+average_socket_power = 35077
+average_gfx_power = 1215
+average_core_power = [1957, 2953, 1343, 1020, 1044, 860, 957, 924, 
+940, 468, 352, 4038, 286, 346, 431, 348]
+average_ipu_power = 0
+average_apu_power = 35077
+average_dgpu_power = 0
+average_all_core_power = 15629
+average_sys_power = 63537
+stapm_power_limit = 65535
+current_stapm_power_limit = 65535
+
+APU AVERAGE CLOCKS (MHz):
+average_gfxclk_frequency = 762
+average_socclk_frequency = 661
+average_uclk_frequency = 1000
+average_fclk_frequency = 2000
+average_vclk_frequency = 800
+average_vpeclk_frequency = 800
+average_ipuclk_frequency = 1810
+average_mpipu_frequency = 1267
+
+APU CURRENT CLOCKS (MHz):
+current_coreclk = [5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 
+3515, 3515, 3515, 3515, 3515, 3515, 3515, 3515]
+current_core_maxfreq = 5113
+current_gfx_maxfreq = 2900
+
+APU THROTTLE:
+throttle_residency_prochot = 0
+throttle_residency_spl = 0
+throttle_residency_fppt = 716756
+throttle_residency_sppt = 421505
+throttle_residency_thm_core = 17115083
+throttle_residency_thm_gfx = 0
+throttle_residency_thm_soc = 0
+
+APU OTHER:
+time_filter_alphavalue = 1000000
+
+
+	 ** -> Checking metrics with constant changes ** 
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [1/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [2/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [3/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [4/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [5/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [6/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [7/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [8/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [9/10]: 18446744073709551615
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> firmware_timestamp [10/10]: 18446744073709551615
+
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [1/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [2/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [3/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [4/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [5/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [6/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [7/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [8/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [9/10]: 67803921987366
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		 -> system_clock_counter [10/10]: 67803921987366
+
+ ** Note: Values MAX'ed out (UINTX MAX are unsupported for the version in question) ** 
+
+	### amdsmi_get_gpu_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 1, AMDSMI_STATUS_INVAL
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestGpuMetricsRead (7 ms)
+[ RUN      ] amdsmitstReadOnly.TestGpuPartitionMetricsRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI GPU Partition (XCP) Metrics Read Test
+
+	#### TEST DESCRIPTION ####
+The GPU Partition (XCP) Metrics tests verifies that the gpu metrics info can
+be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff35c0
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+Device #0
+
+
+	**GPU PARTITION METRICS: Using static struct (Backwards Compatibility):
+	### amdsmi_get_gpu_partition_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+Device #0
+
+
+	**GPU PARTITION METRICS: Using static struct (Backwards Compatibility):
+	### amdsmi_get_gpu_partition_metrics_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestGpuPartitionMetricsRead (102 ms)
+[ RUN      ] amdsmitstReadOnly.TestMetricsCounterRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI GPU Metrics Counter Read Test
+
+	#### TEST DESCRIPTION ####
+The GPU Metrics Counter tests verifies that the gpu metrics counter info can
+be read properly.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff35c0
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	**GPU METRICS ENERGY COUNTER:
+	### amdsmi_get_energy_count(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestMetricsCounterRead (7 ms)
+[ RUN      ] amdsmitstReadOnly.TestMemPageInfoRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Memory Page Info Test
+
+	#### TEST DESCRIPTION ####
+The Memory Page Info. test verifies that we can read memory page
+information, and then displays the information read
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff35c0
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	### amdsmi_get_gpu_memory_reserved_pages(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+	### amdsmi_get_gpu_memory_reserved_pages(nullptr)(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 2, AMDSMI_STATUS_NOT_SUPPORTED
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestMemPageInfoRead (3 ms)
+[ RUN      ] amdsmitstReadOnly.TestAPISupportRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI API Support Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that the supported APIs are correctly identified.
+
+	#### TEST SETUP ####
+	Verbosity level: 1 (STANDARD)
+
+	#### TEST EXECUTION ####
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestAPISupportRead (1 ms)
+[ RUN      ] amdsmitstReadOnly.TestMutualExclusion
+###############################################################################
+
+	#### TEST NAME ####
+Mutual Exclusion Test
+
+	#### TEST DESCRIPTION ####
+Verify that AMDSMI only allows 1 process at a time to access AMDSMI
+resources (primarily sysfs files). This test has one process that obtains
+the mutex that ensures only 1 process accesses a device's sysfs files at a
+time, and another process that attempts to access the device's sysfs files.
+The second process should fail in these attempts.
+
+	#### TEST SETUP ####
+	### [sleeper] amdsmi_init(AMD_SMI_INIT_AMD_GPUS|AMD_SMI_INIT_FLAG_RESRV_TEST1)()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+###############################################################################
+
+	#### TEST NAME ####
+Mutual Exclusion Test
+
+	#### TEST DESCRIPTION ####
+Verify that AMDSMI only allows 1 process at a time to access AMDSMI
+resources (primarily sysfs files). This test has one process that obtains
+the mutex that ensures only 1 process accesses a device's sysfs files at a
+time, and another process that attempts to access the device's sysfs files.
+The second process should fail in these attempts.
+
+	#### TEST SETUP ####
+	### [tester] amdsmi_init(AMD_SMI_INIT_AMD_GPUS|AMD_SMI_INIT_FLAG_RESRV_TEST1)()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	Verbosity level: 1 (STANDARD)
+MUTEX_HOLDER process: started sleeping for 4 seconds...
+
+	#### TEST EXECUTION ####
+TESTER process: verifying that all amdsmi_dev_* functions return AMDSMI_STATUS_BUSY because MUTEX_HOLDER process holds the mutex
+	### amdsmi_get_gpu_id(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_temp_metric(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_asic_info(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_board_info(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_vendor_name(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_vram_vendor(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_subsystem_id(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_bdf_id(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_pci_throughput(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_pci_replay_counter(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_set_gpu_pci_bandwidth(0)
+	===> TEST SUCCESS, AMDSMI API Returned 10, AMDSMI_STATUS_NO_PERM
+	### amdsmi_get_gpu_fan_rpms(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_fan_speed(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_fan_speed_max(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_reset_gpu_fan(0)
+	===> TEST SUCCESS, AMDSMI API Returned 10, AMDSMI_STATUS_NO_PERM
+	### amdsmi_set_gpu_fan_speed(0)
+	===> TEST SUCCESS, AMDSMI API Returned 10, AMDSMI_STATUS_NO_PERM
+	### amdsmi_get_gpu_perf_level(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_overdrive_level(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_clk_freq(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_od_volt_info(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_od_volt_curve_regions(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_set_clk_freq(0)
+	===> TEST SUCCESS, AMDSMI API Returned 10, AMDSMI_STATUS_NO_PERM
+	### amdsmi_get_gpu_ecc_count(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_ecc_enabled(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+	### amdsmi_get_gpu_ecc_status(0)
+	===> TEST SUCCESS, AMDSMI API Returned 30, AMDSMI_STATUS_BUSY
+TESTER process: Finished verifying that all amdsmi_dev_* functions returned AMDSMI_STATUS_BUSY
+MUTEX_HOLDER process: Sleep process woke up.
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestMutualExclusion (4010 ms)
+[ RUN      ] amdsmitstReadOnly.TestCrossProcessSerialization
+###############################################################################
+
+	#### TEST NAME ####
+Cross-Process Serialization Test
+
+	#### TEST DESCRIPTION ####
+Verifies that AMDSMI_MUTEX_CROSS_PROCESS=1 (blocking mode) correctly
+serializes GPU API calls across processes. Process A holds the device mutex
+for several seconds via rsmi_test_sleep. Process B then calls an AMDSMI API
+and measures how long it blocks. A wait time >= 3.000000 seconds proves
+Process B was serialized rather than racing through concurrently.
+
+	#### TEST SETUP ####
+	### [holder] amdsmi_init()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	### [waiter] amdsmi_init()
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+	Verbosity level: 1 (STANDARD)
+HOLDER process: acquiring mutex and sleeping for 5s...
+
+	#### TEST EXECUTION ####
+WAITER process: calling amdsmi_get_gpu_id() — should block until HOLDER releases mutex...
+	### [waiter] amdsmi_get_gpu_id(processor_handles_[0], &gpu_id)()
+HOLDER process: released mutex after 5s.
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+WAITER process: amdsmi_get_gpu_id() returned after 4.80017s (expected >= 3s)
+WAITER process: serialization verified after 4.80017s. gpu_id=0x1586
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestCrossProcessSerialization (5009 ms)
+[ RUN      ] amdsmitstReadOnly.TestGPUCacheRead
+###############################################################################
+
+	#### TEST NAME ####
+GPU Cache Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies the GPU cache read metrics using the AMD SMI library.
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	Verbosity level: 1 (STANDARD)
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dbff35c0
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+Device #0
+
+
+	**GPU CACHE INFO: Using static struct (Backwards Compatibility):
+	### amdsmi_get_gpu_cache_info(gpu=0)
+	===> TEST SUCCESS, AMDSMI API Returned 0, AMDSMI_STATUS_SUCCESS
+		num_cache_types: 6
+		Cache Type 0:
+			cache_level: 1
+			cache_properties: (0x12) Data Cache, SIMD Cache
+			cache_size: 32 KB
+			max_num_cu_shared: 1
+			num_cache_instance: 40
+		Cache Type 1:
+			cache_level: 1
+			cache_properties: (0x14) Instruction Cache, SIMD Cache
+			cache_size: 32 KB
+			max_num_cu_shared: 2
+			num_cache_instance: 20
+		Cache Type 2:
+			cache_level: 1
+			cache_properties: (0x12) Data Cache, SIMD Cache
+			cache_size: 16 KB
+			max_num_cu_shared: 2
+			num_cache_instance: 20
+		Cache Type 3:
+			cache_level: 1
+			cache_properties: (0x12) Data Cache, SIMD Cache
+			cache_size: 256 KB
+			max_num_cu_shared: 10
+			num_cache_instance: 4
+		Cache Type 4:
+			cache_level: 2
+			cache_properties: (0x12) Data Cache, SIMD Cache
+			cache_size: 2048 KB
+			max_num_cu_shared: 40
+			num_cache_instance: 1
+		Cache Type 5:
+			cache_level: 3
+			cache_properties: (0x12) Data Cache, SIMD Cache
+			cache_size: 32768 KB
+			max_num_cu_shared: 40
+			num_cache_instance: 1
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestGPUCacheRead (7 ms)
+[ RUN      ] amdsmitstReadOnly.TestFabricRead
+###############################################################################
+
+	#### TEST NAME ####
+AMDSMI Fabric (UALoE) Read Test
+
+	#### TEST DESCRIPTION ####
+This test verifies that fabric device info and telemetry data can be read
+properly via amdsmi_get_gpu_fabric_info(), amdsmi_alloc_fabric_telemetry(),
+amdsmi_get_fabric_telemetry_data(), amdsmi_free_fabric_telemetry(), and
+amdsmi_fabric_telem_id_to_string().
+
+	#### TEST SETUP ####
+
+	#### TEST EXECUTION ####
+	**Total Devices: 1
+	**AMD SMI Device index: 0
+	**Device handle: 0x6370dc0f2070
+	**Device ID: 0x1586
+	**Device name: Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics]
+	**Market name: AMD Radeon 8060S Graphics
+	**ASIC serial: 0xffffffffffffffff
+	**Target GFX Version: gfx1151
+	**Device ID: 0x1586
+	**Num of Compute Units: 40
+	**OAM ID: N/A
+	**Revision ID: 0xc1
+	**Subvendor ID: 0x2014
+	**Vendor ID: 0x1002
+	**Vendor name: Advanced Micro Devices, Inc. [AMD/ATI]
+	**Device Revision ID: 0xc1
+	**Subsystem ID: 0x801d
+	**KFD info: 
+		**GPU ID: 15162
+		**Node ID: 1
+		**Partition ID: 0
+	** Testing amdsmi_get_gpu_fabric_info()
+	**amdsmi_get_gpu_fabric_info() is not supported on this system
+
+	#### TEST RESULTS ####
+
+	#### TEST CLEAN UP ####
+[       OK ] amdsmitstReadOnly.TestFabricRead (2 ms)
+[----------] 41 tests from amdsmitstReadOnly (9240 ms total)
+
+[----------] 5 tests from amdsmitstReadWrite
+[ RUN      ] amdsmitstReadWrite.FanReadWrite
+/therock/src/rocm-systems/projects/amdsmi/tests/amd_smi_test/main.cc:131: Skipped
+Invalid permission - Must run as super user
+
+[  SKIPPED ] amdsmitstReadWrite.FanReadWrite (0 ms)
+[ RUN      ] amdsmitstReadWrite.TestOverdriveReadWrite
+/therock/src/rocm-systems/projects/amdsmi/tests/amd_smi_test/main.cc:172: Skipped
+Invalid permission - Must run as super user
+
+[  SKIPPED ] amdsmitstReadWrite.TestOverdriveReadWrite (0 ms)
+[ RUN      ] amdsmitstReadWrite.TestPciReadWrite
+/therock/src/rocm-systems/projects/amdsmi/tests/amd_smi_test/main.cc:192: Skipped
+Invalid permission - Must run as super user
+
+[  SKIPPED ] amdsmitstReadWrite.TestPciReadWrite (0 ms)
+[ RUN      ] amdsmitstReadWrite.TestPerfCntrReadWrite
+/therock/src/rocm-systems/projects/amdsmi/tests/amd_smi_test/main.cc:252: Skipped
+Invalid permission - Must run as super user
+
+[  SKIPPED ] amdsmitstReadWrite.TestPerfCntrReadWrite (0 ms)
+[ RUN      ] amdsmitstReadWrite.TestEvtNotifReadWrite
+/therock/src/rocm-systems/projects/amdsmi/tests/amd_smi_test/main.cc:345: Skipped
+Invalid permission - Must run as super user
+
+[  SKIPPED ] amdsmitstReadWrite.TestEvtNotifReadWrite (0 ms)
+[----------] 5 tests from amdsmitstReadWrite (0 ms total)
+
+[----------] 2 tests from AmdSmiDynamicMetricTest
+[ RUN      ] AmdSmiDynamicMetricTest.GPUMetricDynamicVersionSupported
+	Verbosity level: 1 (STANDARD)
+[GPUMetricStatic] Checking version 1.0
+[GPUMetricStatic] Created valid object for version 1.0
+[GPUMetricStatic] Checking version 1.1
+[GPUMetricStatic] Created valid object for version 1.1
+[GPUMetricStatic] Checking version 1.2
+[GPUMetricStatic] Created valid object for version 1.2
+[GPUMetricStatic] Checking version 1.3
+[GPUMetricStatic] Created valid object for version 1.3
+[GPUMetricStatic] Checking version 1.4
+[GPUMetricStatic] Created valid object for version 1.4
+[GPUMetricStatic] Checking version 1.5
+[GPUMetricStatic] Created valid object for version 1.5
+[GPUMetricStatic] Checking version 1.6
+[GPUMetricStatic] Created valid object for version 1.6
+[GPUMetricStatic] Checking version 1.7
+[GPUMetricStatic] Created valid object for version 1.7
+[GPUMetricStatic] Checking version 1.8
+[GPUMetricStatic] Created valid object for version 1.8
+[GPUMetricDynamic] Checking version 1.9
+[GPUMetricDynamic] Created valid object for version 1.9
+[GPUMetricDynamic] Checking version 1.10
+[GPUMetricDynamic] Created valid object for version 1.10
+[GPUMetricDynamic] Checking version 1.11
+[GPUMetricDynamic] Created valid object for version 1.11
+[GPUMetricDynamic] Checking version 1.12
+[GPUMetricDynamic] Created valid object for version 1.12
+[GPUMetricDynamic] Checking version 1.13
+[GPUMetricDynamic] Created valid object for version 1.13
+[GPUMetricDynamic] Checking version 1.14
+[GPUMetricDynamic] Created valid object for version 1.14
+[GPUMetricDynamic] Checking version 1.15
+[GPUMetricDynamic] Created valid object for version 1.15
+[GPUMetricDynamic] Checking version 1.16
+[GPUMetricDynamic] Created valid object for version 1.16
+[GPUMetricDynamic] Checking version 1.17
+[GPUMetricDynamic] Created valid object for version 1.17
+[GPUMetricDynamic] Checking version 1.18
+[GPUMetricDynamic] Created valid object for version 1.18
+[       OK ] AmdSmiDynamicMetricTest.GPUMetricDynamicVersionSupported (0 ms)
+[ RUN      ] AmdSmiDynamicMetricTest.XCPMetricDynamicVersionSupported
+	Verbosity level: 1 (STANDARD)
+[XCPMetricStatic] Checking version 1.0
+[XCPMetricStatic] Created valid object for version 1.0
+[XCPMetricDynamic] Checking version 1.1
+[XCPMetricDynamic] Created valid object for version 1.1
+[XCPMetricDynamic] Checking version 1.2
+[XCPMetricDynamic] Created valid object for version 1.2
+[XCPMetricDynamic] Checking version 1.3
+[XCPMetricDynamic] Created valid object for version 1.3
+[XCPMetricDynamic] Checking version 1.4
+[XCPMetricDynamic] Created valid object for version 1.4
+[XCPMetricDynamic] Checking version 1.5
+[XCPMetricDynamic] Created valid object for version 1.5
+[XCPMetricDynamic] Checking version 1.6
+[XCPMetricDynamic] Created valid object for version 1.6
+[XCPMetricDynamic] Checking version 1.7
+[XCPMetricDynamic] Created valid object for version 1.7
+[XCPMetricDynamic] Checking version 1.8
+[XCPMetricDynamic] Created valid object for version 1.8
+[XCPMetricDynamic] Checking version 1.9
+[XCPMetricDynamic] Created valid object for version 1.9
+[XCPMetricDynamic] Checking version 1.10
+[XCPMetricDynamic] Created valid object for version 1.10
+[XCPMetricDynamic] Checking version 1.11
+[XCPMetricDynamic] Created valid object for version 1.11
+[XCPMetricDynamic] Checking version 1.12
+[XCPMetricDynamic] Created valid object for version 1.12
+[XCPMetricDynamic] Checking version 1.13
+[XCPMetricDynamic] Created valid object for version 1.13
+[XCPMetricDynamic] Checking version 1.14
+[XCPMetricDynamic] Created valid object for version 1.14
+[XCPMetricDynamic] Checking version 1.15
+[XCPMetricDynamic] Created valid object for version 1.15
+[XCPMetricDynamic] Checking version 1.16
+[XCPMetricDynamic] Created valid object for version 1.16
+[XCPMetricDynamic] Checking version 1.17
+[XCPMetricDynamic] Created valid object for version 1.17
+[XCPMetricDynamic] Checking version 1.18
+[XCPMetricDynamic] Created valid object for version 1.18
+[       OK ] AmdSmiDynamicMetricTest.XCPMetricDynamicVersionSupported (0 ms)
+[----------] 2 tests from AmdSmiDynamicMetricTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 48 tests from 3 test suites ran. (9241 ms total)
+[  PASSED  ] 43 tests.
+[  SKIPPED ] 5 tests, listed below:
+[  SKIPPED ] amdsmitstReadWrite.FanReadWrite
+[  SKIPPED ] amdsmitstReadWrite.TestOverdriveReadWrite
+[  SKIPPED ] amdsmitstReadWrite.TestPciReadWrite
+[  SKIPPED ] amdsmitstReadWrite.TestPerfCntrReadWrite
+[  SKIPPED ] amdsmitstReadWrite.TestEvtNotifReadWrite

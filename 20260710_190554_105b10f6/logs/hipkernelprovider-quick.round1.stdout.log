@@ -1,0 +1,9 @@
+Test project /home/zs/TheRock/output-linux-portable/build/dist/rocm/bin/hip_kernel_provider
+    Start 1: hip_kernel_provider_tests
+1/2 Test #1: hip_kernel_provider_tests ...............   Passed    0.11 sec
+    Start 2: hip_kernel_provider_integration_tests
+2/2 Test #2: hip_kernel_provider_integration_tests ...   Passed   17.10 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =  17.21 sec
