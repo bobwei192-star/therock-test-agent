@@ -976,6 +976,80 @@ assert tasks["hiprand-quick"]["entrypoint_type"] == "test_runner"
 assert "OUTPUT_ARTIFACTS_DIR" in tasks["hiprand-quick"]["wrapper_env_change_keys"]
 PY
 
+echo "[test] rocblas quick timeout override"
+cat >"${TMP_DIR}/rocblas_quick_component_sort_order.json" <<'JSON'
+{
+  "version": "test",
+  "entries": [
+    {"test_type": "quick", "component": "rocblas", "duration_ref": 1, "category": "heavy", "status": "pass", "sort_order": 1, "gpu_hang_risk": false}
+  ]
+}
+JSON
+
+mkdir -p "${TMP_DIR}/output/build/dist/rocm/bin/rocblas"
+cat >"${TMP_DIR}/output/build/dist/rocm/bin/rocblas/CTestTestfile.cmake" <<'CMAKE'
+add_test(rocblas-test_quick_suite "/opt/rocm/bin/rocblas-test" "--gtest_filter=*quick*")
+set_tests_properties(rocblas-test_quick_suite PROPERTIES LABELS "quick" TIMEOUT "1800")
+CMAKE
+
+cat >"${FAKE_SCRIPTS}/test_runner.py" <<'PY'
+import os
+import sys
+from pathlib import Path
+
+ctest_timeout_seconds = 7200
+TEST_DIR = os.environ["THEROCK_BIN_DIR"] + "/rocblas"
+
+
+def main():
+    assert len(sys.argv) == 1, sys.argv
+    assert os.environ["TEST_COMPONENT"] == "rocblas"
+    assert os.environ["TEST_TYPE"] == "quick"
+    assert os.environ["THEROCK_AGENT_CTEST_TIMEOUT_SECONDS"] == "10800"
+    assert ctest_timeout_seconds == 10800
+
+    patched_test_dir = Path(TEST_DIR)
+    patched_text = (patched_test_dir / "CTestTestfile.cmake").read_text(encoding="utf-8")
+    original_test_dir = Path(os.environ["THEROCK_BIN_DIR"]) / "rocblas"
+    original_text = (original_test_dir / "CTestTestfile.cmake").read_text(encoding="utf-8")
+
+    assert patched_test_dir != original_test_dir.resolve()
+    assert 'TIMEOUT "10800"' in patched_text
+    assert 'TIMEOUT "1800"' in original_text
+    print(f"rocblas timeout={ctest_timeout_seconds} overlay={patched_test_dir}")
+    return 0
+PY
+
+"${AGENT}" run \
+  --therock-repo "${FAKE_THEROCK}" \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/rocblas_quick_component_sort_order.json" \
+  --components rocblas \
+  --test-types quick \
+  --output-root "${TMP_DIR}/rocblas_quick_runs" \
+  --stable-threshold 1 \
+  --max-rounds 1
+
+ROCBLAS_QUICK_RUN_DIR="$(find "${TMP_DIR}/rocblas_quick_runs" -mindepth 1 -maxdepth 1 -type d | sort | head -n 1)"
+python3 - "${ROCBLAS_QUICK_RUN_DIR}/global_state.json" <<'PY'
+import json
+import sys
+
+state = json.load(open(sys.argv[1], encoding="utf-8"))
+result = state["results"]["task_results"]["rocblas-quick"]
+assert state["final_status"] == "passed", state["final_status"]
+assert result["status"] == "pass"
+assert result["timeout_hint_seconds"] == 10800
+assert result["wrapper_path"].endswith("rocblas-quick.round1.sh")
+assert "THEROCK_AGENT_CTEST_TIMEOUT_SECONDS" in result["wrapper_env_change_keys"]
+PY
+
+grep -q "rocblas quick CTest TIMEOUT override seconds=10800" "${ROCBLAS_QUICK_RUN_DIR}/logs/rocblas-quick.round1.stdout.log"
+grep -q "rocblas timeout=10800" "${ROCBLAS_QUICK_RUN_DIR}/logs/rocblas-quick.round1.stdout.log"
+grep -q "timeout_launcher.py" "${ROCBLAS_QUICK_RUN_DIR}/wrappers/rocblas-quick.round1.sh"
+grep -q "10800" "${ROCBLAS_QUICK_RUN_DIR}/wrappers/rocblas-quick.round1.sh"
+
 echo "[test] path hardcode detection"
 cat >"${TMP_DIR}/path_hardcode_component_sort_order.json" <<'JSON'
 {

@@ -358,6 +358,21 @@ OpenCode 内：
 - `gpu_risk=skip` 会跳过 `gpu_hang_risk=true` 的任务，适合日常全量验证；需要覆盖高风险任务时再显式使用 `include` 或 `quarantine`。
 - 如果全量测试包含 sudo-sensitive 组件，并且希望获得完整覆盖，可通过 `./scripts/therock-sudo-agent run -- opencode` 启动后追加 `sudo_policy=askpass`。
 
+`rocblas + quick` 有专门的超时规则：当任务解析后满足 `TEST_COMPONENT=rocblas` 且 `TEST_TYPE=quick` 时，agent 会在 native Linux 和 WSL2 中统一把 CTest timeout 设置为 `10800` 秒（3 小时）。该规则通过 run 目录中的 wrapper/launcher 生效：launcher 会创建临时 CTest test-dir overlay，把 `CTestTestfile.cmake` 中的 `TIMEOUT` 覆盖为 10800，同时保持 TheRock 源码和 artifacts 原目录不变。这样可以避免 WSL2 GPU 虚拟化开销或大规模 rocBLAS quick suite 导致 1800 秒 timeout 误判。
+
+OpenCode 里输入的指令保持不变，不需要额外传 timeout 参数。只要任务命中 `components=rocblas` 和 `test_types=quick`，agent 会自动应用 3 小时超时规则：
+
+```text
+/therock-run artifacts=/home/zs/TheRock/output-linux-portable/build gpu=gfx1151 components=rocblas test_types=quick gpu_risk=skip
+```
+
+如果跑全量 quick，也同样不需要改指令；其中的 `rocblas quick` 子任务会自动使用 3 小时超时：
+
+```text
+/therock-run artifacts=/home/zs/TheRock/output-linux-portable/build gpu=gfx1151 components=all test_types=quick gpu_risk=skip
+```
+
+
 带 sudo askpass 的全量命令示例：
 
 ```text

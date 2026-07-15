@@ -27,6 +27,9 @@ from .preflight import check_task_preflight
 from .state import save_state
 
 
+ROCBLAS_QUICK_TIMEOUT_SECONDS = 3 * 60 * 60
+
+
 def changed_env_values(env: dict[str, str]) -> dict[str, str]:
     changes: dict[str, str] = {}
     for key, value in sorted(env.items()):
@@ -35,6 +38,113 @@ def changed_env_values(env: dict[str, str]) -> dict[str, str]:
         if os.environ.get(key) != value:
             changes[key] = value
     return changes
+
+
+def rocblas_quick_timeout_seconds(task: dict[str, Any], entrypoint_metadata: dict[str, Any]) -> int | None:
+    test_component = str(entrypoint_metadata.get("test_component") or task.get("component") or "")
+    test_type = str(task.get("test_type") or "")
+    if (
+        entrypoint_metadata.get("entrypoint_type") == "test_runner"
+        and test_component == "rocblas"
+        and test_type == "quick"
+    ):
+        return ROCBLAS_QUICK_TIMEOUT_SECONDS
+    return None
+
+
+def write_rocblas_quick_timeout_launcher(launcher_path: Path) -> None:
+    launcher_path.write_text(
+        """#!/usr/bin/env python3
+from __future__ import annotations
+
+import importlib.util
+import os
+import re
+import shutil
+import sys
+from pathlib import Path
+
+
+def _quote_ctest_timeout(match: re.Match[str], timeout_seconds: int) -> str:
+    return f"{match.group(1)}{match.group(2)}{timeout_seconds}{match.group(4)}"
+
+
+def _build_timeout_overlay(test_dir: str, overlay_root: str, timeout_seconds: int) -> str:
+    source_dir = Path(test_dir).resolve()
+    ctest_file = source_dir / "CTestTestfile.cmake"
+    if not ctest_file.is_file():
+        print(
+            f"# TheRock Test Agent: rocblas quick timeout override skipped; missing {ctest_file}",
+            file=sys.stderr,
+        )
+        return str(source_dir)
+
+    overlay_dir = Path(overlay_root).resolve()
+    if overlay_dir.exists():
+        shutil.rmtree(overlay_dir)
+    overlay_dir.mkdir(parents=True, exist_ok=True)
+
+    for child in source_dir.iterdir():
+        if child.name == "CTestTestfile.cmake":
+            continue
+        target = overlay_dir / child.name
+        os.symlink(child, target, target_is_directory=child.is_dir())
+
+    text = ctest_file.read_text(encoding="utf-8")
+    patched, replacements = re.subn(
+        r"(\\bTIMEOUT\\s+)([\\\"']?)(\\d+)([\\\"']?)",
+        lambda match: _quote_ctest_timeout(match, timeout_seconds),
+        text,
+    )
+    (overlay_dir / "CTestTestfile.cmake").write_text(patched, encoding="utf-8")
+    print(
+        "# TheRock Test Agent: rocblas quick CTest TIMEOUT override "
+        f"seconds={timeout_seconds} replacements={replacements} overlay={overlay_dir}"
+    )
+    return str(overlay_dir)
+
+
+def main() -> int:
+    try:
+        timeout_seconds = int(sys.argv[1])
+        overlay_root = sys.argv[2]
+        separator_index = sys.argv.index("--")
+    except (IndexError, ValueError) as exc:
+        print(f"Invalid timeout launcher arguments: {sys.argv}: {exc}", file=sys.stderr)
+        return 2
+
+    command = sys.argv[separator_index + 1 :]
+    if len(command) < 2:
+        print(f"Invalid wrapped command: {command}", file=sys.stderr)
+        return 2
+
+    script_path = Path(command[1] if Path(command[0]).name.startswith("python") else command[0])
+    script_args = command[2:] if Path(command[0]).name.startswith("python") else command[1:]
+    sys.argv = [str(script_path), *script_args]
+
+    spec = importlib.util.spec_from_file_location("_therock_test_runner", script_path)
+    if spec is None or spec.loader is None:
+        print(f"Unable to load test runner: {script_path}", file=sys.stderr)
+        return 2
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    module.ctest_timeout_seconds = timeout_seconds
+    if hasattr(module, "TEST_DIR"):
+        module.TEST_DIR = _build_timeout_overlay(str(module.TEST_DIR), overlay_root, timeout_seconds)
+    if not hasattr(module, "main"):
+        print(f"test runner has no main(): {script_path}", file=sys.stderr)
+        return 2
+    return int(module.main())
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+""",
+        encoding="utf-8",
+    )
+    launcher_path.chmod(0o755)
 
 
 def write_execution_wrapper(
@@ -49,6 +159,29 @@ def write_execution_wrapper(
     wrappers_dir = Path(state["meta"]["output_dir"]) / "wrappers"
     ensure_dir(wrappers_dir)
     wrapper_path = wrappers_dir / f"{task['task_id']}.round{round_no}.sh"
+    timeout_seconds = rocblas_quick_timeout_seconds(task, entrypoint_metadata)
+    actual_command = command
+    timeout_override: dict[str, Any] = {}
+    if timeout_seconds is not None:
+        launcher_path = wrappers_dir / f"{task['task_id']}.round{round_no}.timeout_launcher.py"
+        overlay_root = wrappers_dir / f"{task['task_id']}.round{round_no}.ctest_timeout_overlay"
+        write_rocblas_quick_timeout_launcher(launcher_path)
+        env["THEROCK_AGENT_CTEST_TIMEOUT_SECONDS"] = str(timeout_seconds)
+        actual_command = [
+            "python3",
+            str(launcher_path),
+            str(timeout_seconds),
+            str(overlay_root),
+            "--",
+            *command,
+        ]
+        timeout_override = {
+            "enabled": True,
+            "seconds": timeout_seconds,
+            "strategy": "ctest_test_dir_overlay",
+            "launcher_path": str(launcher_path),
+            "overlay_root": str(overlay_root),
+        }
     env_changes = changed_env_values(env)
 
     lines = [
@@ -64,7 +197,7 @@ def write_execution_wrapper(
     ]
     for key, value in env_changes.items():
         lines.append(f"export {key}={shlex.quote(value)}")
-    lines.extend(["", "exec " + " ".join(shlex.quote(item) for item in command)])
+    lines.extend(["", "exec " + " ".join(shlex.quote(item) for item in actual_command)])
 
     wrapper_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     wrapper_path.chmod(0o755)
@@ -72,9 +205,11 @@ def write_execution_wrapper(
     details = {
         "wrapper_path": str(wrapper_path),
         "cwd": cwd,
-        "command": " ".join(command),
+        "command": " ".join(actual_command),
+        "original_command": " ".join(command),
         "env_changes": {key: safe_env_value(key, value) for key, value in env_changes.items()},
         "entrypoint": entrypoint_metadata,
+        "timeout_override": timeout_override,
         "policy": "wrapper_only_no_artifact_or_source_mutation",
     }
     return wrapper_path, details

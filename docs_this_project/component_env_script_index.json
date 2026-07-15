@@ -326,8 +326,7 @@
       ],
       "known_notes": [
         "comprehensive 中 nightly f16 dot batched kernel 曾 SIGABRT/SIGFPE，full 反而通过。"
-      ],
-      "timeout_hint_seconds": 10800
+      ]
     },
     "rocdecode": {
       "entrypoint_type": "dedicated_python",
@@ -508,6 +507,14 @@
     }
   },
   "mode_overrides": {
+    "quick": {
+      "rocblas": {
+        "timeout_hint_seconds": 10800,
+        "known_notes": [
+          "quick 套件在 native 与 WSL2 均按 3h CTest timeout 运行；WSL2 GPU 虚拟化下耗时波动更大。"
+        ]
+      }
+    },
     "full": {
       "rocsparse": {
         "gpu_hang_risk": true,
