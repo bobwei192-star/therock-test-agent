@@ -8,6 +8,7 @@ TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "${TMP_DIR}"' EXIT
 
 mkdir -p "${TMP_DIR}/output/build/dist/rocm/bin" "${TMP_DIR}/output/build/dist/rocm/lib"
+touch "${TMP_DIR}/output/build/dist/rocm/lib/librocdxg.so"
 
 cat >"${TMP_DIR}/component_sort_order.json" <<'JSON'
 {
@@ -61,6 +62,11 @@ assert off_argv[-2:] == ["--debug-repair", "off"], off_argv
 flag_off_argv = kv_to_runner_argv("start", ["artifacts=/tmp/build", "gpu=gfx1151", "--debug-repair=off"])
 assert "--debug-repair=off" in flag_off_argv, flag_off_argv
 assert flag_off_argv[-1] != "opencode", flag_off_argv
+
+bootstrap_argv = kv_to_runner_argv("start", ["artifacts=/tmp/build", "gpu=gfx1151", "bootstrap_env=off"])
+assert bootstrap_argv[-2:] == ["--debug-repair", "opencode"], bootstrap_argv
+assert "--bootstrap-env" in bootstrap_argv, bootstrap_argv
+assert "off" in bootstrap_argv, bootstrap_argv
 PY
 
 python3 - "${PROJECT_ROOT}" "${TMP_DIR}" <<'PY'
@@ -116,7 +122,147 @@ state["runtime_summary"] = {
     "rocm_runtime": runtime,
 }
 assert runtime["runtime_label"] == "wsl2-dxg", json.dumps(runtime, indent=2)
+blocked = check_task_preflight(state, {}, env, {})
+assert blocked and blocked.startswith("missing_wsl_rocdxg:"), blocked
+
+(rocm_dist / "lib" / "librocdxg.so").touch()
+runtime = detect_rocm_runtime(rocm_dist)
+state["runtime_summary"] = {
+    "runtime_label": runtime["runtime_label"],
+    "rocm_runtime": runtime,
+}
+assert runtime["rocm_library_integrity"]["librocdxg"]["found"]
 assert check_task_preflight(state, {}, env, {}) is None
+PY
+
+echo "[test] auto bootstrap prepares host dependencies"
+FAKE_BOOTSTRAP_BIN="${TMP_DIR}/fake_bootstrap_bin"
+FAKE_BOOTSTRAP_REPO="${TMP_DIR}/fake_bootstrap_therock"
+FAKE_BOOTSTRAP_LOG="${TMP_DIR}/fake_bootstrap_commands.log"
+mkdir -p \
+  "${FAKE_BOOTSTRAP_BIN}" \
+  "${FAKE_BOOTSTRAP_REPO}/build_tools/github_actions/test_executable_scripts" \
+  "${TMP_DIR}/bootstrap_artifacts/dist/rocm/bin" \
+  "${TMP_DIR}/bootstrap_artifacts/dist/rocm/lib"
+touch "${TMP_DIR}/bootstrap_artifacts/dist/rocm/lib/librocdxg.so"
+touch "${FAKE_BOOTSTRAP_REPO}/requirements.txt"
+
+cat >"${FAKE_BOOTSTRAP_BIN}/sudo" <<'SH'
+#!/usr/bin/env bash
+set -euo pipefail
+echo "sudo $*" >> "${THEROCK_FAKE_BOOTSTRAP_LOG}"
+if [ "${1:-}" = "-n" ] || [ "${1:-}" = "-A" ]; then
+  shift
+fi
+if [ "${1:-}" = "true" ]; then
+  exit 0
+fi
+exec "$@"
+SH
+chmod +x "${FAKE_BOOTSTRAP_BIN}/sudo"
+
+cat >"${FAKE_BOOTSTRAP_BIN}/apt" <<'SH'
+#!/usr/bin/env bash
+set -euo pipefail
+echo "apt $*" >> "${THEROCK_FAKE_BOOTSTRAP_LOG}"
+exit 0
+SH
+chmod +x "${FAKE_BOOTSTRAP_BIN}/apt"
+
+for command_name in cmake ctest ninja g++ pkg-config; do
+  cat >"${FAKE_BOOTSTRAP_BIN}/${command_name}" <<'SH'
+#!/usr/bin/env bash
+exit 0
+SH
+  chmod +x "${FAKE_BOOTSTRAP_BIN}/${command_name}"
+done
+
+cat >"${FAKE_BOOTSTRAP_BIN}/bootstrap-python3" <<'SH'
+#!/usr/bin/env bash
+set -euo pipefail
+echo "bootstrap-python3 $*" >> "${THEROCK_FAKE_BOOTSTRAP_LOG}"
+if [ "${1:-}" = "-m" ] && [ "${2:-}" = "venv" ]; then
+  venv_dir="${3:?missing venv dir}"
+  mkdir -p "${venv_dir}/bin"
+  cat >"${venv_dir}/bin/python" <<'PYSH'
+#!/usr/bin/env bash
+set -euo pipefail
+echo "venv-python $*" >> "${THEROCK_FAKE_BOOTSTRAP_LOG}"
+if [ "${1:-}" = "-m" ] && [ "${2:-}" = "pip" ]; then
+  exit 0
+fi
+if [ "${1:-}" = "-c" ]; then
+  echo "boto3 ok"
+  exit 0
+fi
+exit 0
+PYSH
+  chmod +x "${venv_dir}/bin/python"
+  exit 0
+fi
+exit 0
+SH
+chmod +x "${FAKE_BOOTSTRAP_BIN}/bootstrap-python3"
+
+cat >"${FAKE_BOOTSTRAP_REPO}/build_tools/github_actions/test_executable_scripts/test_runner.py" <<'PY'
+import os
+
+assert os.environ["TEST_COMPONENT"] == "hiprand"
+assert os.environ["TEST_TYPE"] == "quick"
+print("bootstrap test runner ok")
+PY
+
+cat >"${TMP_DIR}/bootstrap_component_sort_order.json" <<'JSON'
+{
+  "version": "bootstrap-test",
+  "entries": [
+    {"test_type": "quick", "component": "hiprand", "duration_ref": 1, "category": "medium", "status": "pass", "sort_order": 1, "gpu_hang_risk": false}
+  ]
+}
+JSON
+
+PATH="${FAKE_BOOTSTRAP_BIN}:${PATH}" \
+THEROCK_FAKE_BOOTSTRAP_LOG="${FAKE_BOOTSTRAP_LOG}" \
+THEROCK_BOOTSTRAP_PYTHON="${FAKE_BOOTSTRAP_BIN}/bootstrap-python3" \
+"${AGENT}" run \
+  --therock-repo "${FAKE_BOOTSTRAP_REPO}" \
+  --artifacts "${TMP_DIR}/bootstrap_artifacts" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/bootstrap_component_sort_order.json" \
+  --components hiprand \
+  --test-types quick \
+  --output-root "${TMP_DIR}/bootstrap_runs" \
+  --sudo-policy cache \
+  --bootstrap-env auto \
+  --stable-threshold 1 \
+  --max-rounds 1
+
+BOOTSTRAP_RUN_DIRS=("${TMP_DIR}"/bootstrap_runs/*)
+BOOTSTRAP_RUN_DIR="${BOOTSTRAP_RUN_DIRS[0]}"
+python3 - "${BOOTSTRAP_RUN_DIR}" "${FAKE_BOOTSTRAP_LOG}" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+run_dir = Path(sys.argv[1])
+fake_log = Path(sys.argv[2]).read_text(encoding="utf-8")
+state = json.load(open(run_dir / "global_state.json", encoding="utf-8"))
+summary = json.load(open(run_dir / "summary.json", encoding="utf-8"))
+bootstrap = json.load(open(run_dir / "bootstrap" / "bootstrap_env.json", encoding="utf-8"))
+bootstrap_log = (run_dir / "bootstrap" / "bootstrap_env.log").read_text(encoding="utf-8")
+
+assert state["final_status"] == "passed", state["final_status"]
+assert state["bootstrap"]["status"] == "completed", state["bootstrap"]
+assert summary["bootstrap"]["status"] == "completed", summary["bootstrap"]
+assert bootstrap["status"] == "completed", bootstrap
+assert bootstrap["venv"]["requirements_installed"] is True, bootstrap
+assert bootstrap["venv"]["boto3_import"] is True, bootstrap
+assert "apt update" in fake_log, fake_log
+assert "apt install -y" in fake_log, fake_log
+assert "bootstrap-python3 -m venv" in fake_log, fake_log
+assert "pip install -r requirements.txt" in bootstrap_log, bootstrap_log
+assert "boto3 ok" in bootstrap_log, bootstrap_log
+assert summary["artifacts"]["bootstrap_summary"].endswith("bootstrap/bootstrap_env.json")
 PY
 
 echo "[test] WSL2 missing /dev/dxg blocks before execution"
@@ -178,6 +324,65 @@ assert '"runtime_label": "wsl2-missing-dxg"' in progress, progress
 assert '"runtime_label": "wsl2-missing-dxg"' in activity, activity
 assert '"runtime_label": "wsl2-missing-dxg"' in tool_calls, tool_calls
 assert "runtime=wsl2-missing-dxg" in agent_out, agent_out
+PY
+
+echo "[test] WSL2 missing librocdxg blocks before execution"
+cat >"${TMP_DIR}/missing_rocdxg_component_sort_order.json" <<'JSON'
+{
+  "version": "missing-rocdxg-test",
+  "entries": [
+    {"test_type": "standard", "component": "amdsmi", "duration_ref": 1, "category": "medium", "status": "pass", "sort_order": 1, "gpu_hang_risk": false}
+  ]
+}
+JSON
+mkdir -p \
+  "${TMP_DIR}/missing_rocdxg_devices/dev" \
+  "${TMP_DIR}/missing_rocdxg_artifacts/dist/rocm/bin" \
+  "${TMP_DIR}/missing_rocdxg_artifacts/dist/rocm/lib"
+touch "${TMP_DIR}/missing_rocdxg_devices/dev/dxg"
+
+THEROCK_RUNTIME_KIND=wsl2 \
+THEROCK_RUNTIME_DEVICE_ROOT="${TMP_DIR}/missing_rocdxg_devices" \
+THEROCK_ROCDXG_SEARCH_PATHS="${TMP_DIR}/missing_rocdxg_artifacts/dist/rocm/lib" \
+THEROCK_ROCDXG_SEARCH_PATHS_ONLY=1 \
+"${AGENT}" run \
+  --artifacts "${TMP_DIR}/missing_rocdxg_artifacts" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/missing_rocdxg_component_sort_order.json" \
+  --components amdsmi \
+  --test-types standard \
+  --output-root "${TMP_DIR}/missing_rocdxg_runs" \
+  --stable-threshold 1 \
+  --max-rounds 1 >"${TMP_DIR}/missing_rocdxg_agent.out"
+
+MISSING_ROCDXG_RUN_DIRS=("${TMP_DIR}"/missing_rocdxg_runs/*)
+MISSING_ROCDXG_RUN_DIR="${MISSING_ROCDXG_RUN_DIRS[0]}"
+python3 - "${MISSING_ROCDXG_RUN_DIR}" "${TMP_DIR}/missing_rocdxg_agent.out" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+run_dir = Path(sys.argv[1])
+agent_out = Path(sys.argv[2]).read_text(encoding="utf-8")
+state = json.load(open(run_dir / "global_state.json", encoding="utf-8"))
+summary = json.load(open(run_dir / "summary.json", encoding="utf-8"))
+failure = json.load(open(run_dir / "failures" / "amdsmi-standard_failure.json", encoding="utf-8"))
+environment = json.load(open(run_dir / "environment_summary.json", encoding="utf-8"))
+stderr_log = (run_dir / "logs" / "amdsmi-standard.round1.stderr.log").read_text(encoding="utf-8")
+
+result = state["results"]["task_results"]["amdsmi-standard"]
+integrity = environment["runtime_summary"]["rocm_runtime"]["rocm_library_integrity"]
+
+assert state["final_status"] == "failed", state["final_status"]
+assert result["status"] == "blocked", result
+assert result["failure_summary"].startswith("missing_wsl_rocdxg:"), result["failure_summary"]
+assert "missing_wsl_rocdxg:" in stderr_log, stderr_log
+assert summary["runtime_label"] == "wsl2-dxg", summary["runtime_label"]
+assert failure["task"]["runtime_label"] == "wsl2-dxg", failure["task"]
+assert integrity["status"] == "incomplete", integrity
+assert "librocdxg.so" in integrity["missing"], integrity
+assert not integrity["librocdxg"]["found"], integrity
+assert "runtime=wsl2-dxg" in agent_out, agent_out
 PY
 
 echo "[test] run loop with risk skip"

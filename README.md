@@ -561,6 +561,45 @@ ls -l /dev/dxg
 
 如果 `/dev/dxg` 不存在，应先修复 Windows 驱动、WSL2 和 ROCm on WSL 环境；不要按 native Linux 的 `/dev/kfd`、`/dev/dri` 缺失去排查。仅做无 GPU mock/本地自测时，可临时设置 `THEROCK_ALLOW_MISSING_WSL_DXG=1` 跳过该 preflight。
 
+### 测试前自动准备环境
+
+默认 `bootstrap_env=auto` 会在第一轮测试前执行测试机 bootstrap：
+
+```bash
+sudo apt update
+sudo apt install -y gfortran git ninja-build cmake g++ pkg-config xxd automake libtool python3-venv python3-full python3-dev libegl1-mesa-dev texinfo bison flex curl make
+cd <TheRock>
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -c "import boto3; print('boto3 ok')"
+```
+
+Ubuntu 24.04 启用了 PEP 668，不要直接向系统 Python 执行 `sudo pip install`。bootstrap 会使用 TheRock checkout 内的 `.venv`。过程写入：
+
+```text
+runs/<run_id>/bootstrap/bootstrap_env.json
+runs/<run_id>/bootstrap/bootstrap_env.log
+```
+
+如果测试机不允许自动安装系统依赖，可传 `bootstrap_env=off` 暂停该步骤。
+
+### WSL2 下任务被 `missing_wsl_rocdxg` 阻断
+
+这表示 `/dev/dxg` 已存在，但 ROCm on WSL 需要的 `librocdxg.so` 没有在 artifacts、`LD_LIBRARY_PATH` 或 `/opt/rocm` 中找到。先在测试机上确认：
+
+```bash
+find /opt "$ROCM_PATH" "$OUTPUT_ARTIFACTS_DIR" -name 'librocdxg*.so*' 2>/dev/null
+command -v rocminfo || test -x "$ROCM_PATH/bin/rocminfo"
+```
+
+如果没有 `librocdxg.so`，普通 Linux artifacts 不能自动补出该库；需要安装 ROCm on WSL / `librocdxg` 包，或把 TheRock 的 `wsl-rocdxg` artifact 合并到运行时库路径。若库在非标准目录，可以设置：
+
+```bash
+export THEROCK_ROCDXG_SEARCH_PATHS=/path/to/librocdxg/lib
+export LD_LIBRARY_PATH=/path/to/librocdxg/lib:$LD_LIBRARY_PATH
+```
+
 ### WSL2 中 artifacts 路径怎么写
 
 推荐使用 WSL 内的 Linux 路径，例如：

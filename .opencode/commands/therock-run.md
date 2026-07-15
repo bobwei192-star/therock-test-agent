@@ -22,6 +22,7 @@ $ARGUMENTS
 - `test_types=<list>`：测试类型，可选，逗号分隔，默认 `quick,standard,comprehensive,full`
 - `gpu_risk=<skip|include|quarantine>`：GPU risk 策略，可选，默认 `skip`
 - `sudo_policy=<none|cache|askpass>`：sudo 策略，可选，默认 `${THEROCK_SUDO_POLICY:-none}`
+- `bootstrap_env=<auto|off>`：测试前自动准备测试机环境，可选，默认 `auto`
 - `max_rounds=<n>`：最大 loop 轮数，可选，默认 runner 内置值
 - `stable_threshold=<n>`：失败集稳定阈值，可选，默认 runner 内置值
 - `debug_repair=<opencode|off>`：debug/repair 编排模式，可选，默认 `opencode`
@@ -31,6 +32,7 @@ $ARGUMENTS
 - 不要自己去掉 key 前缀，不要自己拼 `--components` / `--gpu-risk` 等 flags。
 - 不要把 `artifacts=...`、`gpu=...` 等原始 token 当作 runner flag value。
 - `sudo_policy`、`max_rounds`、`stable_threshold` 是独立参数，绝不能合并到 `--gpu-risk`。
+- `bootstrap_env` 是独立参数，`auto` 会在测试前安装系统依赖并创建 TheRock `.venv`，需要可用 sudo policy。
 - `--gpu-risk` 只允许 `skip`、`include`、`quarantine`。
 - 如果 runner 返回 artifacts 缺失或路径不存在，再向用户索要真实路径。
 
@@ -72,6 +74,7 @@ $ARGUMENTS
 - 官方排除由 `official_exclude.json` 决定，命中后不要执行。
 - 不要读取或要求用户提供 sudo 密码。
 - 如果本次任务包含 `sudo_sensitive` 组件，`THEROCK_SUDO_POLICY=cache` 需要已有 sudo cache，`THEROCK_SUDO_POLICY=askpass` 建议通过 `./scripts/therock-sudo-agent run -- opencode` 启动 OpenCode。
+- `bootstrap_env=auto` 会先执行测试机 bootstrap：安装 `cmake/ctest/ninja/g++/python3-venv/python3-full` 等依赖，在 TheRock checkout 中创建 `.venv`，并用该 venv 安装 `requirements.txt` 和验证 `boto3`。Ubuntu 24.04 不允许直接污染系统 Python。
 - 非 sudo 组件不应因为 `THEROCK_SUDO_POLICY=cache` 但 sudo cache 失效而被启动前拦住。
 - `sudo_sensitive` 任务没有可用 sudo cache 或 askpass agent 时应 blocked。
 - 启动后向用户返回 `run_id`、输出目录、runnable/skipped 数量，以及当前自动编排阶段。
@@ -83,6 +86,8 @@ $ARGUMENTS
 - `runs/<run_id>/agent_activity.jsonl`
 - `runs/<run_id>/runner.pid.json`
 - `runs/<run_id>/progress.jsonl`
+- `runs/<run_id>/bootstrap/bootstrap_env.json`
+- `runs/<run_id>/bootstrap/bootstrap_env.log`
 
 回复用户时必须包含：
 

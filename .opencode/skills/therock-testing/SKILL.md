@@ -158,6 +158,57 @@ Set runtime environment consistently:
 - `THEROCK_AMDGPU_FAMILIES=<same gfx family>`
 - `THEROCK_AMDGPU_TARGETS=<same gfx value unless a narrower target list is explicitly provided>`
 
+## WSL2 ROCm / ROCDXG Checks
+
+WSL2 uses a different GPU device model from native Linux:
+
+- Native Linux expects `/dev/kfd` and `/dev/dri`.
+- WSL2 expects `/dev/dxg`.
+- Missing `/dev/kfd` or `/dev/dri` on WSL2 is normal and must not be reported as the root cause.
+
+When WSL2 GPU tests fail with `hipErrorNoDevice`, `no ROCm-capable device`, or
+`Cannot load librocdxg.so`, diagnose in this order:
+
+1. Confirm WSL2 and the DXG device:
+
+   ```bash
+   uname -a
+   ls -l /dev/dxg /dev/kfd /dev/dri
+   ```
+
+2. Check whether the WSL-only ROCDXG bridge exists:
+
+   ```bash
+   find /opt "$ROCM_PATH" "$OUTPUT_ARTIFACTS_DIR" -name 'librocdxg*.so*' 2>/dev/null
+   ```
+
+3. Check ROCm runtime tools:
+
+   ```bash
+   command -v rocminfo || test -x "$ROCM_PATH/bin/rocminfo"
+   command -v rocm_agent_enumerator || test -x "$ROCM_PATH/bin/rocm_agent_enumerator"
+   ```
+
+4. If `/dev/dxg` exists but `librocdxg.so` is missing, classify as
+   `missing_runtime_library` or `gpu_runtime_error` with manual repair. The fix
+   is to install ROCm on WSL plus the `librocdxg` package, or to merge a valid
+   `wsl-rocdxg` artifact into the runtime library path.
+
+5. If `librocdxg.so` exists but is not found by the loader, inspect
+   `LD_LIBRARY_PATH` and add the directory containing `librocdxg.so`. The runner
+   also records `THEROCK_ROCDXG_SEARCH_PATHS` in runtime summaries for explicit
+   test-machine overrides.
+
+TheRock's normal Linux portable build does not automatically produce
+`librocdxg.so`. In TheRock, ROCDXG is a dedicated WSL artifact stage:
+
+- `BUILD_TOPOLOGY.toml`: `build_stages.wsl-rocdxg`
+- `docs/development/wsl_rocdxg.md`
+- `core/wsl-rocdxg/`
+
+Do not tell users to fix WSL2 by creating `/dev/kfd`; that is the native Linux
+device path, not the WSL2 ROCDXG path.
+
 ## CTest Selection Model
 
 The common `test_runner.py` path uses CTest labels:
@@ -175,6 +226,32 @@ The important mental model is:
 ## Loop Rules
 
 The deterministic state machine belongs in `.opencode/tools/therock_agent.sh`, not in chat memory.
+
+Before the first round, `bootstrap_env=auto` prepares host dependencies when a
+real TheRock checkout is available:
+
+1. Install Ubuntu build/test packages such as `cmake`, `ninja-build`, `g++`,
+   `pkg-config`, `python3-venv`, `python3-full`, `python3-dev`, `curl`, and
+   `make`.
+2. Verify `ctest` through the `cmake` package; do not tell users to install a
+   separate `ctest` package on Ubuntu.
+3. Create or reuse `<TheRock>/.venv`.
+4. Install TheRock `requirements.txt` inside that venv.
+5. Verify `boto3` import from the venv because `fetch_sources.py` and DVC
+   artifact helpers depend on it.
+
+Ubuntu 24.04 uses PEP 668 (`externally-managed-environment`). Never run
+`sudo pip install` or install TheRock Python dependencies into system Python.
+Use the project venv. If the TheRock root lacks `pyproject.toml` and `setup.py`,
+do not run `pip install -e .`.
+
+Bootstrap outputs are:
+
+- `runs/<run_id>/bootstrap/bootstrap_env.json`
+- `runs/<run_id>/bootstrap/bootstrap_env.log`
+
+If bootstrap fails, classify it as environment setup failure, not a component
+test failure.
 
 Loop behavior:
 

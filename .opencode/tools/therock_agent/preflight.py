@@ -36,7 +36,18 @@ def check_runtime_gpu_access(state: dict[str, Any]) -> str | None:
 
     dxg = rocm_runtime.get("gpu_devices", {}).get("/dev/dxg", {})
     if dxg.get("exists"):
-        return None
+        if os.environ.get("THEROCK_ALLOW_MISSING_ROCDXG") == "1":
+            return None
+        integrity = rocm_runtime.get("rocm_library_integrity") or {}
+        rocdxg = integrity.get("librocdxg") or {}
+        if rocdxg.get("found"):
+            return None
+        return (
+            "missing_wsl_rocdxg: runtime=wsl2-dxg; /dev/dxg exists but librocdxg.so "
+            "was not found in ROCm artifact libs, LD_LIBRARY_PATH, or /opt/rocm. "
+            "Install ROCm on WSL/librocdxg, or add its library directory to "
+            "THEROCK_ROCDXG_SEARCH_PATHS or LD_LIBRARY_PATH."
+        )
 
     runtime_label = rocm_runtime.get("runtime_label", "wsl2-missing-dxg")
     return (

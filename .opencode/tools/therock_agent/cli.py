@@ -22,6 +22,8 @@ from .audit import env_summary
 from .audit import now_iso
 from .audit import safe_argv
 from .audit import write_global_audit as _write_global_audit
+from .bootstrap import BootstrapError
+from .bootstrap import run_host_bootstrap
 from .config import load_component_env_index
 from .config import load_official_exclude
 from .config import load_project_env as _load_project_env
@@ -107,9 +109,9 @@ def dependency_probe(names: list[str]) -> dict[str, str]:
     return results
 
 
-def runtime_summary(therock_repo: Path | None) -> dict[str, Any]:
+def runtime_summary(therock_repo: Path | None, rocm_dist: Path | None = None) -> dict[str, Any]:
     repo = therock_repo or PROJECT_ROOT
-    rocm_runtime = detect_rocm_runtime()
+    rocm_runtime = detect_rocm_runtime(rocm_dist)
     return {
         "python_executable": sys.executable,
         "python_version": sys.version.split()[0],
@@ -134,7 +136,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
     output_root = Path(args.output_root).expanduser().resolve()
     output_dir = output_root / run_id
     therock_repo = discover_therock_repo(args.therock_repo)
-    runtime = runtime_summary(therock_repo)
+    runtime = runtime_summary(therock_repo, rocm_dist)
 
     component_env_index_path = Path(args.component_env_index).expanduser().resolve()
     component_env_index = load_component_env_index(component_env_index_path)
@@ -186,6 +188,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "debug_repair": args.debug_repair,
             "mock_command": args.mock_command or "",
             "runtime_label": runtime["runtime_label"],
+            "bootstrap_env": args.bootstrap_env,
         },
         "runtime_summary": runtime,
         "schedule": {
@@ -517,6 +520,39 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
         append_progress(state, "run_end", {"status": state["final_status"]})
         return state
 
+    try:
+        bootstrap = run_host_bootstrap(state)
+        save_state(state)
+        append_progress(
+            state,
+            "bootstrap_end",
+            {
+                "status": bootstrap.get("status"),
+                "skip_reason": bootstrap.get("skip_reason", ""),
+                "log": "bootstrap/bootstrap_env.log",
+                "summary": "bootstrap/bootstrap_env.json",
+            },
+        )
+    except (BootstrapError, SystemExit, OSError, subprocess.SubprocessError) as exc:
+        state["final_status"] = "failed"
+        state["end_time"] = now_iso()
+        state.setdefault("bootstrap", {})
+        state["bootstrap"].update({"status": "failed", "error": str(exc)})
+        save_state(state)
+        generate_reports(state)
+        append_progress(
+            state,
+            "bootstrap_failed",
+            {
+                "error": str(exc),
+                "log": "bootstrap/bootstrap_env.log",
+                "summary": "bootstrap/bootstrap_env.json",
+            },
+        )
+        append_progress(state, "run_end", {"status": state["final_status"]})
+        write_run_index(state, "bootstrap_failed")
+        return state
+
     max_rounds = int(state["meta"].get("max_rounds", 10))
     stable_threshold = int(state["meta"].get("stable_threshold", 3))
     append_progress(
@@ -774,6 +810,7 @@ def cmd_start(args: argparse.Namespace) -> None:
     print(f"runnable={runnable}", flush=True)
     print(f"skipped={skipped}", flush=True)
     print(f"runtime={state['meta'].get('runtime_label', 'unknown')}", flush=True)
+    print(f"bootstrap_env={state['meta'].get('bootstrap_env', 'auto')}", flush=True)
     print(f"gpu_risk={state['meta']['gpu_reset_risk_policy']}", flush=True)
     print(f"sudo_policy={state['meta']['sudo_policy']}", flush=True)
     print(f"status=.opencode/tools/therock_agent.sh status {state['run_id']}", flush=True)
@@ -1062,6 +1099,8 @@ def kv_to_runner_argv(command: str, raw_args: list[str]) -> list[str]:
         "official-exclude": "--official-exclude",
         "mock_command": "--mock-command",
         "mock-command": "--mock-command",
+        "bootstrap_env": "--bootstrap-env",
+        "bootstrap-env": "--bootstrap-env",
         "sudo_askpass": "--sudo-askpass",
         "sudo-askpass": "--sudo-askpass",
         "sudo_agent_socket": "--sudo-agent-socket",
@@ -1144,6 +1183,11 @@ def build_parser() -> argparse.ArgumentParser:
         target.add_argument("--max-rounds", type=int, default=10)
         target.add_argument("--debug-repair", choices=["off", "opencode"], default="off")
         target.add_argument("--mock-command", default="")
+        target.add_argument(
+            "--bootstrap-env",
+            choices=["off", "auto"],
+            default=os.environ.get("THEROCK_BOOTSTRAP_ENV", "auto"),
+        )
         target.add_argument(
             "--sudo-policy",
             choices=["none", "cache", "askpass"],
