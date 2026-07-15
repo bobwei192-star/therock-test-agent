@@ -222,6 +222,7 @@ therock-test-agent/
 
 ```bash
 curl -fsSL https://opencode.ai/install | bash
+source ~/.bashrc
 ```
 
 ### 2. 克隆 TheRock 仓库
@@ -248,7 +249,7 @@ cd ~/TheRock
 
 ```bash
 # 示例：将编译产物拷贝到 ~/TheRock/output/build
-cp -r /path/to/your/rocm/build ~/TheRock/output/build 或 ~/TheRock/output-linux-portable/build
+cp -r /path/to/your/rocm/build ~/TheRock/output-linux-portable/build 或  ~/TheRock/output/build 
 ```
 
 ### 4. 克隆 therock-test-agent 仓库
@@ -274,11 +275,17 @@ opencode
 ```
 
 ### 6. 运行一个轻量组件
+先用 wrapper 启动 OpenCode：
+
+```bash
+cd ~/TheRock
+./scripts/therock-sudo-agent run -- opencode
+```
 
 OpenCode 内：
 
 ```text
-/therock-run artifacts=~/TheRock/output/build gpu=gfx1151 components=hiprand test_types=quick
+/therock-run artifacts=~/TheRock/output-linux-portable/build gpu=gfx1151 components=hiprand test_types=quick
 ```
 
 命令会后台启动测试并立即返回 `run_id`。查看进度：
@@ -299,7 +306,7 @@ cd ~/TheRock
 OpenCode 内：
 
 ```text
-/therock-run artifacts=~/TheRock/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
+/therock-run artifacts=~/TheRock/output-linux-portable/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
 ```
 
 ## 运行测试
