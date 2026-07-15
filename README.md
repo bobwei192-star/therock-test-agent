@@ -263,13 +263,7 @@ git clone --depth 1 https://github.com/bobwei192-star/therock-test-agent.git ~/t
 
 ```bash
 cd ~/therock-test-agent
-./install.sh ~/TheRock
-```
-
-如果需要运行 sudo-sensitive 组件，例如 `amdsmi`，使用 askpass 安装模式：
-
-```bash
-./install.sh --setup-sudo-agent ~/TheRock
+./install.sh --setup-sudo-agent ~/TheRock   
 ```
 
 安装后，进入 TheRock checkout：
