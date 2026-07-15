@@ -117,7 +117,7 @@ data/chroma/
 data/locks/
 data/memory/
 data/vectorstore/
-
+Windows测试机WSL上Rack1调试教程.md
 # 配置文件（含敏感信息）
 config/settings.local.yaml
 config/whitelist.local.yaml

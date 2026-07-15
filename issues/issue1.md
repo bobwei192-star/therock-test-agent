@@ -3,6 +3,7 @@
 ## 问题描述
 
 尝试将测试运行日志 `20260710_190554_105b10f6` push 到 GitHub 时失败，原因是日志文件超过 GitHub 的大小限制（100MB）。
+cat /home/zs/therock-test-agent/20260710_190554_105b10f6.tar.gz.part_* > /home/zs/therock-test-agent/20260710_190554_105b10f6.tar.gz
 
 ## 错误信息
 

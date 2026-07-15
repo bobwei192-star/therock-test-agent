@@ -218,34 +218,72 @@ therock-test-agent/
 
 ## 快速开始
 
-### 1. 安装 overlay
+### 1. 安装 OpenCode
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+### 2. 克隆 TheRock 仓库
+
+```bash
+git clone --depth 1 https://github.com/ROCm/TheRock.git ~/TheRock
+```
+
+### 3. 准备 ROCm 编译产物
+
+进入 TheRock 目录，编译 ROCm 组件或将已编译的产物拷贝到该目录：
+
+```bash
+cd ~/TheRock
+```
+
+**方式一：本地编译**（耗时较长）
+
+按照 TheRock 文档编译 ROCm 组件，产物通常在 `output/build` 或 `output-linux-portable/build`。
+
+**方式二：拷贝已编译产物**
+
+将预先编译好的 ROCm 产物拷贝到 TheRock 目录：
+
+```bash
+# 示例：将编译产物拷贝到 ~/TheRock/output/build
+cp -r /path/to/your/rocm/build ~/TheRock/output/build 或 ~/TheRock/output-linux-portable/build
+
+### 4. 克隆 therock-test-agent 仓库
+
+```bash
+git clone --depth 1 https://github.com/bobwei192-star/therock-test-agent.git ~/therock-test-agent
+```
+
+### 5. 安装 overlay
 
 在 `therock-test-agent` 项目目录执行：
 
 ```bash
-cd /home/zx/TheRock_CI测试流程/therock-test-agent
-./install.sh /home/zx/TheRock_CI测试流程/TheRock
+cd ~/therock-test-agent
+./install.sh ~/TheRock
 ```
 
 如果需要运行 sudo-sensitive 组件，例如 `amdsmi`，使用 askpass 安装模式：
 
 ```bash
-./install.sh --setup-sudo-agent /home/zx/TheRock_CI测试流程/TheRock
+./install.sh --setup-sudo-agent ~/TheRock
 ```
 
 安装后，进入 TheRock checkout：
 
 ```bash
-cd /home/zx/TheRock_CI测试流程/TheRock
+cd ~/TheRock
 opencode
 ```
 
-### 2. 运行一个轻量组件
+### 6. 运行一个轻量组件
 
 OpenCode 内：
 
 ```text
-/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=hiprand test_types=quick
+/therock-run artifacts=~/TheRock/output/build gpu=gfx1151 components=hiprand test_types=quick
 ```
 
 命令会后台启动测试并立即返回 `run_id`。查看进度：
@@ -254,19 +292,19 @@ OpenCode 内：
 /therock-status run_id=<run_id>
 ```
 
-### 3. 运行 sudo-sensitive 组件
+### 7. 运行 sudo-sensitive 组件
 
 先用 wrapper 启动 OpenCode：
 
 ```bash
-cd /home/zx/TheRock_CI测试流程/TheRock
+cd ~/TheRock
 ./scripts/therock-sudo-agent run -- opencode
 ```
 
 OpenCode 内：
 
 ```text
-/therock-run artifacts=/home/zx/TheRock_CI测试流程/TheRock/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
+/therock-run artifacts=~/TheRock/output/build gpu=gfx1151 components=amdsmi test_types=standard sudo_policy=askpass max_rounds=1 stable_threshold=1
 ```
 
 ## 运行测试
