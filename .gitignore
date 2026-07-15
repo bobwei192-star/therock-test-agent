@@ -3,5 +3,4 @@
 *.out
 *.stderr
 *.stdout
-*.md
 logs/
