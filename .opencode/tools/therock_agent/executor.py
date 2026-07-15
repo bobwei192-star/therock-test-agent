@@ -79,10 +79,21 @@ def _build_timeout_overlay(test_dir: str, overlay_root: str, timeout_seconds: in
         )
         return str(source_dir)
 
-    overlay_dir = Path(overlay_root).resolve()
-    if overlay_dir.exists():
-        shutil.rmtree(overlay_dir)
+    overlay_base = Path(overlay_root).resolve()
+    if overlay_base.exists():
+        shutil.rmtree(overlay_base)
+    overlay_base.mkdir(parents=True, exist_ok=True)
+
+    # Preserve the original parent/test-dir shape so CTest relative commands
+    # like "../rocblas-test" still resolve from the patched CTestTestfile.
+    overlay_dir = overlay_base / source_dir.name
     overlay_dir.mkdir(parents=True, exist_ok=True)
+
+    for sibling in source_dir.parent.iterdir():
+        if sibling.name == source_dir.name:
+            continue
+        target = overlay_base / sibling.name
+        os.symlink(sibling, target, target_is_directory=sibling.is_dir())
 
     for child in source_dir.iterdir():
         if child.name == "CTestTestfile.cmake":

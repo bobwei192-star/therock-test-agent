@@ -987,8 +987,9 @@ cat >"${TMP_DIR}/rocblas_quick_component_sort_order.json" <<'JSON'
 JSON
 
 mkdir -p "${TMP_DIR}/output/build/dist/rocm/bin/rocblas"
+touch "${TMP_DIR}/output/build/dist/rocm/bin/rocblas-test"
 cat >"${TMP_DIR}/output/build/dist/rocm/bin/rocblas/CTestTestfile.cmake" <<'CMAKE'
-add_test(rocblas-test_quick_suite "/opt/rocm/bin/rocblas-test" "--gtest_filter=*quick*")
+add_test(rocblas-test_quick_suite "../rocblas-test" "--gtest_filter=*quick*")
 set_tests_properties(rocblas-test_quick_suite PROPERTIES LABELS "quick" TIMEOUT "1800")
 CMAKE
 
@@ -1014,8 +1015,11 @@ def main():
     original_text = (original_test_dir / "CTestTestfile.cmake").read_text(encoding="utf-8")
 
     assert patched_test_dir != original_test_dir.resolve()
+    assert patched_test_dir.name == "rocblas"
+    assert (patched_test_dir.parent / "rocblas-test").exists()
     assert 'TIMEOUT "10800"' in patched_text
     assert 'TIMEOUT "1800"' in original_text
+    assert '../rocblas-test' in patched_text
     print(f"rocblas timeout={ctest_timeout_seconds} overlay={patched_test_dir}")
     return 0
 PY
