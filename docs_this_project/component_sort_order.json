@@ -11,6 +11,7 @@
     "6. status: pass=通过, fail=失败, exclude=官方排除, pending=未执行"
   ],
   "entries": [
+    {"test_type": "quick", "component": "rocblas", "duration_ref": 0, "category": "lightweight", "status": "pass", "sort_order": 1, "gpu_hang_risk": false},
     {"test_type": "quick", "component": "hiprand", "duration_ref": 0, "category": "lightweight", "status": "pass", "sort_order": 1, "gpu_hang_risk": false},
     {"test_type": "quick", "component": "rccl", "duration_ref": 0, "category": "lightweight", "status": "pass", "sort_order": 2, "gpu_hang_risk": false},
     {"test_type": "quick", "component": "rocfft", "duration_ref": 0, "category": "medium", "status": "pass", "sort_order": 3, "gpu_hang_risk": false},
