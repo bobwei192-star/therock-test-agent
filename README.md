@@ -283,13 +283,11 @@ cd ~/therock-test-agent
 ```
 
 安装后，进入 TheRock checkout：
-
 ```bash
 cd ~/TheRock
-opencode
 ```
 
-### 6. 运行一个轻量组件
+### 6. 测试一个轻量组件
 先用 wrapper 启动 OpenCode：
 
 ```bash

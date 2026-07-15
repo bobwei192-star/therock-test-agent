@@ -119,6 +119,67 @@ assert runtime["runtime_label"] == "wsl2-dxg", json.dumps(runtime, indent=2)
 assert check_task_preflight(state, {}, env, {}) is None
 PY
 
+echo "[test] WSL2 missing /dev/dxg blocks before execution"
+cat >"${TMP_DIR}/missing_dxg_component_sort_order.json" <<'JSON'
+{
+  "version": "missing-dxg-test",
+  "entries": [
+    {"test_type": "standard", "component": "amdsmi", "duration_ref": 1, "category": "medium", "status": "pass", "sort_order": 1, "gpu_hang_risk": false}
+  ]
+}
+JSON
+mkdir -p "${TMP_DIR}/missing_dxg_devices/dev"
+
+THEROCK_RUNTIME_KIND=wsl2 \
+THEROCK_RUNTIME_DEVICE_ROOT="${TMP_DIR}/missing_dxg_devices" \
+THEROCK_ALLOW_MISSING_WSL_DXG= \
+"${AGENT}" run \
+  --artifacts "${TMP_DIR}/output/build" \
+  --gpu gfx1151 \
+  --component-config "${TMP_DIR}/missing_dxg_component_sort_order.json" \
+  --components amdsmi \
+  --test-types standard \
+  --output-root "${TMP_DIR}/missing_dxg_runs" \
+  --stable-threshold 1 \
+  --max-rounds 1 >"${TMP_DIR}/missing_dxg_agent.out"
+
+MISSING_DXG_RUN_DIRS=("${TMP_DIR}"/missing_dxg_runs/*)
+MISSING_DXG_RUN_DIR="${MISSING_DXG_RUN_DIRS[0]}"
+python3 - "${MISSING_DXG_RUN_DIR}" "${TMP_DIR}/missing_dxg_agent.out" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+run_dir = Path(sys.argv[1])
+agent_out = Path(sys.argv[2]).read_text(encoding="utf-8")
+state = json.load(open(run_dir / "global_state.json", encoding="utf-8"))
+summary = json.load(open(run_dir / "summary.json", encoding="utf-8"))
+failures = json.load(open(run_dir / "failures.json", encoding="utf-8"))
+failure = json.load(open(run_dir / "failures" / "amdsmi-standard_failure.json", encoding="utf-8"))
+environment = json.load(open(run_dir / "environment_summary.json", encoding="utf-8"))
+progress = (run_dir / "progress.jsonl").read_text(encoding="utf-8")
+activity = (run_dir / "agent_activity.jsonl").read_text(encoding="utf-8")
+tool_calls = (run_dir / "tool_calls.jsonl").read_text(encoding="utf-8")
+stderr_log = (run_dir / "logs" / "amdsmi-standard.round1.stderr.log").read_text(encoding="utf-8")
+
+result = state["results"]["task_results"]["amdsmi-standard"]
+assert state["final_status"] == "failed", state["final_status"]
+assert result["status"] == "blocked", result
+assert result["return_code"] == 125, result
+assert result["failure_summary"].startswith("missing_wsl_dxg:"), result["failure_summary"]
+assert "missing_wsl_dxg:" in stderr_log, stderr_log
+assert summary["runtime_label"] == "wsl2-missing-dxg", summary["runtime_label"]
+assert failures["runtime_label"] == "wsl2-missing-dxg", failures["runtime_label"]
+assert failure["runtime_label"] == "wsl2-missing-dxg", failure["runtime_label"]
+assert failure["task"]["runtime_label"] == "wsl2-missing-dxg", failure["task"]
+assert environment["runtime_label"] == "wsl2-missing-dxg", environment["runtime_label"]
+assert environment["runtime_summary"]["rocm_runtime"]["gpu_devices"]["/dev/dxg"]["exists"] is False
+assert '"runtime_label": "wsl2-missing-dxg"' in progress, progress
+assert '"runtime_label": "wsl2-missing-dxg"' in activity, activity
+assert '"runtime_label": "wsl2-missing-dxg"' in tool_calls, tool_calls
+assert "runtime=wsl2-missing-dxg" in agent_out, agent_out
+PY
+
 echo "[test] run loop with risk skip"
 "${AGENT}" run \
   --artifacts "${TMP_DIR}/output/build" \

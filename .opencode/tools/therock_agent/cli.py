@@ -693,7 +693,15 @@ def run_loop(state: dict[str, Any]) -> dict[str, Any]:
         failed_set = current_failed_sorted
 
     if state["final_status"] == "running":
-        state["final_status"] = "stopped"
+        final_failed = sorted(
+            set(state["schedule"].get("round_failed_tasks") or state["schedule"].get("failed_tasks") or [])
+        )
+        if final_failed:
+            state["final_status"] = "failed"
+            state["schedule"]["next_tasks"] = final_failed
+            state["schedule"]["failed_tasks"] = final_failed
+        else:
+            state["final_status"] = "stopped"
     state["end_time"] = now_iso()
     save_state(state)
     generate_reports(state)
