@@ -31,6 +31,7 @@ from .executor import run_task as _run_task
 from .planner import build_task_plan
 from .reports import generate_reports as _generate_reports
 from .reports import write_failure_report as _write_failure_report
+from .runtime import detect_rocm_runtime
 from .state import load_state
 from .state import save_state
 from .state import task_lookup
@@ -108,6 +109,7 @@ def dependency_probe(names: list[str]) -> dict[str, str]:
 
 def runtime_summary(therock_repo: Path | None) -> dict[str, Any]:
     repo = therock_repo or PROJECT_ROOT
+    rocm_runtime = detect_rocm_runtime()
     return {
         "python_executable": sys.executable,
         "python_version": sys.version.split()[0],
@@ -115,6 +117,8 @@ def runtime_summary(therock_repo: Path | None) -> dict[str, Any]:
         "git_commit": short_command_output(["git", "rev-parse", "HEAD"], repo),
         "git_dirty": bool(short_command_output(["git", "status", "--porcelain"], repo)),
         "dependency_probe": dependency_probe(["lit", "prettytable"]),
+        "runtime_label": rocm_runtime["runtime_label"],
+        "rocm_runtime": rocm_runtime,
     }
 
 
@@ -130,6 +134,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
     output_root = Path(args.output_root).expanduser().resolve()
     output_dir = output_root / run_id
     therock_repo = discover_therock_repo(args.therock_repo)
+    runtime = runtime_summary(therock_repo)
 
     component_env_index_path = Path(args.component_env_index).expanduser().resolve()
     component_env_index = load_component_env_index(component_env_index_path)
@@ -180,7 +185,9 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "max_rounds": args.max_rounds,
             "debug_repair": args.debug_repair,
             "mock_command": args.mock_command or "",
+            "runtime_label": runtime["runtime_label"],
         },
+        "runtime_summary": runtime,
         "schedule": {
             "task_queue": tasks,
             "skipped_tasks": skipped,
@@ -235,7 +242,8 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "project_root": str(PROJECT_ROOT),
             "cwd": str(Path.cwd()),
             "env_summary": env_summary(),
-            "runtime_summary": runtime_summary(therock_repo),
+            "runtime_label": runtime["runtime_label"],
+            "runtime_summary": runtime,
             "meta": state["meta"],
         },
     )
@@ -247,6 +255,7 @@ def create_state(args: argparse.Namespace) -> dict[str, Any]:
             "skipped_count": len(skipped),
             "next_tasks": state["schedule"]["next_tasks"],
             "skipped_tasks": [task["task_id"] for task in skipped],
+            "runtime_label": runtime["runtime_label"],
         },
     )
     return state
@@ -275,6 +284,7 @@ def append_progress(state: dict[str, Any], event: str, details: dict[str, Any] |
             "time": now_iso(),
             "event": event,
             "run_id": state["run_id"],
+            "runtime_label": state.get("meta", {}).get("runtime_label", "unknown"),
             **(details or {}),
         },
     )
@@ -700,7 +710,11 @@ def cmd_init(args: argparse.Namespace) -> None:
 def cmd_run(args: argparse.Namespace) -> None:
     state = create_state(args)
     run_loop(state)
-    print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}", flush=True)
+    print(
+        f"[therock-agent] run_id={state['run_id']} status={state['final_status']} "
+        f"runtime={state['meta'].get('runtime_label', 'unknown')}",
+        flush=True,
+    )
     print(f"[therock-agent] output={state['meta']['output_dir']}", flush=True)
 
 
@@ -751,6 +765,7 @@ def cmd_start(args: argparse.Namespace) -> None:
     print("backend=pid", flush=True)
     print(f"runnable={runnable}", flush=True)
     print(f"skipped={skipped}", flush=True)
+    print(f"runtime={state['meta'].get('runtime_label', 'unknown')}", flush=True)
     print(f"gpu_risk={state['meta']['gpu_reset_risk_policy']}", flush=True)
     print(f"sudo_policy={state['meta']['sudo_policy']}", flush=True)
     print(f"status=.opencode/tools/therock_agent.sh status {state['run_id']}", flush=True)
@@ -777,7 +792,11 @@ def cmd_run_existing(args: argparse.Namespace) -> None:
     signal.signal(signal.SIGTERM, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
     run_loop(state)
-    print(f"[therock-agent] run_id={state['run_id']} status={state['final_status']}", flush=True)
+    print(
+        f"[therock-agent] run_id={state['run_id']} status={state['final_status']} "
+        f"runtime={state['meta'].get('runtime_label', 'unknown')}",
+        flush=True,
+    )
 
 
 def normalize_run_id_arg(run_id: str | None) -> str | None:
@@ -914,6 +933,7 @@ def print_state_summary(state: dict[str, Any], output_format: str) -> None:
     print(f"round: {state['schedule'].get('current_loop')}", flush=True)
     print(f"progress: {completed}/{total}", flush=True)
     print(f"current: {current or 'none'}", flush=True)
+    print(f"runtime: {state['meta'].get('runtime_label', 'unknown')}", flush=True)
     print(f"elapsed: {format_elapsed(state)}", flush=True)
     print(
         "counts: "

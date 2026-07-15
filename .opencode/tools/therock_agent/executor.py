@@ -130,6 +130,7 @@ def render_command(
 def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], round_no: int) -> dict[str, Any]:
     output_dir = Path(state["meta"]["output_dir"])
     logs_dir = output_dir / "logs"
+    runtime_label = state.get("meta", {}).get("runtime_label", "unknown")
     stdout_path = logs_dir / f"{task['task_id']}.round{round_no}.stdout.log"
     stderr_path = logs_dir / f"{task['task_id']}.round{round_no}.stderr.log"
     command_record: str
@@ -155,6 +156,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
             "test_type": task["test_type"],
             "stdout_log": str(stdout_path),
             "stderr_log": str(stderr_path),
+            "runtime_label": runtime_label,
             "entrypoint": entrypoint_metadata,
         },
     )
@@ -288,6 +290,8 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
         "wrapper_env_change_keys": sorted(wrapper_details["env_changes"].keys()) if wrapper_details else [],
         "path_hardcode_detection": path_hardcode_detection,
         "failure_evidence": failure_evidence,
+        "runtime_label": runtime_label,
+        "runtime_summary": state.get("runtime_summary", {}),
         "finished_at": now_iso(),
     }
 
@@ -310,6 +314,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
             "return_code": return_code,
             "duration_seconds": duration,
             "status": status,
+            "runtime_label": runtime_label,
             "entrypoint": entrypoint_metadata,
         },
     )
@@ -325,6 +330,7 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
             "status": status,
             "stdout_log": str(stdout_path),
             "stderr_log": str(stderr_path),
+            "runtime_label": runtime_label,
             "wrapper_path": wrapper_details["wrapper_path"] if wrapper_details else "",
             "path_hardcode_detection": path_hardcode_detection,
         },

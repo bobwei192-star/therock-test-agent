@@ -63,6 +63,62 @@ assert "--debug-repair=off" in flag_off_argv, flag_off_argv
 assert flag_off_argv[-1] != "opencode", flag_off_argv
 PY
 
+python3 - "${PROJECT_ROOT}" "${TMP_DIR}" <<'PY'
+import json
+import os
+import sys
+from pathlib import Path
+
+project_root = Path(sys.argv[1])
+tmp_dir = Path(sys.argv[2])
+sys.path.insert(0, str(project_root / ".opencode" / "tools"))
+
+from therock_agent.preflight import check_task_preflight
+from therock_agent.runtime import detect_rocm_runtime
+
+rocm_dist = tmp_dir / "runtime_preflight" / "dist" / "rocm"
+(rocm_dist / "bin").mkdir(parents=True)
+(rocm_dist / "lib").mkdir(parents=True)
+device_root = tmp_dir / "runtime_devices"
+(device_root / "dev").mkdir(parents=True)
+
+os.environ["THEROCK_RUNTIME_KIND"] = "wsl2"
+os.environ["THEROCK_RUNTIME_DEVICE_ROOT"] = str(device_root)
+os.environ.pop("THEROCK_ALLOW_MISSING_WSL_DXG", None)
+
+runtime = detect_rocm_runtime()
+state = {
+    "meta": {
+        "rocm_dist": str(rocm_dist),
+        "mock_command": "",
+        "sudo_policy": "",
+    },
+    "runtime_summary": {
+        "runtime_label": runtime["runtime_label"],
+        "rocm_runtime": runtime,
+    },
+}
+env = {
+    "THEROCK_BIN_DIR": str(rocm_dist / "bin"),
+    "OUTPUT_ARTIFACTS_DIR": str(rocm_dist),
+    "ROCM_PATH": str(rocm_dist),
+    "HIP_PATH": str(rocm_dist),
+}
+
+assert runtime["runtime_label"] == "wsl2-missing-dxg", json.dumps(runtime, indent=2)
+blocked = check_task_preflight(state, {}, env, {})
+assert blocked and blocked.startswith("missing_wsl_dxg:"), blocked
+
+(device_root / "dev" / "dxg").touch()
+runtime = detect_rocm_runtime()
+state["runtime_summary"] = {
+    "runtime_label": runtime["runtime_label"],
+    "rocm_runtime": runtime,
+}
+assert runtime["runtime_label"] == "wsl2-dxg", json.dumps(runtime, indent=2)
+assert check_task_preflight(state, {}, env, {}) is None
+PY
+
 echo "[test] run loop with risk skip"
 "${AGENT}" run \
   --artifacts "${TMP_DIR}/output/build" \
@@ -115,6 +171,7 @@ results = state["results"]["task_results"]
 summary = json.load(open(run_dir / "summary.json", encoding="utf-8"))
 failures = json.load(open(run_dir / "failures.json", encoding="utf-8"))
 failure = json.load(open(run_dir / "failures" / "fail_component-quick_failure.json", encoding="utf-8"))
+environment = json.load(open(run_dir / "environment_summary.json", encoding="utf-8"))
 round1_inputs = json.load(open(run_dir / "round_analysis" / "round1_inputs.json", encoding="utf-8"))
 round1_index = json.load(open(run_dir / "debug" / "round1_failure_index.json", encoding="utf-8"))
 round2_inputs = json.load(open(run_dir / "round_analysis" / "round2_inputs.json", encoding="utf-8"))
@@ -129,10 +186,18 @@ assert summary["status"] == "failed"
 assert summary["counts"]["pass"] == 1
 assert summary["counts"]["fail"] == 1
 assert summary["artifacts"]["summary_json"].endswith("summary.json")
+assert summary["runtime_label"]
+assert summary["runtime_summary"]["rocm_runtime"]["gpu_devices"]["/dev/dxg"]["expected_on_wsl2"] is True
 assert summary["reporter_note"].startswith("Markdown summaries are generated")
+assert failures["runtime_label"] == summary["runtime_label"]
 assert failures["failures"][0]["task_id"] == "fail_component-quick"
+assert failure["runtime_label"] == summary["runtime_label"]
+assert failure["runtime_summary"]["runtime_label"] == summary["runtime_label"]
 assert failure["task"]["failure_evidence"]["kind"] == "runner_evidence"
 assert failure["task"]["failure_evidence"]["missing_python_modules"] == ["prettytable"]
+assert environment["runtime_label"] == summary["runtime_label"]
+assert state["meta"]["runtime_label"] == summary["runtime_label"]
+assert results["fail_component-quick"]["runtime_label"] == summary["runtime_label"]
 assert state["loop"]["stable_failed_count"] == 1
 assert state["schedule"]["failed_tasks"] == ["fail_component-quick"]
 assert state["schedule"]["failed_tasks_this_round"] == ["fail_component-quick"]
@@ -151,10 +216,13 @@ PY
 grep -q '"event": "task_start"' "${ACTIVITY_FILE}"
 grep -q '"event": "task_end"' "${ACTIVITY_FILE}"
 grep -q '"event": "report_generated"' "${ACTIVITY_FILE}"
+grep -q '"runtime_label":' "${ACTIVITY_FILE}"
 grep -q '"tool": "shell"' "${TOOL_CALLS_FILE}"
+grep -q '"runtime_label":' "${TOOL_CALLS_FILE}"
 grep -q '"event": "invocation_start"' "${GLOBAL_AUDIT_FILE}"
 grep -q '"event": "invocation_end"' "${GLOBAL_AUDIT_FILE}"
 grep -q '"event": "round_failure_index_written"' "${RUN_DIR}/progress.jsonl"
+grep -q '"runtime_label":' "${RUN_DIR}/progress.jsonl"
 ! grep -q '"event": "auto_debug_start"' "${RUN_DIR}/progress.jsonl"
 ! grep -q '"event": "auto_debug_end"' "${RUN_DIR}/progress.jsonl"
 

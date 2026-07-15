@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -22,6 +23,28 @@ def check_python_modules(modules: list[str]) -> list[str]:
     return missing
 
 
+def check_runtime_gpu_access(state: dict[str, Any]) -> str | None:
+    if state["meta"].get("mock_command"):
+        return None
+    if os.environ.get("THEROCK_ALLOW_MISSING_WSL_DXG") == "1":
+        return None
+
+    runtime = state.get("runtime_summary") or {}
+    rocm_runtime = runtime.get("rocm_runtime") or {}
+    if not rocm_runtime.get("is_wsl2"):
+        return None
+
+    dxg = rocm_runtime.get("gpu_devices", {}).get("/dev/dxg", {})
+    if dxg.get("exists"):
+        return None
+
+    runtime_label = rocm_runtime.get("runtime_label", "wsl2-missing-dxg")
+    return (
+        f"missing_wsl_dxg: runtime={runtime_label}; WSL2 ROCm requires /dev/dxg. "
+        "/dev/kfd and /dev/dri are normally absent under WSL2."
+    )
+
+
 def check_task_preflight(
     state: dict[str, Any],
     task: dict[str, Any],
@@ -33,6 +56,10 @@ def check_task_preflight(
         return f"missing_artifacts: {rocm_dist / 'bin'} 不存在"
     if not (rocm_dist / "lib").is_dir() and not (rocm_dist / "lib64").is_dir():
         return f"missing_artifacts: {rocm_dist}/lib 或 lib64 不存在"
+
+    runtime_error = check_runtime_gpu_access(state)
+    if runtime_error:
+        return runtime_error
 
     sudo_policy = state["meta"].get("sudo_policy")
     if metadata.get("requires_sudo_policy") and sudo_policy not in {"askpass", "cache"}:
