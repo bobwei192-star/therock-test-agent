@@ -249,6 +249,7 @@ cd ~/TheRock
 ```bash
 # 示例：将编译产物拷贝到 ~/TheRock/output/build
 cp -r /path/to/your/rocm/build ~/TheRock/output/build 或 ~/TheRock/output-linux-portable/build
+```
 
 ### 4. 克隆 therock-test-agent 仓库
 
