@@ -7,3 +7,13 @@ logs/
 20260710_190554_105b10f6/
 20260717_133238_7a7b6bfe/
 20260717_133238_7a7b6bfe.tar.gz
+
+# Understand-Anything generated artifacts (keep knowledge-graph.json if committed)
+.understand-anything/intermediate/
+.understand-anything/tmp/
+.understand-anything/.trash-*/
+.understand-anything/diff-overlay.json
+.ua/intermediate/
+.ua/tmp/
+.ua/.trash-*/
+.ua/diff-overlay.json

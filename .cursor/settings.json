@@ -2,6 +2,9 @@
   "plugins": {
     "amd-skills": {
       "enabled": true
+    },
+    "understand-anything": {
+      "enabled": true
     }
   }
 }
