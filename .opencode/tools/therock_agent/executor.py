@@ -292,6 +292,23 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
     )
     env, entrypoint_metadata = build_task_env(state, task, entrypoint)
 
+    # Evidence for OpenCode: distinguish "test python" vs "bootstrap venv python".
+    # This is required to correctly classify python_interpreter_mismatch and to avoid
+    # repairing packages into a venv that the test runner never imports.
+    therock_repo_for_python = discover_therock_repo(project_root, str(state["meta"].get("therock_repo_path") or ""))
+    bootstrap_venv_python = (((state.get("bootstrap") or {}).get("venv") or {}).get("python")) or ""
+    test_python_executable = resolve_test_python_executable(state, therock_repo_for_python)
+    python_context = {
+        "test_python_executable": test_python_executable,
+        "bootstrap_venv_python": bootstrap_venv_python,
+        "test_python_kind": (
+            "venv"
+            if bootstrap_venv_python and str(test_python_executable) == str(bootstrap_venv_python)
+            else ("system" if test_python_executable == "python3" else "unknown")
+        ),
+        "bootstrap_venv_python_exists": bool(bootstrap_venv_python) and Path(str(bootstrap_venv_python)).is_file(),
+    }
+
     state["schedule"]["current_task"] = task["task_id"]
     save_state(state)
     append_activity(
@@ -395,6 +412,34 @@ def run_task(project_root: Path, state: dict[str, Any], task: dict[str, Any], ro
 
     path_hardcode_detection = detect_path_hardcode(stdout_path, stderr_path)
     failure_evidence = extract_failure_evidence(stdout_path, stderr_path) if status != "pass" else {}
+    if status != "pass":
+        # Attach deterministic python context for later OpenCode classification/repair.
+        # Additionally, test whether the missing modules are importable under the bootstrap venv python
+        # so python_interpreter_mismatch can be decided without guessing.
+        missing_modules = failure_evidence.get("missing_python_modules") or []
+        bootstrap_python = python_context.get("bootstrap_venv_python") or ""
+        bootstrap_importable: dict[str, bool] = {}
+        if missing_modules and bootstrap_python and python_context.get("bootstrap_venv_python_exists"):
+            for module_name in missing_modules:
+                try:
+                    proc = subprocess.run(
+                        [
+                            bootstrap_python,
+                            "-c",
+                            "import importlib.util, sys; sys.exit(0 if importlib.util.find_spec(%r) is not None else 1)"
+                            % module_name,
+                        ],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                        text=True,
+                        timeout=20,
+                    )
+                    bootstrap_importable[module_name] = proc.returncode == 0
+                except Exception:
+                    bootstrap_importable[module_name] = False
+
+        python_context["bootstrap_importable_missing_modules"] = bootstrap_importable
+        failure_evidence["python_context"] = python_context
     if path_hardcode_detection["detected"]:
         append_activity(
             state,

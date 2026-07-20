@@ -43,6 +43,18 @@ Read in this order:
 
 Use `therock-testing` as the single source of truth for classification names, `next_action`, and `repair_policy`. The runner only provides evidence signals; final root cause and repair policy are OpenCode judgments.
 
+### Hard classification rules
+- If `failure_evidence.missing_python_modules` is non-empty AND
+  `failure_evidence.python_context.bootstrap_importable_missing_modules[<module>] == true`
+  （表示 bootstrap venv python 可以 import 该 module；而 runner 已观察到 test python 无法 import），则：
+  - `classification = python_interpreter_mismatch`
+  - `repair_policy = safe_patch_limited`
+  - `next_action = repair_then_retry`
+  - The fix must target the test execution environment (wrapper/env), not just installing into the venv.
+- If logs include `FileNotFoundError` and the missing path contains `share/amdsmitst` (or the missing binary is `amdsmitst`), then:
+  - `classification = runtime_path_error`
+  - `repair_policy = safe_plan_only` (or `safe_patch_limited` if it can be fixed by wrapper/env/OUTPUT_ARTIFACTS_DIR)
+
 ## Safe Repair Boundaries
 
 Do not duplicate safety rules here. Enforce them through:
@@ -88,7 +100,9 @@ When `apply=safe`, write:
 
 Allowed `safe_auto` execution:
 
-- `python3 -m pip install <package>` for explicit `missing_python_dependency`.
+- Use the *test python* executable for pip installs:
+  - Prefer `$VENV_PYTHON -m pip install <package>` where `$VENV_PYTHON` is sourced from `global_state.bootstrap.venv.python` or `failure_evidence.python_context.test_python_executable`.
+  - Do not assume `python3` / system python3 is the interpreter used by the test wrapper.
 - Retry/resume recommendation for clear `network_transient`.
 
 For `missing_python_dependency`, the debug analysis must include concrete `repair_items`. If the debugger omitted them, the repairer should fall back to `failure_evidence.missing_python_modules` in `failures/*_failure.json` before stopping.

@@ -60,12 +60,22 @@ permission:
 
 `apply=safe` 只能执行：
 
-- `missing_python_dependency` 且 `repair_items` 明确的 `python3 -m pip install <pkg>`。
+- `missing_python_dependency` 且 `repair_items` 明确：禁止直接用系统 `python3`；必须遵循下面的 *test python* 安装规则。
+- `missing_python_dependency` 且 `repair_items` 明确时，通过 *test python* 安装：
+  - 设定 `$VENV_PYTHON` 为 `global_state.bootstrap.venv.python`（若存在）或 `failure_evidence.python_context.test_python_executable`（优先）。
+  - 执行：`$VENV_PYTHON -m pip install <pkg>`。
 - `network_transient` 的有限重试建议或 resume 指令，不 patch 文件。
 
 如果 `classification=missing_python_dependency` 但 `repair_items` 缺失或为空，必须读取对应 `failures/*_failure.json` 的 `failure_evidence.missing_python_modules` 作为兜底生成 repair items。只有在 evidence 里也找不到明确模块名时，才停止并要求重新运行 debug analysis。
 
-`safe_plan_only`、`safe_patch_limited`、`manual_required` 默认不直接执行；先生成计划和风险说明。
+### pre_existing / skipped 的硬规则（禁止“venv 有就 skip”）
+- 任何 `pre_existing` 或 `skipped` 都必须先用 `failure_evidence.python_context.test_python_executable` 验证：对每个 `repair_items[].name`（必要时做 pip->module 映射）执行 `import <module>` 能否成功。
+- 如果测试解释器导入失败，即使 venv 里已存在，也必须进入 `python_interpreter_mismatch` 的修复路径，而不是继续标 `pre_existing`。
+
+### python_interpreter_mismatch 的执行边界
+- 当 `classification=python_interpreter_mismatch` 且 `repair_policy=safe_patch_limited` 时，`apply=safe` 允许执行 wrapper/env/build_tools 的安全修复（只允许影响 wrapper/env 逻辑，不允许修改组件源码或 ROCm 子模块源码）。
+
+`safe_plan_only`、`manual_required` 默认不直接执行；`safe_patch_limited` 仅在上述边界内允许执行。
 
 ## 权限与边界
 

@@ -319,6 +319,7 @@ OpenCode, not the runner, owns final root cause and repair policy. Use runner ev
 |----------------|-----------------|-------------|---------------|
 | `missing_python_dependency` | `ModuleNotFoundError: No module named X` | `repair_then_retry` | `safe_auto` |
 | `missing_dependency` | `missing_dependency: X` | `repair_then_retry` or `inspect_dependency_then_retry` | `safe_auto` only for confirmed Python packages |
+| `python_interpreter_mismatch` | missing module in *test python*, but module import succeeds in *bootstrap venv python* (or test runs via system python while venv has packages) | `repair_then_retry` | `safe_patch_limited` (first choice); if venv also missing the module(s), fall back to `safe_auto` |
 | `network_transient` | DNS failures, connection reset, timeout, HTTP 5xx, TLS temporary failure | `retry_transient` | `safe_auto` |
 | `cmake_configuration_error` | `CMake Error`, `Could NOT find`, `find_package`, `CMAKE_PREFIX_PATH`, `ninja: error` | `plan_wrapper_or_build_tools_repair` | `safe_plan_only` |
 | `missing_runtime_library` | `cannot open shared object file`, missing `.so` | `inspect_runtime_path_then_retry` | `safe_plan_only` |
