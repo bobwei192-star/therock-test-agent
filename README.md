@@ -586,9 +586,11 @@ sudo apt install -y gfortran git ninja-build cmake g++ pkg-config xxd automake l
 cd <TheRock>
 python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -r requirements.txt -r requirements-test.txt
 .venv/bin/python -c "import boto3; print('boto3 ok')"
 ```
+
+`requirements-test.txt` 存在时会一并安装（含 `pytest`、`lit`、`pytest-xdist` 等测试依赖）。测试执行时 runner 优先使用 `.venv/bin/python`，并将 `.venv/bin` 前置到 `PATH`，使上游脚本通过 `sys.executable` 和 `lit` 等 CLI 使用 venv。
 
 Ubuntu 24.04 启用了 PEP 668，不要直接向系统 Python 执行 `sudo pip install`。bootstrap 会使用 TheRock checkout 内的 `.venv`。过程写入：
 

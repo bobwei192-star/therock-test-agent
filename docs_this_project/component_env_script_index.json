@@ -9,6 +9,7 @@
   "last_updated": "2026-07-09",
   "path_variables": {
     "therock_repo": "TheRock 仓库根目录",
+    "therock_venv_bin": "<therock_repo>/.venv/bin",
     "build_root": "用户传入 artifacts build 目录，例如 output-linux-portable/build",
     "rocm_dist": "<build_root>/dist/rocm 或用户直接传入的 dist/rocm",
     "therock_bin_dir": "<rocm_dist>/bin"
@@ -29,6 +30,7 @@
       },
       "prepend": {
         "PATH": [
+          "{therock_venv_bin}",
           "{rocm_dist}/bin"
         ],
         "LD_LIBRARY_PATH": [

@@ -7,13 +7,15 @@ from pathlib import Path
 from typing import Any
 
 from .artifacts import check_sudo_policy
+from .venv import resolve_test_python_executable
 
 
-def check_python_modules(modules: list[str]) -> list[str]:
+def check_python_modules(modules: list[str], python_executable: str | None = None) -> list[str]:
     missing: list[str] = []
+    executable = python_executable or sys.executable
     for module in modules:
         result = subprocess.run(
-            [sys.executable, "-c", f"import importlib.util; raise SystemExit(importlib.util.find_spec({module!r}) is None)"],
+            [executable, "-c", f"import importlib.util; raise SystemExit(importlib.util.find_spec({module!r}) is None)"],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text=True,
@@ -96,7 +98,11 @@ def check_task_preflight(
     if metadata.get("entrypoint_type") == "test_runner" and not env.get("TEST_COMPONENT"):
         return "entrypoint_error: TEST_COMPONENT environment variable is required"
 
-    missing_modules = check_python_modules(list(metadata.get("preflight_python_modules") or []))
+    python_executable = resolve_test_python_executable(state)
+    missing_modules = check_python_modules(
+        list(metadata.get("preflight_python_modules") or []),
+        python_executable=python_executable,
+    )
     if missing_modules:
         return "missing_dependency: " + ", ".join(missing_modules)
 

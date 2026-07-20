@@ -120,7 +120,14 @@ def ensure_venv(therock_repo: Path, log_path: Path) -> Path:
     if not python_bin.is_file():
         run_command([bootstrap_python(), "-m", "venv", str(venv_dir)], cwd=therock_repo, log_path=log_path)
     run_command([str(python_bin), "-m", "pip", "install", "--upgrade", "pip"], cwd=therock_repo, log_path=log_path)
-    run_command([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"], cwd=therock_repo, log_path=log_path)
+    pip_requirements = ["-r", "requirements.txt"]
+    if (therock_repo / "requirements-test.txt").is_file():
+        pip_requirements.extend(["-r", "requirements-test.txt"])
+    run_command(
+        [str(python_bin), "-m", "pip", "install", *pip_requirements],
+        cwd=therock_repo,
+        log_path=log_path,
+    )
     if (therock_repo / "pyproject.toml").is_file() or (therock_repo / "setup.py").is_file():
         run_command([str(python_bin), "-m", "pip", "install", "-e", "."], cwd=therock_repo, log_path=log_path)
     run_command([str(python_bin), "-c", "import boto3; print('boto3 ok')"], cwd=therock_repo, log_path=log_path)
@@ -175,6 +182,7 @@ def run_host_bootstrap(state: dict[str, Any]) -> dict[str, Any]:
             "path": str(therock_repo / ".venv"),
             "python": str(python_bin),
             "requirements_installed": True,
+            "requirements_test_installed": (therock_repo / "requirements-test.txt").is_file(),
             "boto3_import": True,
             "editable_install": (therock_repo / "pyproject.toml").is_file() or (therock_repo / "setup.py").is_file(),
         }

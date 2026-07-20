@@ -25,6 +25,7 @@ from .entrypoint import resolve_entrypoint
 from .entrypoint import task_context
 from .preflight import check_task_preflight
 from .state import save_state
+from .venv import resolve_test_python_executable
 
 
 ROCBLAS_QUICK_TIMEOUT_SECONDS = 3 * 60 * 60
@@ -267,7 +268,8 @@ def render_command(
         raise FileNotFoundError(f"找不到 TheRock 测试脚本: {script_path}")
 
     context = task_context(state, task, entrypoint)
-    command = ["python3", str(script_path)]
+    python_executable = resolve_test_python_executable(state, therock_repo)
+    command = [python_executable, str(script_path)]
     for arg in entrypoint.get("cli_args", []):
         command.append(expand_template(str(arg), context))
     return command

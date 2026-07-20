@@ -3,6 +3,7 @@ set -euo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 AGENT="${PROJECT_ROOT}/.opencode/tools/therock_agent.sh"
+RUN_BOOTSTRAP_OFF=(--bootstrap-env off)
 
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "${TMP_DIR}"' EXIT
@@ -146,6 +147,7 @@ mkdir -p \
   "${TMP_DIR}/bootstrap_artifacts/dist/rocm/lib"
 touch "${TMP_DIR}/bootstrap_artifacts/dist/rocm/lib/librocdxg.so"
 touch "${FAKE_BOOTSTRAP_REPO}/requirements.txt"
+touch "${FAKE_BOOTSTRAP_REPO}/requirements-test.txt"
 
 cat >"${FAKE_BOOTSTRAP_BIN}/sudo" <<'SH'
 #!/usr/bin/env bash
@@ -261,6 +263,8 @@ assert "apt update" in fake_log, fake_log
 assert "apt install -y" in fake_log, fake_log
 assert "bootstrap-python3 -m venv" in fake_log, fake_log
 assert "pip install -r requirements.txt" in bootstrap_log, bootstrap_log
+assert "pip install -r requirements.txt -r requirements-test.txt" in bootstrap_log, bootstrap_log
+assert bootstrap["venv"]["requirements_test_installed"] is True, bootstrap
 assert "boto3 ok" in bootstrap_log, bootstrap_log
 assert summary["artifacts"]["bootstrap_summary"].endswith("bootstrap/bootstrap_env.json")
 PY
@@ -280,6 +284,7 @@ THEROCK_RUNTIME_KIND=wsl2 \
 THEROCK_RUNTIME_DEVICE_ROOT="${TMP_DIR}/missing_dxg_devices" \
 THEROCK_ALLOW_MISSING_WSL_DXG= \
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/missing_dxg_component_sort_order.json" \
@@ -346,6 +351,7 @@ THEROCK_RUNTIME_DEVICE_ROOT="${TMP_DIR}/missing_rocdxg_devices" \
 THEROCK_ROCDXG_SEARCH_PATHS="${TMP_DIR}/missing_rocdxg_artifacts/dist/rocm/lib" \
 THEROCK_ROCDXG_SEARCH_PATHS_ONLY=1 \
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/missing_rocdxg_artifacts" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/missing_rocdxg_component_sort_order.json" \
@@ -387,6 +393,7 @@ PY
 
 echo "[test] run loop with risk skip"
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/component_sort_order.json" \
@@ -494,6 +501,7 @@ grep -q '"runtime_label":' "${RUN_DIR}/progress.jsonl"
 
 echo "[test] opencode debug handoff"
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/component_sort_order.json" \
@@ -614,6 +622,7 @@ PY
 
 echo "[test] sudo cache policy does not block non-sudo tasks"
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/component_sort_order.json" \
@@ -675,6 +684,7 @@ cat >"${TMP_DIR}/official_exclude_component_sort_order.json" <<'JSON'
 JSON
 
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/official_exclude_component_sort_order.json" \
@@ -721,6 +731,7 @@ cat >"${TMP_DIR}/sudo_component_sort_order.json" <<'JSON'
 JSON
 
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
@@ -758,6 +769,7 @@ SH
 chmod +x "${FAKE_SUDO_FAIL_DIR}/sudo"
 
 PATH="${FAKE_SUDO_FAIL_DIR}:${PATH}" "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
@@ -794,6 +806,7 @@ SH
 chmod +x "${FAKE_SUDO_OK_DIR}/sudo"
 
 PATH="${FAKE_SUDO_OK_DIR}:${PATH}" "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
@@ -849,6 +862,7 @@ chmod +x "${FAKE_SUDO_ASKPASS_DIR}/sudo"
 PATH="${FAKE_SUDO_ASKPASS_DIR}:${PATH}" \
 THEROCK_SUDO_ASKPASS="${FAKE_ASKPASS}" \
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
   --component-config "${TMP_DIR}/sudo_component_sort_order.json" \
@@ -923,6 +937,7 @@ print(f"sanity output={os.environ['OUTPUT_ARTIFACTS_DIR']}")
 PY
 
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --therock-repo "${FAKE_THEROCK}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
@@ -1025,6 +1040,7 @@ def main():
 PY
 
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --therock-repo "${FAKE_THEROCK}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \
@@ -1074,6 +1090,7 @@ raise SystemExit(5)
 PY
 
 "${AGENT}" run \
+  "${RUN_BOOTSTRAP_OFF[@]}" \
   --therock-repo "${FAKE_THEROCK}" \
   --artifacts "${TMP_DIR}/output/build" \
   --gpu gfx1151 \

@@ -7,6 +7,7 @@ from typing import Any
 
 from .config import deep_merge
 from .config import load_component_env_index
+from .venv import venv_bin_dir
 
 
 def normalize_profiles(entrypoint: dict[str, Any]) -> list[str]:
@@ -123,6 +124,10 @@ def configure_sudo_askpass_env(state: dict[str, Any], env: dict[str, str]) -> No
 
 def task_context(state: dict[str, Any], task: dict[str, Any], entrypoint: dict[str, Any]) -> dict[str, str]:
     meta = state["meta"]
+    therock_repo = str(meta.get("therock_repo_path") or "")
+    therock_venv_bin = ""
+    if therock_repo:
+        therock_venv_bin = str(venv_bin_dir(Path(therock_repo)))
     return {
         "component": task["component"],
         "test_component": str(entrypoint.get("test_component") or task["component"]),
@@ -130,6 +135,8 @@ def task_context(state: dict[str, Any], task: dict[str, Any], entrypoint: dict[s
         "script": str(entrypoint.get("script", "")),
         "build_root": meta["build_root"],
         "rocm_dist": meta["rocm_dist"],
+        "therock_repo": therock_repo,
+        "therock_venv_bin": therock_venv_bin,
         "therock_bin_dir": str(Path(meta["rocm_dist"]) / "bin"),
         "amdgpu_families": meta["amdgpu_families"],
         "amdgpu_targets": meta.get("amdgpu_targets", meta["amdgpu_families"]),
